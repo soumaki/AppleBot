@@ -521,7 +521,7 @@ async def now_playing_(message: Message):
         spolink = "\n**Puts, dê play em alguma música, né?  ;)**"
     else:
         spolink = (
-            f"▫️ **Spotify Premium** \m🎵 **Now Playing[:]({spotify_bio_.link})** 🔽"
+            f"▫️ **Spotify Premium** \n🎵 **Now Playing[:]({spotify_bio_.link})** 🔽"
         )
     await message.edit(spolink)
 

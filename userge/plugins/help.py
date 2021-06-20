@@ -358,7 +358,7 @@ if userge.has_bot:
                     )
                 )
         else:
-            cur_clnt = "🍎" if Config.USE_USER_FOR_CLIENT_CHECKS else "Rekyn"
+            cur_clnt = "🍏" if Config.USE_USER_FOR_CLIENT_CHECKS else "AppleUser"
             tmp_btns.append(
                 InlineKeyboardButton(
                     f"🔩 Client for: {cur_clnt}",

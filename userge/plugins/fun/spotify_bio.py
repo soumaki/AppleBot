@@ -478,7 +478,7 @@ async def sp_var_check(message: Message):
 
 @userge.on_cmd(
     "spbio",
-    about={"header": "enable / disable Spotify Bio"},
+    about={"header": "Ative / Desative Spotify Bio"},
     allow_channels=False,
 )
 async def spotify_bio_toggle(message: Message):
@@ -490,10 +490,10 @@ async def spotify_bio_toggle(message: Message):
         if USER_INITIAL_BIO:
             await userge.update_profile(bio=USER_INITIAL_BIO["bio"])
             USER_INITIAL_BIO.clear()
-        await message.edit(" `Spotify Bio disabled !`", del_in=4)
+        await message.edit(" `Spotify Bio desativado !`", del_in=4)
     else:
         await message.edit(
-            "✅ `Spotify Bio enabled` \nCurrent Spotify playback will updated in the Bio",
+            "✅ `Spotify Bio ativado` \nStatus será atualizado de acordo com o que você escuta no Spotify ",
             del_in=4,
         )
         USER_INITIAL_BIO["bio"] = (
@@ -508,7 +508,7 @@ async def spotify_bio_toggle(message: Message):
     )
 
 
-@userge.on_cmd("spnow", about={"header": "Now Playing Spotify Song"})
+@userge.on_cmd("spotify$", about={"header": "Música que está ouvindo agora"})
 async def now_playing_(message: Message):
     """Spotify Now Playing"""
     if not await sp_var_check(message):
@@ -518,9 +518,9 @@ async def now_playing_(message: Message):
         "https://api.spotify.com/v1/me/player/currently-playing", headers=oauth
     )
     if r.status_code == 204:
-        spolink = "\n**I'm not listening anything right now  ;)**"
+        spolink = "\n**Puts, dê play em alguma música, né?  ;)**"
     else:
-        spolink = f"🎶 Vibing ; [{spotify_bio_.title}]({spotify_bio_.link}) - {spotify_bio_.interpret}"
+        spolink = f"▫️ **Spotify Premium** \m🎵 **Now Playing[:]({spotify_bio_.link})** 🔽"
     await message.edit(spolink)
 
 

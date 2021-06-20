@@ -20,4 +20,4 @@ async def _worker() -> None:
 
 if __name__ == "__main__":
     userge.begin(_worker())
-    print('USERGE-X test has been finished!')
+    print('AppleBot test has been finished!')

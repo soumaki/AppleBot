@@ -9,7 +9,6 @@
 #  Github.com/code-rgb [ TG - @DetetedUser420 ]
 #  Ported it to Pyrogram and improved Heroku compatiblilty
 
-
 import asyncio
 import os
 import time

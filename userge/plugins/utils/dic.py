@@ -12,6 +12,7 @@ from userge import Message, userge
 LOG = userge.getLogger(__name__)  # logger object
 CHANNEL = userge.getCLogger(__name__)  # channel logger object
 
+
 @userge.on_cmd(
     "dic",
     about={

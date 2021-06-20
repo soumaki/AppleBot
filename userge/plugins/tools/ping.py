@@ -37,11 +37,13 @@ async def pingme(message: Message):
         end = datetime.now()
         t_m_s = (end - start).microseconds / 1000
         m_s = round((t_m_s - 0.6) / 3, 3)
-        await message.edit(f"""
-**Stats $terminal** 
+        await message.edit(
+            f"""
+**Stats $terminal**
 ➖➖➖➖➖➖➖
 Loaded@: `{m_s} milissegundos`
-<code>- local/@laranjudo</code>""")
+<code>- local/@laranjudo</code>"""
+        )
     else:
         await message.edit("`open terminal...`")
         end = datetime.now()

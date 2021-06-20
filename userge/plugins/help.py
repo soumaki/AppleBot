@@ -64,15 +64,10 @@ REPO_X = InlineQueryResultArticle(
     reply_markup=InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton(
-                    "Userbot for Orange", url="https://github.com/"
-                ),
+                InlineKeyboardButton("Userbot for Orange", url="https://github.com/"),
                 InlineKeyboardButton(
                     "Bing ",
-                    url=(
-                        "google.com"
-                        "https://apple.com/"
-                    ),
+                    url=("google.com" "https://apple.com/"),
                 ),
             ]
         ]
@@ -143,6 +138,7 @@ async def helpme(message: Message) -> None:
     await message.edit(
         out_str, del_in=0, parse_mode="html", disable_web_page_preview=True
     )
+
 
 if userge.has_bot:
 
@@ -497,11 +493,7 @@ if userge.has_bot:
 
             if string == "orange":
                 owner = [
-                    [
-                        InlineKeyboardButton(
-                            text="Contact", url="https://t.me/laranjudo"
-                        )
-                    ]
+                    [InlineKeyboardButton(text="Contact", url="https://t.me/laranjudo")]
                 ]
                 results.append(
                     InlineQueryResultPhoto(
@@ -739,7 +731,7 @@ if userge.has_bot:
                                 reply_markup=cnote.get("buttons"),
                             )
                         )
-                        
+
             if string == "gapps":
                 buttons = [
                     [

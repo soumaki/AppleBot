@@ -9,7 +9,7 @@ from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty
 from pyrogram.file_id import PHOTO_TYPES, FileId
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
-from userge import Config, Message, get_version, userge, versions
+from userge import Config, Message, userge, versions
 from userge.core.ext import RawClient
 from userge.utils import get_file_id, rand_array
 
@@ -42,7 +42,11 @@ async def _init() -> None:
                 LOGGER.debug(b_rr)
 
 
-@userge.on_cmd("alive", about={"header": "Faça o comando para saber se seu bot tá online"}, allow_channels=False)
+@userge.on_cmd(
+    "alive",
+    about={"header": "Faça o comando para saber se seu bot tá online"},
+    allow_channels=False,
+)
 async def alive_inline(message: Message):
     try:
         if message.client.is_bot:
@@ -178,9 +182,7 @@ if userge.has_bot:
             except BadRequest:
                 pass
             ping = "UPTIME {} sec\n"
-        alive_s = "▫️ XtraP : {}\n".format(
-            _parse_arg(Config.LOAD_UNOFFICIAL_PLUGINS)
-        )
+        alive_s = "▫️ XtraP : {}\n".format(_parse_arg(Config.LOAD_UNOFFICIAL_PLUGINS))
         alive_s += f"▫️ SUDO : {_parse_arg(Config.SUDO_ENABLED)}\n"
         alive_s += f"▫️ ANTISPAM : {_parse_arg(Config.ANTISPAM_SENTRY)}\n"
         if Config.HEROKU_APP and Config.RUN_DYNO_SAVER:
@@ -199,7 +201,6 @@ if userge.has_bot:
 
 def _parse_arg(arg: bool) -> str:
     return " ✅ " if arg else " ❌ "
-
 
     @userge.bot.on_callback_query(filters.regex(pattern=r"^info_btn$"))
     async def alive_ver(_, c_q: CallbackQuery):
@@ -283,10 +284,11 @@ class Bot_Alive:
             [
                 InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
                 InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
-                 ],
+            ],
             [
-                InlineKeyboardButton(text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"),
-                
+                InlineKeyboardButton(
+                    text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"
+                ),
             ],
         ]
         return InlineKeyboardMarkup(buttons)

@@ -10,6 +10,7 @@ import wikipedia
 
 from userge import Message, userge
 
+
 @userge.on_cmd(
     "wiki",
     about={

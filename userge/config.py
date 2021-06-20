@@ -34,7 +34,7 @@ logbot.reply_last_msg("Definindo Configuraçoes ...")
 
 
 class Config:
-    """ Definições das Configurações do Orange """
+    """Definições das Configurações do Orange"""
 
     API_ID = int(os.environ.get("API_ID"))
     API_HASH = os.environ.get("API_HASH")
@@ -124,7 +124,7 @@ class Config:
 
 
 def get_version() -> str:
-    """ Obtenha a versão do Orange """
+    """Obtenha a versão do Orange"""
     ver = f"{versions.__major__}.{versions.__minor__}.{versions.__micro__}"
     if Config.HEROKU_ENV:
         if not hasattr(Config, "HBOT_VERSION"):

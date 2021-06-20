@@ -11,6 +11,7 @@ from covid import Covid
 
 from userge import Message, pool, userge
 
+
 @userge.on_cmd(
     "covid",
     about={

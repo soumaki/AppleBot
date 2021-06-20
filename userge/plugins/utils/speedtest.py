@@ -23,9 +23,13 @@ async def speedtst(message: Message):
     try:
         test = speedtest.Speedtest()
         test.get_best_server()
-        await message.try_to_edit("Testando conexão..[.](https://telegra.ph/file/7662a65b152e41b79837e.jpg)")
+        await message.try_to_edit(
+            "Testando conexão..[.](https://telegra.ph/file/7662a65b152e41b79837e.jpg)"
+        )
         test.download()
-        await message.try_to_edit("Aguarde..[.](https://telegra.ph/file/88f85a63b232f9db1e4ba.jpg)")
+        await message.try_to_edit(
+            "Aguarde..[.](https://telegra.ph/file/88f85a63b232f9db1e4ba.jpg)"
+        )
         test.upload()
         test.results.share()
         result = test.results.dict()

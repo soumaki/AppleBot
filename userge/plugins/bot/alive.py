@@ -282,13 +282,11 @@ class Bot_Alive:
     def alive_buttons() -> InlineKeyboardMarkup:
         buttons = [
             [
-                InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+                InlineKeyboardButton(text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"),
             ],
             [
-                InlineKeyboardButton(
-                    text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"
-                ),
+                InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
+                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
             ],
         ]
         return InlineKeyboardMarkup(buttons)

@@ -1,5 +1,4 @@
 """ Configuração para o modo ausente """
-
 # VERSÃO DO @APPLLED PARA AFK
 
 import asyncio

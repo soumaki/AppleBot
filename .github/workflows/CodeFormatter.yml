@@ -31,4 +31,4 @@ jobs:
           repository: .
           commit_user_name: applled
           commit_user_email: 62891774+code-rgb@users.noreply.github.com
-          commit_author: code-rgb <62891774+code-rgb@users.noreply.github.com>
+          commit_author: applled <applled@github.com>

@@ -186,13 +186,13 @@ async def handle_afk_outgoing(message: Message) -> None:
             )
         )
         out_str = (
-            f"💬 Mensagens na Inbox[:](https://telegra.ph/file/bb89298fc898666bcf18d.png) **{p_count + g_count}** "
-            + f"▫️ Usuários: **{len(USERS)}** \n\n▫️ **Ausente por** : __{afk_time}__\n"
+            f"📂 Mensagens na Inbox[:](https://telegra.ph/file/bb89298fc898666bcf18d.png) \n**{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** "
+            + f"\n▫️ **Ausente por** : __{afk_time}__\n"
         )
         if p_count:
-            out_str += f"**Mensagens Privadas:** {p_count}\n{p_msg}"
+            out_str += f"**Mensagens Privadas:** {p_count}\n {p_msg}"
         if g_count:
-            out_str += f"**Mensagens em Grupo:** {g_count}\n{g_msg}"
+            out_str += f"**Mensagens em Grupo:** {g_count}\n {g_msg}"
         coro_list.append(CHANNEL.log(out_str))
         USERS.clear()
     else:

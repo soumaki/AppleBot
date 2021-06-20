@@ -20,7 +20,6 @@ _USER_CACHED_MEDIA, _BOT_CACHED_MEDIA = None, None
 
 LOGGER = userge.getLogger(__name__)
 
-
 async def _init() -> None:
     global _USER_CACHED_MEDIA, _BOT_CACHED_MEDIA
     if Config.ALIVE_MEDIA and Config.ALIVE_MEDIA.lower() != "false":

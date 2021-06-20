@@ -520,7 +520,9 @@ async def now_playing_(message: Message):
     if r.status_code == 204:
         spolink = "\n**Puts, dê play em alguma música, né?  ;)**"
     else:
-        spolink = f"▫️ **Spotify Premium** \m🎵 **Now Playing[:]({spotify_bio_.link})** 🔽"
+        spolink = (
+            f"▫️ **Spotify Premium** \m🎵 **Now Playing[:]({spotify_bio_.link})** 🔽"
+        )
     await message.edit(spolink)
 
 

@@ -41,7 +41,9 @@ async def _init() -> None:
     _pmMsg = await SAVED_SETTINGS.find_one({"_id": "NPM Mensagem Personalizada"})
     if _pmMsg:
         noPmMessage = _pmMsg.get("data")
-    _blockPmMsg = await SAVED_SETTINGS.find_one({"_id": "Mensagem Personalizada de Block PM"})
+    _blockPmMsg = await SAVED_SETTINGS.find_one(
+        {"_id": "Mensagem Personalizada de Block PM"}
+    )
     if _blockPmMsg:
         blocked_message = _blockPmMsg.get("data")
 

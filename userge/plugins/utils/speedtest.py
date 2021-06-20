@@ -17,15 +17,15 @@ from userge.utils import humanbytes
 CHANNEL = userge.getCLogger(__name__)
 
 
-@userge.on_cmd("speedtest", about={"header": "test your server speed"})
+@userge.on_cmd("speedtest", about={"header": "Teste a velocidade do servidor"})
 async def speedtst(message: Message):
-    await message.edit("`Running speed test . . .`")
+    await message.edit("Iniciando o teste de velocidade...")
     try:
         test = speedtest.Speedtest()
         test.get_best_server()
-        await message.try_to_edit("`Performing download test . . .`")
+        await message.try_to_edit("Testando conexão..[.](https://telegra.ph/file/7662a65b152e41b79837e.jpg)")
         test.download()
-        await message.try_to_edit("`Performing upload test . . .`")
+        await message.try_to_edit("Aguarde..[.](https://telegra.ph/file/88f85a63b232f9db1e4ba.jpg)")
         test.upload()
         test.results.share()
         result = test.results.dict()
@@ -33,23 +33,23 @@ async def speedtst(message: Message):
         await message.err(text=e)
         return
     path = wget.download(result["share"])
-    output = f"""**--Started at {result['timestamp']}--
+    output = f"""**--Resultado do Teste Iniciado em {result['timestamp']}--
 
-Client:
+Cliente: 🍏 AppleBot
 
 ISP: `{result['client']['isp']}`
-Country: `{result['client']['country']}`
+País: `{result['client']['country']}`
 
-Server:
-
-Name: `{result['server']['name']}`
-Country: `{result['server']['country']}, {result['server']['cc']}`
-Sponsor: `{result['server']['sponsor']}`
-Latency: `{result['server']['latency']}`
-
+Servidor: @twapple
+➖➖➖➖➖➖
+Nome: `{result['server']['name']}`
+País: `{result['server']['country']}, {result['server']['cc']}`
+Anunciante: `{result['server']['sponsor']}`
+Latência: `{result['server']['latency']}`
+➖➖➖➖➖➖
 Ping: `{result['ping']}`
-Sent: `{humanbytes(result['bytes_sent'])}`
-Received: `{humanbytes(result['bytes_received'])}`
+Enviados: `{humanbytes(result['bytes_sent'])}`
+Recebidos: `{humanbytes(result['bytes_received'])}`
 Download: `{humanbytes(result['download'] / 8)}/s`
 Upload: `{humanbytes(result['upload'] / 8)}/s`**"""
     msg = await message.client.send_photo(

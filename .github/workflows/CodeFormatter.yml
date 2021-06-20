@@ -26,9 +26,9 @@ jobs:
           black userge/plugins/ userge/utils/ userge/config.py
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "auto: black code format"
+          commit_message: "auto: @applled"
           commit_options: "--no-verify"
           repository: .
-          commit_user_name: code-rgb
+          commit_user_name: applled
           commit_user_email: 62891774+code-rgb@users.noreply.github.com
           commit_author: code-rgb <62891774+code-rgb@users.noreply.github.com>

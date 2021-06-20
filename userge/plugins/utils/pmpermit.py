@@ -1,4 +1,4 @@
-""" setup auto pm message """
+""" Configurações para PM """
 
 # Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
 #
@@ -24,42 +24,42 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "Hello {fname} this is an automated message\n"
-    "Please wait until you get approved to direct message "
-    "And please dont spam until then "
+    "Olá, {fname}! Esta é uma mensagem automática\n"
+    "Aguarde até que meu mestre aprove suas mensagens "
+    "Não fique spammando, espere "
 )
-blocked_message = bk_blocked_message = "**You were automatically blocked**"
+blocked_message = bk_blocked_message = "**Você foi bloqueado automaticamente**"
 
 
 async def _init() -> None:
     global noPmMessage, blocked_message  # pylint: disable=global-statement
-    async for chat in ALLOWED_COLLECTION.find({"status": "allowed"}):
+    async for chat in ALLOWED_COLLECTION.find({"status": "permitido"}):
         Config.ALLOWED_CHATS.add(chat.get("_id"))
     _pm = await SAVED_SETTINGS.find_one({"_id": "PM GUARD STATUS"})
     if _pm:
         Config.ALLOW_ALL_PMS = bool(_pm.get("data"))
-    _pmMsg = await SAVED_SETTINGS.find_one({"_id": "CUSTOM NOPM MESSAGE"})
+    _pmMsg = await SAVED_SETTINGS.find_one({"_id": "NPM Mensagem Personalizada"})
     if _pmMsg:
         noPmMessage = _pmMsg.get("data")
-    _blockPmMsg = await SAVED_SETTINGS.find_one({"_id": "CUSTOM BLOCKPM MESSAGE"})
+    _blockPmMsg = await SAVED_SETTINGS.find_one({"_id": "Mensagem Personalizada de Block PM"})
     if _blockPmMsg:
         blocked_message = _blockPmMsg.get("data")
 
 
 @userge.on_cmd(
-    "allow",
+    "permitir",
     about={
-        "header": "allows someone to contact",
-        "description": "Ones someone is allowed, "
-        "Userge will not interfere or handle such private chats",
-        "usage": "{tr}allow [username | userID]\nreply {tr}allow to a message, "
-        "do {tr}allow in the private chat",
+        "header": "Aprove as mensagens de alguém que conversa por PM",
+        "description": "Isto irá permitir receber as menssagens, "
+        "e o bot não irá interferir nas mensagens.",
+        "como usar": "{tr}permitir [username | userID]\nresponda {tr}permitir em uma mensagem, "
+        "ou simplesmente digite o comando {tr}permitir na conversa.",
     },
     allow_channels=False,
     allow_via_bot=False,
 )
 async def allow(message: Message):
-    """allows to pm"""
+    """Permite o Envio de PM"""
     userid = await get_id(message)
     if userid:
         if userid in pmCounter:
@@ -69,10 +69,10 @@ async def allow(message: Message):
             {"_id": userid}, {"$set": {"status": "allowed"}}, upsert=True
         )
         if a.matched_count:
-            await message.edit("`Already approved to direct message`", del_in=3)
+            await message.edit("`Já foi configurado para receber PM`", del_in=3)
         else:
             await (await userge.get_users(userid)).unblock()
-            await message.edit("`Approved to direct message`", del_in=3)
+            await message.edit("`Aprovado para PMs`", del_in=3)
 
         if userid in PMPERMIT_MSG:
             await userge.delete_messages(userid, message_ids=PMPERMIT_MSG[userid])
@@ -80,38 +80,38 @@ async def allow(message: Message):
 
     else:
         await message.edit(
-            "I need to reply to a user or provide the username/id or be in a private chat",
-            del_in=3,
+            "Preciso responder um usuário ou forneça user/id em uma conversa particular",
+            del_in=2,
         )
 
 
 @userge.on_cmd(
-    "nopm",
+    "bloquear",
     about={
-        "header": "Activates guarding on inbox",
-        "description": "Ones someone is allowed, "
-        "Userge will not interfere or handle such private chats",
-        "usage": "{tr}nopm [username | userID]\nreply {tr}nopm to a message, "
-        "do {tr}nopm in the private chat",
+        "header": "Ativa o bloqueio de mensagens",
+        "descrição": "Configuração já intuitiva, "
+        "O bot não irá interferir nas mensagens, usuário ficará bloqueado.",
+        "como usar": "{tr}bloquear [username | userID]\nresponda {tr}bloquear em uma mensagem, "
+        "ou {tr}bloquear em uma conversa particular",
     },
     allow_channels=False,
     allow_via_bot=False,
 )
 async def denyToPm(message: Message):
-    """disallows to pm"""
+    """Não permite PM"""
     userid = await get_id(message)
     if userid:
         if userid in Config.ALLOWED_CHATS:
             Config.ALLOWED_CHATS.remove(userid)
         a = await ALLOWED_COLLECTION.delete_one({"_id": userid})
         if a.deleted_count:
-            await message.edit("`Prohibitted to direct message`", del_in=3)
+            await message.edit("`Proibido de enviar PMs`", del_in=3)
         else:
-            await message.edit("`Nothing was changed`", del_in=3)
+            await message.edit("`Não alerou nada.`", del_in=3)
     else:
         await message.edit(
-            "I need to reply to a user or provide the username/id or be in a private chat",
-            del_in=3,
+            "Preciso responder um usuário ou forneça user/id em uma conversa particular",
+            del_in=2,
         )
 
 

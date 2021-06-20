@@ -5,7 +5,7 @@
 #
 # [Sunny](https://t.me/medevilofxd) and Others for spotify_userbot
 # (https://github.com/anilchauhanxda/spotify_userbot/blob/master/bot.py)
-#
+
 #  Github.com/code-rgb [ TG - @DetetedUser420 ]
 #  Ported it to Pyrogram and improved Heroku compatiblilty
 

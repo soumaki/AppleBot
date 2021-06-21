@@ -33,7 +33,7 @@ tagLoggingFilter = filters.create(lambda _, __, ___: Config.TAG_LOGGING)
         "flag": {
             "-c": "Confere o tlog status",
         },
-        "usage": "{tr}tag_log",
+        "como usar": "{tr}tlog",
     },
     allow_channels=False,
 )

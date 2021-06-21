@@ -266,7 +266,7 @@ class Bot_Alive:
     @staticmethod
     def alive_info() -> str:
         alive_info_ = f"""
-   
+
 <a href="https://t.me/xapplebot"><b>APPLEBOT</a> IS ON AND UP ✓</b>
 <b><code>Online Since:{userge.uptime} | <b>Mode: {Bot_Alive._get_mode()}</code></b>
       ➖➖➖➖➖➖➖

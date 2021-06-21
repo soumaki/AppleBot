@@ -130,7 +130,9 @@ async def spotify_setup(message: Message):
         await message.err(no_sp_vars, del_in=8)
         return
     if message.chat.id != Config.LOG_CHANNEL_ID:
-        await message.err("CHAT INVÁLIDO :: É para fazer isso no canal de Log", del_in=8)
+        await message.err(
+            "CHAT INVÁLIDO :: É para fazer isso no canal de Log", del_in=8
+        )
         return
     initial_token, msg_ = await get_auth_()
     if "code=" in initial_token:
@@ -274,8 +276,8 @@ if Config.SPOTIFY_CLIENT_ID and Config.SPOTIFY_CLIENT_SECRET:
             elif r.status_code == 204:
                 if save_spam("spotify", False):
                     stringy = (
-                            "**[INFO]**\n\nTudo voltou ao normal, o problema anterior do Spotify"
-                            " foi resolvido."
+                        "**[INFO]**\n\nTudo voltou ao normal, o problema anterior do Spotify"
+                        " foi resolvido."
                     )
                     await CHANNEL.log(stringy)
             # 401 means our access token is expired, so we need to refresh it
@@ -400,8 +402,8 @@ if Config.SPOTIFY_CLIENT_ID and Config.SPOTIFY_CLIENT_SECRET:
                                 spotify_bio_.lrt = time.time()
                                 if save_spam("telegram", False):
                                     stringy = (
-                            "**[INFO]**\n\nTudo voltou ao normal, o problema anterior do Spotify"
-                            " foi resolvido."
+                                        "**[INFO]**\n\nTudo voltou ao normal, o problema anterior do Spotify"
+                                        " foi resolvido."
                                     )
                                     await CHANNEL.log(stringy)
                             # this can happen if our LIMIT check failed because telegram counts emojis twice and python

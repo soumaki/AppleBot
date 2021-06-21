@@ -493,16 +493,18 @@ if userge.has_bot:
 
             if string == "orange":
                 owner = [
-            [
-                InlineKeyboardButton(
-                    text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"
-                ),
-            ],
-            [
-                InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
-            ],
-        ]
+                    [
+                        InlineKeyboardButton(
+                            text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="❎ STATUS", callback_data="settings_btn"
+                        ),
+                        InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+                    ],
+                ]
                 results.append(
                     InlineQueryResultPhoto(
                         photo_url="https://telegra.ph/file/70f2872b9b038445e9786.png",

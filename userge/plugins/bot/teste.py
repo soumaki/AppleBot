@@ -6,9 +6,9 @@ from re import search
 
 from pyrogram import filters
 from pyrogram.errors import BadRequest, FloodWait, Forbidden
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import CallbackQuery
 
-from userge import Config, Message, get_version, userge, versions
+from userge import Config, Message, userge
 from userge.core.ext import RawClient
 from userge.utils import get_file_id, rand_array
 
@@ -152,7 +152,7 @@ class Bot_Alive:
     @staticmethod
     def alive_info():
         alive_info = f"""
-<b> Estou Online ✓ | ™️ {userge.uptime}</b>  
+<b> Estou Online ✓ | ™️ {userge.uptime}</b>
 """
         return alive_info
 

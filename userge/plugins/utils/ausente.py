@@ -186,7 +186,7 @@ async def handle_afk_outgoing(message: Message) -> None:
             )
         )
         out_str = (
-            f"📂 Mensagens na Inbox[:](https://telegra.ph/file/e478fb22eed4e4eb93107.png) **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
+            f"📂 Mensagens na Inbox[:](https://telegra.ph/file/7c1ba52391b7ffcc3e891.png) **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
             + f"\n▫️ **Ausente por** : __{afk_time}__\n\n"
         )
         if p_count:

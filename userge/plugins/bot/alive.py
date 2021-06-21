@@ -99,7 +99,7 @@ async def send_alive_message(message: Message) -> None:
         caption += (
             f"\n⚡️  <a href={Config.UPSTEAM_REPO}><b>REPO</b></a>"
             "    <code>|</code>    "
-            "👥  <a href='https://t.me/laranjudo'><b>SUPPORT</b></a>"
+            "👥  <a href='https://t.me/xapplebot'><b>SUPPORT</b></a>"
         )
     if not Config.ALIVE_MEDIA:
         await client.send_photo(
@@ -282,9 +282,7 @@ class Bot_Alive:
     def alive_buttons() -> InlineKeyboardMarkup:
         buttons = [
             [
-                InlineKeyboardButton(
-                    text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"
-                ),
+                InlineKeyboardButton(text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"),
             ],
             [
                 InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),

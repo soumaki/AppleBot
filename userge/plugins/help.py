@@ -493,12 +493,20 @@ if userge.has_bot:
 
             if string == "orange":
                 owner = [
-                    [InlineKeyboardButton(text="Contact", url="https://t.me/laranjudo")]
-                ]
+            [
+                InlineKeyboardButton(
+                    text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"
+                ),
+            ],
+            [
+                InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
+                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+            ],
+        ]
                 results.append(
                     InlineQueryResultPhoto(
-                        photo_url="https://coverfiles.alphacoders.com/123/123388.png",
-                        caption="Hey I solved bla bla**",
+                        photo_url="https://telegra.ph/file/70f2872b9b038445e9786.png",
+                        caption="<b>[APPLEBOT](https://t.me/xapplebot) IS ON AND UP ✓</b>\n<b><code>Online Since:{userge.uptime} | <b>Mode: {Bot_Alive._get_mode()}</code></b>\n      ➖➖➖➖➖➖➖\n⭕️   <b>Python:</b> <code>v{versions.__python_version__}</code>\n⭕️   <b>Pyrogram:</b> <code>v{versions.__pyro_version__}</code>\n▫️   <b>Version:</b> <code>v{versions.__online_version__}</code>\n      ➖➖➖➖➖➖➖\n🍎   <b>Main:</b>  <code><b>{versions.__main_version__ }</b></code>\n",
                         reply_markup=InlineKeyboardMarkup(owner),
                     )
                 )

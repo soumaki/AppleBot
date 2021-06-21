@@ -1,4 +1,4 @@
-"""Module to display Currenty Playing Spotify Songs in your bio"""
+"""Módulo para exibir quais canções você está atualmente ouvindo no Spotify"""
 
 #  CREDITS:
 # [Poolitzer](https://t.me/poolitzer)  (for creating spotify bio plugin)
@@ -30,9 +30,9 @@ PATH_ = f"{Config.CACHE_PATH}/spotify_database.json"
 # [---------------------------] Constants [------------------------------]
 KEY = "🎶"
 BIOS = [
-    KEY + " I'm Listen to : {interpret} - {title}",
+    KEY + " I'm Listen to: {interpret} - {title}",
     KEY + " : {interpret} - {title}",
-    KEY + " I'm Listen to : {title}",
+    KEY + " I'm Listen to: {title}",
     KEY + " : {title}",
 ]
 OFFSET = 1
@@ -48,7 +48,7 @@ no_sp_vars = (
 class Database:
     def __init__(self):
         if not os.path.exists(PATH_):
-            LOG_.error('Spotify Auth. required see help for "sp_setup" for more info !')
+            LOG_.error('Spotify Auth. Configura o "spsetup" para mais informações !')
             return
         with open(PATH_) as f:
             self.db = ujson.load(f)
@@ -107,30 +107,30 @@ async def get_auth_():
     )
     async with userge.conversation(Config.LOG_CHANNEL_ID, timeout=150) as conv:
         msg_ = await conv.send_message(
-            "Go to the following link in "
-            f"your browser: {_authurl.format(Config.SPOTIFY_CLIENT_ID)} and reply the code or url"
+            "Abra este link "
+            f"no seu navegador: {_authurl.format(Config.SPOTIFY_CLIENT_ID)} e responda com o endereço url"
         )
         response = await conv.get_response(mark_read=True)
-        await msg_.edit("`Processing ...`")
+        await msg_.edit("`Enviando solicitação...`")
         return response.text.strip(), msg_
 
 
 @userge.on_cmd(
     "spsetup",
     about={
-        "header": "Setup for Spotify Auth",
-        "description": "[In LOG Channel]\nLogin in your spotify account before doing this, then follow the instructions",
-        "usage": "{tr}sp_setup",
+        "header": "Configura o Spotify Auth",
+        "descrição": "[Canal de Logs]\nPrimeiroa, faça login em sua conta, então prossiga com os passos.",
+        "como usar": "{tr}spsetup",
     },
 )
 async def spotify_setup(message: Message):
-    """Setup Spotify Creds"""
+    """Configuração do Spotify - Credenciais"""
     global SP_DATABASE
     if not (Config.SPOTIFY_CLIENT_ID and Config.SPOTIFY_CLIENT_SECRET):
         await message.err(no_sp_vars, del_in=8)
         return
     if message.chat.id != Config.LOG_CHANNEL_ID:
-        await message.err("CHAT INVALID :: Do this in your Log Channel", del_in=8)
+        await message.err("CHAT INVÁLIDO :: É para fazer isso no canal de Log", del_in=8)
         return
     initial_token, msg_ = await get_auth_()
     if "code=" in initial_token:
@@ -148,7 +148,7 @@ async def spotify_setup(message: Message):
     refresh_token = save.get("refresh_token")
     if not (access_token and refresh_token):
         await msg_.err(
-            "Auth. was Unsuccessful !\ndo sp_setup again and provide a valid URL or Code"
+            "Auth. foi mal malsucedido!\nFaça o comando .spsetup novamente e forneça um link válido ou código"
         )
         return
     to_create = {
@@ -160,7 +160,7 @@ async def spotify_setup(message: Message):
     }
     with open(PATH_, "w") as outfile:
         ujson.dump(to_create, outfile, indent=4)
-    await msg_.edit("Done! Setup was Successfully")
+    await msg_.edit("Agora sim! A configuração deu certo.")
     await SPOTIFY_DB.update_one(
         {"_id": "database"},
         {"$set": {"access_token": access_token, "refresh_token": refresh_token}},
@@ -246,8 +246,8 @@ if Config.SPOTIFY_CLIENT_ID and Config.SPOTIFY_CLIENT_SECRET:
                     to_insert["image"] = received["item"]["album"]["images"][1]["url"]
                     if save_spam("spotify", False):
                         stringy = (
-                            "**[INFO]**\n\nEverything returned back to normal, the previous spotify issue has been "
-                            "resolved."
+                            "**[INFO]**\n\nTudo voltou ao normal, o problema anterior do Spotify"
+                            " foi resolvido."
                         )
                         await CHANNEL.log(stringy)
                 else:
@@ -262,10 +262,10 @@ if Config.SPOTIFY_CLIENT_ID and Config.SPOTIFY_CLIENT_SECRET:
             # 429 means flood limit, we need to wait
             elif r.status_code == 429:
                 to_wait = r.headers["Retry-After"]
-                LOG_.error(f"Spotify, have to wait for {str(to_wait)}")
+                LOG_.error(f"Spotify, entrando em modo de esperar {str(to_wait)}")
                 await CHANNEL.log(
-                    "**[WARNING]**\n\nI caught a spotify api limit. I shall sleep for "
-                    f"{str(to_wait)} seconds until I refresh again"
+                    "**[WARNING]**\n\nAPI do Spotify chegou no limite. Entrando no modo de espera.. "
+                    f"{str(to_wait)} segundos e voltarei a funcionar normalmente."
                 )
                 skip = True
                 await asyncio.sleep(int(to_wait))
@@ -274,8 +274,8 @@ if Config.SPOTIFY_CLIENT_ID and Config.SPOTIFY_CLIENT_SECRET:
             elif r.status_code == 204:
                 if save_spam("spotify", False):
                     stringy = (
-                        "**[INFO]**\n\nEverything returned back to normal, the previous spotify issue has been "
-                        "resolved."
+                            "**[INFO]**\n\nTudo voltou ao normal, o problema anterior do Spotify"
+                            " foi resolvido."
                     )
                     await CHANNEL.log(stringy)
             # 401 means our access token is expired, so we need to refresh it
@@ -400,8 +400,8 @@ if Config.SPOTIFY_CLIENT_ID and Config.SPOTIFY_CLIENT_SECRET:
                                 spotify_bio_.lrt = time.time()
                                 if save_spam("telegram", False):
                                     stringy = (
-                                        "**[INFO]**\n\nEverything returned back to normal, the previous telegram "
-                                        "issue has been resolved."
+                            "**[INFO]**\n\nTudo voltou ao normal, o problema anterior do Spotify"
+                            " foi resolvido."
                                     )
                                     await CHANNEL.log(stringy)
                             # this can happen if our LIMIT check failed because telegram counts emojis twice and python
@@ -428,8 +428,8 @@ if Config.SPOTIFY_CLIENT_ID and Config.SPOTIFY_CLIENT_SECRET:
                 else:
                     if save_spam("telegram", False):
                         stringy = (
-                            "**[INFO]**\n\nEverything returned back to normal, the previous telegram issue has "
-                            "been resolved."
+                            "**[INFO]**\n\nTudo voltou ao normal, o problema anterior do Spotify"
+                            " foi resolvido."
                         )
                         await CHANNEL.log(stringy)
                     old_bio = SP_DATABASE.return_bio()
@@ -468,7 +468,7 @@ async def sp_var_check(message: Message):
         return False
     if SP_DATABASE is None:
         await message.edit(
-            "ERROR :: No Database was found!\n**See help for sp_setup for more info.**",
+            "ERRO :: Nenhum banco de dados encontrado!\n**Configura o ajuda em spsetup para mais informações.**",
             del_in=10,
         )
         return False
@@ -481,7 +481,7 @@ async def sp_var_check(message: Message):
     allow_channels=False,
 )
 async def spotify_bio_toggle(message: Message):
-    """Toggle Spotify Bio"""
+    """Spotify Bio"""
     if not await sp_var_check(message):
         return
     if Config.SPOTIFY_MODE:
@@ -525,7 +525,7 @@ async def now_playing_(message: Message):
     await message.edit(spolink)
 
 
-@userge.on_cmd("spinfo", about={"header": "Get Info about Your Songs and Device"})
+@userge.on_cmd("spinfo", about={"header": "Informações sobre as músicas e o aparelho"})
 async def sp_info_(message: Message):
     """Spotify Device Info"""
     if not await sp_var_check(message):
@@ -544,7 +544,7 @@ async def sp_info_(message: Message):
         headers=oauth,
     )
     if getplay.status_code == 204:
-        status_pn = "\n**I'm not listening anything right now :)**"
+        status_pn = "\n**Kkk eu não estou ouvindo é nada :)**"
     else:
         # ==========START_RECETLY_FIVE_SONGS_EXTRATIONS============================================================#
         recent_play = recetly_pl.json()
@@ -567,15 +567,15 @@ async def sp_info_(message: Message):
         currently_playing_song_dur = f"{spotify_bio_.progress}/{spotify_bio_.duration}"
         # ==================ASSINGING_VAR_VLAUE=======================================#
         status_pn = f"""
-    **Device name:** {device_name} ({device_type})
-    **Device volume:** {device_vol}%
-    **Currently playing song:** {currently_playing_song}
-    **Duration:** {currently_playing_song_dur}
-    **Recently played songs:** \n{recent_p}"""
+    **Nome do aparelho:** {device_name} ({device_type})
+    **Volume:** {device_vol}%
+    **Ouvindo agora:** {currently_playing_song}
+    **Duração:** {currently_playing_song_dur}
+    **Música recente:** \n{recent_p}"""
     await message.edit(status_pn)
 
 
-@userge.on_cmd("spprofile", about={"header": "Get Your Spotify Account Info"})
+@userge.on_cmd("sperfil", about={"header": "Informações de sua Conta do Spotify"})
 async def sp_profile_(message: Message):
     """Spotify Profile"""
     if not await sp_var_check(message):
@@ -587,28 +587,28 @@ async def sp_profile_(message: Message):
     country = a_me.get("country")
     me_img = a_me.get("images").pop().get("url") if a_me.get("images") else None
     me_url = a_me["external_urls"]["spotify"]
-    profile_text = f"[\u200c]({me_img or 'https://i.imgur.com/XTLlQeq.gif'})**Spotify name**: {name}\n**Profile link:** [here]({me_url})"
+    profile_text = f"[\u200c]({me_img or 'https://i.imgur.com/XTLlQeq.gif'})**Spotify**: {name}\n**Perfil:** [aqui]({me_url})"
     if country:
-        profile_text += f"\n**Country:** {country}"
+        profile_text += f"\n**País:** {country}"
     total_ = a_me["followers"].get("total")
     if isinstance(total_, int) and total_ != 0:
-        profile_text += f"\n**Followers:** {total_}"
+        profile_text += f"\n**Seguidores:** {total_}"
     await message.edit(profile_text)
 
 
-@userge.on_cmd("sprecents", about={"header": "Get Recently Played Spotify Songs"})
+@userge.on_cmd("sprecentes", about={"header": "Suas músicas tocadas recentemente"})
 async def sp_recents_(message: Message):
-    """Spotify Recent Songs"""
+    """Músicas tocadas recentemente no Spotify"""
     if not await sp_var_check(message):
         return
     oauth = {"Authorization": "Bearer " + SP_DATABASE.return_token()}
-    await message.edit("`Getting recent played songs...`")
+    await message.edit("`Obtendo informações...`")
     r = requests.get(
         "https://api.spotify.com/v1/me/player/recently-played", headers=oauth
     )
     recent_play = r.json()
     get_rec = recent_play["items"]
-    recent = "🎵 **Recently played songs:**\n"
+    recent = "🎵 **Músicas tocadas recentemente:**\n"
     for for_rec in get_rec:
         track = for_rec["track"]
         get_name = track["name"]

@@ -202,6 +202,7 @@ if userge.has_bot:
 def _parse_arg(arg: bool) -> str:
     return " ✅ " if arg else " ❌ "
 
+
 #    @userge.bot.on_callback_query(filters.regex(pattern=r"^info_btn$"))
 #    async def alive_ver(_, c_q: CallbackQuery):
 #        allow = bool(

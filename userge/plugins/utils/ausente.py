@@ -186,7 +186,7 @@ async def handle_afk_outgoing(message: Message) -> None:
             )
         )
         out_str = (
-            f"📂 Mensagens na Inbox[:](https://telegra.ph/file/bb89298fc898666bcf18d.png) **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
+            f"📂 Mensagens na Inbox[:](https://telegra.ph/file/e478fb22eed4e4eb93107.png) **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
             + f"\n▫️ **Ausente por** : __{afk_time}__\n\n"
         )
         if p_count:
@@ -212,7 +212,7 @@ async def handle_afk_outgoing(message: Message) -> None:
 
 
 AUTO_AFK = (
-    "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",
-    "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   15 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/f68688e04a8713174bb7d.gif)",
-    "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   Unlimited time ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/885d526a6d02910e436ef.gif)",
+    "⚡️ **Auto Reply** ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",
+    "⚡️ **Auto Reply** ╰• SNOOZE \n🕑 **Last Check:**   15 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/f68688e04a8713174bb7d.gif)",
+    "⚡️ **Auto Reply** ╰• SNOOZE \n🕑 **Last Check:**   Unlimited time ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/885d526a6d02910e436ef.gif)",
 )

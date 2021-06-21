@@ -491,7 +491,7 @@ if userge.has_bot:
             and Config.SUDO_ENABLED
         ):
 
-            if string == "orange":
+            if string == "alive":
                 owner = [
                     [
                         InlineKeyboardButton(
@@ -500,15 +500,15 @@ if userge.has_bot:
                     ],
                     [
                         InlineKeyboardButton(
-                            text="❎ STATUS", callback_data="settings_btn"
+                            text="❎ UPDATE", callback_data="settings_btn"
                         ),
-                        InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+                        InlineKeyboardButton(text="🍏 INSPIRED", url=Config.MEUTG_REPO),
                     ],
                 ]
                 results.append(
                     InlineQueryResultPhoto(
-                        photo_url="https://telegra.ph/file/70f2872b9b038445e9786.png",
-                        caption="<b>[APPLEBOT](https://t.me/xapplebot) IS ON AND UP ✓</b>\n<b><code>Online Since:{userge.uptime} | <b>Mode: {Bot_Alive._get_mode()}</code></b>\n      ➖➖➖➖➖➖➖\n⭕️   <b>Python:</b> <code>v{versions.__python_version__}</code>\n⭕️   <b>Pyrogram:</b> <code>v{versions.__pyro_version__}</code>\n▫️   <b>Version:</b> <code>v{versions.__online_version__}</code>\n      ➖➖➖➖➖➖➖\n🍎   <b>Main:</b>  <code><b>{versions.__main_version__ }</b></code>\n",
+                        photo_url="https://telegra.ph/file/d50925c35883b16be6cd6.png",
+                        caption=" ",
                         reply_markup=InlineKeyboardMarkup(owner),
                     )
                 )

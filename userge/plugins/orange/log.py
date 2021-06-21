@@ -1,4 +1,4 @@
-# created for USERGE-X by @Kakashi_HTK/@ashwinstr
+# Criado por @Kakashi_HTK/@ashwinstr adaptador por @Applled
 
 
 import asyncio

@@ -202,42 +202,42 @@ if userge.has_bot:
 def _parse_arg(arg: bool) -> str:
     return " ✅ " if arg else " ❌ "
 
-    @userge.bot.on_callback_query(filters.regex(pattern=r"^info_btn$"))
-    async def alive_ver(_, c_q: CallbackQuery):
-        allow = bool(
-            c_q.from_user
-            and (
-                c_q.from_user.id in Config.OWNER_ID
-                or c_q.from_user.id in Config.SUDO_USERS
-            )
-        )
-        if allow:
-            start = datetime.now()
-            try:
-                await c_q.edit_message_text(
-                    Bot_Alive.alive_info(),
-                    reply_markup=Bot_Alive.alive_buttons(),
-                    disable_web_page_preview=True,
-                )
-            except FloodWait as e:
-                await asyncio.sleep(e.x)
-            except BadRequest:
-                pass
-            ping = "RUNNING {} sec\n"
-        alive_ss += f"▫️ Python : v{versions.__python_version__}\n"
-        alive_ss += f"▫️ Pyrogram : v{versions.__pyro_version__}\n"
-
-        if allow:
-            end = datetime.now()
-            m_s = (end - start).microseconds / 1000
-            await c_q.answer(ping.format(m_s) + alive_ss, show_alert=True)
-        else:
-            await c_q.answer(alive_ss, show_alert=True)
-        await asyncio.sleep(0.5)
-
-
-def _parse_arg(arg: bool) -> str:
-    return " ✅ " if arg else " ❌ "
+#    @userge.bot.on_callback_query(filters.regex(pattern=r"^info_btn$"))
+#    async def alive_ver(_, c_q: CallbackQuery):
+#        allow = bool(
+#            c_q.from_user
+#            and (
+#                c_q.from_user.id in Config.OWNER_ID
+#                or c_q.from_user.id in Config.SUDO_USERS
+#            )
+#        )
+#        if allow:
+#            start = datetime.now()
+#            try:
+#                await c_q.edit_message_text(
+#                    Bot_Alive.alive_info(),
+#                    reply_markup=Bot_Alive.alive_buttons(),
+#                    disable_web_page_preview=True,
+#                )
+#            except FloodWait as e:
+#                await asyncio.sleep(e.x)
+#            except BadRequest:
+#                pass
+#            ping = "RUNNING {} sec\n"
+#        alive_ss += f"▫️ Python : v{versions.__python_version__}\n"
+#        alive_ss += f"▫️ Pyrogram : v{versions.__pyro_version__}\n"
+#
+#        if allow:
+#            end = datetime.now()
+#            m_s = (end - start).microseconds / 1000
+#            await c_q.answer(ping.format(m_s) + alive_ss, show_alert=True)
+#        else:
+#            await c_q.answer(alive_ss, show_alert=True)
+#        await asyncio.sleep(0.5)
+#
+#
+# def _parse_arg(arg: bool) -> str:
+#    return " ✅ " if arg else " ❌ "
 
 
 class Bot_Alive:

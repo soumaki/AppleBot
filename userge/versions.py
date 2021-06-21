@@ -8,6 +8,6 @@ __micro__ = 1
 __loki__ = 1
 
 __python_version__ = f"{version_info[0]}.{version_info[1]}.{version_info[2]}"
-__license__ = "[GNU GPL v3.0](https://github.com/code-rgb/userge-x/blob/alpha/LICENSE)"
-__copyright__ = "[USERGE-X](https://github.com/code-rgb/userge-x)"
-__ab_version__ = f"{version_info[0]}.{version_info[0]}.{version_info[1]}"
+__license__ = "[GNU GPL v3.0](https://github.com/applled/applebot/blob/alpha/LICENSE)"
+__online_version__ = "[Beta](https://github.com/applled/applebot)"
+__main_version__ = "[@applled](https://t.me/applled)"

@@ -24,26 +24,26 @@ from userge.utils import get_response
 
 
 @userge.on_cmd(
-    "kang",
+    "kibar",
     about={
-        "header": "kangs stickers or creates new ones",
+        "header": "Kiba adesivos ou cria um",
         "flags": {"-s": "without link", "-d": "without trace"},
-        "usage": "Reply {tr}kang [emoji('s)] [pack number] to a sticker or "
-        "an image to kang it to your userbot pack.",
-        "examples": [
-            "{tr}kang",
-            "{tr}kang -s",
-            "{tr}kang -d",
-            "{tr}kang 🤔",
-            "{tr}kang 2",
-            "{tr}kang 🤔 2",
+        "como usar": "Responda {tr}kibar [emoji('s)] [número do pack] para criar um adesivo ou "
+        "uma imagem para kibar.",
+        "exemplos": [
+            "{tr}kibar",
+            "{tr}kibar -s",
+            "{tr}kibar -d",
+            "{tr}kibar 🤔",
+            "{tr}kibar 2",
+            "{tr}kibar 🤔 2",
         ],
     },
     allow_channels=False,
     allow_via_bot=False,
 )
 async def kang_(message: Message):
-    """kang a sticker"""
+    """Kibar um adesivo"""
     user = await userge.get_me()
     replied = message.reply_to_message
     photo = None
@@ -59,19 +59,19 @@ async def kang_(message: Message):
             is_anim = True
         elif replied.sticker:
             if not replied.sticker.file_name:
-                await message.edit("`Sticker has no Name!`")
+                await message.edit("`Adeviso nem nome tem!`")
                 return
             emoji_ = replied.sticker.emoji
             is_anim = replied.sticker.is_animated
             if not replied.sticker.file_name.endswith(".tgs"):
                 resize = True
         else:
-            await message.edit("`Unsupported File!`")
+            await message.edit("`Este tipo de arquivo não é suportado!`")
             return
         await message.edit(f"`{random.choice(KANGING_STR)}`")
         photo = await userge.download_media(message=replied, file_name=Config.DOWN_PATH)
     else:
-        await message.edit("`I can't kang that...`")
+        await message.edit("`Puts, impossível kibar isso...`")
         return
     if photo:
         args = message.filtered_input_str.split()
@@ -129,13 +129,13 @@ async def kang_(message: Message):
                         packname += "_anim"
                         packnick += " (Animated)"
                     await message.edit(
-                        "`Switching to Pack "
+                        "`Mudando para o Pack "
                         + str(pack)
-                        + " due to insufficient space`"
+                        + " devido a falta de espaço`"
                     )
                     await conv.send_message(packname)
                     msg = await conv.get_response(mark_read=True)
-                    if msg.text == "Invalid pack selected.":
+                    if msg.text == "Esse pacote selecionado deve nem existir.":
                         await conv.send_message(cmd)
                         await conv.get_response(mark_read=True)
                         await conv.send_message(packnick)
@@ -162,15 +162,15 @@ async def kang_(message: Message):
                                 else f"[kanged](t.me/addstickers/{packname})"
                             )
                             await message.edit(
-                                f"**Sticker** {out} __in a Different Pack__**!**"
+                                f"**Adeviso** {out} __está em um pacote diferente__**!**"
                             )
                         return
                 await conv.send_document(photo)
                 rsp = await conv.get_response(mark_read=True)
-                if "Sorry, the file type is invalid." in rsp.text:
+                if "Foi mal, este tipo de arquivo é um lixo." in rsp.text:
                     await message.edit(
-                        "`Failed to add sticker, use` @Stickers "
-                        "`bot to add the sticker manually.`"
+                        "`Falha ao adicionar, use` @Stickers "
+                        "`bot para adicionar o adesivo manualmente.`"
                     )
                     return
                 await conv.send_message(emoji_)
@@ -178,22 +178,22 @@ async def kang_(message: Message):
                 await conv.send_message("/done")
                 await conv.get_response(mark_read=True)
         else:
-            await message.edit("`Brewing a new Pack...`")
+            await message.edit("`Criando um novo pacote...`")
             async with userge.conversation("Stickers") as conv:
                 try:
                     await conv.send_message(cmd)
                 except YouBlockedUser:
-                    await message.edit("first **unblock** @Stickers")
+                    await message.edit("Primeiramente, **desbloqueie** o @Stickers")
                     return
                 await conv.get_response(mark_read=True)
                 await conv.send_message(packnick)
                 await conv.get_response(mark_read=True)
                 await conv.send_document(photo)
                 rsp = await conv.get_response(mark_read=True)
-                if "Sorry, the file type is invalid." in rsp.text:
+                if "Foi mal, este tipo de arquivo é um lixo." in rsp.text:
                     await message.edit(
-                        "`Failed to add sticker, use` @Stickers "
-                        "`bot to add the sticker manually.`"
+                        "`Falha ao adicionar, use` @Stickers "
+                        "`bot para adicionar o adesivo manualmente.`"
                     )
                     return
                 await conv.send_message(emoji_)
@@ -211,32 +211,32 @@ async def kang_(message: Message):
             await message.delete()
         else:
             out = (
-                "__kanged__"
+                "__kibado__"
                 if "-s" in message.flags
-                else f"[kanged](t.me/addstickers/{packname})"
+                else f"[kibado](t.me/addstickers/{packname})"
             )
-            await message.edit(f"**Sticker** {out}**!**")
+            await message.edit(f"**Adesivo** {out}**!**")
         if os.path.exists(str(photo)):
             os.remove(photo)
 
 
 @userge.on_cmd(
-    "stkrinfo",
+    "kibinfo",
     about={
-        "header": "get sticker pack info",
-        "usage": "reply {tr}stkrinfo to any sticker",
+        "header": "Obtenha informações do pacote de adesivo",
+        "como usar": "responda {tr}kibinfo em qualquer adeviso",
     },
 )
 async def sticker_pack_info_(message: Message):
-    """get sticker pack info"""
+    """ Obtenha informações do pacote """
     replied = message.reply_to_message
     if not replied:
-        await message.edit("`I can't fetch info from nothing, can I ?!`")
+        await message.edit("`Não consegui identificar essa desgraça, ou eu posso?!`")
         return
     if not replied.sticker:
-        await message.edit("`Reply to a sticker to get the pack details`")
+        await message.edit("`Responda a um adesivo para obter informações detalhadas do pacote`")
         return
-    await message.edit("`Fetching details of the sticker pack, please wait..`")
+    await message.edit("`Buscando informações do pacote de adesivos, pera aí..`")
     get_stickerset = await message.client.send(
         GetStickerSet(
             stickerset=InputStickerSetShortName(short_name=replied.sticker.set_name)
@@ -247,20 +247,20 @@ async def sticker_pack_info_(message: Message):
         if document_sticker.emoticon not in pack_emojis:
             pack_emojis.append(document_sticker.emoticon)
     out_str = (
-        f"**Sticker Title:** `{get_stickerset.set.title}\n`"
-        f"**Sticker Short Name:** `{get_stickerset.set.short_name}`\n"
-        f"**Archived:** `{get_stickerset.set.archived}`\n"
-        f"**Official:** `{get_stickerset.set.official}`\n"
-        f"**Masks:** `{get_stickerset.set.masks}`\n"
-        f"**Animated:** `{get_stickerset.set.animated}`\n"
-        f"**Stickers In Pack:** `{get_stickerset.set.count}`\n"
-        f"**Emojis In Pack:**\n{' '.join(pack_emojis)}"
+        f"**Título do Adesivo:** `{get_stickerset.set.title}\n`"
+        f"**Nome Curto:** `{get_stickerset.set.short_name}`\n"
+        f"**Arquivado:** `{get_stickerset.set.archived}`\n"
+        f"**Oficial:** `{get_stickerset.set.official}`\n"
+        f"**Máscaras:** `{get_stickerset.set.masks}`\n"
+        f"**Animados:** `{get_stickerset.set.animated}`\n"
+        f"**Adesivos no Pacote:** `{get_stickerset.set.count}`\n"
+        f"**Emojis no Pacote:**\n{' '.join(pack_emojis)}"
     )
     await message.edit(out_str)
 
 
 def resize_photo(photo: str) -> io.BytesIO:
-    """Resize the given photo to 512x512"""
+    """Redimensiona a imagem para 512x512"""
     image = Image.open(photo)
     maxsize = 512
     scale = maxsize / max(image.width, image.height)
@@ -274,26 +274,21 @@ def resize_photo(photo: str) -> io.BytesIO:
 
 
 KANGING_STR = (
-    "Using Witchery to kang this sticker...",
-    "Plagiarising hehe...",
-    "Inviting this sticker over to my pack...",
-    "Kanging this sticker...",
-    "Hey that's a nice sticker!\nMind if I kang?!..",
-    "hehe me stel ur stikér\nhehe.",
-    "Ay look over there (☉｡☉)!→\nWhile I kang this...",
-    "Roses are red violets are blue, kanging this sticker so my pacc looks cool",
-    "Imprisoning this sticker...",
-    "Mr.Steal Your Sticker is stealing this sticker... ",
+    "Vamos lá, hora de kibar...",
+    "Estou sim, kibando essa desgraça de adesivo...",
+    "Kibando, vai me processar?",
+    "KIBAANNNDDOOOO...",
+    "Seria uma pena se alguém kibasse isso, né?",
 )
 
 
-# Based on:
+# Baseado em:
 # https://github.com/AnimeKaizoku/SaitamaRobot/blob/10291ba0fc27f920e00f49bc61fcd52af0808e14/SaitamaRobot/modules/stickers.py#L42
 @userge.on_cmd(
-    "sticker",
+    "adesivo",
     about={
-        "header": "Search Sticker Packs",
-        "usage": "Reply {tr}sticker or " "{tr}sticker [text]",
+        "header": "Pesquise por pacotes de Adesivos",
+        "como usar": "Responda {tr}adesivo ou " "{tr}adesivo [texto]",
     },
 )
 async def sticker_search(message: Message):
@@ -307,11 +302,11 @@ async def sticker_search(message: Message):
 
     if not query_:
         return message.err(
-            "reply to a user or provide text to search sticker packs", del_in=3
+            "responda uma mensagem ou forneça um texto para a pesquisa do pacote", del_in=3
         )
 
-    await message.edit(f'🔎 Searching for sticker packs for "`{query_}`"...')
-    titlex = f'<b>Sticker Packs For:</b> "<u>{query_}</u>"\n'
+    await message.edit(f'🔎 Pesquisando por "`{query_}`"...')
+    titlex = f'<b>Pacotes de Adesivos:</b> "<u>{query_}</u>"\n'
     sticker_pack = ""
     try:
         text = await get_response.text(
@@ -319,7 +314,7 @@ async def sticker_search(message: Message):
         )
     except ValueError:
         return await message.err(
-            "Response was not 200!, Api is having some issues\n Please try again later.",
+            "API com problemas, o bot quase morreu.\n Tente de novo.",
             del_in=5,
         )
     soup = bs(text, "lxml")
@@ -330,5 +325,5 @@ async def sticker_search(message: Message):
             link_ = (pack.a).get("href")
             sticker_pack += f"\n• [{title_}]({link_})"
     if not sticker_pack:
-        sticker_pack = "`❌ Not Found!`"
+        sticker_pack = "`❌ Não encontrei foi nada!`"
     await message.edit((titlex + sticker_pack), disable_web_page_preview=True)

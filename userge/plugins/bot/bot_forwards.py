@@ -39,16 +39,22 @@ ownersFilter = filters.user(list(Config.OWNER_ID))
 
 
 @userge.on_cmd(
-    "botfwd", about={"header": "ative / desative o encaminhamento de mensagens do Bot"}, allow_channels=False
+    "botfwd",
+    about={"header": "ative / desative o encaminhamento de mensagens do Bot"},
+    allow_channels=False,
 )
 async def bot_fwd_(message: Message):
     """ative / desative BF"""
     if Config.BOT_FORWARDS:
         Config.BOT_FORWARDS = False
-        await message.edit("`Encaminhamento de Mensagens desativado!`", del_in=3, log=__name__)
+        await message.edit(
+            "`Encaminhamento de Mensagens desativado!`", del_in=3, log=__name__
+        )
     else:
         Config.BOT_FORWARDS = True
-        await message.edit("`Encaminhamento de Mensagens ativado!`", del_in=3, log=__name__)
+        await message.edit(
+            "`Encaminhamento de Mensagens ativado!`", del_in=3, log=__name__
+        )
     await SAVED_SETTINGS.update_one(
         {"_id": "BOT_FORWARDS"},
         {"$set": {"is_active": Config.BOT_FORWARDS}},
@@ -115,7 +121,8 @@ if userge.has_bot:
                 await message.forward(user_id)
         except UserIsBlocked:
             await message.err(
-                "Você não pode responder este usuário porque seu bot o bloqueou!", del_in=5
+                "Você não pode responder este usuário porque seu bot o bloqueou!",
+                del_in=5,
             )
         except Exception as fwd_e:
             LOG.error(fwd_e)
@@ -161,7 +168,8 @@ if userge.has_bot:
     async def ban_from_bot_pm(ban_user, reason: str, log: str = False) -> None:
         user_ = await userge.bot.get_user_dict(ban_user, attr_dict=True)
         banned_msg = (
-            f"<i>**Você acabou de ser banindo para sempre, rsrs.**" f"</i>\n**Motivo**: {reason}"
+            f"<i>**Você acabou de ser banindo para sempre, rsrs.**"
+            f"</i>\n**Motivo**: {reason}"
         )
         await asyncio.gather(
             BOT_BAN.insert_one(
@@ -238,7 +246,9 @@ if userge.has_bot:
         b_info = f"🔊  Pronto, mensagem enviara para ➜  <b>{count} usuários.</b>"
         if len(blocked_users) != 0:
             b_info += f"\n🚫  <b>{len(blocked_users)} usuários</b> estão com block no seu bot, então foram removidos."
-        b_info += f"\n⏳  <code>Este processo levou: {time_formatter(end_ - start_)}</code>."
+        b_info += (
+            f"\n⏳  <code>Este processo levou: {time_formatter(end_ - start_)}</code>."
+        )
         await br_cast.edit(b_info, log=__name__)
         if blocked_users:
             await asyncio.gather(*blocked_users)

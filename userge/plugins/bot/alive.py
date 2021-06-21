@@ -43,7 +43,7 @@ async def _init() -> None:
 
 
 @userge.on_cmd(
-    "alive",
+    "orange",
     about={"header": "Faça o comando para saber se seu bot tá online"},
     allow_channels=False,
 )
@@ -266,6 +266,14 @@ class Bot_Alive:
     @staticmethod
     def alive_info() -> str:
         alive_info_ = f"""
+<a href="https://t.me/xapplebot"><b>APPLEBOT</a> IS ON AND UP ✓</b>
+<b><code>Online Since:{userge.uptime} | <b>Mode: {Bot_Alive._get_mode()}</code></b>
+      ➖➖➖➖➖➖➖
+⭕️   <b>Python:</b> <code>v{versions.__python_version__}</code>
+⭕️   <b>Pyrogram:</b> <code>v{versions.__pyro_version__}</code>
+▫️     <b>Version:</b> <code>v{versions.online_version}</code>
+      ➖➖➖➖➖➖➖
+ 🍎   <b>Main:</b>  <code><b>v{versions.main_version}</b></code>
 
 """
         return alive_info_
@@ -273,7 +281,7 @@ class Bot_Alive:
     @staticmethod
     def _get_mode() -> str:
         if RawClient.DUAL_MODE:
-            return "♾ Dual"
+            return "Dual"
         if Config.BOT_TOKEN:
             return "Bot"
         return "❌ Git"
@@ -281,11 +289,6 @@ class Bot_Alive:
     @staticmethod
     def alive_buttons() -> InlineKeyboardMarkup:
         buttons = [
-            [
-                InlineKeyboardButton(
-                    text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"
-                ),
-            ],
             [
                 InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
                 InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),

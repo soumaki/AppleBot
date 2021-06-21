@@ -1,10 +1,5 @@
 # created for USERGE-X by @Kakashi_HTK/@ashwinstr
 
-import os
-
-from pyrogram.errors.exceptions.bad_request_400 import BotMethodInvalid
-
-from userge import Message, userge
 
 import asyncio
 
@@ -43,7 +38,7 @@ tagLoggingFilter = filters.create(lambda _, __, ___: Config.TAG_LOGGING)
     allow_channels=False,
 )
 async def all_log(message: Message):
-    """ ativa / desativa [todos os logs] """
+    """ativa / desativa [todos os logs]"""
     if not Config.PM_LOG_GROUP_ID:
         return await message.edit(
             "Crie um grupo e forneça um ID na var `PM_LOG_GROUP_ID`.",

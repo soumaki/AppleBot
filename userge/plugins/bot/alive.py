@@ -271,9 +271,9 @@ class Bot_Alive:
       ➖➖➖➖➖➖➖
 ⭕️   <b>Python:</b> <code>v{versions.__python_version__}</code>
 ⭕️   <b>Pyrogram:</b> <code>v{versions.__pyro_version__}</code>
-▫️     <b>Version:</b> <code>v{versions.online_version}</code>
+▫️     <b>Version:</b> <code>v1.0.Beta</code>
       ➖➖➖➖➖➖➖
- 🍎   <b>Main:</b>  <code><b>v{versions.main_version}</b></code>
+ 🍎   <b>Main:</b>  <code><b>@applled</b></code>
 
 """
         return alive_info_

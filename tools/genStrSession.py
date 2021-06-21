@@ -20,13 +20,13 @@ if os.path.isfile("config.env"):
 async def genStrSession() -> None:  # pylint: disable=missing-function-docstring
     async with Client(
             "Userge",
-            api_id=int(os.environ.get("API_ID") or input("Enter Telegram APP ID: ")),
-            api_hash=os.environ.get("API_HASH") or input("Enter Telegram API HASH: ")
+            api_id=int(os.environ.get("API_ID") or input("Entre com o APP ID do Telegram: ")),
+            api_hash=os.environ.get("API_HASH") or input("Entre com o API HASH do Telegram: ")
     ) as userge:
-        print("\nprocessing...")
+        print("\nProcessando pedido...")
         await userge.send_message(
             "me", f"#APPLEBOT #HU_STRING_SESSION\n\n```{await userge.export_session_string()}```")
-        print("Done !, session string has been sent to saved messages!")
+        print("Feito! String Session foi enviada para suas mensagens salvas no TG!")
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(genStrSession())

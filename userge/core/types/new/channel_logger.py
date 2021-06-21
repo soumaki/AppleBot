@@ -26,11 +26,11 @@ _LOG_STR = "<<<!  :::::  %s  :::::  !>>>"
 
 
 def _gen_string(name: str) -> str:
-    return "**logger** : #" + name.split('.')[-1].upper() + "\n\n{}"
+    return "**Logs** : #" + name.split('.')[-1].upper() + "\n\n{}"
 
 
 class ChannelLogger:
-    """ Channel logger for Userge """
+    """ Logs para o AppleBot """
     def __init__(self, client: Union['_client.Userge', '_client.UsergeBot'], name: str) -> None:
         self._id = Config.LOG_CHANNEL_ID
         self._client = client
@@ -38,7 +38,7 @@ class ChannelLogger:
 
     @staticmethod
     def get_link(message_id: int) -> str:
-        """\nreturns link for a specific message.
+        """\nrRetorna com o link para uma mensagem em espefíco.
 
         Parameters:
             message_id (`int`):
@@ -51,7 +51,7 @@ class ChannelLogger:
             str(Config.LOG_CHANNEL_ID)[4:], message_id)
 
     async def log(self, text: str, name: str = '') -> int:
-        """\nsend text message to log channel.
+        """\nEnvia a mensagem para o canal de log.
 
         Parameters:
             text (``str``):
@@ -100,10 +100,10 @@ class ChannelLogger:
             None
         """
         _LOG.debug(
-            _LOG_STR, f"forwarding msg : {message} to channel : {self._id}")
+            _LOG_STR, f"Mensagem Encaminhada : {message} para o canal : {self._id}")
         if isinstance(message, RawMessage):
             if message.media:
-                asyncio.get_event_loop().create_task(self.log("**Forwarding Message...**", name))
+                asyncio.get_event_loop().create_task(self.log("**Encaminhando mensagem...**", name))
                 try:
                     if as_copy:
                         await message.copy(chat_id=self._id)

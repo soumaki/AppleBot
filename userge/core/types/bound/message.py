@@ -24,14 +24,14 @@ from ... import client as _client  # pylint: disable=unused-import
 
 _CANCEL_LIST: List[int] = []
 _ERROR_MSG_DELETE_TIMEOUT = 5
-_ERROR_STRING = "**ERROR**: `{}`"
+_ERROR_STRING = "**Falha na Matrix**: `{}`"
 
 _LOG = logging.getLogger(__name__)
 _LOG_STR = "<<<!  :::::  %s  :::::  !>>>"
 
 
 class Message(RawMessage):
-    """ Modded Message Class For Userge """
+    """ Classe de Mod de Mensagem do ApplebBot """
     def __init__(self,
                  client: Union['_client.Userge', '_client.UsergeBot'],
                  mvars: Dict[str, object], module: str, **kwargs: Union[str, bool]) -> None:

@@ -228,13 +228,15 @@ async def kang_(message: Message):
     },
 )
 async def sticker_pack_info_(message: Message):
-    """ Obtenha informações do pacote """
+    """Obtenha informações do pacote"""
     replied = message.reply_to_message
     if not replied:
         await message.edit("`Não consegui identificar essa desgraça, ou eu posso?!`")
         return
     if not replied.sticker:
-        await message.edit("`Responda a um adesivo para obter informações detalhadas do pacote`")
+        await message.edit(
+            "`Responda a um adesivo para obter informações detalhadas do pacote`"
+        )
         return
     await message.edit("`Buscando informações do pacote de adesivos, pera aí..`")
     get_stickerset = await message.client.send(
@@ -302,7 +304,8 @@ async def sticker_search(message: Message):
 
     if not query_:
         return message.err(
-            "responda uma mensagem ou forneça um texto para a pesquisa do pacote", del_in=3
+            "responda uma mensagem ou forneça um texto para a pesquisa do pacote",
+            del_in=3,
         )
 
     await message.edit(f'🔎 Pesquisando por "`{query_}`"...')

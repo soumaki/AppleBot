@@ -72,8 +72,8 @@ async def grp_log(_, message: Message):
     id = message.message_id
     reply = message.reply_to_message
     log = f"""
-🍏 Modo Log [AppleBot](t.me/xapplebot)
-Alguém te #mencionou / ➖➖➖
+🍏 Modo Log [AppleBot]
+Alguém te #mencionou
 ➖➖➖➖➖➖
 <b>▫️ Enviado por :</b> {message.from_user.mention}
 <b>No Grupo :</b> <code>{message.chat.title}</code>

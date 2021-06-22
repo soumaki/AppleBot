@@ -514,7 +514,7 @@ if userge.has_bot:
                         reply_markup=InlineKeyboardMarkup(owner),
                     )
                 )
-                
+
             if string == "age_verification_alert":
                 buttons = [
                     [

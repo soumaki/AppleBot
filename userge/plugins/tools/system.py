@@ -80,9 +80,7 @@ async def restart_(message: Message):
         asyncio.get_event_loop().create_task(userge.restart())
 
 
-@userge.on_cmd(
-    "desligar", about={"header": "Desliga o AppleBot"}, allow_channels=False
-)
+@userge.on_cmd("desligar", about={"header": "Desliga o AppleBot"}, allow_channels=False)
 async def shutdown_(message: Message) -> None:
     """Desliga o AppleBot"""
     await message.edit("`Morrendo ...`")

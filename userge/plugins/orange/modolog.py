@@ -29,7 +29,7 @@ tagLoggingFilter = filters.create(lambda _, __, ___: Config.TAG_LOGGING)
     "tlog",
     about={
         "header": "Ferramenta para logs de PMs",
-        "descriçãon": "Logs de todas as PMs e menções em groups",
+        "descrição": "Logs de todas as PMs e menções em groups",
         "flag": {
             "-c": "Confere o tlog status",
         },

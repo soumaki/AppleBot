@@ -82,26 +82,26 @@ async def _init() -> None:
 
 
 @userge.on_cmd(
-    "help", about={"header": "Guide to use Orange commands"}, allow_channels=False
+    "ajuda", about={"header": "Guia de Comandos / AppleBot"}, allow_channels=False
 )
 async def helpme(message: Message) -> None:
     plugins = userge.manager.enabled_plugins
     if not message.input_str:
         out_str = (
-            f"""⚒ <b><u>(<code>{len(plugins)}</code>) Plugin(s) Available</u></b>\n\n"""
+            f"""AppleBot - <b>Plugins Disponíveis:</b> (<code>{len(plugins)}</code>)\n\n"""
         )
         cat_plugins = userge.manager.get_plugins()
         for cat in sorted(cat_plugins):
             if cat == "plugins":
                 continue
             out_str += (
-                f"    {_CATEGORY.get(cat, '📁')} <b>{cat}</b> "
+                f"  {_CATEGORY.get(cat, '📁')} <b>{cat}</b> "
                 f"(<code>{len(cat_plugins[cat])}</code>) :   <code>"
                 + "</code>    <code>".join(sorted(cat_plugins[cat]))
                 + "</code>\n\n"
             )
         out_str += (
-            f"""📕 <b>Usage:</b>  <code>{Config.CMD_TRIGGER}help [plugin_name]</code>"""
+            f"""▫️ <b>Como usar:</b>  <code>{Config.CMD_TRIGGER}ajuda nome do plugin</code>"""
         )
     else:
         key = message.input_str
@@ -115,7 +115,7 @@ async def helpme(message: Message) -> None:
             )
         ):
             commands = plugins[key].enabled_commands
-            out_str = f"""<b><u>(<code>{len(commands)}</code>) Command(s) Available</u></b>
+            out_str = f"""<b><u>(<code>{len(commands)}</code>) Comandos Disponíveis</u></b>
 
 🔧 <b>Plugin:</b>  <code>{key}</code>
 📘 <b>Doc:</b>  <code>{plugins[key].doc}</code>\n\n"""
@@ -124,7 +124,7 @@ async def helpme(message: Message) -> None:
                     f"    🤖 <b>cmd(<code>{i}</code>):</b>  <code>{cmd.name}</code>\n"
                     f"    📚 <b>info:</b>  <i>{cmd.doc}</i>\n\n"
                 )
-            out_str += f"""📕 <b>Usage:</b>  <code>{Config.CMD_TRIGGER}help [command_name]</code>"""
+            out_str += f"""📕 <b>Como usar:</b>  <code>{Config.CMD_TRIGGER}ajuda comando</code>"""
         else:
             commands = userge.manager.enabled_commands
             key = key.lstrip(Config.CMD_TRIGGER)
@@ -134,7 +134,7 @@ async def helpme(message: Message) -> None:
             elif key_ in commands:
                 out_str = f"<code>{key_}</code>\n\n{commands[key_].about}"
             else:
-                out_str = f"<i>No Module or Command Found for</i>: <code>{message.input_str}</code>"
+                out_str = f"<i>Nenhum módulo/comando encontrado para</i>: <code>{message.input_str}</code>"
     await message.edit(
         out_str, del_in=0, parse_mode="html", disable_web_page_preview=True
     )
@@ -153,16 +153,16 @@ if userge.has_bot:
                 try:
                     await func(c_q)
                 except MessageNotModified:
-                    await c_q.answer("Nothing Found to Refresh 🤷‍♂️", show_alert=True)
+                    await c_q.answer("Não encontrei nada para atualizar.", show_alert=True)
                 except MessageIdInvalid:
                     await c_q.answer(
-                        "Sorry, I Don't Have Permissions to edit this 😔",
+                        "Foi mal, não tenho permissões para editar isso.",
                         show_alert=True,
                     )
             else:
                 user_dict = await userge.bot.get_user_dict(Config.OWNER_ID[0])
                 await c_q.answer(
-                    f"Only {user_dict['flname']} Can Access this...! Build Your Orange",
+                    f"Acesso concedido do AppleBot somente para {user_dict['flname']} ",
                     show_alert=True,
                 )
 
@@ -207,7 +207,7 @@ if userge.has_bot:
             await callback_query.answer("you are in main menu", show_alert=True)
             return
         if len(pos_list) == 2:
-            text = " Apple 𝐌𝐄𝐍𝐔 "
+            text = " 🍎 AppleBot 𝐌𝐄𝐍𝐔 "
             buttons = main_menu_buttons()
         elif len(pos_list) == 3:
             text, buttons = category_data(cur_pos)
@@ -259,7 +259,7 @@ if userge.has_bot:
     @check_owner
     async def callback_mm(callback_query: CallbackQuery):
         await callback_query.edit_message_text(
-            " Apple 𝐌𝐄𝐍𝐔 ",
+            " 🍎 AppleBot 𝐌𝐄𝐍𝐔 ",
             reply_markup=InlineKeyboardMarkup(main_menu_buttons()),
         )
 
@@ -268,7 +268,7 @@ if userge.has_bot:
     async def callback_chgclnt(callback_query: CallbackQuery):
         if not RawClient.DUAL_MODE:
             return await callback_query.answer(
-                "you using [BOT MODE], can't change client.", show_alert=True
+                "Você está usando [MODO BOT], não pode alterar o cliente.", show_alert=True
             )
         if Config.USE_USER_FOR_CLIENT_CHECKS:
             Config.USE_USER_FOR_CLIENT_CHECKS = False
@@ -322,11 +322,11 @@ if userge.has_bot:
             pairs = pairs[current_page * rows : (current_page + 1) * rows] + [
                 [
                     InlineKeyboardButton(
-                        "⏪ Previous",
+                        "▫️ Anterior",
                         callback_data=f"({cur_pos})prev({current_page})".encode(),
                     ),
                     InlineKeyboardButton(
-                        "⏩ Next",
+                        "▫️ Próximo",
                         callback_data=f"({cur_pos})next({current_page})".encode(),
                     ),
                 ],
@@ -347,21 +347,21 @@ if userge.has_bot:
         if cur_pos != "mm":
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "⬅ Back", callback_data=f"back({cur_pos})".encode()
+                    "« Voltar", callback_data=f"back({cur_pos})".encode()
                 )
             )
             if len(cur_pos.split("|")) > 2:
                 tmp_btns.append(InlineKeyboardButton("🖥 Main Menu", callback_data="mm"))
                 tmp_btns.append(
                     InlineKeyboardButton(
-                        "🔄 Refresh", callback_data=f"refresh({cur_pos})".encode()
+                        "🔄 Atualizar", callback_data=f"refresh({cur_pos})".encode()
                     )
                 )
         else:
-            cur_clnt = "🍏" if Config.USE_USER_FOR_CLIENT_CHECKS else "AppleUser"
+            cur_clnt = "🍏" if Config.USE_USER_FOR_CLIENT_CHECKS else "👤 AppleUser"
             tmp_btns.append(
                 InlineKeyboardButton(
-                    f"🔩 Client for: {cur_clnt}",
+                    f"🏷 Usando como: {cur_clnt}",
                     callback_data="chgclnt",
                 )
             )
@@ -371,8 +371,8 @@ if userge.has_bot:
         pos_list = cur_pos.split("|")
         plugins = userge.manager.get_all_plugins()[pos_list[1]]
         text = (
-            f"**(`{len(plugins)}`) Plugin(s) Under : "
-            f"`{_CATEGORY.get(pos_list[1], '📁')} {pos_list[1]}`  Category**"
+            f"**(`{len(plugins)}`) Plugins em: "
+            f"`{_CATEGORY.get(pos_list[1], '📁')} {pos_list[1]}`  Categoria**"
         )
         buttons = parse_buttons(0, "|".join(pos_list[:2]), lambda x: f"▫️ {x}", plugins)
         return text, buttons
@@ -380,48 +380,48 @@ if userge.has_bot:
     def plugin_data(cur_pos: str, p_num: int = 0):
         pos_list = cur_pos.split("|")
         plg = userge.manager.plugins[pos_list[2]]
-        text = f"""🔹 <u><b>Plugin Status<b></u> 🔹
+        text = f"""📁 <b>Plugin Status<b> 
 
-🎭 **Category** : `{pos_list[1]}`
-🔖 **Name** : `{plg.name}`
-📝 **Doc** : `{plg.doc}`
-◾️ **Commands** : `{len(plg.commands)}`
-⚖ **Filters** : `{len(plg.filters)}`
-✅ **Loaded** : `{plg.is_loaded}`
-➕ **Enabled** : `{plg.is_enabled}`
+▫️ **Categoria**: `{pos_list[1]}`
+▫️ **Nome**: `{plg.name}`
+▫️ **Doc**: `{plg.doc}`
+▫️ **Comandos**: `{len(plg.commands)}`
+▫️ **Filtros**: `{len(plg.filters)}`
+▫️ **Carregados**: `{plg.is_loaded}`
+▫️ **Ativos**: `{plg.is_enabled}`
 """
         tmp_btns = []
         if plg.is_loaded:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "❎ Unload",
+                    "❎ Descarregar",
                     callback_data=f"unload({'|'.join(pos_list[:3])})".encode(),
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "✅ Load", callback_data=f"load({'|'.join(pos_list[:3])})".encode()
+                    "✅ Carregar", callback_data=f"load({'|'.join(pos_list[:3])})".encode()
                 )
             )
         if plg.is_enabled:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➖ Disable",
+                    "❎ Desativar",
                     callback_data=f"disable({'|'.join(pos_list[:3])})".encode(),
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➕ Enable",
+                    "✅ Ativar",
                     callback_data=f"enable({'|'.join(pos_list[:3])})".encode(),
                 )
             )
         buttons = parse_buttons(
             p_num,
             "|".join(pos_list[:3]),
-            lambda x: f"⚖ {x}" if is_filter(x) else f" {x}",
+            lambda x: f"▫️ {x}" if is_filter(x) else f" {x}",
             (flt.name for flt in plg.commands + plg.filters),
         )
         buttons = buttons[:-1] + [tmp_btns] + [buttons[-1]]
@@ -433,18 +433,18 @@ if userge.has_bot:
         flts = {flt.name: flt for flt in plg.commands + plg.filters}
         flt = flts[pos_list[-1]]
         flt_data = f"""
-🔖 **Name** : `{flt.name}`
-📝 **Doc** : `{flt.doc}`
-🤖 **Via Bot** : `{flt.allow_via_bot}`
-✅ **Loaded** : `{flt.is_loaded}`
-➕ **Enabled** : `{flt.is_enabled}`"""
+▫️ **Nome**: `{flt.name}`
+▫️ **Doc**: `{flt.doc}`
+▫️ **Via Bot**: `{flt.allow_via_bot}`
+▫️ **Carregados**: `{flt.is_loaded}`
+▫️ **Ativos**: `{flt.is_enabled}`"""
         if hasattr(flt, "about"):
-            text = f"""<b><u>Command Status</u></b>
+            text = f"""<b><u>Status dos Comandos</u></b>
 {flt_data}
 {flt.about}
 """
         else:
-            text = f"""⚖ <b><u>Filter Status</u></b> ⚖
+            text = f"""▫️ <b>Status dos Filtros</b>
 {flt_data}
 """
         buttons = default_buttons(cur_pos)
@@ -452,25 +452,25 @@ if userge.has_bot:
         if flt.is_loaded:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "❎ Unload", callback_data=f"unload({cur_pos})".encode()
+                    "❎ Descarregar", callback_data=f"unload({cur_pos})".encode()
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "✅ Load", callback_data=f"load({cur_pos})".encode()
+                    "✅ Carregar", callback_data=f"load({cur_pos})".encode()
                 )
             )
         if flt.is_enabled:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➖ Disable", callback_data=f"disable({cur_pos})".encode()
+                    "❎ Desativar", callback_data=f"disable({cur_pos})".encode()
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➕ Enable", callback_data=f"enable({cur_pos})".encode()
+                    "✅ Ativar", callback_data=f"enable({cur_pos})".encode()
                 )
             )
         buttons = [tmp_btns] + buttons

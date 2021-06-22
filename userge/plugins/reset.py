@@ -1,22 +1,18 @@
 import asyncio
-import os
-import time
-from asyncio import sleep
-from collections import deque
-from random import choice, getrandbits, randint
-from re import sub
-# Applled tools 
-import requests
-import wget
-from cowpy import cow
 
 from userge import Message, userge
 
-@userge.on_cmd("reset$", about={"header": "Reiniciar Bot"}, trigger="", allow_via_bot=False)
+# Applled tools
+
+
+@userge.on_cmd(
+    "reset$", about={"header": "Reiniciar Bot"}, trigger="", allow_via_bot=False
+)
 async def reset_(message: Message):
     """reset"""
     reset = "!ree -apple"
     await message.try_to_edit(reset, del_in=1)
+
 
 async def check_and_send(message: Message, *args, **kwargs):
     replied = message.reply_to_message

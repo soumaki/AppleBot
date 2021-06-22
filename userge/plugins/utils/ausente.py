@@ -2,17 +2,25 @@
 # VERSÃO DO @APPLLED PARA AFK
 
 import asyncio
+import random
 import time
 from random import choice, randint
 
-from pyrogram.types import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    InlineQueryResultPhoto,
-)
-
 from userge import Config, Message, filters, get_collection, userge
 from userge.utils import time_formatter
+
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InlineQuery,
+    InlineQueryResultAnimation,
+    InlineQueryResultArticle,
+    InlineQueryResultCachedDocument,
+    InlineQueryResultCachedPhoto,
+    InlineQueryResultPhoto,
+    InputTextMessageContent,
+)
 
 CHANNEL = userge.getCLogger(__name__)
 SAVED_SETTINGS = get_collection("CONFIGS")
@@ -114,14 +122,12 @@ async def handle_afk_incomming(message: Message) -> None:
             if string == "ausente":
                 applled = [
                     [
-                        InlineKeyboardButton(
-                            text="• SNOOZE MOD", callback_data="info_btn"
-                        ),
+                        InlineKeyboardButton(text="• SNOOZE MOD", callback_data="info_btn"),
                     ]
                 ]
                 results.append(
                     InlineQueryResultPhoto(
-                        photo_url="https://telegra.ph/file/fe07e973e23fe725faab8.gif",
+                        photo_url="https://telegra.ph/file/5be3f11af00261a52e527.png",
                         caption=" ",
                         reply_markup=InlineKeyboardMarkup(applled),
                     )
@@ -139,6 +145,19 @@ async def handle_afk_incomming(message: Message) -> None:
                 f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:**  {afk_time} ago\n"
                 f"▫️ **Status**: {REASON}"
             )
+            if string == "ausente":
+                applled = [
+                    [
+                        InlineKeyboardButton(text="• SNOOZE MOD", callback_data="info_btn"),
+                    ]
+                ]
+                results.append(
+                    InlineQueryResultPhoto(
+                        photo_url="https://telegra.ph/file/5be3f11af00261a52e527.png",
+                        caption=" ",
+                        reply_markup=InlineKeyboardMarkup(applled),
+                    )
+                )
         else:
             out_str = choice(AUTO_AFK)
         coro_list.append(message.reply(out_str))

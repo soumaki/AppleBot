@@ -323,11 +323,11 @@ if userge.has_bot:
             pairs = pairs[current_page * rows : (current_page + 1) * rows] + [
                 [
                     InlineKeyboardButton(
-                        "▫️ Anterior",
+                        "« Anterior",
                         callback_data=f"({cur_pos})prev({current_page})".encode(),
                     ),
                     InlineKeyboardButton(
-                        "▫️ Próximo",
+                        "» Próximo",
                         callback_data=f"({cur_pos})next({current_page})".encode(),
                     ),
                 ],
@@ -352,7 +352,7 @@ if userge.has_bot:
                 )
             )
             if len(cur_pos.split("|")) > 2:
-                tmp_btns.append(InlineKeyboardButton("🖥 Main Menu", callback_data="mm"))
+                tmp_btns.append(InlineKeyboardButton("🌐 Início", callback_data="mm"))
                 tmp_btns.append(
                     InlineKeyboardButton(
                         "🔄 Atualizar", callback_data=f"refresh({cur_pos})".encode()
@@ -530,6 +530,7 @@ if userge.has_bot:
                         reply_markup=InlineKeyboardMarkup(applled),
                     )
                 )
+                del_in=3
 
             if string == "age_verification_alert":
                 buttons = [
@@ -1177,11 +1178,11 @@ if userge.has_bot:
                     )
 
             MAIN_MENU = InlineQueryResultArticle(
-                title="Main Menu",
+                title="Menu Principal",
                 input_message_content=InputTextMessageContent(" Apple 𝐌𝐄𝐍𝐔 "),
-                url="https://t.me/laranjudo",
-                description="Main Menu",
-                thumb_url="https://telegra.ph/file/bc5d7d950ce2d1a050ae6.png",
+                url="https://t.me/applled",
+                description="Menu Principal",
+                thumb_url="https://telegra.ph/file/c253bbfab1a1a2e79cd9b.png",
                 reply_markup=InlineKeyboardMarkup(main_menu_buttons()),
             )
             results.append(MAIN_MENU)
@@ -1189,7 +1190,7 @@ if userge.has_bot:
                 await inline_query.answer(
                     results=results,
                     cache_time=1,
-                    switch_pm_text="Available Commands",
+                    switch_pm_text="Comandos Disponíveis",
                     switch_pm_parameter="inline",
                 )
         else:
@@ -1198,6 +1199,6 @@ if userge.has_bot:
             await inline_query.answer(
                 results=results,
                 cache_time=1,
-                switch_pm_text=f"This bot is only for {owner_name}",
+                switch_pm_text=f"Bot exclusivo para {owner_name}",
                 switch_pm_parameter="start",
             )

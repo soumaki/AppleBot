@@ -491,7 +491,7 @@ if userge.has_bot:
             and Config.SUDO_ENABLED
         ):
 
-            if string == "on":
+            if string == "online":
                 owner = [
                     [
                         InlineKeyboardButton(

@@ -204,7 +204,7 @@ if userge.has_bot:
         cur_pos = str(callback_query.matches[0].group(1))
         pos_list = cur_pos.split("|")
         if len(pos_list) == 1:
-            await callback_query.answer("you are in main menu", show_alert=True)
+            await callback_query.answer("Você está no menu principal", show_alert=True)
             return
         if len(pos_list) == 2:
             text = " 🍎 AppleBot 𝐌𝐄𝐍𝐔 "
@@ -515,7 +515,7 @@ if userge.has_bot:
                     )
                 )
 
-            if string == "ausente":
+            if string == "afk":
                 applled = [
                     [
                         InlineKeyboardButton(
@@ -525,11 +525,12 @@ if userge.has_bot:
                 ]
                 results.append(
                     InlineQueryResultPhoto(
-                        photo_url="https://telegra.ph/file/fe07e973e23fe725faab8.gif",
+                        photo_url="https://telegra.ph/file/70f2872b9b038445e9786.png",
                         caption=" ",
                         reply_markup=InlineKeyboardMarkup(applled),
                     )
                 )
+                del_in=3
 
             if string == "age_verification_alert":
                 buttons = [

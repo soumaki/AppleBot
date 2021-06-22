@@ -1178,7 +1178,9 @@ if userge.has_bot:
 
             MAIN_MENU = InlineQueryResultArticle(
                 title="Menu Principal",
-                input_message_content=InputTextMessageContent(" Bem vindo ao\n AppleBot 𝐌𝐄𝐍𝐔 "),
+                input_message_content=InputTextMessageContent(
+                    " Bem vindo ao\n AppleBot 𝐌𝐄𝐍𝐔 "
+                ),
                 photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png",
                 url="https://t.me/applled",
                 description="Menu Principal",

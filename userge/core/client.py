@@ -201,7 +201,7 @@ class Userge(_AbstractUserge):
         self.loop.run_until_complete(self.start())
         for task in self._tasks:
             running_tasks.append(self.loop.create_task(task()))
-        logbot.edit_last_msg("✅ AppleBot foi iniciado corretamente. Use o comando .alive")
+        logbot.edit_last_msg("✅ AppleBot foi iniciado corretamente. Use o comando .on")
         logbot.end()
         mode = "[DUAL]" if RawClient.DUAL_MODE else "[BOT]" if Config.BOT_TOKEN else "[USER]"
         try:

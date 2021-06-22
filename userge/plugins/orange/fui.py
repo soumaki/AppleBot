@@ -14,7 +14,7 @@ AFK_COLLECTION = get_collection("AFK")
 
 IS_AFK = False
 IS_AFK_FILTER = filters.create(lambda _, __, ___: bool(IS_AFK))
-MOTIVO = ""
+REASON = ""
 TIME = 0.0
 USERS = {}
 
@@ -56,14 +56,14 @@ async def active_afk(message: Message) -> None:
     global MOTIVO, IS_AFK, TIME  # pylint: disable=global-statement
     IS_AFK = True
     TIME = time.time()
-    MOTIVO = message.input_str
+    REASON = message.input_str
     await asyncio.gather(
         CHANNEL.log(f"Sumindo! : `{MOTIVO}`"),
         message.edit("`Fui!`", del_in=1),
         AFK_COLLECTION.drop(),
         SAVED_SETTINGS.update_one(
             {"_id": "AFK"},
-            {"$set": {"on": True, "data": MOTIVO, "time": TIME}},
+            {"$set": {"on": True, "data": REASON, "time": TIME}},
             upsert=True,
         ),
     )
@@ -99,10 +99,10 @@ async def handle_afk_incomming(message: Message) -> None:
     coro_list = []
     if user_id in USERS:
         if not (USERS[user_id][0] + USERS[user_id][1]) % randint(2, 4):
-            if MOTIVO:
+            if REASON:
                 out_str = (
                     f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:**  {afk_time} ago\n"
-                    f"▫️ **Status**: {MOTIVO} {random.choice(STATUS)}"
+                    f"▫️ **Status**: {REASON} {random.choice(STATUS)}"
                 )
             else:
                 out_str = choice(AUTO_AFK)
@@ -115,7 +115,7 @@ async def handle_afk_incomming(message: Message) -> None:
         if REASON:
             out_str = (
                 f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:**  {afk_time} ago\n"
-                f"▫️ **Status**: {MOTIVO} {random.choice(STATUS)}"
+                f"▫️ **Status**: {REASON} {random.choice(STATUS)}"
             )
         else:
             out_str = choice(AUTO_AFK)
@@ -184,8 +184,8 @@ async def handle_afk_outgoing(message: Message) -> None:
             )
         )
         out_str = (
-            f"💬 Na sua Inbox: **{p_count + g_count}** mensagens "
-            + f"▫️ De **{len(USERS)}** \n\n*💤 **Ausente por** : __{afk_time}__\n"
+            f"📂 Mensagens na Inbox[:](https://telegra.ph/file/7c1ba52391b7ffcc3e891.png) **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
+            + f"\n▫️ **Ausente por** : __{afk_time}__\n\n"
         )
         if p_count:
             out_str += f"\n**{p_count} Mensagens Privadas:**\n\n{p_msg}"

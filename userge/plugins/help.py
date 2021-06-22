@@ -508,7 +508,7 @@ if userge.has_bot:
                 results.append(
                     InlineQueryResultPhoto(
                         photo_url="https://telegra.ph/file/d50925c35883b16be6cd6.png",
-                        caption="Your [AppleBot](https://t.me/xapplebot) is running ✅",
+                        caption="‎",
                         reply_markup=InlineKeyboardMarkup(owner),
                     )
                 )

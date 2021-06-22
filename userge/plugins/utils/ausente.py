@@ -31,6 +31,7 @@ STATUS = (
     "[\u200c](https://telegra.ph/file/b810bbbe02a1b9ad3b77c.gif)",
 )
 
+
 async def _init() -> None:
     global IS_AFK, REASON, TIME  # pylint: disable=global-statement
     data = await SAVED_SETTINGS.find_one({"_id": "AFK"})
@@ -40,6 +41,7 @@ async def _init() -> None:
         TIME = data["time"] if "time" in data else 0
     async for _user in AFK_COLLECTION.find():
         USERS.update({_user["_id"]: [_user["pcount"], _user["gcount"], _user["men"]]})
+
 
 @userge.on_cmd(
     "fui",
@@ -67,6 +69,7 @@ async def active_afk(message: Message) -> None:
             upsert=True,
         ),
     )
+
 
 @userge.on_filters(
     IS_AFK_FILTER
@@ -204,6 +207,8 @@ async def handle_afk_outgoing(message: Message) -> None:
         )
     )
     await asyncio.gather(*coro_list)
+
+
 # Não precisa definir o motivo, apenas faça o comando e vá dormir #
 AUTO_AFK = (
     "⚡️ **Auto Reply** ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",

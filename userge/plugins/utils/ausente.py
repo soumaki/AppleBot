@@ -111,7 +111,8 @@ async def handle_afk_incomming(message: Message) -> None:
                     f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:**  {afk_time} ago\n"
                     f"▫️ **Status**: {REASON}"
                 )
-            if string == "ausente":
+            if REASON:
+                out_str = (
                 applled = [
                     [
                         InlineKeyboardButton(
@@ -125,7 +126,7 @@ async def handle_afk_incomming(message: Message) -> None:
                         caption=" ",
                         reply_markup=InlineKeyboardMarkup(applled),
                     )
-                )
+                ))
             else:
                 out_str = choice(AUTO_AFK)
             coro_list.append(message.reply(out_str))
@@ -139,7 +140,8 @@ async def handle_afk_incomming(message: Message) -> None:
                 f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:**  {afk_time} ago\n"
                 f"▫️ **Status**: {REASON}"
             )
-            if string == "ausente":
+            if REASON:
+                out_str = (
                 applled = [
                     [
                         InlineKeyboardButton(
@@ -153,7 +155,7 @@ async def handle_afk_incomming(message: Message) -> None:
                         caption=" ",
                         reply_markup=InlineKeyboardMarkup(applled),
                     )
-                )
+                ))
         else:
             out_str = choice(AUTO_AFK)
         coro_list.append(message.reply(out_str))

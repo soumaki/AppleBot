@@ -291,7 +291,7 @@ class Bot_Alive:
         buttons = [
             [
                 InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+                InlineKeyboardButton(text="🍎 INSPIRED", callback_data="main_menu_buttons"),
             ],
         ]
         return InlineKeyboardMarkup(buttons)

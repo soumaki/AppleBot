@@ -2,25 +2,17 @@
 # VERSÃO DO @APPLLED PARA AFK
 
 import asyncio
-import random
 import time
 from random import choice, randint
 
-from userge import Config, Message, filters, get_collection, userge
-from userge.utils import time_formatter
-
 from pyrogram.types import (
-    CallbackQuery,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
-    InlineQuery,
-    InlineQueryResultAnimation,
-    InlineQueryResultArticle,
-    InlineQueryResultCachedDocument,
-    InlineQueryResultCachedPhoto,
     InlineQueryResultPhoto,
-    InputTextMessageContent,
 )
+
+from userge import Config, Message, filters, get_collection, userge
+from userge.utils import time_formatter
 
 CHANNEL = userge.getCLogger(__name__)
 SAVED_SETTINGS = get_collection("CONFIGS")
@@ -122,7 +114,9 @@ async def handle_afk_incomming(message: Message) -> None:
             if string == "ausente":
                 applled = [
                     [
-                        InlineKeyboardButton(text="• SNOOZE MOD", callback_data="info_btn"),
+                        InlineKeyboardButton(
+                            text="• SNOOZE MOD", callback_data="info_btn"
+                        ),
                     ]
                 ]
                 results.append(
@@ -148,7 +142,9 @@ async def handle_afk_incomming(message: Message) -> None:
             if string == "ausente":
                 applled = [
                     [
-                        InlineKeyboardButton(text="• SNOOZE MOD", callback_data="info_btn"),
+                        InlineKeyboardButton(
+                            text="• SNOOZE MOD", callback_data="info_btn"
+                        ),
                     ]
                 ]
                 results.append(

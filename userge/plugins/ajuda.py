@@ -514,23 +514,7 @@ if userge.has_bot:
                         reply_markup=InlineKeyboardMarkup(owner),
                     )
                 )
-
-            if string == "afk":
-                applled = [
-                    [
-                        InlineKeyboardButton(
-                            text="• SNOOZE MOD", callback_data="info_btn"
-                        ),
-                    ]
-                ]
-                results.append(
-                    InlineQueryResultPhoto(
-                        photo_url="https://telegra.ph/file/70f2872b9b038445e9786.png",
-                        caption=" ",
-                        reply_markup=InlineKeyboardMarkup(applled),
-                    )
-                )
-
+                
             if string == "age_verification_alert":
                 buttons = [
                     [

@@ -1,4 +1,4 @@
-""" system commands """
+""" Comandos do Sistema do Bot """
 # Copyright (C) 2020-2021 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
 #
 # This file is part of < https://github.com/UsergeTeam/Userge > project,
@@ -44,20 +44,20 @@ async def _init() -> None:
 @userge.on_cmd(
     "ree",
     about={
-        "header": "Restarts the bot and reload all plugins",
+        "header": "Reinicia todo o Bot",
         "flags": {
-            "-apple": "restart hard",
-            "-t": "clean temp loaded plugins",
-            "-d": "clean working folder",
+            "-apple": "reinicia o bot",
+            "-t": "limpa os plugins temporários",
+            "-d": "limpa a pasta working",
         },
-        "usage": "{tr}restart [flag | flags]",
-        "examples": "{tr}restart -t -d",
+        "como usar": "{tr}ree [flag | flags]",
+        "exemplo": "{tr}ree -apple",
     },
     del_pre=True,
     allow_channels=False,
 )
 async def restart_(message: Message):
-    """restart AppleBot"""
+    """Reinicia o AppleBot"""
     await message.edit("`Reiniciando o AppleBot`", log=__name__)
     LOG.info("AppleBot Service - Solicitação de Reinicialização")
     if "t" in message.flags:
@@ -73,24 +73,24 @@ async def restart_(message: Message):
             Config.HEROKU_APP.restart()
             time.sleep(30)
         else:
-            await message.edit("`Restarting [HARD] ...`", del_in=1)
+            await message.edit("`Reiniciando [MODO HARD] ...`", del_in=1)
             asyncio.get_event_loop().create_task(userge.restart(hard=True))
     else:
-        await message.edit("`Restarting [SOFT] ...`", del_in=1)
+        await message.edit("`Reiniciando [MODO SOFT] ...`", del_in=1)
         asyncio.get_event_loop().create_task(userge.restart())
 
 
 @userge.on_cmd(
-    "shutdown", about={"header": "shutdown USERGE-X :)"}, allow_channels=False
+    "desligar", about={"header": "Desliga o AppleBot"}, allow_channels=False
 )
 async def shutdown_(message: Message) -> None:
-    """shutdown USERGE-X"""
-    await message.edit("`shutting down ...`")
+    """Desliga o AppleBot"""
+    await message.edit("`Morrendo ...`")
     if Config.HEROKU_APP:
         try:
             Config.HEROKU_APP.process_formation()["worker"].scale(0)
         except Exception as h_e:  # pylint: disable=broad-except
-            await message.edit(f"**heroku error** : `{h_e}`")
+            await message.edit(f"**Falha na Matrix na bosta do Heroku** : `{h_e}`")
             await asyncio.sleep(3)
     else:
         await asyncio.sleep(1)
@@ -99,11 +99,11 @@ async def shutdown_(message: Message) -> None:
 
 
 @userge.on_cmd(
-    "die",
+    "morra",
     about={
-        "header": "set auto heroku dyno off timeout",
+        "header": "configure o auto dyno off no Heroku",
         "flags": {"-t": "input offline timeout in min : default to 5min"},
-        "usage": "{tr}die [flags]",
+        "usage": "{tr}morra [flags]",
         "examples": ["{tr}die", "{tr}die -t5"],
     },
     allow_channels=False,

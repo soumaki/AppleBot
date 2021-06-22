@@ -1,4 +1,4 @@
-# Criado por @Kakashi_HTK/@ashwinstr adaptador por @Applled
+# Criado por @Kakashi_HTK/@ashwinstr adaptado por @Applled
 
 
 import asyncio

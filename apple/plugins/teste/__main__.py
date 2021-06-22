@@ -8,7 +8,6 @@
 #
 # All rights reserved.
 
-from apple import apple
 
 if __name__ == "__main__":
     userge.begin()

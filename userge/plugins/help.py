@@ -327,7 +327,7 @@ if userge.has_bot:
                         callback_data=f"({cur_pos})prev({current_page})".encode(),
                     ),
                     InlineKeyboardButton(
-                        "» Próximo",
+                        "Próximo »",
                         callback_data=f"({cur_pos})next({current_page})".encode(),
                     ),
                 ],
@@ -388,8 +388,8 @@ if userge.has_bot:
 ▫️ **Doc**: `{plg.doc}`
 ▫️ **Comandos**: `{len(plg.commands)}`
 ▫️ **Filtros**: `{len(plg.filters)}`
-▫️ **Carregados**: `{plg.is_loaded}`
-▫️ **Ativos**: `{plg.is_enabled}`
+▫️ **Carregado**: `{plg.is_loaded}`
+▫️ **Ativo**: `{plg.is_enabled}`
 """
         tmp_btns = []
         if plg.is_loaded:
@@ -438,8 +438,8 @@ if userge.has_bot:
 ▫️ **Nome**: `{flt.name}`
 ▫️ **Doc**: `{flt.doc}`
 ▫️ **Via Bot**: `{flt.allow_via_bot}`
-▫️ **Carregados**: `{flt.is_loaded}`
-▫️ **Ativos**: `{flt.is_enabled}`"""
+▫️ **Carregado**: `{flt.is_loaded}`
+▫️ **Ativo**: `{flt.is_enabled}`"""
         if hasattr(flt, "about"):
             text = f"""<b><u>Status dos Comandos</u></b>
 {flt_data}
@@ -1178,7 +1178,8 @@ if userge.has_bot:
 
             MAIN_MENU = InlineQueryResultArticle(
                 title="Menu Principal",
-                input_message_content=InputTextMessageContent(" Apple 𝐌𝐄𝐍𝐔 "),
+                input_message_content=InputTextMessageContent(" Bem vindo ao\n AppleBot 𝐌𝐄𝐍𝐔 "),
+                photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png",
                 url="https://t.me/applled",
                 description="Menu Principal",
                 thumb_url="https://telegra.ph/file/c253bbfab1a1a2e79cd9b.png",

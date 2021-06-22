@@ -1,13 +1,12 @@
 """ Configuração para o modo ausente """
 
 import asyncio
+import random
 import time
 from random import choice, randint
-import random
 
 from userge import Config, Message, filters, get_collection, userge
 from userge.utils import time_formatter
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 CHANNEL = userge.getCLogger(__name__)
 SAVED_SETTINGS = get_collection("CONFIGS")
@@ -20,25 +19,27 @@ TIME = 0.0
 USERS = {}
 
 STATUS = (
-        "[\u200c](https://telegra.ph/file/885d526a6d02910e436ef.gif)",
-        "[\u200c](https://telegra.ph/file/d432a65c7cfbef904c4b3.gif)",
-        "[\u200c](https://telegra.ph/file/39bc79c08ddb42fd6c345.gif)",
-        "[\u200c](https://telegra.ph/file/3c4911c20428bd25c8d2e.gif)",
-        "[\u200c](https://telegra.ph/file/c4ca2b498c395794baf71.gif)",
-        "[\u200c](https://telegra.ph/file/6fa1148a78b3d714b3357.gif)",
-        "[\u200c](https://telegra.ph/file/ec1303206f56f03c337d9.gif)",
-        "[\u200c](https://telegra.ph/file/b810bbbe02a1b9ad3b77c.gif)",
-)  
+    "[\u200c](https://telegra.ph/file/885d526a6d02910e436ef.gif)",
+    "[\u200c](https://telegra.ph/file/d432a65c7cfbef904c4b3.gif)",
+    "[\u200c](https://telegra.ph/file/39bc79c08ddb42fd6c345.gif)",
+    "[\u200c](https://telegra.ph/file/3c4911c20428bd25c8d2e.gif)",
+    "[\u200c](https://telegra.ph/file/c4ca2b498c395794baf71.gif)",
+    "[\u200c](https://telegra.ph/file/6fa1148a78b3d714b3357.gif)",
+    "[\u200c](https://telegra.ph/file/ec1303206f56f03c337d9.gif)",
+    "[\u200c](https://telegra.ph/file/b810bbbe02a1b9ad3b77c.gif)",
+)
+
 
 async def _init() -> None:
     global IS_AFK, REASON, TIME  # pylint: disable=global-statement
     data = await SAVED_SETTINGS.find_one({"_id": "AFK"})
     if data:
         IS_AFK = data["on"]
-        MOTIVO = data["data"]
+        data["data"]
         TIME = data["time"] if "time" in data else 0
     async for _user in AFK_COLLECTION.find():
         USERS.update({_user["_id"]: [_user["pcount"], _user["gcount"], _user["men"]]})
+
 
 @userge.on_cmd(
     "fui",
@@ -51,7 +52,7 @@ async def _init() -> None:
     allow_channels=False,
 )
 async def active_afk(message: Message) -> None:
-    """ Modo ausente ligado/desligado"""
+    """Modo ausente ligado/desligado"""
     global MOTIVO, IS_AFK, TIME  # pylint: disable=global-statement
     IS_AFK = True
     TIME = time.time()
@@ -88,7 +89,7 @@ async def active_afk(message: Message) -> None:
     allow_via_bot=False,
 )
 async def handle_afk_incomming(message: Message) -> None:
-    """ Configurações das mensagens automáticas """
+    """Configurações das mensagens automáticas"""
     if not message.from_user:
         return
     user_id = message.from_user.id
@@ -113,8 +114,8 @@ async def handle_afk_incomming(message: Message) -> None:
     else:
         if REASON:
             out_str = (
-                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:**  {afk_time} ago\n"
-                    f"▫️ **Status**: {MOTIVO} {random.choice(STATUS)}"
+                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:**  {afk_time} ago\n"
+                f"▫️ **Status**: {MOTIVO} {random.choice(STATUS)}"
             )
         else:
             out_str = choice(AUTO_AFK)
@@ -126,7 +127,8 @@ async def handle_afk_incomming(message: Message) -> None:
     if chat.type == "private":
         coro_list.append(
             CHANNEL.log(
-                f"Em seu #PRIVADO\n{user_dict['mention']}\n Te enviou a mensagem:\n\n" f"{message.text}"
+                f"Em seu #PRIVADO\n{user_dict['mention']}\n Te enviou a mensagem:\n\n"
+                f"{message.text}"
             )
         )
     else:
@@ -156,7 +158,7 @@ async def handle_afk_incomming(message: Message) -> None:
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def handle_afk_outgoing(message: Message) -> None:
-    """ Status detalhado e atualizado sobre seu modo ausente """
+    """Status detalhado e atualizado sobre seu modo ausente"""
     global IS_AFK  # pylint: disable=global-statement
     IS_AFK = False
     afk_time = time_formatter(round(time.time() - TIME))
@@ -203,6 +205,7 @@ async def handle_afk_outgoing(message: Message) -> None:
         )
     )
     await asyncio.gather(*coro_list)
+
 
 AUTO_AFK = (
     "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",

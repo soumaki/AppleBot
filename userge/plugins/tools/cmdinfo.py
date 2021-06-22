@@ -64,12 +64,12 @@ async def see_info(message: Message):
     plugin_loc = ("/" + userge.manager.plugins[plugin_name].parent).replace(
         "/plugins", ""
     )
-    if plugin_loc == "/xtra":
+    if plugin_loc == "/extras":
         extra_plugins = (
-            "https://github.com/code-rgb/Userge-Plugins/blob/master/plugins/"
+            "https://github.com/applled/extras/blob/master/plugins/"
         )
         plugin_link = f"{extra_plugins}/{plugin_name}.py"
-    elif plugin_loc == "/custom":
+    elif plugin_loc == "/locais":
         custom_plugins = os.environ.get("CUSTOM_PLUGINS_REPO", "")
         plugin_link = f"{custom_plugins}/blob/master/plugins/{plugin_name}.py"
     elif plugin_loc == "/temp":

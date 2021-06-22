@@ -53,12 +53,12 @@ async def _init() -> None:
 )
 async def active_afk(message: Message) -> None:
     """Modo ausente ligado/desligado"""
-    global MOTIVO, IS_AFK, TIME  # pylint: disable=global-statement
+    global REASON, IS_AFK, TIME  # pylint: disable=global-statement
     IS_AFK = True
     TIME = time.time()
     REASON = message.input_str
     await asyncio.gather(
-        CHANNEL.log(f"Sumindo! : `{MOTIVO}`"),
+        CHANNEL.log(f"Sumindo! : `{REASON}`"),
         message.edit("`Fui!`", del_in=1),
         AFK_COLLECTION.drop(),
         SAVED_SETTINGS.update_one(

@@ -59,12 +59,12 @@ REPO_X = InlineQueryResultArticle(
     title="Repo",
     input_message_content=InputTextMessageContent("**Não há nada para você aqui"),
     url="https://t.me/laranjudo",
-    description="Setup Your Own",
+    description="Confire o seu!",
     thumb_url="https://telegra.ph/file/bc5d7d950ce2d1a050ae6.png",
     reply_markup=InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("Userbot for Orange", url="https://github.com/"),
+                InlineKeyboardButton("AppleBot para appleeds", url="https://github.com/"),
                 InlineKeyboardButton(
                     "Bing ",
                     url=("google.com" "https://apple.com/"),
@@ -87,7 +87,9 @@ async def _init() -> None:
 async def helpme(message: Message) -> None:
     plugins = userge.manager.enabled_plugins
     if not message.input_str:
-        out_str = f"""AppleBot - <b>Plugins Disponíveis:</b> (<code>{len(plugins)}</code>)\n\n"""
+        out_str = (
+            f"""AppleBot - <b>Plugins Disponíveis:</b> (<code>{len(plugins)}</code>)\n\n"""
+        )
         cat_plugins = userge.manager.get_plugins()
         for cat in sorted(cat_plugins):
             if cat == "plugins":
@@ -98,7 +100,9 @@ async def helpme(message: Message) -> None:
                 + "</code>    <code>".join(sorted(cat_plugins[cat]))
                 + "</code>\n\n"
             )
-        out_str += f"""▫️ <b>Como usar:</b>  <code>{Config.CMD_TRIGGER}ajuda nome do plugin</code>"""
+        out_str += (
+            f"""▫️ <b>Como usar:</b>  <code>{Config.CMD_TRIGGER}ajuda nome do plugin</code>"""
+        )
     else:
         key = message.input_str
         if (
@@ -113,12 +117,12 @@ async def helpme(message: Message) -> None:
             commands = plugins[key].enabled_commands
             out_str = f"""<b><u>(<code>{len(commands)}</code>) Comandos Disponíveis</u></b>
 
-🔧 <b>Plugin:</b>  <code>{key}</code>
-📘 <b>Doc:</b>  <code>{plugins[key].doc}</code>\n\n"""
+▫️ <b>Plugin:</b>  <code>{key}</code>
+▫️ <b>Doc:</b>  <code>{plugins[key].doc}</code>\n\n"""
             for i, cmd in enumerate(commands, start=1):
                 out_str += (
-                    f"    🤖 <b>cmd(<code>{i}</code>):</b>  <code>{cmd.name}</code>\n"
-                    f"    📚 <b>info:</b>  <i>{cmd.doc}</i>\n\n"
+                    f"    ▫️ <b>cmd(<code>{i}</code>):</b>  <code>{cmd.name}</code>\n"
+                    f"    ▫️ <b>info:</b>  <i>{cmd.doc}</i>\n\n"
                 )
             out_str += f"""📕 <b>Como usar:</b>  <code>{Config.CMD_TRIGGER}ajuda comando</code>"""
         else:
@@ -149,9 +153,7 @@ if userge.has_bot:
                 try:
                     await func(c_q)
                 except MessageNotModified:
-                    await c_q.answer(
-                        "Não encontrei nada para atualizar.", show_alert=True
-                    )
+                    await c_q.answer("Não encontrei nada para atualizar.", show_alert=True)
                 except MessageIdInvalid:
                     await c_q.answer(
                         "Foi mal, não tenho permissões para editar isso.",
@@ -266,8 +268,7 @@ if userge.has_bot:
     async def callback_chgclnt(callback_query: CallbackQuery):
         if not RawClient.DUAL_MODE:
             return await callback_query.answer(
-                "Você está usando [MODO BOT], não pode alterar o cliente.",
-                show_alert=True,
+                "Você está usando [MODO BOT], não pode alterar o cliente.", show_alert=True
             )
         if Config.USE_USER_FOR_CLIENT_CHECKS:
             Config.USE_USER_FOR_CLIENT_CHECKS = False
@@ -379,7 +380,7 @@ if userge.has_bot:
     def plugin_data(cur_pos: str, p_num: int = 0):
         pos_list = cur_pos.split("|")
         plg = userge.manager.plugins[pos_list[2]]
-        text = f"""📁 <b>Plugin Status<b>
+        text = f"""📁 <b>Plugin Status<b> 
 
 ▫️ **Categoria**: `{pos_list[1]}`
 ▫️ **Nome**: `{plg.name}`
@@ -400,8 +401,7 @@ if userge.has_bot:
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "✅ Carregar",
-                    callback_data=f"load({'|'.join(pos_list[:3])})".encode(),
+                    "✅ Carregar", callback_data=f"load({'|'.join(pos_list[:3])})".encode()
                 )
             )
         if plg.is_enabled:
@@ -510,6 +510,20 @@ if userge.has_bot:
                         photo_url="https://telegra.ph/file/d50925c35883b16be6cd6.png",
                         caption=" ",
                         reply_markup=InlineKeyboardMarkup(owner),
+                    )
+                )
+                
+            if string == "ausente":
+                applled = [
+                    [
+                        InlineKeyboardButton(text="• SNOOZE MOD", callback_data="info_btn"),
+                    ]
+                ]
+                results.append(
+                    InlineQueryResultPhoto(
+                        photo_url="https://telegra.ph/file/fe07e973e23fe725faab8.gif",
+                        caption=" ",
+                        reply_markup=InlineKeyboardMarkup(applled),
                     )
                 )
 

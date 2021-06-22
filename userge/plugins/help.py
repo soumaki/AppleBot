@@ -87,9 +87,7 @@ async def _init() -> None:
 async def helpme(message: Message) -> None:
     plugins = userge.manager.enabled_plugins
     if not message.input_str:
-        out_str = (
-            f"""AppleBot - <b>Plugins Disponíveis:</b> (<code>{len(plugins)}</code>)\n\n"""
-        )
+        out_str = f"""AppleBot - <b>Plugins Disponíveis:</b> (<code>{len(plugins)}</code>)\n\n"""
         cat_plugins = userge.manager.get_plugins()
         for cat in sorted(cat_plugins):
             if cat == "plugins":
@@ -100,9 +98,7 @@ async def helpme(message: Message) -> None:
                 + "</code>    <code>".join(sorted(cat_plugins[cat]))
                 + "</code>\n\n"
             )
-        out_str += (
-            f"""▫️ <b>Como usar:</b>  <code>{Config.CMD_TRIGGER}ajuda nome do plugin</code>"""
-        )
+        out_str += f"""▫️ <b>Como usar:</b>  <code>{Config.CMD_TRIGGER}ajuda nome do plugin</code>"""
     else:
         key = message.input_str
         if (
@@ -153,7 +149,9 @@ if userge.has_bot:
                 try:
                     await func(c_q)
                 except MessageNotModified:
-                    await c_q.answer("Não encontrei nada para atualizar.", show_alert=True)
+                    await c_q.answer(
+                        "Não encontrei nada para atualizar.", show_alert=True
+                    )
                 except MessageIdInvalid:
                     await c_q.answer(
                         "Foi mal, não tenho permissões para editar isso.",
@@ -268,7 +266,8 @@ if userge.has_bot:
     async def callback_chgclnt(callback_query: CallbackQuery):
         if not RawClient.DUAL_MODE:
             return await callback_query.answer(
-                "Você está usando [MODO BOT], não pode alterar o cliente.", show_alert=True
+                "Você está usando [MODO BOT], não pode alterar o cliente.",
+                show_alert=True,
             )
         if Config.USE_USER_FOR_CLIENT_CHECKS:
             Config.USE_USER_FOR_CLIENT_CHECKS = False
@@ -380,7 +379,7 @@ if userge.has_bot:
     def plugin_data(cur_pos: str, p_num: int = 0):
         pos_list = cur_pos.split("|")
         plg = userge.manager.plugins[pos_list[2]]
-        text = f"""📁 <b>Plugin Status<b> 
+        text = f"""📁 <b>Plugin Status<b>
 
 ▫️ **Categoria**: `{pos_list[1]}`
 ▫️ **Nome**: `{plg.name}`
@@ -401,7 +400,8 @@ if userge.has_bot:
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "✅ Carregar", callback_data=f"load({'|'.join(pos_list[:3])})".encode()
+                    "✅ Carregar",
+                    callback_data=f"load({'|'.join(pos_list[:3])})".encode(),
                 )
             )
         if plg.is_enabled:

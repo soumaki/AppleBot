@@ -291,7 +291,9 @@ class Bot_Alive:
         buttons = [
             [
                 InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="🍎 INSPIRED", callback_data="main_menu_buttons"),
+                InlineKeyboardButton(
+                    text="🍎 INSPIRED", callback_data="main_menu_buttons"
+                ),
             ],
         ]
         return InlineKeyboardMarkup(buttons)

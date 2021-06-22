@@ -530,7 +530,6 @@ if userge.has_bot:
                         reply_markup=InlineKeyboardMarkup(applled),
                     )
                 )
-                del_in=3
 
             if string == "age_verification_alert":
                 buttons = [

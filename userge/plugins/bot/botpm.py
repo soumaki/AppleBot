@@ -240,13 +240,9 @@ Meu Mestre: {owner_.flname}</b>
         buttons = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"
-                    ),
-                    InlineKeyboardButton(
-                        "❎ ANTIFLOOD [DESLIGAR]",
-                        callback_data="toggle_bot-antiflood_off",
-                    ),
+                    InlineKeyboardButton("❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"),
+                    InlineKeyboardButton("❎ ANTIFLOOD [DESLIGAR]",callback_data="toggle_bot-antiflood_off",),
+                    InlineQueryResultPhoto(photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png"),
                 ]
             ]
         )
@@ -265,14 +261,15 @@ Meu Mestre: {owner_.flname}</b>
             flood_count = FloodConfig.ALERT[user_.id]["count"] = 1
 
         flood_msg = (
-            r"⚠️ <b>\\#AlertaFlooding//</b>"
+            r"⚠️ <b>\\#AlertaFlooding//</b>\n"
+            f"🤦 Lá vem um arrombado.\n"
             "\n\n"
             f"  ▫️  ID: <code>{user_.id}</code>\n"
             f"  ▫️  Nome: {user_.flname}\n"
             f"  ▫️  Usuário: {user_.mention}"
             f"\n\n**🤬 Este desgraçado está spammando seu bot!** »  [Flood **({flood_count})**]\n"
-            "❗️ **Escolha uma ação abaixo."
-            "🤦 Simplesmente ignore isso por um tempo."
+            "❗️ **Escolha uma ação abaixo.\n"
+            f"Simplesmente ignore esse merda por um tempo."
         )
 
         if found:

@@ -325,7 +325,7 @@ Meu Mestre: {owner_.flname}</b>
     async def bot_pm_ban_cb(c_q: CallbackQuery):
         user_id = int(c_q.matches[0].group(1))
         await asyncio.gather(
-            c_q.answer(f"Banning UserID -> {user_id} ...", show_alert=False),
+            c_q.answer(f"Banindo o Usuário com ID » {user_id}...", show_alert=False),
             ban_from_bot_pm(user_id, "Spammando o Bot", log=__name__),
             c_q.edit_message_text(
                 f"✅ O usuário com ID: {user_id} foi **Banido Magicamente**."
@@ -424,7 +424,7 @@ async def bot_users_(message: Message):
     async for c in BOT_START.find():
         msg += (
             f"• <i>ID:</i> <code>{c['user_id']}</code>\n   "
-            f"<b>Nome:</b> {c['firstname']},  <b>Data:</b> `{c['date']}`\n"
+            f"• <b>Nome:</b> {c['firstname']},  <b>Data:</b> `{c['date']}`\n"
         )
     await message.edit_or_send_as_file(
         f"<u><i><b>Lista de Usuários em Bot PM</b></i></u>\n\n{msg}"

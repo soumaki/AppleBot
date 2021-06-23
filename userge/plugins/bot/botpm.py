@@ -250,12 +250,12 @@ Meu Mestre: {owner_.flname}</b>
                 ]
             ]
         )
-#            InlineQueryResultPhoto(
-#                photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png",
-#                caption=" ",
-#                reply_markup=InlineKeyboardMarkup(buttons),
-#            )
-#        )
+        #            InlineQueryResultPhoto(
+        #                photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png",
+        #                caption=" ",
+        #                reply_markup=InlineKeyboardMarkup(buttons),
+        #            )
+        #        )
         found = False
         if FloodConfig.ALERT and (user_.id in FloodConfig.ALERT.keys()):
             found = True

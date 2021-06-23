@@ -319,7 +319,9 @@ Meu Mestre: {owner_.flname}</b>
         await asyncio.gather(
             c_q.answer(f"Banning UserID -> {user_id} ...", show_alert=False),
             ban_from_bot_pm(user_id, "Spammando o Bot", log=__name__),
-            c_q.edit_message_text(f"✅ O usuário com ID: {user_id} foi **Banido Magicamente**."),
+            c_q.edit_message_text(
+                f"✅ O usuário com ID: {user_id} foi **Banido Magicamente**."
+            ),
         )
 
     def time_now() -> Union[float, int]:

@@ -55,7 +55,9 @@ async def gsearch(message: Message):
     output = f"""
 **Você pesquisou por:**
 🔎 `{query}`
+
 **✅ Resultados no Google:**
+
 {output}
 
 """

@@ -183,7 +183,7 @@ if userge.has_bot:
 Olá, {from_user.fname},
 Que bom te conhecer, Eu sou o <b>{bot_.fname}</b>, simplesmente um Bot.
 
-        <b><i>Equipado por</i> [AppleBot](https://t.me/xapplebot)
+        <b><i>Equipado com</i> [AppleBot](https://t.me/xapplebot)
 
 Meu Mestre: {owner_.flname}</b>
 """

@@ -244,12 +244,19 @@ Meu Mestre: {owner_.flname}</b>
                         "❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"
                     ),
                     InlineKeyboardButton(
-                        "❎ Antiflood [DESLIGADO]",
+                        "❎ ANTIFLOOD [DESLIGAR]",
                         callback_data="toggle_bot-antiflood_off",
                     ),
                 ]
             ]
         )
+                results.append(
+                    InlineQueryResultPhoto(
+                        photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png",
+                        caption=" ",
+                        reply_markup=InlineKeyboardMarkup(buttons),
+                    )
+                )
         found = False
         if FloodConfig.ALERT and (user_.id in FloodConfig.ALERT.keys()):
             found = True
@@ -261,11 +268,12 @@ Meu Mestre: {owner_.flname}</b>
         flood_msg = (
             r"⚠️ <b>\\#AlertaFlooding//</b>"
             "\n\n"
-            f"  ID: <code>{user_.id}</code>\n"
-            f"  Nomee: {user_.flname}\n"
-            f"  👤 Usuário: {user_.mention}"
-            f"\n\n**🤬 Este desgraçado está spammando seu bot!** ->  [ Flood **({flood_count})** ]\n"
-            "__Faça algo__: Apenas ignorar."
+            f"  ▫️  ID: <code>{user_.id}</code>\n"
+            f"  ▫️  Nome: {user_.flname}\n"
+            f"  ▫️  Usuário: {user_.mention}"
+            f"\n\n**🤬 Este desgraçado está spammando seu bot!** »  [Flood **({flood_count})**]\n"
+            "❗️ **Escolha uma ação abaixo."
+            "🤦 Simplesmente ignore isso por um tempo."
         )
 
         if found:

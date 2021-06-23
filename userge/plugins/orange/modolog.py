@@ -75,9 +75,9 @@ async def grp_log(_, message: Message):
 Alguém te #mencionou
 ➖➖➖➖➖➖
 <b>▫️ Enviado por :</b> {message.from_user.mention}
-<b>No Grupo :</b> <code>{message.chat.title}</code>
-<b>Link da Mensagem  :</b> <a href={message.link}>link</a>
-<b>Mensagem : <code>Confira abaixo</code></b> ⬇
+<b>▫️ No Grupo :</b> <code>{message.chat.title}</code>
+<b>▫️ Link da Mensagem  :</b> <a href={message.link}>link</a>
+<b>▫️ Mensagem : <code>Confira abaixo</code></b> ⬇
 """
 
     if reply:
@@ -90,7 +90,7 @@ Alguém te #mencionou
                     Config.PM_LOG_GROUP_ID,
                     log,
                     parse_mode="html",
-                    disable_web_page_preview=True,
+                    disable_web_page_preview=False,
                 )
                 await asyncio.sleep(0.5)
                 await userge.forward_messages(
@@ -107,7 +107,7 @@ Alguém te #mencionou
                 Config.PM_LOG_GROUP_ID,
                 log,
                 parse_mode="html",
-                disable_web_page_preview=True,
+                disable_web_page_preview=False,
             )
             await asyncio.sleep(0.5)
             await userge.forward_messages(

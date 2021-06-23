@@ -1,7 +1,7 @@
 # Copyright (C) 2021 BY - GitHub.com/code-rgb [TG - @deleteduser420]
 # All rights reserved.
 
-"""Module that handles Bot PM"""
+"""Módulo para gerenciar as mensagens privadas do Bot"""
 
 import asyncio
 from collections import defaultdict
@@ -75,7 +75,7 @@ if userge.has_bot:
     async def get_bot_pm_media() -> None:
         global _BOT_PM_MEDIA
         if not Config.BOT_MEDIA:
-            _BOT_PM_MEDIA = get_file_id(await userge.bot.get_messages("useless_x", 2))
+            _BOT_PM_MEDIA = get_file_id(await userge.bot.get_messages("xapplebot", 21))
             return
         if Config.BOT_MEDIA.strip().lower() != "false":
             match = _TG_LINK_REGEX.search(Config.BOT_MEDIA)
@@ -94,7 +94,7 @@ if userge.has_bot:
                     _BOT_PM_MEDIA = bot_m_fid
 
     async def get_bot_info():
-        """Caching Owner and bot info"""
+        """Arquivo e informações do dono do Bot"""
         global _CACHED_INFO
         t_now = datetime.now()
         if not (
@@ -109,8 +109,8 @@ if userge.has_bot:
             except (BadRequest, IndexError):
                 _CACHED_INFO["owner"] = Config.OWNER_ID[0]
                 LOGGER.debug(
-                    "Coudn't get Info about User in OWNER_ID !\n"
-                    "Try /start in bot or check OWNER_ID var"
+                    "Não conseguir buscar informações do OWNER_ID!\n"
+                    "Dê um /start no seu bot ou confira o OWNER_ID."
                 )
             else:
                 _CACHED_INFO["owner"] = owner_info
@@ -146,9 +146,9 @@ if userge.has_bot:
             if not found:
                 start_date = str(date.today().strftime("%B %d, %Y")).replace(",", "")
                 bot_start_msg = (
-                    f"A <b>[New User](tg://openmessage?user_id={user_.id})</b> Started your Bot.\n"
+                    f"Um <b>[novo usuário](tg://openmessage?user_id={user_.id})</b> iniciou uma conversa com o seu Bot.\n"
                     f"  ID: <code>{user_.id}</code>\n"
-                    f"  Name: {user_.flname}\n"
+                    f"  Nome: {user_.flname}\n"
                     f"  👤: {user_.mention}\n"
                 )
                 await asyncio.gather(
@@ -164,9 +164,9 @@ if userge.has_bot:
         return not bool(found)
 
     def default_owner_start(from_user):
-        start_msg = f"Hello Master **{from_user.flname}** !\n"
+        start_msg = f"Olá, Mestre **{from_user.flname}** !\n"
         btns = [
-            [InlineKeyboardButton("➕  ADD TO GROUP", callback_data="add_to_grp")],
+            [InlineKeyboardButton("➕ ADD EM UM GRUPO", callback_data="add_to_grp")],
         ]
         return start_msg, btns
 
@@ -180,15 +180,15 @@ if userge.has_bot:
             start_msg, btns = default_owner_start(from_user)
         else:
             start_msg = f"""
-Hello 👋 {from_user.fname},
-Nice To Meet You !, I'm <b>{bot_.fname}</b> A Bot.
+Olá, {from_user.fname},
+Que bom te conhecer, Eu sou o <b>{bot_.fname}</b>, simplesmente um Bot.
 
-        <b><i>Powered by</i> [Orange](https://t.me/laranjudo)
+        <b><i>Equipado por</i> [AppleBot](https://t.me/xapplebot)
 
-My Master is : {owner_.flname}</b>
+Meu Mestre: {owner_.flname}</b>
 """
             if Config.BOT_FORWARDS:
-                start_msg += "<b>\n📌 NOTE:</b>\nYou can 📨 <b>Send Message</b> here to contact my <b>Master.</b>"
+                start_msg += "<b>\n📂 NOTA:</b>\nVocê pode <b>enviar as mensagens aqui</b> ou falar diretamente com o meu <b>Mestre.</b>"
             contact_url = (
                 f"https://t.me/{owner_.uname}"
                 if owner_.uname
@@ -196,8 +196,8 @@ My Master is : {owner_.flname}</b>
             )
             btns = [
                 [
-                    InlineKeyboardButton("👤  CONTACT", url=contact_url),
-                    InlineKeyboardButton("⭐️  Whatever", url=Config.MEUTG_REPO),
+                    InlineKeyboardButton("👤 MESTRE", url=contact_url),
+                    InlineKeyboardButton("🍏 APPLE", url=Config.MEUTG_REPO),
                 ]
             ]
         try:
@@ -206,7 +206,7 @@ My Master is : {owner_.flname}</b>
             await asyncio.sleep(e.x + 10)
         except Exception as bpm_e:
             await CHANNEL.log(
-                f"**ERROR**: {str(bpm_e)}\n\nFatal Error occured while sending Bot Pm Media"
+                f"**ERRO**: {str(bpm_e)}\n\nOps, aconteceu algo estranho enquanto tentava enviar a media."
             )
         await check_new_bot_user(message.from_user)
 
@@ -214,12 +214,12 @@ My Master is : {owner_.flname}</b>
     @check_owner
     async def add_to_grp(c_q: CallbackQuery):
         await c_q.answer()
-        msg = "<b>🤖 Add Your Bot to Group</b> \n\n📌 **NOTE:**\n<i>Admin Privilege Required !</i>"
+        msg = "<b>▫️ Adicionar em um grupo</b> \n\n❎ **NOTA:**\n<i>Fornecer privilégios administrativos!</i>"
         add_bot = f"http://t.me/{(await get_bot_info())['bot'].uname}?startgroup=start"
         buttons = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("➕ PRESS TO ADD", url=add_bot)],
-                [InlineKeyboardButton("BACK", callback_data="back_bot_pm")],
+                [InlineKeyboardButton("➕ Adicionar", url=add_bot)],
+                [InlineKeyboardButton("Voltar", callback_data="back_bot_pm")],
             ]
         )
         await c_q.edit_message_text(msg, reply_markup=buttons)
@@ -241,10 +241,10 @@ My Master is : {owner_.flname}</b>
             [
                 [
                     InlineKeyboardButton(
-                        "🚫  BAN", callback_data=f"bot_pm_ban_{user_.id}"
+                        "❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"
                     ),
                     InlineKeyboardButton(
-                        "➖ Bot Antiflood [OFF]",
+                        "❎ Antiflood [DESLIGADO]",
                         callback_data="toggle_bot-antiflood_off",
                     ),
                 ]
@@ -259,27 +259,27 @@ My Master is : {owner_.flname}</b>
             flood_count = FloodConfig.ALERT[user_.id]["count"] = 1
 
         flood_msg = (
-            r"⚠️ <b>\\#Flood_Warning//</b>"
+            r"⚠️ <b>\\#AlertaFlooding//</b>"
             "\n\n"
             f"  ID: <code>{user_.id}</code>\n"
-            f"  Name: {user_.flname}\n"
-            f"  👤 User: {user_.mention}"
-            f"\n\n**Is spamming your bot !** ->  [ Flood rate **({flood_count})** ]\n"
-            "__Quick Action__: Ignored from bot for a while."
+            f"  Nomee: {user_.flname}\n"
+            f"  👤 Usuário: {user_.mention}"
+            f"\n\n**🤬 Este desgraçado está spammando seu bot!** ->  [ Flood **({flood_count})** ]\n"
+            "__Faça algo__: Apenas ignorar."
         )
 
         if found:
             if flood_count >= FloodConfig.AUTOBAN:
                 if user_.id in Config.SUDO_USERS:
                     sudo_spam = (
-                        f"**Sudo User** {user_.mention}:\n  ID: {user_.id}\n\n"
-                        "Is Flooding your bot !, Check `.help delsudo` to remove the user from Sudo."
+                        f"**Usuário Sudo** {user_.mention}:\n  ID: {user_.id}\n\n"
+                        "Está floodando seu Bot! Configra o `.ajuda delsudo` para remover esse merda do Sudo."
                     )
                     await userge.bot.send_message(Config.LOG_CHANNEL_ID, sudo_spam)
                 else:
                     await ban_from_bot_pm(
                         user_.id,
-                        f"Automated Ban for Flooding bot [exceeded flood rate of **({FloodConfig.AUTOBAN})**]",
+                        f"Banimento automatizado do Bot para Flooding [Execendo o número **({FloodConfig.AUTOBAN})**]",
                         log=__name__,
                     )
                     FloodConfig.USERS[user_.id].clear()
@@ -305,10 +305,10 @@ My Master is : {owner_.flname}</b>
             try:
                 await userge.bot.send_message(
                     Config.OWNER_ID[0],
-                    f"⚠️  **[Bot Flood Warning !]({fa_msg.link})**",
+                    f"⚠️  **[Alerta de Flood!]({fa_msg.link})**",
                 )
             except UserIsBlocked:
-                await CHANNEL.log("**Unblock your bot !**")
+                await CHANNEL.log("**Desbloqueie o seu Bot!**")
         if FloodConfig.ALERT[user_.id].get("fa_id") is None and fa_msg:
             FloodConfig.ALERT[user_.id]["fa_id"] = fa_msg.message_id
 
@@ -318,8 +318,8 @@ My Master is : {owner_.flname}</b>
         user_id = int(c_q.matches[0].group(1))
         await asyncio.gather(
             c_q.answer(f"Banning UserID -> {user_id} ...", show_alert=False),
-            ban_from_bot_pm(user_id, "Spamming Bot", log=__name__),
-            c_q.edit_message_text(f"✅ **Successfully Banned**  User ID: {user_id}"),
+            ban_from_bot_pm(user_id, "Spammando o Bot", log=__name__),
+            c_q.edit_message_text(f"✅ O usuário com ID: {user_id} foi **Banido Magicamente**."),
         )
 
     def time_now() -> Union[float, int]:
@@ -327,7 +327,7 @@ My Master is : {owner_.flname}</b>
 
     @pool.run_in_thread
     def is_flood(uid: int) -> Optional[bool]:
-        """Checks if a user is flooding"""
+        """Verifiue as informações de Flooding de um usuário"""
         FloodConfig.USERS[uid].append(time_now())
         if (
             len(
@@ -369,14 +369,14 @@ My Master is : {owner_.flname}</b>
     async def antif_on_cb(_, c_q: CallbackQuery):
         user_id = c_q.from_user.id
         if await BOT_BAN.find_one({"user_id": user_id}):
-            await c_q.answer("You are banned from this bot !")
+            await c_q.answer("Você foi banido de usar este bot!")
             # LOGGER.info(
             #     r"<b>\\#Callback//</b>"
             #     f"\n\nBanned UserID: {user_id} ignored from bot."
             # )
             raise StopPropagation
         if await is_flood(user_id):
-            await c_q.answer("Wooh, Mate Chill ! go slow")
+            await c_q.answer("Ei, calma peste! Quer levar ban automático?")
             await send_flood_alert(c_q.from_user)
             FloodConfig.BANNED_USERS.add(user_id)
             raise StopPropagation
@@ -396,49 +396,49 @@ My Master is : {owner_.flname}</b>
                 {"$set": {"data": Config.BOT_ANTIFLOOD}},
                 upsert=True,
             ),
-            c_q.edit_message_text("BOT_ANTIFLOOD is now disabled !"),
+            c_q.edit_message_text("BOT_ANTIFLOOD está desativado!"),
         )
 
 
 @userge.on_cmd(
-    "bot_users",
+    "botusers",
     about={
-        "header": "Get a list Active Users Who started your Bot",
-        "examples": "{tr}bot_users",
+        "header": "Lista de Usuários que iniciaram conversa com o seu bot",
+        "exemplo": "{tr}botusers",
     },
     allow_channels=False,
 )
 async def bot_users_(message: Message):
-    """Users Who Stated Your Bot by - /start"""
+    """Usuários que deram /start no seu Bot"""
     msg = ""
     async for c in BOT_START.find():
         msg += (
             f"• <i>ID:</i> <code>{c['user_id']}</code>\n   "
-            f"<b>Name:</b> {c['firstname']},  <b>Date:</b> `{c['date']}`\n"
+            f"<b>Nome:</b> {c['firstname']},  <b>Data:</b> `{c['date']}`\n"
         )
     await message.edit_or_send_as_file(
-        f"<u><i><b>Bot PM Userlist</b></i></u>\n\n{msg}"
+        f"<u><i><b>Lista de Usuários em Bot PM</b></i></u>\n\n{msg}"
         if msg
-        else "`Nobody Does it Better`"
+        else "`A vida segue.`"
     )
 
 
 @userge.on_cmd(
-    "bot_antif",
+    "botantif",
     about={
-        "header": "enable / disable Bot Antiflood",
-        "description": "Get Notified if a user spams your bot and even autobans",
+        "header": "Ativa / Desativa o Bot Antiflood",
+        "descrição": "Seja notificado se alguém floodar seu bot + autoban",
     },
     allow_channels=False,
 )
 async def bot_antiflood_(message: Message):
-    """enable / disable Bot Antiflood"""
+    """Ativa / Desativa o Bot Antiflood"""
     if Config.BOT_ANTIFLOOD:
         Config.BOT_ANTIFLOOD = False
-        await message.edit("`Bot Antiflood disabled !`", del_in=3)
+        await message.edit("`Bot Antiflood desativado!`", del_in=3)
     else:
         Config.BOT_ANTIFLOOD = True
-        await message.edit("`Bot Antiflood enabled !`", del_in=3)
+        await message.edit("`Bot Antiflood ativado!`", del_in=3)
     await SAVED_SETTINGS.update_one(
         {"_id": "BOT_ANTIFLOOD"},
         {"$set": {"data": Config.BOT_ANTIFLOOD}},

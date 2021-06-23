@@ -1,5 +1,16 @@
 # Teste de Módulo do @Applled para Upload de arquivos #
 
+import asyncio
+import random
+import time
+from asyncio import sleep
+from collections import deque
+from re import sub
+
+import requests
+import wget
+from cowpy import cow
+from userge import Message, userge
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError

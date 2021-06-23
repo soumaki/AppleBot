@@ -62,6 +62,7 @@ async def all_log(message: Message):
         {"_id": "TAG_LOGGING"}, {"$set": {"is_active": Config.TAG_LOGGING}}, upsert=True
     )
 
+
 @userge.on_message(
     filters.group & ~filters.bot & ~filters.me & tagLoggingFilter,
 )

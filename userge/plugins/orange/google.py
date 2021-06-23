@@ -32,7 +32,9 @@ async def gsearch(message: Message):
     if message.reply_to_message:
         query = message.reply_to_message.text
     if not query:
-        await message.err(text="Forneça um termo ou responda uma mensagem para pesquisar!")
+        await message.err(
+            text="Forneça um termo ou responda uma mensagem para pesquisar!"
+        )
         return
     try:
         g_search = GoogleSearch()
@@ -47,7 +49,7 @@ async def gsearch(message: Message):
             link = gresults["links"][i]
             desc = gresults["descriptions"][i]
             output += f"🔗 **[{title}]({link})\n▫️ __{desc}__\n**"
-#           output += f"{desc}\n\n" Ocupa muito espaço
+        #           output += f"{desc}\n\n" Ocupa muito espaço
         except IndexError:
             break
     output = f"""

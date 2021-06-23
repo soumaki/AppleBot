@@ -240,9 +240,16 @@ Meu Mestre: {owner_.flname}</b>
         buttons = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"),
-                    InlineKeyboardButton("❎ ANTIFLOOD [DESLIGAR]",callback_data="toggle_bot-antiflood_off",),
-                    InlineQueryResultPhoto(photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png"),
+                    InlineKeyboardButton(
+                        "❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"
+                    ),
+                    InlineKeyboardButton(
+                        "❎ ANTIFLOOD [DESLIGAR]",
+                        callback_data="toggle_bot-antiflood_off",
+                    ),
+                    InlineQueryResultPhoto(
+                        photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png"
+                    ),
                 ]
             ]
         )

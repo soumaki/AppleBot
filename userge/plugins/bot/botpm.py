@@ -250,7 +250,6 @@ Meu Mestre: {owner_.flname}</b>
                 ]
             ]
         )
-        results.append(
             InlineQueryResultPhoto(
                 photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png",
                 caption=" ",

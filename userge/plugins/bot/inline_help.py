@@ -1,7 +1,7 @@
 # Copyright (C) 2020 BY - GitHub.com/code-rgb [TG - @deleteduser420]
 # All rights reserved.
 
-"""Module that handles Inline Help"""
+"""Módulo para ajudar no Inline"""
 
 from asyncio import gather
 
@@ -16,32 +16,32 @@ OwnerFilter = filters.user(list(Config.OWNER_ID))
 
 _COMMANDS = {
     "secret": {
-        "help_txt": "**Send a secret message to a user**\n (only the entered user and you can view the message)\n\n>>>  `secret @username [text]`",
-        "i_q": "secret @DeletedUser420 This is a secret message",
+        "help_txt": "**Envia uma mensagem secreta para alguém.**\n (Somente o usuário com tag pode ver)\n\n>>>  `secret @username [texto]`",
+        "i_q": "secret @applled exemplo de mensagem",
     },
     "troll": {
-        "help_txt": "**Troll to a user**\n (everyone can view the message except the entered user)\n\n>>>  `troll @username [text]`",
-        "i_q": "troll @Lostb053 Lostboy can view this message",
+        "help_txt": "**Trole um usuário**\n (todos podem ver a mensagem, exceto o usuário mencionado).\n\n>>>  `troll @username [texto]`",
+        "i_q": "troll @applled vá se lascar",
     },
     "alive": {
-        "help_txt": "**Alive Command for USERGE-X**\nHere You can view Uptime, Setting and Versions of your bot and when you change settings they are updated in Real-time UwU\n\n>>>  `alive`",
+        "help_txt": "**Verificador do Bot:**\nConfigura o tempo de uso, Configurações e versão do bot. Isso é atualizado em tempo real.\n\n>>>  `.online`",
         "i_q": "alive",
     },
     "opinion": {
-        "help_txt": "**Ask for opinion via inline**\nYou can now send multiple opinion messages at once\n**Note: **All button data is cleared as soon as you restart or update the bot\n\n>>>  `op [Question or Statement]`",
-        "i_q": "op Are Cats Cute ?",
+        "help_txt": "**Opniões via inline**\nAgora você pode enviar várias mensagens de opinião de uma única vez.\n**Nota: **Todos os botões e informações são zeradas quando você reinicia o bot.\n\n>>>  `op [Sua pergunta]`",
+        "i_q": "op Gosta de miojo?",
     },
     "repo": {
-        "help_txt": "**Your USERGE-X Github repo**\nwith direct deploy button\n\n>>>  `repo`",
+        "help_txt": "**Repo no GitHub do AppleBot:**\n `repo`",
         "i_q": "repo",
     },
     "gapps": {
-        "help_txt": "**Lastest arm64 Gapps for <u>Android 10 Only !</u>**\nChoose from Niksgapps, Opengapps and Flamegapps\n\n>>>  `gapps`",
+        "help_txt": "**Versão mais recente do GApps arm64 para <u>Android 10 (apenas)!</u>**\nEscolha Niksgapps, Opengapps ou Flamegapps\n\n>>>  `gapps`",
         "i_q": "gapps",
     },
     "ofox": {
-        "help_txt": "**Lastest Ofox Recovery for supported device, Powered By offcial Ofox API v2**\n\n>>>  `ofox [device codename]`",
-        "i_q": "ofox whyred",
+        "help_txt": "**Versão mais recente do OrangeFox Recovery, Powered By offcial Ofox API v2**\n\n>>>  `ofox [codename do aparelho]`",
+        "i_q": "ofox biloba",
     },
     "reddit": {
         "help_txt": '**Get Reddit Image post**\nGet Random Reddit meme or a post from specific subreddit, if you want post from specific subreddit do "reddit [subreddit]."\n\n>>> `reddit  or  reddit dankmemes.`',

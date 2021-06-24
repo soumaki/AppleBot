@@ -54,14 +54,14 @@ async def active_afk(message: Message) -> None:
     MATCH = _TELE_REGEX.search(REASON)
     if MATCH:
         rr = REASON.split(" | ", maxsplit=1)
-        STATUSS = rr[0]
+        STATUS = rr[0]
         await asyncio.gather(
-            CHANNEL.log(f"Sumindo...: `{STATUSS}` [\u200c]({MATCH.group(0)})"),
+            CHANNEL.log(f"Sumindo...: `{STATUS}` [\u200c]({MATCH.group(0)})"),
             message.edit("`Fui!`", del_in=1),
             AFK_COLLECTION.drop(),
             SAVED_SETTINGS.update_one(
                 {"_id": "AFK"},
-                {"$set": {"on": True, "data": STATUSS, "time": TIME}},
+                {"$set": {"on": True, "data": STATUS, "time": TIME}},
                 upsert=True,
             ),
         )
@@ -116,7 +116,7 @@ async def handle_afk_incomming(message: Message) -> None:
                 STATUS = r[0]
                 out_str = (
                     f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                    f" ╰•  **Status**: {REASON} [\u200c]({STATUS})"
+                    f" ╰•  **Status**: [{REASON}]({STATUS})"
                 )
                 if match.group(3) == "gif" or "mp4":
                     coro_list.append(
@@ -143,7 +143,7 @@ async def handle_afk_incomming(message: Message) -> None:
             STATUS = r[0]
             out_str = (
                 f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                f" ╰•  **Status**: {REASON} [\u200c]({STATUS})"
+                f" ╰•  **Status**: [{REASON}]({STATUS})"
             )
             if match.group(3) == "gif" or "mp4":
                 coro_list.append(

@@ -115,8 +115,8 @@ async def handle_afk_incomming(message: Message) -> None:
                 r = REASON.split(" | ", maxsplit=1)
                 STATUS = r[0]
                 out_str = (
-                    f"🌐 **AUTO REPLY** ⒶⒻⓀ \n\n╰•  **Last Seen:** {afk_time} ago\n\n"
-                    f"🏷 **I'm not here because:**\n➖ ´{REASON}´"  # Foda-se
+                    f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
+                    f"🏷 **I'm not here because:**\n`{REASON}`"  # Foda-se
                 )
                 if match.group(3) == "gif" or "mp4":
                     coro_list.append(
@@ -128,8 +128,8 @@ async def handle_afk_incomming(message: Message) -> None:
                     )
             else:
                 out_str = (
-                    f"🌐 **AUTO REPLY** ⒶⒻⓀ \n\n╰•  **Last Seen:** {afk_time} ago\n\n"
-                    f"🏷 **I'm not here because:**\n➖ {STATUS}"  # Saia daqui
+                    f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
+                    f"🏷 **I'm not here because:**\n {STATUS}"  # Saia daqui
                 )
                 coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -142,9 +142,8 @@ async def handle_afk_incomming(message: Message) -> None:
             r = REASON.split(" | ", maxsplit=1)
             STATUS = r[0]
             out_str = (
-                f"🌐 **AUTO REPLY** ⒶⒻⓀ \n\n╰•  **Last Seen:** {afk_time} ago\n\n"
-                # Você não perdeu nada aqui
-                f"🏷 **I'm not here because:**\n➖ ´{REASON}´"
+                    f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n" # FUCK
+                    f"🏷 **I'm not here because:**\n`{REASON}`"
             )
             if match.group(3) == "gif" or "mp4":
                 coro_list.append(
@@ -156,8 +155,8 @@ async def handle_afk_incomming(message: Message) -> None:
                 )
         else:
             out_str = (
-                f"🌐 **AUTO REPLY** ⒶⒻⓀ \n\n╰•  **Last Seen:** {afk_time} ago\n\n"
-                f"🏷 **I'm not here because:**\n➖ {STATUS}"  # Foda-se
+                f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
+                f"🏷 **I'm not here because:**\n {STATUS}"  # Foda-se
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":

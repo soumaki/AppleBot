@@ -116,7 +116,7 @@ async def handle_afk_incomming(message: Message) -> None:
                 STATUS = r[0]
                 out_str = (
                     f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                    f" ╰• **1Apple: {REASON}** "  # Teste 2
+                    f" ╰• **Status:** {REASON} "  # Teste 2
                 )
                 if match.group(3) == "gif" or "mp4":
                     coro_list.append(
@@ -129,7 +129,7 @@ async def handle_afk_incomming(message: Message) -> None:
             else:
                 out_str = (
                     f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                    f" ╰• **Status**: {STATUS}"  # Teste
+                    f" ╰• **Status**: [\u200c]({STATUS})"  # Teste aqui
                 )
                 coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -143,7 +143,7 @@ async def handle_afk_incomming(message: Message) -> None:
             STATUS = r[0]
             out_str = (
                 f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                f" ╰• **2Apple:** {REASON} "  # Teste 2
+                f" ╰• **Status:** {REASON} "  # Teste aqui de novo
             )
             if match.group(3) == "gif" or "mp4":
                 coro_list.append(
@@ -156,7 +156,7 @@ async def handle_afk_incomming(message: Message) -> None:
         else:
             out_str = (
                 f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                f" ╰• **3Apple**: {STATUS}"  # Teste
+                f" ╰• **3Apple**: [\u200c]({STATUS})"  # Teste
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":

@@ -5,8 +5,6 @@ import time
 from random import randint
 from re import compile as comp_regex
 
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
 from userge import Config, Message, filters, get_collection, userge
 from userge.utils import time_formatter
 
@@ -143,13 +141,13 @@ async def handle_afk_incomming(message: Message) -> None:
             r = TL.search(REASON)
             STATUS = REASON.replace(r.group(0), "")
             out_str = (
-                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
-                    f"▫️ **Status**: {STATUS}"
+                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
+                f"▫️ **Status**: {STATUS}"
             )
         else:
             out_str = (
-                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
-                    f"▫️ **Status**: {REASON}"
+                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
+                f"▫️ **Status**: {REASON}"
             )
         coro_list.append(
             client.send_photo(

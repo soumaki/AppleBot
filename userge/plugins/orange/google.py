@@ -16,19 +16,19 @@ from userge import Message, userge
     about={
         "header": "Faça uma pesquisa no Google",
         "flags": {
-            "-p": "números de páginas para o resultado da pesquisa (o padrão é 1)",
-            "-l": "Limite de número dos resultados da pesquisa (padrão está 3)(máximo 10)",
+            "-pag": "números de páginas para o resultado da pesquisa (o padrão é 1)",
+            "-lim": "Limite de número dos resultados da pesquisa (padrão está 3)(máximo 10)",
         },
         "como usar": "{tr}google [flags] [pesquisa | responda uma mensagem]",
         "exemplo": "{tr}google -p4 -l10 apple",
     },
 )
 async def gsearch(message: Message):
-    await message.edit("Pesquisando ...")
+    await message.edit("Pesquisando...")
     query = message.filtered_input_str
     flags = message.flags
-    page = int(flags.get("-p", 1))
-    limit = int(flags.get("-l", 3))
+    page = int(flags.get("-pag", 1))
+    limit = int(flags.get("-lim", 3))
     if message.reply_to_message:
         query = message.reply_to_message.text
     if not query:
@@ -48,8 +48,8 @@ async def gsearch(message: Message):
             title = gresults["titles"][i]
             link = gresults["links"][i]
             desc = gresults["descriptions"][i]
-            output += f"🔗 **[{title}]({link})\n▫️ __{desc}__\n**"
-        #           output += f"{desc}\n\n" Ocupa muito espaço
+            output += f"🔗 **[{title}]({link})**\n▫️ __{desc}__\n"
+#           output += f"{desc}\n\n" Ocupa muito espaço
         except IndexError:
             break
     output = f"""

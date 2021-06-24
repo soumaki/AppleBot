@@ -84,22 +84,22 @@ async def imdb(message: Message):
 
 <b>🎬 Título: </b>{mov_title}
 
-➖➖➖➖➖➖➖➖
+➖➖➖➖➖➖➖
 <b>Avaliação da audiência:
 ╰• </b><code>{mov_rating}</code>
 <b>Origem: </b><code>{mov_country[0]}</code>
 <b>Idioma: </b><code>{mov_language[0]}</code>
-➖➖➖➖➖➖➖➖
+➖➖➖➖➖➖➖
 <b>INFORMAÇÕES DA PRODUÇÃO</b>
 ▫️ <b>Diretor:
 ╰• </b><code>{director}</code>
-▫️ <b>Escritor:
+▫️ <b>Escrito por:
 ╰• </b><code>{writer}</code>
 ▫️ <b>Elenco Principal:
 ╰• </b><code>{stars}</code>
-➖➖➖➖➖➖➖➖
+➖➖➖➖➖➖➖
 
-🔗 [Mais Informações]({mov_link})
+🔗 <a href="{mov_link}>Mais Informações</a>
 
 """
     except IndexError:

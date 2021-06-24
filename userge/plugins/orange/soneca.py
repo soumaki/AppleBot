@@ -134,8 +134,7 @@ async def handle_afk_incomming(message: Message) -> None:
                 )
             coro_list.append(
 #                if type_ == "url_gif":
-                client.send_animation(
-                    animation=url_,
+                photo_url=Bot_Alive.alive_default_imgs(),
                     chat_id,
                     photo=match.group(0),
                     caption=out_str,
@@ -168,8 +167,8 @@ async def handle_afk_incomming(message: Message) -> None:
             )
         coro_list.append(
 #               if type_ == "url_gif":
-                client.send_animation(
-                animation=url_,
+#                client.send_animation(
+                photo_url=Bot_Alive.alive_default_imgs(),
                 chat_id,
                 photo=match.group(0),
                 caption=out_str,
@@ -260,6 +259,39 @@ async def handle_afk_outgoing(message: Message) -> None:
     )
     await asyncio.gather(*coro_list)
 
+            
+class Bot_Alive:
+    @staticmethod
+    async def check_media_link(media_link: str):
+        match = _ALIVE_REGEX.search(media_link.strip())
+        if not match:
+            return None, None
+        if match.group(1) == "i.imgur.com":
+            link = match.group(0)
+            link_type = "url_gif" if match.group(3) == "gif" else "url_image"
+        elif match.group(1) == "telegra.ph/file":
+            link = match.group(0)
+            link_type = "url_image"
+        else:
+            link_type = "tg_media"
+            if match.group(2) == "c":
+                chat_id = int("-100" + str(match.group(3)))
+                message_id = match.group(4)
+            else:
+                chat_id = match.group(2)
+                message_id = match.group(3)
+            link = [chat_id, int(message_id)]
+        return link_type, link
+            
+    @staticmethod
+    def alive_default_imgs() -> str:
+        alive_imgs = [
+            "https://telegra.ph/file/39bc79c08ddb42fd6c345.gif",
+            "https://telegra.ph/file/39bc79c08ddb42fd6c345.gif",
+            "https://telegra.ph/file/39bc79c08ddb42fd6c345.gif",
+            "https://telegra.ph/file/39bc79c08ddb42fd6c345.gif",
+        ]
+        return rand_array(alive_imgs)
 
 AFK_REASONS = (
     "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",

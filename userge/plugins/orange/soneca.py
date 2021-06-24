@@ -123,11 +123,11 @@ async def handle_afk_incomming(message: Message) -> None:
                     f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
                     f"▫️ **Status**: {REASON}"
                 )
-            coro_list.append(
-                client.send_photo(
+                if match.group(3) == "gif" or "mp4":
+                    coro_list.append(
+                    client.send_animation(
                     chat_id,
-                    photo=match.group(0),
-                    caption=out_str,
+                    animation=match.group(0),
                 )
             )
         if chat.type == "private":
@@ -148,11 +148,12 @@ async def handle_afk_incomming(message: Message) -> None:
                 f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
                 f"▫️ **Status**: {REASON}"
             )
-        coro_list.append(
-            client.send_photo(
-                chat_id,
-                photo=match.group(0),
-                caption=out_str,
+            if match.group(3) == "gif" or "mp4":
+                coro_list.append(
+                    client.send_animation(
+                        chat_id,
+                        animation=match.group(0),
+                        caption=out_str,
             )
         )
         if chat.type == "private":

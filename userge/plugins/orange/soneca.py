@@ -84,7 +84,6 @@ async def active_afk(message: Message) -> None:
     & ~filters.bot
     & ~filters.user(Config.TG_IDS)
     & ~filters.edited
-    & ~filters.regex
     & (
         filters.mentioned
         | (

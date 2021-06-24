@@ -5,7 +5,6 @@ import re
 import bs4
 import requests
 import wget
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from userge import Config, Message, userge
 
@@ -25,7 +24,9 @@ THUMB_PATH = Config.DOWN_PATH + "imdb_thumb.jpg"
 async def imdb(message: Message):
     try:
         movie_name = message.input_str
-        await message.edit(f"__Pesquisando no IMDB por__ :[{movie_name}](https://telegra.ph/file/96378395294f719453c71.gif)")
+        await message.edit(
+            f"__Pesquisando no IMDB por__ :[{movie_name}](https://telegra.ph/file/96378395294f719453c71.gif)"
+        )
         final_name = movie_name.replace(" ", "+")
         page = requests.get(
             f"https://www.imdb.com/find?ref_=nv_sr_fn&q={final_name}&s=all"
@@ -84,17 +85,17 @@ async def imdb(message: Message):
 <b>🎬 Título: </b>{mov_title}
 
 ➖➖➖➖➖➖➖➖
-<b>Avaliação da audiência: 
+<b>Avaliação da audiência:
 ╰• </b><code>{mov_rating}</code>
 <b>Origem: </b><code>{mov_country[0]}</code>
 <b>Idioma: </b><code>{mov_language[0]}</code>
 ➖➖➖➖➖➖➖➖
 <b>INFORMAÇÕES DA PRODUÇÃO</b>
-▫️ <b>Diretor: 
+▫️ <b>Diretor:
 ╰• </b><code>{director}</code>
-▫️ <b>Escritor: 
+▫️ <b>Escritor:
 ╰• </b><code>{writer}</code>
-▫️ <b>Elenco Principal: 
+▫️ <b>Elenco Principal:
 ╰• </b><code>{stars}</code>
 ➖➖➖➖➖➖➖➖
 

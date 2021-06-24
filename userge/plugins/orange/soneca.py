@@ -115,7 +115,7 @@ async def handle_afk_incomming(message: Message) -> None:
                 r = TL.search(REASON)
                 STATUS = REASON.replace(r.group(0), "")
                 out_str = (
-                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
+                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
                     f"▫️ **Status**: {STATUS}"
                 )
                 if match.group(3) == "gif" or "mp4":
@@ -124,11 +124,15 @@ async def handle_afk_incomming(message: Message) -> None:
                             chat_id,
                             animation=match.group(0),
                             caption=out_str,
+                            reply_markup=buttons,
+                        )
+                    )
             else:
                 out_str = (
-                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
+                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
                     f"▫️ **Status**: {REASON}"
-                    )
+                )
+                coro_list.append(message.reply(out_str))
         if chat.type == "private":
             USERS[user_id][0] += 1
         else:
@@ -139,7 +143,7 @@ async def handle_afk_incomming(message: Message) -> None:
             r = TL.search(REASON)
             STATUS = REASON.replace(r.group(0), "")
             out_str = (
-                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
+                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
                 f"▫️ **Status**: {STATUS}"
             )
             if match.group(3) == "gif" or "mp4":
@@ -148,11 +152,15 @@ async def handle_afk_incomming(message: Message) -> None:
                         chat_id,
                         animation=match.group(0),
                         caption=out_str,
+                        reply_markup=buttons,
+                    )
+                )
         else:
             out_str = (
-                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
+                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
                 f"▫️ **Status**: {REASON}"
             )
+            coro_list.append(message.reply(out_str))
         if chat.type == "private":
             USERS[user_id] = [1, 0, user_dict["mention"]]
         else:

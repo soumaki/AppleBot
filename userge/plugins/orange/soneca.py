@@ -125,7 +125,7 @@ async def handle_afk_incomming(message: Message) -> None:
                     f"▫️ **Status**: {REASON}"
                 )
             coro_list.append(
-                    client.send_photo(
+                client.send_photo(
                     chat_id,
                     photo=match.group(0),
                     caption=out_str,
@@ -150,7 +150,7 @@ async def handle_afk_incomming(message: Message) -> None:
                 f"▫️ **Status**: {REASON}"
             )
         coro_list.append(
-                client.send_photo(
+            client.send_photo(
                 chat_id,
                 photo=match.group(0),
                 caption=out_str,

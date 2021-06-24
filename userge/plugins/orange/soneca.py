@@ -117,7 +117,7 @@ async def handle_afk_incomming(message: Message) -> None:
                 out_str = (
                     f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
                     # Foda-se
-                    f"🏷 **I'm not here because:**\n<code>{REASON}</code>"
+                    f"🏷 **I'm not here because:**\n<code>{STATUS}</code>"
                 )
                 if match.group(3) == "gif" or "mp4":
                     coro_list.append(
@@ -130,7 +130,7 @@ async def handle_afk_incomming(message: Message) -> None:
             else:
                 out_str = (
                     f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                    f"🏷 **I'm not here because:**\n {STATUS}"  # Saia daqui
+                    f"🏷 **I'm not here because:**\n {REASON}"  # Saia daqui
                 )
                 coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -145,7 +145,7 @@ async def handle_afk_incomming(message: Message) -> None:
             out_str = (
                 # FUCK
                 f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                f"🏷 **I'm not here because:**\n<code>{REASON}</code>"
+                f"🏷 **I'm not here because:**\n<code>{STATUS}</code>"
             )
             if match.group(3) == "gif" or "mp4":
                 coro_list.append(
@@ -158,7 +158,7 @@ async def handle_afk_incomming(message: Message) -> None:
         else:
             out_str = (
                 f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                f"🏷 **I'm not here because:**\n {STATUS}"  # Foda-se
+                f"🏷 **I'm not here because:**\n {REASON}"  # Foda-se
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":

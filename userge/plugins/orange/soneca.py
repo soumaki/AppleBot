@@ -118,18 +118,16 @@ async def handle_afk_incomming(message: Message) -> None:
                     f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
                     f"▫️ **Status**: {STATUS}"
                 )
-            else:
-                out_str = (
-                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
-                    f"▫️ **Status**: {REASON}"
-                )
                 if match.group(3) == "gif" or "mp4":
                     coro_list.append(
                         client.send_animation(
                             chat_id,
                             animation=match.group(0),
                             caption=out_str,
-                        )
+            else:
+                out_str = (
+                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
+                    f"▫️ **Status**: {REASON}"
                     )
         if chat.type == "private":
             USERS[user_id][0] += 1
@@ -144,19 +142,17 @@ async def handle_afk_incomming(message: Message) -> None:
                 f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
                 f"▫️ **Status**: {STATUS}"
             )
-        else:
-            out_str = (
-                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
-                f"▫️ **Status**: {REASON}"
-            )
             if match.group(3) == "gif" or "mp4":
                 coro_list.append(
                     client.send_animation(
                         chat_id,
                         animation=match.group(0),
                         caption=out_str,
-                    )
-                )
+        else:
+            out_str = (
+                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
+                f"▫️ **Status**: {REASON}"
+            )
         if chat.type == "private":
             USERS[user_id] = [1, 0, user_dict["mention"]]
         else:

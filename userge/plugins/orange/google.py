@@ -49,7 +49,7 @@ async def gsearch(message: Message):
             link = gresults["links"][i]
             desc = gresults["descriptions"][i]
             output += f"🔗 **[{title}]({link})**\n▫️ __{desc}__\n"
-#           output += f"{desc}\n\n" Ocupa muito espaço
+        #           output += f"{desc}\n\n" Ocupa muito espaço
         except IndexError:
             break
     output = f"""

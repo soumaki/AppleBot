@@ -83,7 +83,6 @@ async def imdb(message: Message):
         des_ = f"""
 
 <b>🎬 Título: </b>{mov_title}
-
 ➖➖➖➖➖➖➖
 <b>Avaliação da audiência:
 ╰• </b><code>{mov_rating}</code>
@@ -99,8 +98,8 @@ async def imdb(message: Message):
 ╰• </b><code>{stars}</code>
 ➖➖➖➖➖➖➖
 
-🔗 <a href="{mov_link}>Mais Informações</a>
-
+▫️ Mais informações:
+🔗 {mov_link}
 """
     except IndexError:
         await message.edit("Poxa, forneça um título que exista! ")

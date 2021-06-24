@@ -115,7 +115,7 @@ async def handle_afk_incomming(message: Message) -> None:
                 r = REASON.split(" | ", maxsplit=1)
                 STATUS = r[0]
                 out_str = (
-                    f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
+                    f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
                     f"╰• **Status**: {STATUS}"
                 )
                 if match.group(3) == "gif" or "mp4":
@@ -128,7 +128,7 @@ async def handle_afk_incomming(message: Message) -> None:
                     )
             else:
                 out_str = (
-                    f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
+                    f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
                     f"╰• **Status**: {REASON}"
                 )
                 coro_list.append(message.reply(out_str))
@@ -142,7 +142,7 @@ async def handle_afk_incomming(message: Message) -> None:
             r = REASON.split(" | ", maxsplit=1)
             STATUS = r[0]
             out_str = (
-                f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
+                f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
                 f"╰• **Status**: {STATUS}"
             )
             if match.group(3) == "gif" or "mp4":
@@ -155,7 +155,7 @@ async def handle_afk_incomming(message: Message) -> None:
                 )
         else:
             out_str = (
-                f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
+                f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
                 f"╰• **Status**: {REASON}"
             )
             coro_list.append(message.reply(out_str))

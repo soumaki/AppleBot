@@ -39,9 +39,9 @@ async def _init() -> None:
     "fui",
     about={
         "header": "Definir status para modo ausente",
-        "descrição": "Este modo vai informar sua ausência e respondará à todos que te mencionar. \n"
+        "descrição": "Este modo vai informar sua ausência e respondará à todos que te mencionarem. \n"
         "Informará o motivo e o tempo de ausência.",
-        "Como usar": "{tr}fui ou {tr}fui [motivo]",
+        "Como usar": "{tr}fui ou {tr}fui [motivo] <endereço.com/arquivo.gif>",
     },
     allow_channels=False,
 )

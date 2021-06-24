@@ -53,8 +53,8 @@ async def active_afk(message: Message) -> None:
     REASON = message.input_str
     MATCH = _TELE_REGEX.search(REASON)
     if MATCH:
-        rr = TL.search(REASON)
-        STATUSS = REASON.replace(rr.group(0), "")
+        rr = REASON.split(" | ", maxsplit=1)
+        STATUSS = rr[0]
         await asyncio.gather(
             CHANNEL.log(f"Sumindo...: `{STATUSS}` [\u200c]({MATCH.group(0)})"),
             message.edit("`Fui!`", del_in=1),
@@ -112,11 +112,11 @@ async def handle_afk_incomming(message: Message) -> None:
         if not (USERS[user_id][0] + USERS[user_id][1]) % randint(2, 4):
             match = _TELE_REGEX.search(REASON)
             if match:
-                r = TL.search(REASON)
-                STATUS = REASON.replace(r.group(0), "")
+                r = REASON.split(" | ", maxsplit=1)
+                STATUS = r[0]
                 out_str = (
-                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
-                    f"▫️ **Status**: {STATUS}"
+                    f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
+                    f"╰• **Status**: {STATUS}"
                 )
                 if match.group(3) == "gif" or "mp4":
                     coro_list.append(
@@ -128,8 +128,8 @@ async def handle_afk_incomming(message: Message) -> None:
                     )
             else:
                 out_str = (
-                    f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
-                    f"▫️ **Status**: {REASON}"
+                    f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
+                    f"╰• **Status**: {REASON}"
                 )
                 coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -139,11 +139,11 @@ async def handle_afk_incomming(message: Message) -> None:
     else:
         match = _TELE_REGEX.search(REASON)
         if match:
-            r = TL.search(REASON)
-            STATUS = REASON.replace(r.group(0), "")
+            r = REASON.split(" | ", maxsplit=1)
+            STATUS = r[0]
             out_str = (
-                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
-                f"▫️ **Status**: {STATUS}"
+                f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
+                f"╰• **Status**: {STATUS}"
             )
             if match.group(3) == "gif" or "mp4":
                 coro_list.append(
@@ -155,8 +155,8 @@ async def handle_afk_incomming(message: Message) -> None:
                 )
         else:
             out_str = (
-                f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
-                f"▫️ **Status**: {REASON}"
+                f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n🕑 **Last Seen:** {afk_time} ago\n"
+                f"╰• **Status**: {REASON}"
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":

@@ -84,6 +84,7 @@ async def active_afk(message: Message) -> None:
     & ~filters.bot
     & ~filters.user(Config.TG_IDS)
     & ~filters.edited
+    & ~filters.regex
     & (
         filters.mentioned
         | (
@@ -114,6 +115,15 @@ async def handle_afk_incomming(message: Message) -> None:
             if match:
                 r = TL.search(REASON)
                 STATUS = REASON.replace(r.group(0), "")
+                match = _TELE_REGEX.search(media_link.strip()) # Teste
+            if not match:
+            return None, None
+            if match.group(0) == "i.imgur.com":
+            link = match.group(0)
+            link_type = "url_gif" if match.group(0) == "gif" else "url_image"
+            elif match.group(0) == "telegra.ph/file":
+            link = match.group(0)
+            link_type = "url_image" # Teste Fim
                 out_str = (
                     f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
                     f"▫️ **Status**: {STATUS}"
@@ -139,6 +149,15 @@ async def handle_afk_incomming(message: Message) -> None:
         if match:
             r = TL.search(REASON)
             STATUS = REASON.replace(r.group(0), "")
+                match = _TELE_REGEX.search(media_link.strip()) # Teste
+            if not match:
+            return None, None
+            if match.group(0) == "i.imgur.com":
+            link = match.group(0)
+            link_type = "url_gif" if match.group(0) == "gif" else "url_image"
+            elif match.group(0) == "telegra.ph/file":
+            link = match.group(0)
+            link_type = "url_image" # Teste Fim
             out_str = (
                 f"⚡️ **Auto Reply** ⒶⒻⓀ \n🕑 **Last Check:** {afk_time} ago\n"
                 f"▫️ **Status**: {STATUS}"

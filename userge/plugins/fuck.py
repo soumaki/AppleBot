@@ -5,9 +5,7 @@ from userge import Message, userge
 # Applled tools
 
 
-@userge.on_cmd(
-    "fuck$", about={"header": "Foda-se"}, trigger="", allow_via_bot=False
-)
+@userge.on_cmd("fuck$", about={"header": "Foda-se"}, trigger="", allow_via_bot=False)
 async def reset_(message: Message):
     """fuck"""
     fuck = "!fui Zzz... <https://telegra.ph/file/5f5ef5dde5e811ab753b5.mp4>"

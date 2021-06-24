@@ -143,7 +143,8 @@ async def handle_afk_incomming(message: Message) -> None:
             STATUS = r[0]
             out_str = (
                 f"🌐 **AUTO REPLY** ⒶⒻⓀ \n\n╰•  **Last Seen:** {afk_time} ago\n\n"
-                f"🏷 **I'm not here because:**\n➖ ´{REASON}´"  # Você não perdeu nada aqui
+                # Você não perdeu nada aqui
+                f"🏷 **I'm not here because:**\n➖ ´{REASON}´"
             )
             if match.group(3) == "gif" or "mp4":
                 coro_list.append(

@@ -5,8 +5,9 @@ import re
 import bs4
 import requests
 import wget
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
 from userge import Config, Message, userge
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 THUMB_PATH = Config.DOWN_PATH + "imdb_thumb.jpg"
 
@@ -42,7 +43,7 @@ async def imdb(message: Message):
             pg = soup.find("div", "title_wrapper").findNext("div").text
             mov_details = re.sub(r"\s+", " ", pg)
         else:
-            mov_details = ""
+            pass
         credits_ = soup.findAll("div", "credit_summary_item")
         director = credits_[0].a.text
         if len(credits_) == 1:
@@ -61,7 +62,7 @@ async def imdb(message: Message):
         if soup.find("div", "inline canwrap"):
             story_line = soup.find("div", "inline canwrap").findAll("p")[0].text
         else:
-            story_line = "Indisponível"
+            pass
         info = soup.findAll("div", "txt-block")
         if info:
             mov_country = []
@@ -79,13 +80,13 @@ async def imdb(message: Message):
         else:
             mov_rating = "Indisponível"
         des_ = f"""
-        
-<b>🎬 Título: </b><code>{mov_title}</code> 
+
+<b>🎬 Título: </b><code>{mov_title}</code>
 
 
 ➖➖➖➖➖➖
-<b>Avaliação: </b><code>{mov_rating}</code> 
-<b>Origem: </b><code>{mov_country[0]}</code> 
+<b>Avaliação: </b><code>{mov_rating}</code>
+<b>Origem: </b><code>{mov_country[0]}</code>
 <b>Idioma: </b><code>{mov_language[0]}</code>
 ➖➖➖➖➖➖
 <b>Informações a produção:</b>
@@ -121,7 +122,9 @@ async def imdb(message: Message):
         os.remove(img_path)
     else:
         await message.edit(des_, parse_mode="HTML")
-        
+
         btn = [[InlineKeyboardButton(text="Mais informações", url="{mov_details}")]]
 
-        await userge.bot.send_message(message.chat.id, " ", reply_markup=InlineKeyboardMarkup(btn))
+        await userge.bot.send_message(
+            message.chat.id, " ", reply_markup=InlineKeyboardMarkup(btn)
+        )

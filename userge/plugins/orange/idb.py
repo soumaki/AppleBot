@@ -25,7 +25,7 @@ THUMB_PATH = Config.DOWN_PATH + "imdb_thumb.jpg"
 async def imdb(message: Message):
     try:
         movie_name = message.input_str
-        await message.edit(f"__Pesquisando no IMDB por__ : `{movie_name}`")
+        await message.edit(f"__Pesquisando no IMDB por__ :[{movie_name}](https://telegra.ph/file/96378395294f719453c71.gif)")
         final_name = movie_name.replace(" ", "+")
         page = requests.get(
             f"https://www.imdb.com/find?ref_=nv_sr_fn&q={final_name}&s=all"
@@ -81,21 +81,24 @@ async def imdb(message: Message):
             mov_rating = "Indisponível"
         des_ = f"""
 
-<b>🎬 Título: </b><code>{mov_title}</code>
+<b>🎬 Título: </b>{mov_title}
 
-
-➖➖➖➖➖➖
-<b>Avaliação: </b><code>{mov_rating}</code>
+➖➖➖➖➖➖➖➖
+<b>Avaliação da audiência: 
+╰• </b><code>{mov_rating}</code>
 <b>Origem: </b><code>{mov_country[0]}</code>
 <b>Idioma: </b><code>{mov_language[0]}</code>
-➖➖➖➖➖➖
-<b>Informações a produção:</b>
-▫️ <b>Diretor: </b><code>{director}</code>
-▫️ <b>Escritor: </b><code>{writer}</code>
-▫️ <b>Principais: </b><code>{stars}</code>
-➖➖➖➖➖➖
-<b>Fornecido por IMDB:</b>
-{mov_link}
+➖➖➖➖➖➖➖➖
+<b>INFORMAÇÕES DA PRODUÇÃO</b>
+▫️ <b>Diretor: 
+╰• </b><code>{director}</code>
+▫️ <b>Escritor: 
+╰• </b><code>{writer}</code>
+▫️ <b>Elenco Principal: 
+╰• </b><code>{stars}</code>
+➖➖➖➖➖➖➖➖
+
+🔗 [Mais Informações]({mov_link})
 
 """
     except IndexError:
@@ -122,9 +125,3 @@ async def imdb(message: Message):
         os.remove(img_path)
     else:
         await message.edit(des_, parse_mode="HTML")
-
-        btn = [[InlineKeyboardButton(text="Mais informações", url="{mov_details}")]]
-
-        await userge.bot.send_message(
-            message.chat.id, " ", reply_markup=InlineKeyboardMarkup(btn)
-        )

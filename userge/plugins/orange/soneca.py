@@ -11,7 +11,7 @@ from userge.utils import time_formatter
 _TELE_REGEX = comp_regex(
     r"http[s]?://(i\.imgur\.com|telegra\.ph/file|t\.me)/(\w+)(?:\.|/)(gif|jpg|png|jpeg|[0-9]+)(?:/([0-9]+))?"
 )
-# TL = comp_regex(r"[<].*[>]")
+TL = comp_regex(r"[<].*[>]")
 
 CHANNEL = userge.getCLogger(__name__)
 SAVED_SETTINGS = get_collection("CONFIGS")
@@ -115,8 +115,8 @@ async def handle_afk_incomming(message: Message) -> None:
                 r = REASON.split(" | ", maxsplit=1)
                 STATUS = r[0]
                 out_str = (
-                    f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                    f" ╰• **Status:** {REASON} "  # Teste 2
+                    f"🌐 **AUTO REPLY** ⒶⒻⓀ \n\n╰•  **Last Seen:** {afk_time} ago\n\n"
+                    f"🏷 **I'm not here because:**\n➖ ´{REASON}´"  # Foda-se
                 )
                 if match.group(3) == "gif" or "mp4":
                     coro_list.append(
@@ -128,8 +128,8 @@ async def handle_afk_incomming(message: Message) -> None:
                     )
             else:
                 out_str = (
-                    f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                    f" ╰• **Status**: {STATUS}"  # Teste aqui
+                    f"🌐 **AUTO REPLY** ⒶⒻⓀ \n\n╰•  **Last Seen:** {afk_time} ago\n\n"
+                    f"🏷 **I'm not here because:**\n➖ {STATUS}"  # Saia daqui
                 )
                 coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -142,8 +142,8 @@ async def handle_afk_incomming(message: Message) -> None:
             r = REASON.split(" | ", maxsplit=1)
             STATUS = r[0]
             out_str = (
-                f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                f" ╰• **Status:** {REASON} "  # Teste aqui de novo
+                f"🌐 **AUTO REPLY** ⒶⒻⓀ \n\n╰•  **Last Seen:** {afk_time} ago\n\n"
+                f"🏷 **I'm not here because:**\n➖ ´{REASON}´"  # Você não perdeu nada aqui
             )
             if match.group(3) == "gif" or "mp4":
                 coro_list.append(
@@ -155,8 +155,8 @@ async def handle_afk_incomming(message: Message) -> None:
                 )
         else:
             out_str = (
-                f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                f" ╰• **Status**: {STATUS}"  # Teste
+                f"🌐 **AUTO REPLY** ⒶⒻⓀ \n\n╰•  **Last Seen:** {afk_time} ago\n\n"
+                f"🏷 **I'm not here because:**\n➖ {STATUS}"  # Foda-se
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":

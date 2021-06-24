@@ -129,7 +129,7 @@ async def handle_afk_incomming(message: Message) -> None:
             else:
                 out_str = (
                     f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                    f" ╰•  **Status**: {REASON} [Teste]({STATUS})" # Teste
+                    f" ╰•  **Status**: {REASON} [Teste]({STATUS})"  # Teste
                 )
                 coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -156,7 +156,7 @@ async def handle_afk_incomming(message: Message) -> None:
         else:
             out_str = (
                 f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                f" ╰•  **Status**: {REASON} [Teste]({STATUS})" # Teste  
+                f" ╰•  **Status**: {REASON} [Teste]({STATUS})"  # Teste
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":

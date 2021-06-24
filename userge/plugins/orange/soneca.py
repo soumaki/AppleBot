@@ -11,7 +11,7 @@ from userge.utils import time_formatter
 _TELE_REGEX = comp_regex(
     r"http[s]?://(i\.imgur\.com|telegra\.ph/file|t\.me)/(\w+)(?:\.|/)(gif|jpg|png|jpeg|[0-9]+)(?:/([0-9]+))?"
 )
-TL = comp_regex(r"[<].*[>]")
+# TL = comp_regex(r"[<].*[>]")
 
 CHANNEL = userge.getCLogger(__name__)
 SAVED_SETTINGS = get_collection("CONFIGS")
@@ -156,7 +156,7 @@ async def handle_afk_incomming(message: Message) -> None:
         else:
             out_str = (
                 f"⚠️ **AUTO REPLY** ⒶⒻⓀ \n\n🕑 **Last Seen:** {afk_time} ago\n"
-                f" ╰• **3Apple**: [\u200c]({STATUS})"  # Teste
+                f" ╰• **Status**: [\u200c]({STATUS})"  # Teste
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":

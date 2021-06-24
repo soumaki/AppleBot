@@ -117,7 +117,6 @@ async def handle_afk_incomming(message: Message) -> None:
                 STATUS = REASON.replace(r.group(0), "")
                 match = _TELE_REGEX.search(media_link.strip()) # Teste
             if not match:
-            return None, None
             if match.group(0) == "i.imgur.com":
             link = match.group(0)
             link_type = "url_gif" if match.group(0) == "gif" else "url_image"
@@ -134,7 +133,9 @@ async def handle_afk_incomming(message: Message) -> None:
                     f"▫️ **Status**: {REASON}"
                 )
             coro_list.append(
-                client.send_photo(
+                if type_ == "url_gif":
+                client.send_animation(
+                    animation=url_,
                     chat_id,
                     photo=match.group(0),
                     caption=out_str,
@@ -151,7 +152,6 @@ async def handle_afk_incomming(message: Message) -> None:
             STATUS = REASON.replace(r.group(0), "")
                 match = _TELE_REGEX.search(media_link.strip()) # Teste
             if not match:
-            return None, None
             if match.group(0) == "i.imgur.com":
             link = match.group(0)
             link_type = "url_gif" if match.group(0) == "gif" else "url_image"
@@ -168,7 +168,9 @@ async def handle_afk_incomming(message: Message) -> None:
                 f"▫️ **Status**: {REASON}"
             )
         coro_list.append(
-            client.send_photo(
+                if type_ == "url_gif":
+                client.send_animation(
+                animation=url_,
                 chat_id,
                 photo=match.group(0),
                 caption=out_str,

@@ -128,7 +128,6 @@ async def handle_afk_incomming(message: Message) -> None:
                     chat_id,
                     photo=match.group(0),
                     caption=out_str,
-                    reply_markup=buttons,
                 )
             )
         if chat.type == "private":
@@ -154,7 +153,6 @@ async def handle_afk_incomming(message: Message) -> None:
                 chat_id,
                 photo=match.group(0),
                 caption=out_str,
-                reply_markup=buttons,
             )
         )
         if chat.type == "private":

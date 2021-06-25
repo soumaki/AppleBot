@@ -7,7 +7,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userge import userge
 
 
-@userge.on_cmd("upar", about={"header": "Teste de plugi"})
+@userge.on_cmd("upar", about={"header": "Teste de plugin"})
 # Este módulo é para upar um arquivo no Telegram diretamente de um link #
 async def _(event):
     if event.fwd_from:

@@ -220,7 +220,7 @@ class _afk_:
             f"▫️ **Status**: {_STATUS}"
         )
         return out_str
-    
+
     async def check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:

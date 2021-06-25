@@ -9,23 +9,23 @@ _T_LIMIT = 5242880
 
 
 @userge.on_cmd(
-    "tgh",
+    "teleg",
     about={
-        "header": "Upload file to Telegra.ph's servers",
-        "types": [".jpg", ".jpeg", ".png", ".gif", ".mp4"],
-        "usage": "reply {tr}telegraph to supported media : limit 5MB",
+        "header": "Faça o upload de algum arquivo para os servidores do Telegraph",
+        "formatos": [".jpg", ".jpeg", ".png", ".gif", ".mp4"],
+        "como usar": "responda {tr}teleg para um arquivo suportado : o limite é de 5MB",
     },
 )
 async def telegraph_(message: Message):
     replied = message.reply_to_message
     if not replied:
-        await message.err("reply to supported media")
+        await message.err("Oh, responda uma mensagem que contenha um arquivo que seja suportado.")
         return
     link = await upload_media_(message)
     if not link:
         return
     await message.edit(
-        f"**[Here Your Telegra.ph Link!](https://telegra.ph{link})**",
+        f"**Tudo certo, este é o link no [Telegra.ph.](https://telegra.ph{link})**",
         disable_web_page_preview=True,
     )
 
@@ -48,16 +48,16 @@ async def upload_media_(message: Message):
             and replied.document.file_size <= _T_LIMIT
         )
     ):
-        await message.err("not supported!")
+        await message.err("Este tipo de arquivo não é suportado, foi mal...")
         return
-    await message.edit("`processing...`")
+    await message.edit("`Enviando para o servidor...`")
     dl_loc = await message.client.download_media(
         message=message.reply_to_message,
         file_name=Config.DOWN_PATH,
         progress=progress,
-        progress_args=(message, "trying to download"),
+        progress_args=(message, "Solicitando o download"),
     )
-    await message.edit("`uploading to telegraph...`")
+    await message.edit("`Enviando para o Telegraph...`")
     try:
         response = upload_file(dl_loc)
     except Exception as t_e:

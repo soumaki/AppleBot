@@ -46,7 +46,7 @@ async def _init() -> None:
     },
     allow_channels=False,
 )
-async def active_afk(message: Message) -> None:
+async def soneca_ativo(message: Message) -> None:
     """Modo ausente ligado/desligado"""
     global REASON, IS_AFK, TIME  # pylint: disable=global-statement
     IS_AFK = True
@@ -62,7 +62,7 @@ async def active_afk(message: Message) -> None:
             AFK_COLLECTION.drop(),
             SAVED_SETTINGS.update_one(
                 {"_id": "AFK"},
-                {"$set": {"on": True, "data": STATUS_, "time": TIME}},
+                {"$set": {"on": True, "data": STATUS_, "data": REASON, "time": TIME}},
                 upsert=True,
             ),
         )

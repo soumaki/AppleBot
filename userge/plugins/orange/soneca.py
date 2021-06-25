@@ -46,7 +46,7 @@ async def _init() -> None:
     },
     allow_channels=False,
 )
-async def soneca_ativo(message: Message) -> None:
+async def ausente(message: Message) -> None:
     """Modo ausente ligado/desligado"""
     global REASON, IS_AFK, TIME  # pylint: disable=global-statement
     IS_AFK = True
@@ -62,7 +62,7 @@ async def soneca_ativo(message: Message) -> None:
             AFK_COLLECTION.drop(),
             SAVED_SETTINGS.update_one(
                 {"_id": "AFK"},
-                {"$set": {"on": True, "data": STATUS_, "data": REASON, "time": TIME}},
+                {"$set": {"on": True, STATUS_, "time": TIME}},
                 upsert=True,
             ),
         )
@@ -98,7 +98,7 @@ async def soneca_ativo(message: Message) -> None:
     ),
     allow_via_bot=False,
 )
-async def handle_afk_incomming(message: Message) -> None:
+async def respostas(message: Message) -> None:
     """Configurações das mensagens automáticas"""
     if not message.from_user:
         return
@@ -183,16 +183,18 @@ async def handle_afk_incomming(message: Message) -> None:
         coro_list.append(
             CHANNEL.log(
                 f"Em seu #PRIVADO\n{user_dict['mention']}\n Te enviou a mensagem:\n\n"
-                f"{message.text}"
+                f"💬 __{message.text}__"
             )
         )
     else:
         coro_list.append(
             CHANNEL.log(
                 "#GRUPO\n"
-                f"{user_dict['mention']} mencionou você em [{chat.title}](http://t.me/{chat.username})\n\n"
-                f"{message.text}\n\n"
-                f"[goto_msg](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})"
+                f"{user_dict['mention']} mencionou você no grupo: [{chat.title}](http://t.me/{chat.username})\n\n"
+                f"  ➖➖➖➖➖➖"
+                f"  💬 __{message.text}__\n\n"
+                f"  ➖➖➖➖➖➖"
+                f"🔗 [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id}) da mensagem."
             )
         )
     coro_list.append(
@@ -245,15 +247,12 @@ class _afk_:
 
     def afk_buttons() -> InlineKeyboardMarkup:
         buttons = [
-            [
-                InlineKeyboardButton(text="AppleBot", url=Config.UPSTREAM_REPO),
-            ]
-        ]
+            [InlineKeyboardButton(text="AppleBot", url=Config.UPSTREAM_REPO),]]
         return InlineKeyboardMarkup(buttons)
 
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
-async def handle_afk_outgoing(message: Message) -> None:
+async def logs(message: Message) -> None:
     """Status detalhado e atualizado sobre seu modo ausente"""
     global IS_AFK  # pylint: disable=global-statement
     IS_AFK = False

@@ -53,7 +53,7 @@ async def active_afk(message: Message) -> None:
     REASON = message.input_str
     match = _TELE_REGEX.search(REASON)
     if match_:
-        rr = REASON.split(" | ", maxsplit=1)
+        r_ = REASON.split(" | ", maxsplit=1)
         STATUS_ = r_[0]
         await asyncio.gather(
             CHANNEL.log(f"Sumindo...: `{STATUS_}` [\u200c]({match.group(0)})"),

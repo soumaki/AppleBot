@@ -51,17 +51,17 @@ async def active_afk(message: Message) -> None:
     IS_AFK = True
     TIME = time.time()
     REASON = message.input_str
-    _TELE_REGEX.search(REASON)
+    match = _TELE_REGEX.search(REASON)
     if match_:
         rr = REASON.split(" | ", maxsplit=1)
-        rr[0]
+        STATUS_ = r_[0]
         await asyncio.gather(
-            CHANNEL.log(f"Sumindo...: `{STATUS}` [\u200c]({MATCH.group(0)})"),
+            CHANNEL.log(f"Sumindo...: `{STATUS_}` [\u200c]({match.group(0)})"),
             message.edit("`Fui!`", del_in=1),
             AFK_COLLECTION.drop(),
             SAVED_SETTINGS.update_one(
                 {"_id": "AFK"},
-                {"$set": {"on": True, "data": STATUS, "time": TIME}},
+                {"$set": {"on": True, "data": STATUS_, "time": TIME}},
                 upsert=True,
             ),
         )
@@ -112,25 +112,31 @@ async def handle_afk_incomming(message: Message) -> None:
         if not (USERS[user_id][0] + USERS[user_id][1]) % randint(2, 4):
             match = _TELE_REGEX.search(REASON)
             if match:
+                type_, media_ = await _afk_.check_media_link(match.group(0))
+                if type_ == "url_gif":
                 r = REASON.split(" | ", maxsplit=1)
                 STATUS = r[0]
                 out_str = (
                     f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                    # Foda-se
-                    f"🏷 **I'm not here because:**\n<code>{STATUS}</code>"
-                )
-                if match.group(3) == "gif" or "mp4":
-                    coro_list.append(
-                        client.send_animation(
-                            chat_id,
-                            animation=match.group(0),
-                            caption=out_str,
-                        )
+                    f"🏷 **I'm not here because:**\n {STATUS}"
+                    )
+                    await client.send_animation(
+                        chat_id,
+                        animation=match.group(0),
+                        caption=out_str,
+                        reply_markup=_afk_.afk_buttons(),
+                    )
+                elif type_ == "url_image":
+                    await client.send_photo(
+                        chat_id,
+                        photo=match.group(0),
+                        caption=_afk_.out_str(),
+                        reply_markup=_afk_.afk_buttons(),
                     )
             else:
                 out_str = (
                     f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                    f"🏷 **I'm not here because:**\n {REASON}"  # Saia daqui
+                    f"🏷 **I'm not here because:**\n<code>{REASON}</code>" 
                 )
                 coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -140,25 +146,31 @@ async def handle_afk_incomming(message: Message) -> None:
     else:
         match = _TELE_REGEX.search(REASON)
         if match:
-            r = REASON.split(" | ", maxsplit=1)
-            STATUS = r[0]
+            type_, media_ = await _afk_.check_media_link(match.group(0))
+            if type_ == "url_gif":
+                r = REASON.split(" | ", maxsplit=1)
+                STATUS = r[0]
             out_str = (
-                # FUCK
                 f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                f"🏷 **I'm not here because:**\n<code>{STATUS}</code>"
+                f"🏷 **I'm not here because:**\n{STATUS}"
             )
-            if match.group(3) == "gif" or "mp4":
-                coro_list.append(
-                    client.send_animation(
-                        chat_id,
-                        animation=match.group(0),
-                        caption=out_str,
-                    )
+                await client.send_animation(
+                    chat_id,
+                    animation=match.group(0),
+                    caption=out_str,
+                    reply_markup=_afk_.afk_buttons(),
+                )
+            elif type_ == "url_image":
+                await client.send_photo(
+                    chat_id,
+                    photo=match.group(0),
+                    caption=_afk_.out_str(),
+                    reply_markup=_afk_.afk_buttons(),
                 )
         else:
             out_str = (
                 f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                f"🏷 **I'm not here because:**\n {REASON}"  # Foda-se
+                f"🏷 **I'm not here because:**\n<code>{REASON}</code>"  # Foda-se
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -195,6 +207,38 @@ async def handle_afk_incomming(message: Message) -> None:
         )
     )
     await asyncio.gather(*coro_list)
+
+    class _afk_:
+    def out_str() -> str:
+        _afk_time = time_formatter(round(time.time() - TIME))
+        _r = REASON.split(" | ", maxsplit=1)
+        _STATUS = _r[0]
+        out_str = (
+                f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
+                f"🏷 **I'm not here because:**\n{_STATUS}"
+        )
+        return out_str
+    
+    async def check_media_link(media_link: str):
+        match_ = _TELE_REGEX.search(media_link.strip())
+        if not match_:
+            return None, None
+        if match_.group(1) == "i.imgur.com":
+            link = match_.group(0)
+            link_type = "url_gif" if match_.group(3) == "gif" else "url_image"
+        elif match_.group(1) == "telegra.ph/file":
+            link = match_.group(0)
+            link_type = "url_gif" if match_.group(3) == "gif" else "url_image"
+        else:
+            link_type = "tg_media"
+            if match_.group(2) == "c":
+                chat_id = int("-100" + str(match_.group(3)))
+                message_id = match_.group(4)
+            else:
+                chat_id = match_.group(2)
+                message_id = match_.group(3)
+            link = [chat_id, int(message_id)]
+        return link_type, link
 
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)

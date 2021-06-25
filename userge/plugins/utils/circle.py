@@ -26,10 +26,15 @@ async def video_note(message: Message):
     _vid_path = _cache_path + "/temp_vid.mp4"
     reply = message.reply_to_message
     if not reply:
-        await message.err("Responda uma mensagem que contenha\num arquivo suportado pelo módulo.", del_in=10)
+        await message.err(
+            "Responda uma mensagem que contenha\num arquivo suportado pelo módulo.",
+            del_in=10,
+        )
         return
     if not (reply.video or reply.animation or reply.audio):
-        await message.err("Suporte apenas para gifs e áudios. Não sou mágico.", del_in=10)
+        await message.err(
+            "Suporte apenas para gifs e áudios. Não sou mágico.", del_in=10
+        )
         return
     if os.path.exists(_cache_path):
         rmtree(_cache_path, ignore_errors=True)

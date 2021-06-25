@@ -62,7 +62,7 @@ async def ausente(message: Message) -> None:
             AFK_COLLECTION.drop(),
             SAVED_SETTINGS.update_one(
                 {"_id": "AFK"},
-                {"$set": {"on": True, STATUS_, "time": TIME}},
+                {"$set": {"on": True, "data": STATUS_, "time": TIME}},
                 upsert=True,
             ),
         )

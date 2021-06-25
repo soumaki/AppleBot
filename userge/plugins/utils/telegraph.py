@@ -27,7 +27,7 @@ async def telegraph_(message: Message):
     if not link:
         return
     await message.edit(
-        f"**Tudo certo, este é o link no [Telegra.ph.](https://telegra.ph{link})**",
+        f"**Tudo certo, este é o [link](https://telegra.ph{link}) no Telegra.ph.**",
         disable_web_page_preview=True,
     )
 
@@ -57,7 +57,7 @@ async def upload_media_(message: Message):
         message=message.reply_to_message,
         file_name=Config.DOWN_PATH,
         progress=progress,
-        progress_args=(message, "Solicitando o download"),
+        progress_args=(message, "Solicitando o Download"),
     )
     await message.edit("`Enviando para o Telegraph...`")
     try:

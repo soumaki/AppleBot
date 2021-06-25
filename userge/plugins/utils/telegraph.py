@@ -19,7 +19,9 @@ _T_LIMIT = 5242880
 async def telegraph_(message: Message):
     replied = message.reply_to_message
     if not replied:
-        await message.err("Oh, responda uma mensagem que contenha um arquivo que seja suportado.")
+        await message.err(
+            "Oh, responda uma mensagem que contenha um arquivo que seja suportado."
+        )
         return
     link = await upload_media_(message)
     if not link:

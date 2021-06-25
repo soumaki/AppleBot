@@ -70,9 +70,7 @@ async def check_update(message: Message):
             return
     if not (pull_from_repo or push_to_heroku):
         if out:
-            change_log = (
-                f"**Uma nova atualização está disponível em [{branch}]:\n\n📄 LISTA DE MUDANÇAS 📄**\n\n"
-            )
+            change_log = f"**Uma nova atualização está disponível em [{branch}]:\n\n📄 LISTA DE MUDANÇAS 📄**\n\n"
             await message.edit_or_send_as_file(
                 change_log + out, disable_web_page_preview=True
             )
@@ -81,7 +79,9 @@ async def check_update(message: Message):
         return
     if pull_from_repo:
         if out:
-            await message.edit(f"`Nova atualização encontrada em [{branch}], Buscando atualização...`")
+            await message.edit(
+                f"`Nova atualização encontrada em [{branch}], Buscando atualização...`"
+            )
             await _pull_from_repo(repo, branch)
             await CHANNEL.log(
                 f"**Atualização encontrada em [{branch}]:\n\n📄 LISTA DE MUDANÇAS 📄**\n\n{out}"

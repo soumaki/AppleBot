@@ -42,7 +42,7 @@ async def _init() -> None:
         "header": "Definir status para modo ausente",
         "descrição": "Este modo vai informar sua ausência e respondará à todos que te mencionarem. \n"
         "Informará o motivo e o tempo de ausência.",
-        "Como usar": "{tr}fui ou {tr}fui [motivo] <endereço.com/arquivo.gif>",
+        "Como usar": "{tr}fui ou {tr}fui [motivo] | endereço.com/arquivo.gif",
     },
     allow_channels=False,
 )
@@ -138,7 +138,7 @@ async def handle_afk_incomming(message: Message) -> None:
             else:
                 out_str = (
                     f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                    f"🏷 **I'm not here because:**\n{REASON}"
+                    f"🏷 **I'm not here because:**\n__{REASON}__"
                 )
                 coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -172,7 +172,7 @@ async def handle_afk_incomming(message: Message) -> None:
         else:
             out_str = (
                 f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                f"🏷 **I'm not here because:**\n{REASON}"
+                f"🏷 **I'm not here because:**\n__{REASON}__"
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -246,7 +246,7 @@ class _afk_:
     def afk_buttons() -> InlineKeyboardMarkup:
         buttons = [
             [
-                InlineKeyboardButton(text="REPO", url=Config.UPSTREAM_REPO),
+                InlineKeyboardButton(text="AppleBot", url=Config.UPSTREAM_REPO),
             ]
         ]
         return InlineKeyboardMarkup(buttons)

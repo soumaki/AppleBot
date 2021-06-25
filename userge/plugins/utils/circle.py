@@ -1,4 +1,4 @@
-"""Make a video note"""
+"""Faça um vídeo note, desgraçado ;)"""
 
 # by GitHub.com/code-rgb [TG- @DeletedUser420]
 
@@ -16,25 +16,25 @@ LOG = userge.getLogger(__name__)
 @userge.on_cmd(
     "circle",
     about={
-        "header": "Convert video / gif / audio to video note",
-        "usage": "{tr}circle [reply to media]",
+        "header": "Converte vídeos / gif / áudios para notas de vídeos do Telegram",
+        "como usar": "{tr}circle [responda uma mensagem com mídia suportada]",
     },
 )
 async def video_note(message: Message):
-    """Covert to video note"""
+    """Convertendo um arquivo em nota de vídeo"""
     _cache_path = "userge/xcache/circle"
     _vid_path = _cache_path + "/temp_vid.mp4"
     reply = message.reply_to_message
     if not reply:
-        await message.err("Reply to supported media", del_in=10)
+        await message.err("Responda uma mensagem que contenha\num arquivo suportado pelo módulo.", del_in=10)
         return
     if not (reply.video or reply.animation or reply.audio):
-        await message.err("Only videos, gifs and audio are Supported", del_in=10)
+        await message.err("Suporte apenas para gifs e áudios. Não sou mágico.", del_in=10)
         return
     if os.path.exists(_cache_path):
         rmtree(_cache_path, ignore_errors=True)
     os.mkdir(_cache_path)
-    await message.edit("`Processing ...`")
+    await message.edit("`Processando...`")
     if reply.video or reply.animation:
         note = safe_filename(await reply.download())
         await crop_vid(note, _vid_path)

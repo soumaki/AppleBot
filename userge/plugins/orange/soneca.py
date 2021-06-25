@@ -11,7 +11,7 @@ from userge.utils import time_formatter
 _TELE_REGEX = comp_regex(
     r"http[s]?://(i\.imgur\.com|telegra\.ph/file|t\.me)/(\w+)(?:\.|/)(gif|jpg|png|jpeg|[0-9]+)(?:/([0-9]+))?"
 )
-TL = comp_regex(r"[<].*[>]")
+# TL = comp_regex(r"[<].*[>]")
 
 CHANNEL = userge.getCLogger(__name__)
 SAVED_SETTINGS = get_collection("CONFIGS")
@@ -51,10 +51,10 @@ async def active_afk(message: Message) -> None:
     IS_AFK = True
     TIME = time.time()
     REASON = message.input_str
-    MATCH = _TELE_REGEX.search(REASON)
-    if MATCH:
+    match = _TELE_REGEX.search(REASON)
+    if match_:
         rr = REASON.split(" | ", maxsplit=1)
-        STATUS = rr[0]
+        STATUS_ = rr[0]
         await asyncio.gather(
             CHANNEL.log(f"Sumindo...: `{STATUS}` [\u200c]({MATCH.group(0)})"),
             message.edit("`Fui!`", del_in=1),

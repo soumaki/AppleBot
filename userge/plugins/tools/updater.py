@@ -12,42 +12,42 @@ CHANNEL = userge.getCLogger(__name__)
 
 
 @userge.on_cmd(
-    "update",
+    "atualizar",
     about={
-        "header": "Check Updates or Update USERGE-X",
+        "header": "Verifica atualizações ou simplesmente atualiza o AppleBot",
         "flags": {
-            "-pull": "pull updates",
-            "-branch": "Default is -alpha",
+            "-buscar": "buscar atualizações",
+            "-branch": "O padrão é -alpha",
         },
-        "usage": (
-            "{tr}update : check updates from default branch\n"
-            "{tr}update -[branch_name] : check updates from any branch\n"
-            "add -pull if you want to pull updates\n"
+        "como usar": (
+            "{tr}atualizar: verifica as atualizações disponíveis no branch padrão\n"
+            "{tr}atualizar -[branch_name] : verifica atualizações de qualquer branch\n"
+            "add -buscar se você quiser obter as atualizações\n"
         ),
-        "examples": "{tr}update -pull",
+        "exemplo": "{tratualizar -buscar",
     },
     del_pre=True,
     allow_channels=False,
 )
 async def check_update(message: Message):
-    """check or do updates"""
-    await message.edit("`Checking for updates, please wait....`")
+    """Verifica ou Atualiza"""
+    await message.edit("`Verificando se há atualizações disponíveis, aguarde....`")
     if Config.HEROKU_ENV:
         await message.edit(
-            "**Heroku App detected !**, Updates have been disabled for Safety.\n"
-            "Your Bot Will Auto Update when Heroku restart"
+            "**Heroku App detectado.** Por segurança, as atualizações foram desativas.\n"
+            "Seu bot será atualizado automaticamente quando você simplesmente reiniciar o Heroku."
         )
         return
     flags = list(message.flags)
     pull_from_repo = False
     push_to_heroku = False
     branch = "alpha"
-    if "pull" in flags:
+    if "buscar" in flags:
         pull_from_repo = True
         flags.remove("pull")
-    if "push" in flags:
+    if "enviar" in flags:
         if not Config.HEROKU_APP:
-            await message.err("HEROKU APP : could not be found !")
+            await message.err("App do Heroku não foi encontrado!")
             return
         # push_to_heroku = True
         # flags.remove("push")
@@ -55,7 +55,7 @@ async def check_update(message: Message):
         branch = flags[0]
     repo = Repo()
     if branch not in repo.branches:
-        await message.err(f"invalid branch name : {branch}")
+        await message.err(f"Nome do branch é inválido: {branch}")
         return
     try:
         out = _get_updates(repo, branch)
@@ -71,25 +71,25 @@ async def check_update(message: Message):
     if not (pull_from_repo or push_to_heroku):
         if out:
             change_log = (
-                f"**New UPDATE available for [{branch}]:\n\n📄 CHANGELOG 📄**\n\n"
+                f"**Uma nova atualização está disponível em [{branch}]:\n\n📄 LISTA DE MUDANÇAS 📄**\n\n"
             )
             await message.edit_or_send_as_file(
                 change_log + out, disable_web_page_preview=True
             )
         else:
-            await message.edit(f"**USERGE-X is up-to-date with [{branch}]**", del_in=5)
+            await message.edit(f"**AppleBot está atualizado em [{branch}]**", del_in=5)
         return
     if pull_from_repo:
         if out:
-            await message.edit(f"`New update found for [{branch}], Now pulling...`")
+            await message.edit(f"`Nova atualização encontrada em [{branch}], Buscando atualização...`")
             await _pull_from_repo(repo, branch)
             await CHANNEL.log(
-                f"**PULLED update from [{branch}]:\n\n📄 CHANGELOG 📄**\n\n{out}"
+                f"**Atualização encontrada em [{branch}]:\n\n📄 LISTA DE MUDANÇAS 📄**\n\n{out}"
             )
             if not push_to_heroku:
                 await message.edit(
-                    "**USERGE-X Successfully Updated!**\n"
-                    "`Now restarting... Wait for a while!`",
+                    "**AppleBot foi atualizado perfeitamente!**\n"
+                    "`Reiniiciando... espere um pouco, tá bom?`",
                     del_in=3,
                 )
                 asyncio.get_event_loop().create_task(userge.restart(True))
@@ -98,14 +98,14 @@ async def check_update(message: Message):
         else:
             active = repo.active_branch.name
             if active == branch:
-                await message.err(f"already in [{branch}]!")
+                await message.err(f"Já está em [{branch}]!")
                 return
             await message.edit(
-                f"`Moving HEAD from [{active}] >>> [{branch}] ...`", parse_mode="md"
+                f"`Alternando HEAD de [{active}] >>> [{branch}] ...`", parse_mode="md"
             )
             await _pull_from_repo(repo, branch)
-            await CHANNEL.log(f"`Moved HEAD from [{active}] >>> [{branch}] !`")
-            await message.edit("`Now restarting... Wait for a while!`", del_in=3)
+            await CHANNEL.log(f"`Alterado HEAD de [{active}] >>> [{branch}] !`")
+            await message.edit("``Reiniiciando... espere um pouco, tá bom?`", del_in=3)
             asyncio.get_event_loop().create_task(userge.restart())
     if push_to_heroku:
         await _push_to_heroku(message, repo, branch)
@@ -130,10 +130,10 @@ async def _pull_from_repo(repo: Repo, branch: str) -> None:
 
 async def _push_to_heroku(msg: Message, repo: Repo, branch: str) -> None:
     sent = await msg.edit(
-        f"`Now pushing updates from [{branch}] to heroku...\n"
-        "this will take upto 5 min`\n\n"
-        f"* **Restart** after 5 min using `{Config.CMD_TRIGGER}restart -h`\n\n"
-        "* After restarted successfully, check updates again :)"
+        f"`Enviandos atualizações de [{branch}] para o Heroku...\n"
+        "Este processa leva em média de 5min.`\n\n"
+        f"* **Reinicia** após 5min usando `{Config.CMD_TRIGGER}ree -apple -apple`\n\n"
+        "* Após reiniciar, verifique se tudo ocorreu bem. :)"
     )
     try:
         await _heroku_helper(sent, repo, branch)
@@ -141,7 +141,7 @@ async def _push_to_heroku(msg: Message, repo: Repo, branch: str) -> None:
         LOG.exception(g_e)
     else:
         await sent.edit(
-            f"**HEROKU APP : {Config.HEROKU_APP.name} is up-to-date with [{branch}]**"
+            f"**Aplicativo do Heroku: {Config.HEROKU_APP.name} está atualizado na branch [{branch}]**"
         )
 
 

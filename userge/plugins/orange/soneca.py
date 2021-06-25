@@ -247,7 +247,10 @@ class _afk_:
 
     def afk_buttons() -> InlineKeyboardMarkup:
         buttons = [
-            [InlineKeyboardButton(text="AppleBot", url=Config.UPSTREAM_REPO),]]
+            [
+                InlineKeyboardButton(text="AppleBot", url=Config.UPSTREAM_REPO),
+            ]
+        ]
         return InlineKeyboardMarkup(buttons)
 
 

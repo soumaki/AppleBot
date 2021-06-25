@@ -240,13 +240,8 @@ Meu Mestre: {owner_.flname}</b>
         buttons = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"
-                    ),
-                    InlineKeyboardButton(
-                        "❎ ANTIFLOOD [DESLIGAR]",
-                        callback_data="toggle_bot-antiflood_off",
-                    ),
+                    InlineKeyboardButton("❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}")
+                    InlineKeyboardButton("❎ DESATIVAR MODO",callback_data="toggle_bot-antiflood_off",),
                 ]
             ]
         )
@@ -272,8 +267,7 @@ Meu Mestre: {owner_.flname}</b>
             f"  ▫️  Nome: {user_.flname}\n"
             f"  ▫️  Usuário: {user_.mention}"
             f"\n\n**🤬 Este desgraçado está spammando seu bot!** »  [Flood **({flood_count})**]\n"
-            "❗️ **Escolha uma ação abaixo.\n"
-            f"Simplesmente ignore esse merda por um tempo."
+            F"❗️ Você pode escolher uma ação abaixo\nou simplesmente ignore este merda por um tempo."
         )
 
         if found:

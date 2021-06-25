@@ -11,7 +11,7 @@ from userge import Config, Message, filters, get_collection, userge
 from userge.utils import time_formatter
 
 _TELE_REGEX = comp_regex(
-    r"http[s]?://(i\.imgur\.com|telegra\.ph/file|t\.me)/(\w+)(?:\.|/)(gif|jpg|png|jpeg|[0-9]+)(?:/([0-9]+))?"
+    r"http[s]?://(i\.imgur\.com|telegra\.ph/file|t\.me)/(\w+)(?:\.|/)(gif|jpg|png|jpeg|mp4|[0-9]+)(?:/([0-9]+))?"
 )
 
 CHANNEL = userge.getCLogger(__name__)

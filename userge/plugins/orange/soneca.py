@@ -215,10 +215,10 @@ class _afk_:
     def out_str() -> str:
         time_formatter(round(time.time() - TIME))
         _r = REASON.split(" | ", maxsplit=1)
-        _STATUS = _r[0]
+        STATUS = _r[0]
         out_str = (
             f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-            f"🏷 **I'm not here because:**\n{_STATUS}"
+            f"🏷 **I'm not here because:**\n {STATUS}"
         )
         return out_str
 

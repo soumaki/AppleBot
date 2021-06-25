@@ -51,7 +51,7 @@ async def active_afk(message: Message) -> None:
     IS_AFK = True
     TIME = time.time()
     REASON = message.input_str
-    match = _TELE_REGEX.search(REASON)
+    match_ = _TELE_REGEX.search(REASON)
     if match_:
         r_ = REASON.split(" | ", maxsplit=1)
         STATUS_ = r_[0]

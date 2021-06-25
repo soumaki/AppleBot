@@ -51,10 +51,10 @@ async def active_afk(message: Message) -> None:
     IS_AFK = True
     TIME = time.time()
     REASON = message.input_str
-    match = _TELE_REGEX.search(REASON)
+    _TELE_REGEX.search(REASON)
     if match_:
         rr = REASON.split(" | ", maxsplit=1)
-        STATUS_ = rr[0]
+        rr[0]
         await asyncio.gather(
             CHANNEL.log(f"Sumindo...: `{STATUS}` [\u200c]({MATCH.group(0)})"),
             message.edit("`Fui!`", del_in=1),

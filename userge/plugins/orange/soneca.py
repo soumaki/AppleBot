@@ -1,4 +1,4 @@
-""" Configuração para o modo ausente - Adaptado por #NoteX/Samuca / AppleBot"""
+""" Configuração para o modo ausente - Adaptado por #NoteX/Samuca/Applleb / AppleBot"""
 
 import asyncio
 import time

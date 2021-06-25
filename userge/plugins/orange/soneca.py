@@ -211,16 +211,16 @@ async def handle_afk_incomming(message: Message) -> None:
     await asyncio.gather(*coro_list)
 
 
-class _afk_:
-    def out_str() -> str:
-        time_formatter(round(time.time() - TIME))
-        _r = REASON.split(" | ", maxsplit=1)
-        STATUS = _r[0]
-        out_str = (
-            f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-            f"🏷 **I'm not here because:**\n {STATUS}"
-        )
-        return out_str
+# class _afk_:
+#     def out_str() -> str:
+#         time_formatter(round(time.time() - TIME))
+#         _r = REASON.split(" | ", maxsplit=1)
+#         STATUS = _r[0]
+#         out_str = (
+#             f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
+#             f"🏷 **I'm not here because:**\n {STATUS}"
+#         )
+#         return out_str
 
     async def check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())

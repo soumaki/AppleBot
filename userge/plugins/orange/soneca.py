@@ -119,8 +119,8 @@ async def handle_afk_incomming(message: Message) -> None:
                     r = REASON.split(" | ", maxsplit=1)
                     STATUS = r[0]
                     out_str = (
-                    f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                    f"🏷 **I'm not here because:**\n {STATUS}"
+                        f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
+                        f"🏷 **I'm not here because:**\n {STATUS}"
                     )
                     await client.send_animation(
                         chat_id,
@@ -171,8 +171,8 @@ async def handle_afk_incomming(message: Message) -> None:
                 )
         else:
             out_str = (
-                    f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                    f"🏷 **I'm not here because:**\n{REASON}"
+                f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
+                f"🏷 **I'm not here because:**\n{REASON}"
             )
             coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -213,12 +213,12 @@ async def handle_afk_incomming(message: Message) -> None:
 
 class _afk_:
     def out_str() -> str:
-        _afk_time = time_formatter(round(time.time() - TIME))
+        time_formatter(round(time.time() - TIME))
         _r = REASON.split(" | ", maxsplit=1)
         _STATUS = _r[0]
         out_str = (
-                f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                f"🏷 **I'm not here because:**\n{_STATUS}"
+            f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
+            f"🏷 **I'm not here because:**\n{_STATUS}"
         )
         return out_str
 

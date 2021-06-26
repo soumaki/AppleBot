@@ -77,7 +77,7 @@ REPO_X = InlineQueryResultArticle(
 )
 
 
-#def fui_bot() -> InlineKeyboardMarkup:  # teste
+# def fui_bot() -> InlineKeyboardMarkup:  # teste
 #    ausente = [
 #        [
 #            InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),

@@ -126,14 +126,14 @@ async def respostas(message: Message) -> None:
                         chat_id,
                         animation=match.group(0),
                         caption=out_str,
-                        reply_markup=InlineKeyboardMarkup(ausentee),
+                        reply_markup=InlineKeyboardMarkup(applled),
                     )
                 elif type_ == "url_image":
                     await client.send_photo(
                         chat_id,
                         photo=match.group(0),
                         caption=_afk_.out_str(),
-                        reply_markup=InlineKeyboardMarkup(ausentee),
+                        reply_markup=InlineKeyboardMarkup(applled),
                     )
             else:
                 out_str = (
@@ -160,7 +160,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     animation=match.group(0),
                     caption=out_str,
-                    reply_markup=InlineKeyboardMarkup(ausentee),
+                    reply_markup=InlineKeyboardMarkup(applled),
                 )
 
             elif type_ == "url_image":
@@ -168,7 +168,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     photo=match.group(0),
                     caption=_afk_.out_str(),
-                    reply_markup=InlineKeyboardMarkup(ausentee),
+                    reply_markup=InlineKeyboardMarkup(applled),
                 )
         else:
             out_str = (
@@ -246,13 +246,13 @@ class _afk_:
             link = [chat_id, int(message_id)]
         return link_type, link
 
-    def afk_buttons() -> InlineKeyboardMarkup:
-        buttons = [
+    def fui_bot() -> InlineKeyboardMarkup:
+        applled = [
             [
                 InlineKeyboardButton(text="AppleBot", url=Config.UPSTREAM_REPO),
             ]
         ]
-        return InlineKeyboardMarkup(buttons)
+        return InlineKeyboardMarkup(applled)
 
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)

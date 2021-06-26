@@ -107,7 +107,7 @@ async def respostas(message: Message) -> None:
     user_dict = await message.client.get_user_dict(user_id)
     afk_time = time_formatter(round(time.time() - TIME))
     coro_list = []
-    reply_markup = _afk_.fui_buttons() # TESTE DO BOTÃO
+    reply_markup = _afk_.fui_buttons()  # TESTE DO BOTÃO
 
     client = message.client
     chat_id = message.chat.id

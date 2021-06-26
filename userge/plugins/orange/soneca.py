@@ -225,7 +225,6 @@ async def respostas(message: Message) -> None:
 
 
 class _afk_:  # teste Bot_fui
-    @teste
     async def check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:
@@ -246,8 +245,7 @@ class _afk_:  # teste Bot_fui
                 message_id = match_.group(3)
             link = [chat_id, int(message_id)]
         return link_type, link
-
-    @teste
+    
     def teste_button() -> InlineKeyboardMarkup:
         buttons = [
             [

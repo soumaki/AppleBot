@@ -212,7 +212,7 @@ async def respostas(message: Message) -> None:
     await asyncio.gather(*coro_list)
 
 
-#class _afk_:
+# class _afk_:
 #    def out_str() -> str:
 #        time_formatter(round(time.time() - TIME))
 #        _r = REASON.split(" | ", maxsplit=1)
@@ -297,8 +297,7 @@ async def logs(message: Message) -> None:
     )
     await asyncio.gather(*coro_list)
 
-
-        def teste_button() -> InlineKeyboardMarkup:
+    def teste_button() -> InlineKeyboardMarkup:
         buttons = [
             [
                 InlineKeyboardButton(text="❎ STATUS", url=Config.MEUTG_REPO),
@@ -306,6 +305,7 @@ async def logs(message: Message) -> None:
             ],
         ]
         return InlineKeyboardMarkup(buttons)
+
 
 AFK_REASONS = (
     "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",

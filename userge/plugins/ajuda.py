@@ -493,7 +493,7 @@ if userge.has_bot:
             and Config.SUDO_ENABLED
         ):
 
-            if string == "alive":
+            if string == "orange":
                 owner = [
                     [
                         InlineKeyboardButton(
@@ -509,8 +509,8 @@ if userge.has_bot:
                 ]
                 results.append(
                     InlineQueryResultPhoto(
-                        photo_url="https://t.me/orugugu/58",
-                        caption=" ",
+                        photo_url="https://telegra.ph/file/a47baf0bfed24400c0089.png",
+                        caption="Humm... ",
                         reply_markup=InlineKeyboardMarkup(owner),
                     )
                 )

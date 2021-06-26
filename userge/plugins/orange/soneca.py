@@ -303,14 +303,14 @@ async def logs(message: Message) -> None:
     )
     await asyncio.gather(*coro_list)
 
-        def teste_button() -> InlineKeyboardMarkup:
-        buttons = [
-            [
-                InlineKeyboardButton(text="❎ STATUS", url=Config.MEUTG_REPO),
-                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
-            ],
-        ]
-        return InlineKeyboardMarkup(buttons)
+#        def teste_button() -> InlineKeyboardMarkup:
+#        buttons = [
+#            [
+#                InlineKeyboardButton(text="❎ STATUS", url=Config.MEUTG_REPO),
+#                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+#            ],
+#        ]
+#        return InlineKeyboardMarkup(buttons)
 
 AFK_REASONS = (
     "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",

@@ -126,14 +126,14 @@ async def respostas(message: Message) -> None:
                         chat_id,
                         animation=match.group(0),
                         caption=out_str,
-                        reply_markup=buttons,  # _afk_.teste_button(),
+                        reply_markup=_afk_.teste_button(), #foda-se
                     )
                 elif type_ == "url_image":
                     await client.send_photo(
                         chat_id,
                         photo=match.group(0),
                         caption=_afk_.out_str(),
-                        reply_markup=buttons,  # _afk_.teste_button(),
+                        reply_markup=_afk_.teste_button(), #foda-se 2
                     )
             else:
                 out_str = (
@@ -160,7 +160,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     animation=match.group(0),
                     caption=out_str,
-                    reply_markup=buttons,  # _afk_.teste_button(),
+                    reply_markup=_afk_.teste_button(), #foda-se 3
                 )
 
             elif type_ == "url_image":
@@ -168,7 +168,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     photo=match.group(0),
                     caption=_afk_.out_str(),
-                    reply_markup=buttons,  # _afk_.teste_button(),
+                    reply_markup=_afk_.teste_button(), #foda-se 4
                 )
         else:
             out_str = (

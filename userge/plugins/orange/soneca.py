@@ -107,6 +107,7 @@ async def respostas(message: Message) -> None:
     user_dict = await message.client.get_user_dict(user_id)
     afk_time = time_formatter(round(time.time() - TIME))
     coro_list = []
+    reply_markup = _afk_.fui_buttons() # TESTE DO BOTÃO
 
     client = message.client
     chat_id = message.chat.id
@@ -126,19 +127,19 @@ async def respostas(message: Message) -> None:
                         chat_id,
                         animation=match.group(0),
                         caption=out_str,
-                        reply_markup=_afk_.teste_button(),
+                        reply_markup=_afk_.fui_button(),
                     )
                 elif type_ == "url_image":
                     await client.send_photo(
                         chat_id,
                         photo=match.group(0),
                         caption=_afk_.out_str(),
-                        reply_markup=_afk_.teste_button(),
+                        reply_markup=_afk_.fui_button(),
                     )
             else:
                 out_str = (
                     f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
-                    f"🏷 **I'm not here because:**\n__{REASON}__"
+                    f"🏷 **Hey, I'm not here because:**\n__{REASON}__"
                 )
                 coro_list.append(message.reply(out_str))
         if chat.type == "private":
@@ -160,7 +161,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     animation=match.group(0),
                     caption=out_str,
-                    reply_markup=_afk_.teste_button(),
+                    reply_markup=_afk_.fui_button(),
                 )
 
             elif type_ == "url_image":
@@ -168,7 +169,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     photo=match.group(0),
                     caption=_afk_.out_str(),
-                    reply_markup=_afk_.teste_button(),
+                    reply_markup=_afk_.fui_button(),
                 )
         else:
             out_str = (

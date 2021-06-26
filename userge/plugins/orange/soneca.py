@@ -225,7 +225,7 @@ class _afk_:
 
 
 class Bot_fui:  # teste
-    async def check_media_link(media_link: str):
+    async def _afk_.check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:
             return None, None

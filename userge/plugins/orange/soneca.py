@@ -126,20 +126,14 @@ async def respostas(message: Message) -> None:
                         chat_id,
                         animation=match.group(0),
                         caption=out_str,
-                        reply_markup=_afk_.afk_buttons(),
+                        reply_markup=InlineKeyboardMarkup(ausentee),
                     )
                 elif type_ == "url_image":
                     await client.send_photo(
                         chat_id,
                         photo=match.group(0),
                         caption=_afk_.out_str(),
-                        reply_markup=InlineKeyboardMarkup(
-                [
-            [
-                InlineKeyboardButton(text="Teste", callback_data="settings_btn"),
-                InlineKeyboardButton(text="Teste 2", url=Config.MEUTG_REPO),
-            ],
-        ]
+                        reply_markup=InlineKeyboardMarkup(ausentee),
 )
             else:
                 out_str = (
@@ -166,13 +160,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     animation=match.group(0),
                     caption=out_str,
-                    reply_markup=InlineKeyboardMarkup(
-                [
-            [
-                InlineKeyboardButton(text="Teste", callback_data="settings_btn"),
-                InlineKeyboardButton(text="Teste 2", url=Config.MEUTG_REPO),
-            ],
-        ]
+                    reply_markup=InlineKeyboardMarkup(ausentee),
 )
 
             elif type_ == "url_image":
@@ -180,7 +168,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     photo=match.group(0),
                     caption=_afk_.out_str(),
-                    reply_markup=_afk_.afk_buttons(),
+                    reply_markup=InlineKeyboardMarkup(ausentee),
                 )
         else:
             out_str = (

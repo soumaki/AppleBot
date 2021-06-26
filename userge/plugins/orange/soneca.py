@@ -126,14 +126,14 @@ async def respostas(message: Message) -> None:
                         chat_id,
                         animation=match.group(0),
                         caption=out_str,
-                        reply_markup=Bot_Alive.alive_buttons(),
+                        reply_markup=Bot_fui.teste_button(),
                     )
                 elif type_ == "url_image":
                     await client.send_photo(
                         chat_id,
                         photo=match.group(0),
                         caption=_afk_.out_str(),
-                        reply_markup=Bot_Alive.alive_buttons(),
+                        reply_markup=Bot_fui.teste_button(),
                     )
             else:
                 out_str = (
@@ -160,7 +160,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     animation=match.group(0),
                     caption=out_str,
-                    reply_markup=Bot_Alive.alive_buttons(),
+                    reply_markup=Bot_fui.teste_button(),
                 )
 
             elif type_ == "url_image":
@@ -168,7 +168,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     photo=match.group(0),
                     caption=_afk_.out_str(),
-                    reply_markup=Bot_Alive.alive_buttons(),
+                    reply_markup=Bot_fui.teste_button(),
                 )
         else:
             out_str = (
@@ -224,7 +224,8 @@ class _afk_:
             f"🏷 **I'm not here because:**\n {_STATUS}"
         )
         return out_str
-
+    
+class Bot_fui: # teste
     async def check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:
@@ -302,6 +303,14 @@ async def logs(message: Message) -> None:
     )
     await asyncio.gather(*coro_list)
 
+        def teste_button() -> InlineKeyboardMarkup:
+        buttons = [
+            [
+                InlineKeyboardButton(text="❎ STATUS", url=Config.MEUTG_REPO),
+                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+            ],
+        ]
+        return InlineKeyboardMarkup(buttons)
 
 AFK_REASONS = (
     "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",

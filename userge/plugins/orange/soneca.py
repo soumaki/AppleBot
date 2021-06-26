@@ -134,7 +134,7 @@ async def respostas(message: Message) -> None:
                         photo=match.group(0),
                         caption=_afk_.out_str(),
                         reply_markup=InlineKeyboardMarkup(ausentee),
-)
+                    )
             else:
                 out_str = (
                     f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
@@ -161,7 +161,7 @@ async def respostas(message: Message) -> None:
                     animation=match.group(0),
                     caption=out_str,
                     reply_markup=InlineKeyboardMarkup(ausentee),
-)
+                )
 
             elif type_ == "url_image":
                 await client.send_photo(

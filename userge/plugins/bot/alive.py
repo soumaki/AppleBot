@@ -43,7 +43,7 @@ async def _init() -> None:
 
 
 @userge.on_cmd(
-    "online",
+    "alive",
     about={"header": "Faça o comando para saber se seu bot tá online"},
     allow_channels=False,
 )

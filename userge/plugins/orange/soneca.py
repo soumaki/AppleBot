@@ -225,6 +225,7 @@ async def respostas(message: Message) -> None:
 
 
 class _afk_:  # teste Bot_fui
+    @teste
     async def check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:
@@ -245,7 +246,16 @@ class _afk_:  # teste Bot_fui
                 message_id = match_.group(3)
             link = [chat_id, int(message_id)]
         return link_type, link
-
+     
+    @teste
+    def teste_button() -> InlineKeyboardMarkup:
+        buttons = [
+            [
+                InlineKeyboardButton(text="❎ STATUS", url=Config.MEUTG_REPO),
+                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+            ],
+        ]
+        return InlineKeyboardMarkup(buttons)
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:
@@ -296,16 +306,6 @@ async def logs(message: Message) -> None:
         )
     )
     await asyncio.gather(*coro_list)
-
-    def teste_button() -> InlineKeyboardMarkup:
-        buttons = [
-            [
-                InlineKeyboardButton(text="❎ STATUS", url=Config.MEUTG_REPO),
-                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
-            ],
-        ]
-        return InlineKeyboardMarkup(buttons)
-
 
 AFK_REASONS = (
     "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",

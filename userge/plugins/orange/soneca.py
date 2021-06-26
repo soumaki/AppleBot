@@ -133,8 +133,16 @@ async def respostas(message: Message) -> None:
                         chat_id,
                         photo=match.group(0),
                         caption=_afk_.out_str(),
-                        reply_markup=_afk_.afk_buttons(),
-                    )
+                        reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton("Teste", url="https://github.com/"),
+                                InlineKeyboardButton("Bing ", url=("google.com" "https://apple.com/"),
+
+            ]
+        ]
+    ),
+)
             else:
                 out_str = (
                     f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
@@ -160,8 +168,17 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     animation=match.group(0),
                     caption=out_str,
-                    reply_markup=_afk_.afk_buttons(),
-                )
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton("AppleBot para appleeds", url="https://github.com/"),
+                                InlineKeyboardButton("Bing ", url=("google.com" "https://apple.com/"),
+
+            ]
+        ]
+    ),
+)
+
             elif type_ == "url_image":
                 await client.send_photo(
                     chat_id,

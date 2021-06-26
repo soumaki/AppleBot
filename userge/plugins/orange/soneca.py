@@ -138,8 +138,6 @@ async def respostas(message: Message) -> None:
                             [
                                 InlineKeyboardButton("Teste", url="https://github.com/"),
                                 InlineKeyboardButton("Bing ", url=("google.com" "https://apple.com/"),
-
-            ]
         ]
     ),
 )
@@ -168,13 +166,11 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     animation=match.group(0),
                     caption=out_str,
-                    reply_markup=InlineKeyboardMarkup(
+                        reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("AppleBot para appleeds", url="https://github.com/"),
+                                InlineKeyboardButton("Teste", url="https://github.com/"),
                                 InlineKeyboardButton("Bing ", url=("google.com" "https://apple.com/"),
-
-            ]
         ]
     ),
 )

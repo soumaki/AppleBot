@@ -6,6 +6,8 @@ from random import randint
 from re import compile as comp_regex
 
 from userge import Config, Message, filters, get_collection, userge
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
 from userge.utils import time_formatter
 
 _TELE_REGEX = comp_regex(

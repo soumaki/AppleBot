@@ -245,7 +245,7 @@ class _afk_:  # teste Bot_fui
                 message_id = match_.group(3)
             link = [chat_id, int(message_id)]
         return link_type, link
-    
+
     def teste_button() -> InlineKeyboardMarkup:
         buttons = [
             [

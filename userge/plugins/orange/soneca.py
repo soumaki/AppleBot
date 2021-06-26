@@ -5,8 +5,6 @@ import time
 from random import randint
 from re import compile as comp_regex
 
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
 from userge import Config, Message, filters, get_collection, userge
 from userge.utils import time_formatter
 
@@ -224,8 +222,9 @@ class _afk_:
             f"🏷 **I'm not here because:**\n {_STATUS}"
         )
         return out_str
-    
-class Bot_fui: # teste
+
+
+class Bot_fui:  # teste
     async def check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:
@@ -246,6 +245,7 @@ class Bot_fui: # teste
                 message_id = match_.group(3)
             link = [chat_id, int(message_id)]
         return link_type, link
+
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:
@@ -296,6 +296,7 @@ async def logs(message: Message) -> None:
         )
     )
     await asyncio.gather(*coro_list)
+
 
 #        def teste_button() -> InlineKeyboardMarkup:
 #        buttons = [

@@ -126,14 +126,14 @@ async def respostas(message: Message) -> None:
                         chat_id,
                         animation=match.group(0),
                         caption=out_str,
-                        reply_markup=InlineKeyboardMarkup(applled),
+                        reply_markup=_applled_.botao(),
                     )
                 elif type_ == "url_image":
                     await client.send_photo(
                         chat_id,
                         photo=match.group(0),
                         caption=_afk_.out_str(),
-                        reply_markup=InlineKeyboardMarkup(applled),
+                        reply_markup=_applled_.botao(),
                     )
             else:
                 out_str = (
@@ -160,7 +160,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     animation=match.group(0),
                     caption=out_str,
-                    reply_markup=InlineKeyboardMarkup(applled),
+                    reply_markup=_applled_.botao(),
                 )
 
             elif type_ == "url_image":
@@ -168,7 +168,7 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     photo=match.group(0),
                     caption=_afk_.out_str(),
-                    reply_markup=InlineKeyboardMarkup(applled),
+                    reply_markup=_applled_.botao(),
                 )
         else:
             out_str = (
@@ -246,13 +246,13 @@ class _afk_:
             link = [chat_id, int(message_id)]
         return link_type, link
 
-    def applled() -> InlineKeyboardMarkup:
-        applled = [
+    async def _applled_() -> InlineKeyboardMarkup:
+        botao = [
             [
                 InlineKeyboardButton(text="AppleBot", url=Config.UPSTREAM_REPO),
             ]
         ]
-        return InlineKeyboardMarkup(applled)
+        return InlineKeyboardMarkup(botao)
 
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)

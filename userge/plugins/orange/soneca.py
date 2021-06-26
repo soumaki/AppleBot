@@ -246,7 +246,7 @@ class _afk_:
             link = [chat_id, int(message_id)]
         return link_type, link
 
-    def fui_bot() -> InlineKeyboardMarkup:
+    def applled() -> InlineKeyboardMarkup:
         applled = [
             [
                 InlineKeyboardButton(text="AppleBot", url=Config.UPSTREAM_REPO),

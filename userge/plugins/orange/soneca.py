@@ -134,12 +134,12 @@ async def respostas(message: Message) -> None:
                         photo=match.group(0),
                         caption=_afk_.out_str(),
                         reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton("Teste", url="https://github.com/"),
-                                InlineKeyboardButton("Bing ", url=("google.com" "https://apple.com/"),
+                [
+            [
+                InlineKeyboardButton(text="Teste", callback_data="settings_btn"),
+                InlineKeyboardButton(text="Teste 2", url=Config.MEUTG_REPO),
+            ],
         ]
-    ),
 )
             else:
                 out_str = (
@@ -166,13 +166,13 @@ async def respostas(message: Message) -> None:
                     chat_id,
                     animation=match.group(0),
                     caption=out_str,
-                        reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton("Teste", url="https://github.com/"),
-                                InlineKeyboardButton("Bing ", url=("google.com" "https://apple.com/"),
+                    reply_markup=InlineKeyboardMarkup(
+                [
+            [
+                InlineKeyboardButton(text="Teste", callback_data="settings_btn"),
+                InlineKeyboardButton(text="Teste 2", url=Config.MEUTG_REPO),
+            ],
         ]
-    ),
 )
 
             elif type_ == "url_image":

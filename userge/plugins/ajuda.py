@@ -76,6 +76,14 @@ REPO_X = InlineQueryResultArticle(
     ),
 )
 
+    def fui_bot() -> InlineKeyboardMarkup: # teste
+        ausente = [
+            [
+                InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
+                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+            ],
+        ]
+        return InlineKeyboardMarkup(ausente) # teste
 
 async def _init() -> None:
     data = await SAVED_SETTINGS.find_one({"_id": "CURRENT_CLIENT"})
@@ -515,6 +523,24 @@ if userge.has_bot:
                     )
                 )
 
+
+            if string == "fui_botao": # teste
+                ausentee = [
+                    [
+                        InlineKeyboardButton(
+                            text="teste", callback_data="age_verification_true"
+                        ),
+                        InlineKeyboardButton(
+                            text="teste 2", callback_data="age_verification_false"
+                        ),
+                    ]
+                ]
+                results.append(
+                    InlineQueryResultPhoto(
+                        reply_markup=InlineKeyboardMarkup(ausentee),
+                    )
+                ) # teste
+                
             if string == "age_verification_alert":
                 buttons = [
                     [

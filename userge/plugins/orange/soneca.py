@@ -247,12 +247,6 @@ class Bot_fui: # teste
             link = [chat_id, int(message_id)]
         return link_type, link
 
-    def btn() -> InlineKeyboardMarkup:
-btn = [[
-    InlineKeyboardButton(text="twapple", url="http://t.me/twapple")
-]]
-
-
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:
     """Status detalhado e atualizado sobre seu modo ausente"""

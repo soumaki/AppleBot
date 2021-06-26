@@ -246,7 +246,7 @@ class _afk_:  # teste Bot_fui
                 message_id = match_.group(3)
             link = [chat_id, int(message_id)]
         return link_type, link
-     
+
     @teste
     def teste_button() -> InlineKeyboardMarkup:
         buttons = [
@@ -256,6 +256,7 @@ class _afk_:  # teste Bot_fui
             ],
         ]
         return InlineKeyboardMarkup(buttons)
+
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:
@@ -306,6 +307,7 @@ async def logs(message: Message) -> None:
         )
     )
     await asyncio.gather(*coro_list)
+
 
 AFK_REASONS = (
     "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",

@@ -224,7 +224,7 @@ async def respostas(message: Message) -> None:
 #        return out_str
 
 
-class Bot_fui:  # teste
+class _afk_:  # teste Bot_fui
     async def _afk_.check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:
@@ -298,14 +298,14 @@ async def logs(message: Message) -> None:
     await asyncio.gather(*coro_list)
 
 
-#        def teste_button() -> InlineKeyboardMarkup:
-#        buttons = [
-#            [
-#                InlineKeyboardButton(text="❎ STATUS", url=Config.MEUTG_REPO),
-#                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
-#            ],
-#        ]
-#        return InlineKeyboardMarkup(buttons)
+        def teste_button() -> InlineKeyboardMarkup:
+        buttons = [
+            [
+                InlineKeyboardButton(text="❎ STATUS", url=Config.MEUTG_REPO),
+                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+            ],
+        ]
+        return InlineKeyboardMarkup(buttons)
 
 AFK_REASONS = (
     "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",

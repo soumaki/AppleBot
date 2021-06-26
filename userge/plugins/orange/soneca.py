@@ -225,7 +225,7 @@ async def respostas(message: Message) -> None:
 
 
 class _afk_:  # teste Bot_fui
-    async def _afk_.check_media_link(media_link: str):
+    async def check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:
             return None, None

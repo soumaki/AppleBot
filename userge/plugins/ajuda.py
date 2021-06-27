@@ -724,9 +724,9 @@ if userge.has_bot:
                                         reply_markup=buttons,
                                     )
                                 )
-                                
-# String para o móudlo AFK - COMEÇO
-                              
+
+            # String para o móudlo AFK - COMEÇO
+
             if string == "afk":
                 results.append(
                     InlineQueryResultAnimation(
@@ -752,8 +752,8 @@ if userge.has_bot:
                         reply_markup=_afk_.afk_buttons(),
                     )
                 )
-                                
-# String para o móudlo AFK - FIM
+
+            # String para o móudlo AFK - FIM
 
             if string == "geass":
                 results.append(

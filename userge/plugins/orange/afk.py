@@ -214,7 +214,7 @@ async def respostas(message: Message) -> None:
 
 class _afk_:
     def out_str() -> str:
-        time_formatter(round(time.time() - TIME))
+        _afk_time = time_formatter(round(time.time() - TIME))
         _r = REASON.split(" | ", maxsplit=1)
         _STATUS = _r[0]
         out_str = (
@@ -224,7 +224,7 @@ class _afk_:
         return out_str
 
     def _out_str() -> str:
-        time_formatter(round(time.time() - TIME))
+        afk_time_ = time_formatter(round(time.time() - TIME))
         out_str = (
             f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
             f"🏷 **I'm not here because:**\n {REASON}"
@@ -261,8 +261,8 @@ class _afk_:
     def afk_buttons() -> InlineKeyboardMarkup:
         buttons = [
             [
-                InlineKeyboardButton("@twapple", url="https://t.me/twapple"),
-            ],
+                InlineKeyboardButton(text="🍏 twapple", url="http://t.me/twapple"),
+            ]
         ]
         return InlineKeyboardMarkup(buttons)
 

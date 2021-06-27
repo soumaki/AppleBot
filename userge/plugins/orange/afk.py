@@ -214,7 +214,7 @@ async def respostas(message: Message) -> None:
 
 class _afk_:
     def out_str() -> str:
-        _afk_time = time_formatter(round(time.time() - TIME))
+        time_formatter(round(time.time() - TIME))
         _r = REASON.split(" | ", maxsplit=1)
         _STATUS = _r[0]
         out_str = (
@@ -224,7 +224,7 @@ class _afk_:
         return out_str
 
     def _out_str() -> str:
-        afk_time_ = time_formatter(round(time.time() - TIME))
+        time_formatter(round(time.time() - TIME))
         out_str = (
             f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
             f"🏷 **I'm not here because:**\n {REASON}"

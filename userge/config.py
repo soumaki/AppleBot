@@ -119,6 +119,7 @@ class Config:
     INLINE_NOTES = False
     BOT_ANTIFLOOD = False
     MEUTG_REPO = "t.me/applled"
+    BIO_APPLE = "t.me/orapple"
     TAG_LOGGING = False
     FBAN_LOG_CHANNEL = False
 

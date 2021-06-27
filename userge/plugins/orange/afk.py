@@ -46,7 +46,7 @@ async def _init() -> None:
     },
     allow_channels=False,
 )
-async def active_afk(message: Message) -> None:
+async def ausente(message: Message) -> None:
     """Modo ausente ligado/desligado"""
     global REASON, IS_AFK, TIME  # pylint: disable=global-statement
     IS_AFK = True
@@ -57,8 +57,8 @@ async def active_afk(message: Message) -> None:
         r_ = REASON.split(" | ", maxsplit=1)
         STATUS_ = r_[0]
         await asyncio.gather(
-            CHANNEL.log(f"You went AFK! : `{STATUS_}` [\u200c]({match_.group(0)})"),
-            message.edit("`You went AFK!`", del_in=1),
+            CHANNEL.log(f"Sumindo: `{STATUS_}` [\u200c]({match_.group(0)})"),
+            message.edit("`Fui!`", del_in=1),
             AFK_COLLECTION.drop(),
             SAVED_SETTINGS.update_one(
                 {"_id": "AFK"},
@@ -68,8 +68,8 @@ async def active_afk(message: Message) -> None:
         )
     else:
         await asyncio.gather(
-            CHANNEL.log(f"You went AFK! : `{REASON}`"),
-            message.edit("`You went AFK!`", del_in=1),
+            CHANNEL.log(f"Fuii! : `{REASON}`"),
+            message.edit("`Deixei a Terra!`", del_in=1),
             AFK_COLLECTION.drop(),
             SAVED_SETTINGS.update_one(
                 {"_id": "AFK"},
@@ -121,16 +121,7 @@ async def _send_inline_afk(message: Message):
         chat_id=message.chat.id, query_id=_x.query_id, result_id=_x.results[0].id
     )
 
-
-async def _send_inline_afk_(message: Message):
-    _bot_ = await userge.bot.get_me()
-    _x_ = await userge.get_inline_bot_results(_bot_.username, "test")
-    await userge.send_inline_bot_result(
-        chat_id=message.chat.id, query_id=_x_.query_id, result_id=_x_.results[0].id
-    )
-
-
-async def handle_afk_incomming(message: Message) -> None:
+async def respostas(message: Message) -> None:
     """Configurações das mensagens automáticas"""
     if not message.from_user:
         return
@@ -152,37 +143,10 @@ async def handle_afk_incomming(message: Message) -> None:
                 else:
                     if type_ == "url_image":
                         await send_inline_afk_(message)
-                    # NOT
-                    # r = REASON.split(" | ", maxsplit=1)
-                    # STATUS = r[0]
-                    # out_str = (
-                    # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
-                    # f"▫️ **I'm not here because:**\n {STATUS}"
-                    # )
-                    # NOT
 
-                    # await client.send_animation(
-                    # chat_id,
-                    # animation=match.group(0),
-                    # caption=_afk_.out_str(),
-                    # reply_markup=_afk_.afk_buttons(),
-                    # )
-                # elif type_ == "url_image":
-                # await client.send_photo(
-                # chat_id,
-                # photo=match.group(0),
-                # caption=_afk_.out_str(),
-                # reply_markup=_afk_.afk_buttons(),
-                # )
             else:
-                # out_str = (
-                # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
-                # f"▫️ **I'm not here because:**\n {REASON}"
-                # )
                 coro_list.append(await _send_inline_afk(message))
-                # coro_list.append(
-                # message.reply(_afk_._out_str())
-                # )
+
         if chat.type == "private":
             USERS[user_id][0] += 1
         else:
@@ -191,38 +155,16 @@ async def handle_afk_incomming(message: Message) -> None:
         match = _TELE_REGEX.search(REASON)
         if match:
             type_, media_ = await _afk_.check_media_link(match.group(0))
-            if type_ == "url_gif":
-                await send_inline_afk(message)
-            if type_ == "url_image":
-                await send_inline_afk_(message)
-                # r = REASON.split(" | ", maxsplit=1)
-                # STATUS = r[0]
-                # out_str = (
-                # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
-                # f"▫️ **I'm not here because:**\n {STATUS}"
-                # )
-                # await client.send_animation(
-                # chat_id,
-                # animation=match.group(0),
-                # caption=_afk_.out_str(),
-                # reply_markup=_afk_.afk_buttons(),
-                # )
-            # elif type_ == "url_image":
-            # await client.send_photo(
-            # chat_id,
-            # photo=match.group(0),
-            # caption=_afk_.out_str(),
-            # reply_markup=_afk_.afk_buttons(),
-            # )
+            if not type_ == "url_gif":
+                if type_ == "url_image":
+                    await send_inline_afk_(message)
+            else:
+                if type_ == "url_gif":
+                    await send_inline_afk(message)
         else:
-            # out_str = (
-            # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
-            # f"▫️ **I'm not here because:**\n {REASON}"
-            # )
+
             coro_list.append(await _send_inline_afk(message))
-            # coro_list.append(
-            # message.reply(_afk_._out_str())
-            # )
+
         if chat.type == "private":
             USERS[user_id] = [1, 0, user_dict["mention"]]
         else:
@@ -311,8 +253,6 @@ class _afk_:
         buttons = [
             [
                 InlineKeyboardButton(text="TWAPPLE", url="https://t.me/twapple"),
-            ],
-            [
                 InlineKeyboardButton(text="BIO", url=Config.BIO_APPLE),
             ],
         ]
@@ -320,12 +260,12 @@ class _afk_:
 
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
-async def handle_afk_outgoing(message: Message) -> None:
-    """handle outgoing messages when you afk"""
+async def logs(message: Message) -> None:
+    """Status detalhado e atualizado sobre seu modo ausente"""
     global IS_AFK  # pylint: disable=global-statement
     IS_AFK = False
     afk_time = time_formatter(round(time.time() - TIME))
-    replied: Message = await message.reply("`I'm no longer AFK!`", log=__name__)
+    replied: Message = await message.reply("`Não estou mais ausente!`", log=__name__)
     coro_list = []
     if USERS:
         p_msg = ""
@@ -341,19 +281,19 @@ async def handle_afk_outgoing(message: Message) -> None:
                 g_count += gcount
         coro_list.append(
             replied.edit(
-                f"`You recieved {p_count + g_count} messages while you were away. "
-                f"Check log for more details.`\n\n**AFK time** : __{afk_time}__",
-                del_in=3,
+                f"`💬 Na sua Inbox: {p_count + g_count} mensagens. "
+                f"▫️ Confira os detalhes no log.`\n\n💤 **Ausente por** : __{afk_time}__",
+                del_in=1,
             )
         )
         out_str = (
-            f"You've recieved **{p_count + g_count}** messages "
-            + f"from **{len(USERS)}** users while you were away!\n\n**AFK time** : __{afk_time}__\n"
+            f"📂 Mensagens na Inbox[:](https://telegra.ph/file/7c1ba52391b7ffcc3e891.png) **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
+            + f"\n▫️ **Ausente por** : __{afk_time}__\n\n"
         )
         if p_count:
-            out_str += f"\n**{p_count} Private Messages:**\n\n{p_msg}"
+            out_str += f"\n**{p_count} Mensagens Privadas:**\n\n{p_msg}"
         if g_count:
-            out_str += f"\n**{g_count} Group Messages:**\n\n{g_msg}"
+            out_str += f"\n**{g_count} Mensagens em Grupo:**\n\n{g_msg}"
         coro_list.append(CHANNEL.log(out_str))
         USERS.clear()
     else:
@@ -371,32 +311,7 @@ async def handle_afk_outgoing(message: Message) -> None:
 
 
 AFK_REASONS = (
-    "I'm busy right now. Please talk in a bag and when I come back you can just give me the bag!",
-    "I'm away right now. If you need anything, leave a message after the beep: \
-`beeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeep!`",
-    "You missed me, next time aim better.",
-    "I'll be back in a few minutes and if I'm not...,\nwait longer.",
-    "I'm not here right now, so I'm probably somewhere else.",
-    "Roses are red,\nViolets are blue,\nLeave me a message,\nAnd I'll get back to you.",
-    "Sometimes the best things in life are worth waiting for…\nI'll be right back.",
-    "I'll be right back,\nbut if I'm not right back,\nI'll be back later.",
-    "If you haven't figured it out already,\nI'm not here.",
-    "I'm away over 7 seas and 7 countries,\n7 waters and 7 continents,\n7 mountains and 7 hills,\
-7 plains and 7 mounds,\n7 pools and 7 lakes,\n7 springs and 7 meadows,\
-7 cities and 7 neighborhoods,\n7 blocks and 7 houses...\
-    Where not even your messages can reach me!",
-    "I'm away from the keyboard at the moment, but if you'll scream loud enough at your screen,\
-    I might just hear you.",
-    "I went that way\n>>>>>",
-    "I went this way\n<<<<<",
-    "Please leave a message and make me feel even more important than I already am.",
-    "If I were here,\nI'd tell you where I am.\n\nBut I'm not,\nso ask me when I return...",
-    "I am away!\nI don't know when I'll be back!\nHopefully a few minutes from now!",
-    "I'm not available right now so please leave your name, number, \
-    and address and I will stalk you later. :P",
-    "Sorry, I'm not here right now.\nFeel free to talk to my userbot as long as you like.\
-I'll get back to you later.",
-    "I bet you were expecting an away message!",
-    "Life is so short, there are so many things to do...\nI'm away doing one of them..",
-    "I am not here right now...\nbut if I was...\n\nwouldn't that be awesome?",
+    "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   10 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/3e4a8e757b9059de07d89.gif)",
+    "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   15 years ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/f68688e04a8713174bb7d.gif)",
+    "⚡️ **Auto Reply** ⒶⒻⓀ ╰• SNOOZE \n🕑 **Last Check:**   Unlimited time ago\n▫️ **Status**:  Zzzz [\u200c](https://telegra.ph/file/885d526a6d02910e436ef.gif)",
 )

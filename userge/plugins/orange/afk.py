@@ -46,7 +46,7 @@ async def _init() -> None:
     },
     allow_channels=False,
 )
-async def suente(message: Message) -> None:
+async def ausente(message: Message) -> None:
     """Modo ausente ligado/desligado"""
     global REASON, IS_AFK, TIME  # pylint: disable=global-statement
     IS_AFK = True
@@ -261,14 +261,15 @@ class _afk_:
     def afk_buttons() -> InlineKeyboardMarkup:
         buttons = [
             [
-                InlineKeyboardButton(text="🍏 twapple", url="http://t.me/twapple"),
-            ]
+                InlineKeyboardButton(text="TWAPPLE", url="https://t.me/twapple"),
+                InlineKeyboardButton(text="BIO", url=Config.BIO_APPLE),
+            ],
         ]
         return InlineKeyboardMarkup(buttons)
 
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
-async def handle_afk_outgoing(message: Message) -> None:
+async def logs(message: Message) -> None:
     """Status detalhado e atualizado sobre seu modo ausente"""
     global IS_AFK  # pylint: disable=global-statement
     IS_AFK = False

@@ -5,8 +5,7 @@ import time
 from random import randint
 from re import compile as comp_regex
 
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
-from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from userge import Config, Message, filters, get_collection, userge
 from userge.utils import time_formatter
@@ -99,35 +98,37 @@ async def active_afk(message: Message) -> None:
     ),
     allow_via_bot=False,
 )
-
 async def send_inline_afk(message: Message):
     bot = await userge.bot.get_me()
     x = await userge.get_inline_bot_results(bot.username, "afk")
     await userge.send_inline_bot_result(
         chat_id=message.chat.id, query_id=x.query_id, result_id=x.results[0].id
     )
-    
+
+
 async def send_inline_afk_(message: Message):
     bot_ = await userge.bot.get_me()
     x_ = await userge.get_inline_bot_results(bot_.username, "afk_")
     await userge.send_inline_bot_result(
         chat_id=message.chat.id, query_id=x_.query_id, result_id=x_.results[0].id
     )
-    
+
+
 async def _send_inline_afk(message: Message):
     _bot = await userge.bot.get_me()
     _x = await userge.get_inline_bot_results(_bot.username, "_afk")
     await userge.send_inline_bot_result(
         chat_id=message.chat.id, query_id=_x.query_id, result_id=_x.results[0].id
     )
-    
+
+
 async def _send_inline_afk_(message: Message):
     _bot_ = await userge.bot.get_me()
     _x_ = await userge.get_inline_bot_results(_bot_.username, "test")
     await userge.send_inline_bot_result(
         chat_id=message.chat.id, query_id=_x_.query_id, result_id=_x_.results[0].id
     )
-    
+
 
 async def handle_afk_incomming(message: Message) -> None:
     """handle incomming messages when you afk"""
@@ -136,11 +137,11 @@ async def handle_afk_incomming(message: Message) -> None:
     user_id = message.from_user.id
     chat = message.chat
     user_dict = await message.client.get_user_dict(user_id)
-    afk_time = time_formatter(round(time.time() - TIME))
+    time_formatter(round(time.time() - TIME))
     coro_list = []
 
-    client = message.client
-    chat_id = message.chat.id
+    message.client
+    message.chat.id
     if user_id in USERS:
         if not (USERS[user_id][0] + USERS[user_id][1]) % randint(2, 4):
             match = _TELE_REGEX.search(REASON)
@@ -155,34 +156,32 @@ async def handle_afk_incomming(message: Message) -> None:
                     # r = REASON.split(" | ", maxsplit=1)
                     # STATUS = r[0]
                     # out_str = (
-                        # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
-                        # f"▫️ **I'm not here because:**\n {STATUS}"
+                    # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
+                    # f"▫️ **I'm not here because:**\n {STATUS}"
                     # )
                     # NOT
 
                     # await client.send_animation(
-                        # chat_id,
-                        # animation=match.group(0),
-                        # caption=_afk_.out_str(),
-                        # reply_markup=_afk_.afk_buttons(),
+                    # chat_id,
+                    # animation=match.group(0),
+                    # caption=_afk_.out_str(),
+                    # reply_markup=_afk_.afk_buttons(),
                     # )
                 # elif type_ == "url_image":
-                    # await client.send_photo(
-                        # chat_id,
-                        # photo=match.group(0),
-                        # caption=_afk_.out_str(),
-                        # reply_markup=_afk_.afk_buttons(),
-                    # )
+                # await client.send_photo(
+                # chat_id,
+                # photo=match.group(0),
+                # caption=_afk_.out_str(),
+                # reply_markup=_afk_.afk_buttons(),
+                # )
             else:
                 # out_str = (
-                    # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
-                    # f"▫️ **I'm not here because:**\n {REASON}"
+                # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
+                # f"▫️ **I'm not here because:**\n {REASON}"
                 # )
-                coro_list.append(
-                    await _send_inline_afk(message)
-                )
+                coro_list.append(await _send_inline_afk(message))
                 # coro_list.append(
-                    # message.reply(_afk_._out_str())
+                # message.reply(_afk_._out_str())
                 # )
         if chat.type == "private":
             USERS[user_id][0] += 1
@@ -201,32 +200,30 @@ async def handle_afk_incomming(message: Message) -> None:
                 # r = REASON.split(" | ", maxsplit=1)
                 # STATUS = r[0]
                 # out_str = (
-                    # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
-                    # f"▫️ **I'm not here because:**\n {STATUS}"
+                # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
+                # f"▫️ **I'm not here because:**\n {STATUS}"
                 # )
                 # await client.send_animation(
-                    # chat_id,
-                    # animation=match.group(0),
-                    # caption=_afk_.out_str(),
-                    # reply_markup=_afk_.afk_buttons(),
+                # chat_id,
+                # animation=match.group(0),
+                # caption=_afk_.out_str(),
+                # reply_markup=_afk_.afk_buttons(),
                 # )
             # elif type_ == "url_image":
-                # await client.send_photo(
-                    # chat_id,
-                    # photo=match.group(0),
-                    # caption=_afk_.out_str(),
-                    # reply_markup=_afk_.afk_buttons(),
-                # )
+            # await client.send_photo(
+            # chat_id,
+            # photo=match.group(0),
+            # caption=_afk_.out_str(),
+            # reply_markup=_afk_.afk_buttons(),
+            # )
         else:
             # out_str = (
-                # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
-                # f"▫️ **I'm not here because:**\n {REASON}"
+            # f"⚡️ **Auto Reply** ⒶⒻⓀ \n ╰•  **Last Check:** {afk_time} ago\n\n"
+            # f"▫️ **I'm not here because:**\n {REASON}"
             # )
-            coro_list.append(
-                await _send_inline_afk(message)
-            )
+            coro_list.append(await _send_inline_afk(message))
             # coro_list.append(
-                # message.reply(_afk_._out_str())
+            # message.reply(_afk_._out_str())
             # )
         if chat.type == "private":
             USERS[user_id] = [1, 0, user_dict["mention"]]
@@ -268,7 +265,7 @@ async def handle_afk_incomming(message: Message) -> None:
 
 class _afk_:
     def out_str() -> str:
-        _afk_time = time_formatter(round(time.time() - TIME))
+        time_formatter(round(time.time() - TIME))
         _r = REASON.split(" | ", maxsplit=1)
         _STATUS = _r[0]
         out_str = (
@@ -276,21 +273,21 @@ class _afk_:
             f"🏷 **I'm not here because:**\n {_STATUS}"
         )
         return out_str
-        
+
     def _out_str() -> str:
-        afk_time_ = time_formatter(round(time.time() - TIME))
+        time_formatter(round(time.time() - TIME))
         out_str = (
             f"🌐 **AUTO REPLY** ⒶⒻⓀ \n ╰•  **Last Seen:** {afk_time} ago\n\n"
             f"🏷 **I'm not here because:**\n {REASON}"
         )
         return out_str
-    
+
     def link() -> str:
-        _match_ =  _TELE_REGEX.search(REASON)
+        _match_ = _TELE_REGEX.search(REASON)
         if _match_:
             link = _match_.group(0)
             return link
-    
+
     async def check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:

@@ -121,6 +121,7 @@ async def _send_inline_afk(message: Message):
         chat_id=message.chat.id, query_id=_x.query_id, result_id=_x.results[0].id
     )
 
+
 async def respostas(message: Message) -> None:
     """Configurações das mensagens automáticas"""
     if not message.from_user:

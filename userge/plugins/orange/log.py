@@ -12,6 +12,7 @@ from userge import Config, Message, get_collection, userge
 
 SAVED_SETTINGS = get_collection("CONFIGS")
 
+
 async def _init() -> None:
     data = await SAVED_SETTINGS.find_one({"_id": "TAG_LOGGING"})
     if data:
@@ -150,6 +151,7 @@ async def pm_log(_, message: Message):
         )
     except FloodWait as e:
         await asyncio.sleep(e.x + 3)
+
 
 def user(info):
     with open("userge/xcache/get_me.json", "r") as fp:

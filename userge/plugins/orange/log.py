@@ -1,4 +1,4 @@
-# Criado por @Kakashi_HTK/@ashwinstr adaptado por @Applled
+""" Criado por @Kakashi_HTK/@ashwinstr adaptado por @Applled """
 
 
 import asyncio
@@ -11,7 +11,6 @@ from pyrogram.errors import FloodWait
 from userge import Config, Message, get_collection, userge
 
 SAVED_SETTINGS = get_collection("CONFIGS")
-
 
 async def _init() -> None:
     data = await SAVED_SETTINGS.find_one({"_id": "TAG_LOGGING"})
@@ -72,13 +71,13 @@ async def grp_log(_, message: Message):
     id = message.message_id
     reply = message.reply_to_message
     log = f"""
-🍏 Modo Log [AppleBot]
+🍏 Modo Log **AppleBot**
 Alguém te #mencionou
 ➖➖➖➖➖➖
-<b>▫️ Enviado por :</b> {message.from_user.mention}
-<b>▫️ No Grupo :</b> <code>{message.chat.title}</code>
-<b>▫️ Link da Mensagem  :</b> <a href={message.link}>link</a>
-<b>▫️ Mensagem : <code>Confira abaixo</code></b> ⬇
+<b>▫️ Enviado por:</b> {message.from_user.mention}
+<b>▫️ No Grupo:</b> <code>{message.chat.title}</code>
+<b>▫️ Link da Mensagem :</b> <a href={message.link}>link</a>
+<b>▫️ Mensagem: <code>Confira abaixo</code></b> ⬇
 """
 
     if reply:
@@ -151,7 +150,6 @@ async def pm_log(_, message: Message):
         )
     except FloodWait as e:
         await asyncio.sleep(e.x + 3)
-
 
 def user(info):
     with open("userge/xcache/get_me.json", "r") as fp:

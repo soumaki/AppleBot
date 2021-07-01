@@ -1,18 +1,16 @@
 """ Configuração para o modo ausente - Adaptado por #NoteX/Samuca/Applled / AppleBot"""
 
 import asyncio
+import random
 import time
 from random import randint
-import random
 from re import compile as comp_regex
 
-from userge.plugins.utils.afk_inline import *
-
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
-from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty
-from pyrogram import StopPropagation, filters
+from pyrogram import filters
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from userge import Config, Message, filters, get_collection, userge
+from userge.plugins.utils.afk_inline import *
 from userge.utils import time_formatter
 
 _TELE_REGEX = comp_regex(
@@ -110,7 +108,7 @@ async def respostas(message: Message) -> None:
     user_id = message.from_user.id
     chat = message.chat
     user_dict = await message.client.get_user_dict(user_id)
-    afk_time = time_formatter(round(time.time() - TIME))
+    time_formatter(round(time.time() - TIME))
     coro_list = []
     if user_id in USERS:
         if not (USERS[user_id][0] + USERS[user_id][1]) % randint(2, 4):
@@ -122,9 +120,7 @@ async def respostas(message: Message) -> None:
                 if type_ == "url_image":
                     await send_inline_afk_(message)
             else:
-                coro_list.append(
-                    await _send_inline_afk(message)
-                )
+                coro_list.append(await _send_inline_afk(message))
         if chat.type == "private":
             USERS[user_id][0] += 1
         else:
@@ -138,9 +134,7 @@ async def respostas(message: Message) -> None:
             elif type_ == "url_gif":
                 await send_inline_afk(message)
         else:
-            coro_list.append(
-                await _send_inline_afk(message)
-            )
+            coro_list.append(await _send_inline_afk(message))
         if chat.type == "private":
             USERS[user_id] = [1, 0, user_dict["mention"]]
         else:
@@ -189,7 +183,7 @@ class _afk_:
             f"🏷 **What's happening?**\n {_STATUS}"
         )
         return out_str
-        
+
     def _out_str() -> str:
         afk_time_ = time_formatter(round(time.time() - TIME))
         out_str = (
@@ -197,13 +191,13 @@ class _afk_:
             f"🏷 **What's happening?**\n <code>{REASON}</code>"
         )
         return out_str
-    
+
     def link() -> str:
-        _match_ =  _TELE_REGEX.search(REASON)
+        _match_ = _TELE_REGEX.search(REASON)
         if _match_:
             link = _match_.group(0)
             return link
-    
+
     async def check_media_link(media_link: str):
         match_ = _TELE_REGEX.search(media_link.strip())
         if not match_:
@@ -233,6 +227,7 @@ class _afk_:
             ],
         ]
         return InlineKeyboardMarkup(buttons)
+
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:
@@ -284,25 +279,26 @@ async def logs(message: Message) -> None:
     )
     await asyncio.gather(*coro_list)
 
-    # # # teste # # # 
+    # # # teste # # #
     @userge.bot.on_callback_query(filters.regex(pattern=r"^status_afk$"))
     async def status_afk_(_, c_q: CallbackQuery):
-        user_id = c_q.from_user.id
+        c_q.from_user.id
         await c_q.answer(
-                  f"🍏 @applled 𝐒𝐓𝐀𝐓𝐔𝐒:\n\n𝐂𝐡𝐚𝐩𝐨𝐥𝐢𝐧 𝐝𝐢𝐬𝐬𝐞:\n ╰• {random.choice(FRASE_AFK)}\n",
-                  show_alert=True,
-                )
+            f"🍏 @applled 𝐒𝐓𝐀𝐓𝐔𝐒:\n\n𝐂𝐡𝐚𝐩𝐨𝐥𝐢𝐧 𝐝𝐢𝐬𝐬𝐞:\n ╰• {random.choice(FRASE_AFK)}\n",
+            show_alert=True,
+        )
         return status_afk_
-        
+
     @userge.bot.on_callback_query(filters.regex(pattern=r"^status_apple$"))
     async def _status_afk(_, c_q: CallbackQuery):
-        user_id = c_q.from_user.id
+        c_q.from_user.id
         await c_q.answer(
-                  f"🍎 @applled 𝐁𝐈𝐎/Projects:\nТак вам любопытно\n\nHi, human!\n{random.choice(BIO_AFK)}\n",
-                  show_alert=True,
-                )
+            f"🍎 @applled 𝐁𝐈𝐎/Projects:\nТак вам любопытно\n\nHi, human!\n{random.choice(BIO_AFK)}\n",
+            show_alert=True,
+        )
         return _status_afk
- 
+
+
 FRASE_AFK = (
     "Se você perdeu a batalha,\nimagna a guerra que tem mais pessoas!",
     "As moscas não se arriscariam\nà ir a Roma de boca fechada,\npois morreriam de fome.",
@@ -310,7 +306,8 @@ FRASE_AFK = (
     "Quem ri por último come mais chocolate.",
 )
 BIO_AFK = (
-    "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐋𝐢𝐤𝐞 𝐓𝐰𝐞𝐞𝐭𝐬\n🔗 @twapple\n𝐁𝐢𝐨\n🔗 @orapple\n ╰• 𝘔𝘰𝘳𝘦 𝘤𝘰𝘮𝘪𝘯𝘨 𝘴𝘰𝘰𝘯...", # Adicionar mais coisas
+    "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐋𝐢𝐤𝐞 𝐓𝐰𝐞𝐞𝐭𝐬\n🔗 @twapple\n𝐁𝐢𝐨\n🔗 @orapple\n ╰• 𝘔𝘰𝘳𝘦 𝘤𝘰𝘮𝘪𝘯𝘨 𝘴𝘰𝘰𝘯...",
+    # Adicionar mais coisas
 )
 AFK_REASONS = (
     "I'm busy right now. Please talk in a bag and when I come back you can just give me the bag!",

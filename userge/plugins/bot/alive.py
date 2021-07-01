@@ -1,6 +1,7 @@
 """Bot morreu?"""
 
 import asyncio
+import random
 from datetime import datetime
 from re import compile as comp_regex
 
@@ -203,42 +204,14 @@ def _parse_arg(arg: bool) -> str:
     return " ✅ " if arg else " ❌ "
 
     @userge.bot.on_callback_query(filters.regex(pattern=r"^info_btn$"))
-    async def alive_ver(_, c_q: CallbackQuery):
-        allow = bool(
-            c_q.from_user
-            and (
-                c_q.from_user.id in Config.OWNER_ID
-                or c_q.from_user.id in Config.SUDO_USERS
-            )
+    async def _alive_status(_, c_q: CallbackQuery):
+        c_q.from_user.id
+        await c_q.answer(
+            f"𝐀𝐩𝐩𝐥𝐞𝐁𝐨𝐭 𝐓𝐞𝐚𝐦:\n𝚆𝚘𝚛𝚔𝚒𝚗𝚐 𝚘𝚗 𝙱𝚘𝚝\n\n{random.choice(TEAM_APPLEBOT)}\n",
+            show_alert=True,
         )
-        if allow:
-            start = datetime.now()
-            try:
-                await c_q.edit_message_text(
-                    Bot_Alive.alive_info(),
-                    reply_markup=Bot_Alive.alive_buttons(),
-                    disable_web_page_preview=True,
-                )
-            except FloodWait as e:
-                await asyncio.sleep(e.x)
-            except BadRequest:
-                pass
-            ping = "RUNNING {} sec\n"
-        alive_ss += f"▫️ Python : v{versions.__python_version__}\n"
-        alive_ss += f"▫️ Pyrogram : v{versions.__pyro_version__}\n"
-
-        if allow:
-            end = datetime.now()
-            m_s = (end - start).microseconds / 1000
-            await c_q.answer(ping.format(m_s) + alive_ss, show_alert=True)
-        else:
-            await c_q.answer(alive_ss, show_alert=True)
-        await asyncio.sleep(0.5)
-
-
-def _parse_arg(arg: bool) -> str:
-    return " ✅ " if arg else " ❌ "
-
+        return _alive_status
+ 
 
 class Bot_Alive:
     @staticmethod
@@ -316,3 +289,7 @@ class Bot_Alive:
     @staticmethod
     def is_photo(file_id: str) -> bool:
         return bool(FileId.decode(file_id).file_type in PHOTO_TYPES)
+TEAM_APPLEBOT = (
+    "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐀𝐩𝐩𝐥𝐞/𝐎𝐫𝐚𝐧𝐠𝐞\n𝙳𝚎𝚟 𝚖𝚊𝚒𝚗\nn🔗 @applled\n\n𝐒𝐚𝐦𝐮𝐜𝐚/𝐒𝐚𝐦𝐮𝐞𝐥\n𝙲𝚘𝚗𝚝𝚛𝚒𝚋𝚞𝚝𝚘𝚛\n🔗 @NoteZV\n ",
+    # Adicionar mais informações randômicas em breve
+)

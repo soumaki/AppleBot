@@ -10,7 +10,7 @@ from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty
 from pyrogram.file_id import PHOTO_TYPES, FileId
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
-from userge import Config, Message, userge
+from userge import Config, Message, userge, versions
 from userge.core.ext import RawClient
 from userge.utils import get_file_id, rand_array
 
@@ -203,7 +203,7 @@ if userge.has_bot:
 def _parse_arg(arg: bool) -> str:
     return " ✅ " if arg else " ❌ "
 
-    @userge.bot.on_callback_query(filters.regex(pattern=r"^info_btn$"))
+    @userge.bot.on_callback_query(filters.regex(pattern=r"^info_apple$"))
     async def _alive_status(_, c_q: CallbackQuery):
         c_q.from_user.id
         await c_q.answer(
@@ -211,7 +211,7 @@ def _parse_arg(arg: bool) -> str:
             show_alert=True,
         )
         return _alive_status
-
+ 
 
 class Bot_Alive:
     @staticmethod
@@ -266,7 +266,7 @@ class Bot_Alive:
         buttons = [
             [
                 InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
+                InlineKeyboardButton(text="🍎 TEAM", callback_data="info_apple"),
             ],
         ]
         return InlineKeyboardMarkup(buttons)
@@ -289,8 +289,6 @@ class Bot_Alive:
     @staticmethod
     def is_photo(file_id: str) -> bool:
         return bool(FileId.decode(file_id).file_type in PHOTO_TYPES)
-
-
 TEAM_APPLEBOT = (
     "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐀𝐩𝐩𝐥𝐞/𝐎𝐫𝐚𝐧𝐠𝐞\n𝙳𝚎𝚟 𝚖𝚊𝚒𝚗\nn🔗 @applled\n\n𝐒𝐚𝐦𝐮𝐜𝐚/𝐒𝐚𝐦𝐮𝐞𝐥\n𝙲𝚘𝚗𝚝𝚛𝚒𝚋𝚞𝚝𝚘𝚛\n🔗 @NoteZV\n ",
     # Adicionar mais informações randômicas em breve

@@ -160,7 +160,17 @@ async def send_alive_message(message: Message) -> None:
 
 
 if userge.has_bot:
+    
+    @userge.bot.on_callback_query(filters.regex(pattern=r"^info_apple$"))
+    async def _alive_status(_, c_q: CallbackQuery):
+        c_q.from_user.id
+        await c_q.answer(
+            f"𝐀𝐩𝐩𝐥𝐞𝐁𝐨𝐭 𝐓𝐞𝐚𝐦:\n𝚆𝚘𝚛𝚔𝚒𝚗𝚐 𝚘𝚗 𝙱𝚘𝚝\n\n{random.choice(TEAM_APPLEBOT)}\n",
+            show_alert=True,
+        )
+        return _alive_status
 
+    
     @userge.bot.on_callback_query(filters.regex(pattern=r"^settings_btn$"))
     async def alive_cb(_, c_q: CallbackQuery):
         allow = bool(
@@ -202,16 +212,6 @@ if userge.has_bot:
 
 def _parse_arg(arg: bool) -> str:
     return " ✅ " if arg else " ❌ "
-
-    @userge.bot.on_callback_query(filters.regex(pattern=r"^info_apple$"))
-    async def _alive_status(_, c_q: CallbackQuery):
-        c_q.from_user.id
-        await c_q.answer(
-            f"𝐀𝐩𝐩𝐥𝐞𝐁𝐨𝐭 𝐓𝐞𝐚𝐦:\n𝚆𝚘𝚛𝚔𝚒𝚗𝚐 𝚘𝚗 𝙱𝚘𝚝\n\n{random.choice(TEAM_APPLEBOT)}\n",
-            show_alert=True,
-        )
-        return _alive_status
-
 
 class Bot_Alive:
     @staticmethod

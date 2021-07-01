@@ -23,7 +23,7 @@ endLogBotPolling() {
 _polling() {
     local cmd func args
     _resetConnection
-    log "LogBot Iniciado !"
+    log "Log de Inicialização ativado!"
     while true; do
         cmd="$(head -n 1 $_input 2> /dev/null && sed -i '1d' $_input)"
         test -z "$cmd" && _pollsleep && continue
@@ -43,7 +43,7 @@ _polling() {
         esac
         sleep 1
     done
-    log "LogBot Encerrado !"
+    log "Log de Inicialização Finalizado!"
     _resetConnection
     exit 0
 }

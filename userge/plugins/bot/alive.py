@@ -160,7 +160,7 @@ async def send_alive_message(message: Message) -> None:
 
 
 if userge.has_bot:
-    
+
     @userge.bot.on_callback_query(filters.regex(pattern=r"^info_apple$"))
     async def _alive_status(_, c_q: CallbackQuery):
         c_q.from_user.id
@@ -170,7 +170,6 @@ if userge.has_bot:
         )
         return _alive_status
 
-    
     @userge.bot.on_callback_query(filters.regex(pattern=r"^settings_btn$"))
     async def alive_cb(_, c_q: CallbackQuery):
         allow = bool(
@@ -212,6 +211,7 @@ if userge.has_bot:
 
 def _parse_arg(arg: bool) -> str:
     return " ✅ " if arg else " ❌ "
+
 
 class Bot_Alive:
     @staticmethod

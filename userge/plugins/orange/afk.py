@@ -329,7 +329,8 @@ async def handle_afk_outgoing(message: Message) -> None:
                 c_q.from_user.id in Config.OWNER_ID
                 or c_q.from_user.id in Config.SUDO_USERS
             )
-        ):
+        )
+        if allow:
             try:
                 await c_q.edit_message_text(
                     reply_markup=_afk_.afk_buttons(),

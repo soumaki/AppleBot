@@ -122,6 +122,7 @@ class Config:
     BIO_APPLE = "t.me/orapple"
     TAG_LOGGING = False
     FBAN_LOG_CHANNEL = False
+    CHECK_MEDIA = os.environ.get("CHECK_MEDIA")
 
 
 def get_version() -> str:

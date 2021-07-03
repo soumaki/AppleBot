@@ -292,6 +292,6 @@ class Bot_Alive:
 
 
 TEAM_APPLEBOT = (
-    "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐀𝐩𝐩𝐥𝐞/𝐎𝐫𝐚𝐧𝐠𝐞\n𝙳𝚎𝚟 𝚖𝚊𝚒𝚗\nn🔗 @applled\n\n𝐒𝐚𝐦𝐮𝐜𝐚/𝐒𝐚𝐦𝐮𝐞𝐥\n𝙲𝚘𝚗𝚝𝚛𝚒𝚋𝚞𝚝𝚘𝚛\n🔗 @NoteZV\n ",
+    "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐀𝐩𝐩𝐥𝐞/𝐎𝐫𝐚𝐧𝐠𝐞\n𝙳𝚎𝚟 𝚖𝚊𝚒𝚗\n🔗 @applled\n\n𝐒𝐚𝐦𝐮𝐜𝐚/𝐒𝐚𝐦𝐮𝐞𝐥\n𝙲𝚘𝚗𝚝𝚛𝚒𝚋𝚞𝚝𝚘𝚛\n🔗 @NoteZV\n ",
     # Adicionar mais informações randômicas em breve
 )

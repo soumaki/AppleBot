@@ -24,9 +24,3 @@ async def _send_inline_afk(message: Message):
         chat_id=message.chat.id, query_id=_x.query_id, result_id=_x.results[0].id
     )
     
-async def _send_inline_fy(message: Message):
-    _bot = await userge.bot.get_me()
-    fy = await userge.get_inline_bot_results("SpotifyNowBot", f"{deEmojify(now)}"
-    await userge.send_inline_bot_result(
-        chat_id=message.chat.id, query_id=_fy.query_id, result_id=_fy.results[0].id
-    )

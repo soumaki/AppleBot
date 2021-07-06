@@ -23,4 +23,3 @@ async def _send_inline_afk(message: Message):
     await userge.send_inline_bot_result(
         chat_id=message.chat.id, query_id=_x.query_id, result_id=_x.results[0].id
     )
-    

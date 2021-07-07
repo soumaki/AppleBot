@@ -637,11 +637,12 @@ if userge.has_bot:
                     if Config.ALIVE_MEDIA.lower().strip() == "false":
                         results.append(
                             InlineQueryResultArticle(
-                                title="Orange",
+                                title="@applled",
                                 input_message_content=InputTextMessageContent(
                                     alive_info, disable_web_page_preview=True
                                 ),
-                                description="ALIVE",
+                                description="Envie o Check",
+                                photo_url="https://telegra.ph/file/e9129c8a5e3bcd7e6d2c5.png",
                                 reply_markup=buttons,
                             )
                         )

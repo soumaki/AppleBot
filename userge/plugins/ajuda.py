@@ -41,7 +41,6 @@ from .misc.redditdl import reddit_thumb_link
 
 # from .custom.afk import _afk_
 from .orange.afk import _afk_
-from .custom.snow import gusta
 from .utils.notes import get_inote
 
 CHANNEL = userge.getCLogger(__name__)
@@ -79,6 +78,7 @@ REPO_X = InlineQueryResultArticle(
         ]
     ),
 )
+
 
 async def _init() -> None:
     data = await SAVED_SETTINGS.find_one({"_id": "CURRENT_CLIENT"})

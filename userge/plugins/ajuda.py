@@ -500,13 +500,14 @@ if userge.has_bot:
                 fyfy = [
                     [
                         InlineKeyboardButton(
-                            text="⚡️ 𝐒𝐏𝐎𝐓𝐈𝐅𝐘 𝐏𝐑𝐄𝐌𝐈𝐔𝐌", callback_data="info_btn"
+                            text="⚡️ 𝐏𝐑𝐄𝐌𝐈𝐔𝐌", callback_data="status_apple"
                         ),
                     ],
                 ]
                 results.append(
                     InlineQueryResultPhoto(
                         chat=chat_id,
+                        animation_url="https://telegra.ph/file/c8689ace95f6a885066cd.gif",
                         caption=" ",
                         reply_markup=InlineKeyboardMarkup(fyfy),
                     )
@@ -642,7 +643,6 @@ if userge.has_bot:
                                     alive_info, disable_web_page_preview=True
                                 ),
                                 description="Envie o Check",
-                                thumb_url="https://telegra.ph/file/e9129c8a5e3bcd7e6d2c5.png",
                                 reply_markup=buttons,
                             )
                         )
@@ -692,7 +692,6 @@ if userge.has_bot:
                                         file_id=c_file_id,
                                         caption=alive_info,
                                         description="Bot Online",
-                                        thumb_url="https://telegra.ph/file/e9129c8a5e3bcd7e6d2c5.png",
                                         reply_markup=buttons,
                                     )
                                 )

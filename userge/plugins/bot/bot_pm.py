@@ -243,8 +243,7 @@ Meu Mestre: {owner_.flname}</b>
                     InlineKeyboardButton(
                         "❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"
                     ),
-                ]
-                    [
+                ][
                     InlineKeyboardButton(
                         "❎ DESATIVAR MODO", callback_data="toggle_bot-antiflood_off"
                     ),

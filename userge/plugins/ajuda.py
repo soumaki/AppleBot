@@ -642,7 +642,7 @@ if userge.has_bot:
                                     alive_info, disable_web_page_preview=True
                                 ),
                                 description="Envie o Check",
-                                photo_url="https://telegra.ph/file/e9129c8a5e3bcd7e6d2c5.png",
+                                thumb_url="https://telegra.ph/file/e9129c8a5e3bcd7e6d2c5.png",
                                 reply_markup=buttons,
                             )
                         )
@@ -688,10 +688,11 @@ if userge.has_bot:
                             else:
                                 results.append(
                                     InlineQueryResultCachedDocument(
-                                        title="Orange",
+                                        title="Check @applled",
                                         file_id=c_file_id,
                                         caption=alive_info,
-                                        description="ALIVE",
+                                        description="Bot Online",
+                                        thumb_url="https://telegra.ph/file/e9129c8a5e3bcd7e6d2c5.png",
                                         reply_markup=buttons,
                                     )
                                 )
@@ -898,7 +899,7 @@ if userge.has_bot:
                         switch_pm_parameter="inline",
                     )
                     return
-
+# COMEÇO
             if str_y[0] == "spoiler":
                 if not os.path.exists(f"{Config.CACHE_PATH}/spoiler_db.json"):
                     results.append(
@@ -957,7 +958,7 @@ if userge.has_bot:
                                         reply_markup=InlineKeyboardMarkup(buttons),
                                     )
                                 )
-
+# FIM
             if str_x[0].lower() == "op" and len(str_x) > 1:
                 txt = i_q[3:]
                 opinion = os.path.join(Config.CACHE_PATH, "emoji_data.txt")

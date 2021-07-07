@@ -41,6 +41,7 @@ from .misc.redditdl import reddit_thumb_link
 
 # from .custom.afk import _afk_
 from .orange.afk import _afk_
+from .custom.snow import gusta
 from .utils.notes import get_inote
 
 CHANNEL = userge.getCLogger(__name__)
@@ -78,17 +79,6 @@ REPO_X = InlineQueryResultArticle(
         ]
     ),
 )
-
-
-# def fui_bot() -> InlineKeyboardMarkup:  # teste
-#    ausente = [
-#        [
-#            InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
-#            InlineKeyboardButton(text="🍎 INSPIRED", url=Config.MEUTG_REPO),
-#        ],
-#    ]
-#    return InlineKeyboardMarkup(ausente)  # teste
-
 
 async def _init() -> None:
     data = await SAVED_SETTINGS.find_one({"_id": "CURRENT_CLIENT"})
@@ -506,44 +496,21 @@ if userge.has_bot:
             and Config.SUDO_ENABLED
         ):
 
-            if string == "orange":
-                owner = [
+            if string == "snow":
+                fyfy = [
                     [
                         InlineKeyboardButton(
-                            text="⚡️ Py 3.9.2 • Pyro 1.2.8", callback_data="info_btn"
+                            text="⚡️ 𝐒𝐏𝐎𝐓𝐈𝐅𝐘 𝐏𝐑𝐄𝐌𝐈𝐔𝐌", callback_data="info_btn"
                         ),
-                    ],
-                    [
-                        InlineKeyboardButton(
-                            text="❎ UPDATE", callback_data="settings_btn"
-                        ),
-                        InlineKeyboardButton(text="🍏 INSPIRED", url=Config.MEUTG_REPO),
                     ],
                 ]
                 results.append(
                     InlineQueryResultPhoto(
-                        photo_url="https://telegra.ph/file/a47baf0bfed24400c0089.png",
-                        caption="Humm... ",
-                        reply_markup=InlineKeyboardMarkup(owner),
+                        chat=chat_id,
+                        caption=" ",
+                        reply_markup=InlineKeyboardMarkup(fyfy),
                     )
                 )
-
-            if string == "fui_botao":  # teste
-                ausentee = [
-                    [
-                        InlineKeyboardButton(
-                            text="teste", callback_data="age_verification_true"
-                        ),
-                        InlineKeyboardButton(
-                            text="teste 2", callback_data="age_verification_false"
-                        ),
-                    ]
-                ]
-                results.append(
-                    InlineQueryResultPhoto(
-                        reply_markup=InlineKeyboardMarkup(ausentee),
-                    )
-                )  # teste
 
             if string == "age_verification_alert":
                 buttons = [

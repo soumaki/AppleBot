@@ -899,7 +899,7 @@ if userge.has_bot:
                         switch_pm_parameter="inline",
                     )
                     return
-# COMEÇO
+            # COMEÇO
             if str_y[0] == "spoiler":
                 if not os.path.exists(f"{Config.CACHE_PATH}/spoiler_db.json"):
                     results.append(
@@ -958,7 +958,7 @@ if userge.has_bot:
                                         reply_markup=InlineKeyboardMarkup(buttons),
                                     )
                                 )
-# FIM
+            # FIM
             if str_x[0].lower() == "op" and len(str_x) > 1:
                 txt = i_q[3:]
                 opinion = os.path.join(Config.CACHE_PATH, "emoji_data.txt")

@@ -24,9 +24,10 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "Olá, {fname}! Esta é uma mensagem automática\n"
-    "Aguarde até que meu mestre aprove suas mensagens "
-    "Não fique spammando, espere "
+    "🏷 | AUTO REPLY\n"
+    "Olá, {fname}!\n"
+    "Aguarde até que meu mestre aprove suas mensagens.\n"
+    "Não fique spammando, você pode ser bloqueado automaticamente pelo bot."
 )
 blocked_message = bk_blocked_message = "**Você foi bloqueado automaticamente**"
 
@@ -49,7 +50,7 @@ async def _init() -> None:
 
 
 @userge.on_cmd(
-    "permitir",
+    "allow",
     about={
         "header": "Aprove as mensagens de alguém que conversa por PM",
         "description": "Isto irá permitir receber as menssagens, "
@@ -71,7 +72,7 @@ async def allow(message: Message):
             {"_id": userid}, {"$set": {"status": "allowed"}}, upsert=True
         )
         if a.matched_count:
-            await message.edit("`Já foi configurado para receber PM`", del_in=3)
+            await message.edit("`Configurado para receber PM`", del_in=3)
         else:
             await (await userge.get_users(userid)).unblock()
             await message.edit("`Aprovado para PMs`", del_in=3)
@@ -88,7 +89,7 @@ async def allow(message: Message):
 
 
 @userge.on_cmd(
-    "bloquear",
+    "nopm",
     about={
         "header": "Ativa o bloqueio de mensagens",
         "descrição": "Configuração já intuitiva, "
@@ -161,7 +162,7 @@ async def pmguard(message: Message):
 
 
 @userge.on_cmd(
-    "setpmmsg",
+    "salvarpm",
     about={
         "header": "Sets the reply message",
         "description": "You can change the default message which userge gives on un-invited PMs",
@@ -197,7 +198,7 @@ async def set_custom_nopm_message(message: Message):
 
 
 @userge.on_cmd(
-    "setbpmmsg",
+    "salvarpmb",
     about={
         "header": "Sets the block message",
         "description": "You can change the default blockPm message "
@@ -236,7 +237,7 @@ async def set_custom_blockpm_message(message: Message):
 
 
 @userge.on_cmd(
-    "vpmmsg",
+    "vpm",
     about={"header": "Displays the reply message for uninvited PMs"},
     allow_channels=False,
 )
@@ -246,7 +247,7 @@ async def view_current_noPM_msg(message: Message):
 
 
 @userge.on_cmd(
-    "vbpmmsg",
+    "vpmb",
     about={"header": "Displays the reply message for blocked PMs"},
     allow_channels=False,
 )
@@ -301,7 +302,7 @@ async def uninvitedPmHandler(message: Message):
             )
         ).message_id
         await asyncio.sleep(1)
-        await CHANNEL.log(f"#NEW_MESSAGE\n{user_dict['mention']} has messaged you")
+        await CHANNEL.log(f"NOVA MENSAGEM #NPM\n{user_dict['mention']} enviou uma mensagem para você.")
 
 
 @userge.on_filters(
@@ -318,4 +319,4 @@ async def outgoing_auto_approve(message: Message):
         {"_id": userID}, {"$set": {"status": "allowed"}}, upsert=True
     )
     user_dict = await userge.get_user_dict(userID)
-    await CHANNEL.log(f"**#AUTO_APPROVED**\n{user_dict['mention']}")
+    await CHANNEL.log(f"**APROVAÇÃO AUTOMÁTICA #AUTOPM**\n{user_dict['mention']}")

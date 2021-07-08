@@ -36,12 +36,12 @@ from .bot.utube_inline import (
     result_formatter,
     ytsearch_data,
 )
+from .custom.check import _check_
 from .fun.stylish import Styled, font_gen
 from .misc.redditdl import reddit_thumb_link
 
 # from .custom.afk import _afk_
 from .orange.afk import _afk_
-from .custom.check import _check_
 from .utils.notes import get_inote
 
 CHANNEL = userge.getCLogger(__name__)

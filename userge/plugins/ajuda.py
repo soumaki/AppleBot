@@ -38,7 +38,6 @@ from .bot.utube_inline import (
 )
 from .fun.stylish import Styled, font_gen
 from .misc.redditdl import reddit_thumb_link
-
 from .orange.afk import _afk_
 from .utils.notes import get_inote
 

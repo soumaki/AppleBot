@@ -302,7 +302,9 @@ async def uninvitedPmHandler(message: Message):
             )
         ).message_id
         await asyncio.sleep(1)
-        await CHANNEL.log(f"NOVA MENSAGEM #NPM\n{user_dict['mention']} enviou uma mensagem para você.")
+        await CHANNEL.log(
+            f"NOVA MENSAGEM #NPM\n{user_dict['mention']} enviou uma mensagem para você."
+        )
 
 
 @userge.on_filters(

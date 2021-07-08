@@ -43,6 +43,7 @@ from .misc.redditdl import reddit_thumb_link
 # from .custom.afk import _afk_
 from .orange.afk import _afk_
 from .utils.notes import get_inote
+from .custom.check import _check_
 
 CHANNEL = userge.getCLogger(__name__)
 

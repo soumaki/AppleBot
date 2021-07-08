@@ -36,7 +36,6 @@ from .bot.utube_inline import (
     result_formatter,
     ytsearch_data,
 )
-from .custom.check import _check_
 from .fun.stylish import Styled, font_gen
 from .misc.redditdl import reddit_thumb_link
 

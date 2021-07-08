@@ -238,9 +238,18 @@ Meu Mestre: {owner_.flname}</b>
     async def send_flood_alert(user_id: Union[int, User]) -> None:
         user_ = await userge.bot.get_user_dict(user_id, attr_dict=True)
         buttons = InlineKeyboardMarkup(
-                [[InlineKeyboardButton("❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"],
-                [[InlineKeyboardButton("❎ OFF", callback_data="toggle_bot-antiflood_off"),]
-        )                 
+            [
+                [
+                    InlineKeyboardButton(
+                        "❌ BANIR", callback_data=f"bot_pm_ban_{user_.id}"
+                    ),
+                    InlineKeyboardButton(
+                        "❎ OFF",
+                        callback_data="toggle_bot-antiflood_off",
+                    ),
+                ]
+            ]
+        )             
         found = False
         if FloodConfig.ALERT and (user_.id in FloodConfig.ALERT.keys()):
             found = True

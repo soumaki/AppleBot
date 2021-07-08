@@ -41,6 +41,7 @@ from .misc.redditdl import reddit_thumb_link
 
 # from .custom.afk import _afk_
 from .orange.afk import _afk_
+from .custom.check import _check_
 from .utils.notes import get_inote
 
 CHANNEL = userge.getCLogger(__name__)
@@ -365,7 +366,7 @@ if userge.has_bot:
             cur_clnt = "🍏" if Config.USE_USER_FOR_CLIENT_CHECKS else "👤 AppleUser"
             tmp_btns.append(
                 InlineKeyboardButton(
-                    f"🏷 Usando como: {cur_clnt}",
+                    f"🏷 ativo: {cur_clnt}",
                     callback_data="chgclnt",
                 )
             )
@@ -496,7 +497,7 @@ if userge.has_bot:
             and Config.SUDO_ENABLED
         ):
 
-            if string == "snow":
+            if string == "_check_":
                 fyfy = [
                     [
                         InlineKeyboardButton(
@@ -506,10 +507,8 @@ if userge.has_bot:
                 ]
                 results.append(
                     InlineQueryResultPhoto(
-                        chat=chat_id,
-                        animation_url="https://telegra.ph/file/c8689ace95f6a885066cd.gif",
-                        caption=" ",
-                        reply_markup=InlineKeyboardMarkup(fyfy),
+                        caption=_check_.apple(),
+                        reply_markup=_check_.check_buttons(),
                     )
                 )
 

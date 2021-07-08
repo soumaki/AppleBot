@@ -259,14 +259,17 @@ Meu Mestre: {owner_.flname}</b>
             flood_count = FloodConfig.ALERT[user_.id]["count"] = 1
 
         flood_msg = (
-            r"⚠️ <b>\\#AlertaFlooding//</b>\n"
-            f"🤦 Lá vem um arrombado.\n"
+            r"⚠️ <b>\\ #AlertaFlooding</b>\n🤦 𝙻á 𝚟𝚎𝚖 𝚞𝚖 𝚊𝚛𝚛𝚘𝚖𝚋𝚊𝚍𝚘.\n"
             "\n\n"
+            f"  »  [Flood **({flood_count})**]"
             f"  ▫️  ID: <code>{user_.id}</code>\n"
             f"  ▫️  Nome: {user_.flname}\n"
             f"  ▫️  Usuário: {user_.mention}"
-            f"\n\n**🤬 Este desgraçado está spammando seu bot!** »  [Flood **({flood_count})**]\n"
+            f"\n\n**🤬 Este desgraçado está spammando seu bot!**\n"
+            "\n\n"
             f"❗️ Você pode escolher uma ação abaixo\nou simplesmente ignore este merda por um tempo."
+            "\n\n"
+            f"❎ 𝙾𝙵𝙵 𝚍𝚎𝚜𝚊𝚝𝚒𝚟𝚊 𝚘 𝚖𝚘𝚍𝚘"
         )
 
         if found:
@@ -306,7 +309,7 @@ Meu Mestre: {owner_.flname}</b>
             try:
                 await userge.bot.send_message(
                     Config.OWNER_ID[0],
-                    f"⚠️  **[Alerta de Flood!]({fa_msg.link})**",
+                    f"⚠️ Hey, {from_user.flname}! Você tem um **[alerta de Flood!]({fa_msg.link})**",
                 )
             except UserIsBlocked:
                 await CHANNEL.log("**Desbloqueie o seu Bot!**")

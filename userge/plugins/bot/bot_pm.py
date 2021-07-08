@@ -249,7 +249,7 @@ Meu Mestre: {owner_.flname}</b>
                     ),
                 ]
             ]
-        )             
+        )
         found = False
         if FloodConfig.ALERT and (user_.id in FloodConfig.ALERT.keys()):
             found = True

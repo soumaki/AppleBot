@@ -24,7 +24,7 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "🏷 | AUTO REPLY\n"
+    "🏷 | **AUTO REPLY**\n"
     "Olá, {fname}!\n"
     "Aguarde até que meu mestre aprove suas mensagens.\n"
     "Não fique spammando, você pode ser bloqueado automaticamente pelo bot."

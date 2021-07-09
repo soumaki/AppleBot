@@ -8,7 +8,7 @@ async def send_inline_afk(message: Message):
         chat_id=message.chat.id,
         query_id=x.query_id,
         result_id=x.results[0].id,
-        hide_via=True
+        hide_via=True,
     )
 
 
@@ -19,7 +19,7 @@ async def send_inline_afk_(message: Message):
         chat_id=message.chat.id,
         query_id=x_.query_id,
         result_id=x_.results[0].id,
-        hide_via=True
+        hide_via=True,
     )
 
 
@@ -30,5 +30,5 @@ async def _send_inline_afk(message: Message):
         chat_id=message.chat.id,
         query_id=_x.query_id,
         result_id=_x.results[0].id,
-        hide_via=True
+        hide_via=True,
     )

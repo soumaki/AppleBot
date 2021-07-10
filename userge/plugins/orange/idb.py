@@ -2,11 +2,14 @@
 import os
 import re
 
+import asyncio
 import bs4
 import requests
 import wget
+from PIL import Image
 
 from userge import Config, Message, userge
+from userge.utils import get_file_id, rand_array
 
 THUMB_PATH = Config.DOWN_PATH + "imdb_thumb.jpg"
 
@@ -25,7 +28,12 @@ async def imdb(message: Message):
     try:
         movie_name = message.input_str
         await message.edit(
-            f"__Pesquisando no IMDB por__ :[{movie_name}](https://telegra.ph/file/96378395294f719453c71.gif)"
+    photo = "https://telegra.ph/file/96378395294f719453c71.gif"
+    texto = f"__Pesquisando no IMDB por__ :[{movie_name}]"
+    await message.client.send_animation(
+                         message.chat.id, 
+                         animation=photo, 
+                         caption=texto,
         )
         final_name = movie_name.replace(" ", "+")
         page = requests.get(

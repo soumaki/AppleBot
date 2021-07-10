@@ -2,14 +2,11 @@
 import os
 import re
 
-import asyncio
 import bs4
 import requests
 import wget
-from PIL import Image
 
 from userge import Config, Message, userge
-from userge.utils import get_file_id, rand_array
 
 THUMB_PATH = Config.DOWN_PATH + "imdb_thumb.jpg"
 

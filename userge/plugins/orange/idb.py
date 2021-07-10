@@ -29,7 +29,7 @@ async def imdb(message: Message):
         movie_name = message.input_str
         await message.edit(
     photo = "https://telegra.ph/file/96378395294f719453c71.gif"
-    texto = f"__Pesquisando no IMDB por__ : {movie_name}"
+    texto = "__Pesquisando no IMDB por__ : {movie_name}"
     await message.client.send_animation(
                          message.chat.id, 
                          animation=photo, 

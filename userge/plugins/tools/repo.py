@@ -9,8 +9,13 @@
 from userge import Config, Message, userge
 
 
-@userge.on_cmd("repo", about={"header": "get repo link and details"})
+@userge.on_cmd("repo", about={"header": "Link do Repo"})
 async def see_repo(message: Message):
-    """see repo"""
-    output = f"• **repo** : [USERGE-X]({Config.UPSTREAM_REPO})"
-    await message.edit(output)
+    """ Repo do AppleBot """    
+    photo = "https://telegra.ph/file/a1876d2c20937b9e5e78e.png"
+    texto = f"• **Tchamram!**: [AppleBot]({Config.UPSTREAM_REPO})"
+    await message.client.send_animation(
+                         message.chat.id, 
+                         animation=photo, 
+                         caption=texto,
+    )

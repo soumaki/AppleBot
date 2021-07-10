@@ -28,7 +28,6 @@ async def imdb(message: Message):
     try:
         movie_name = message.input_str
         await message.edit(f"__Pesquisando no IMDB por__: {movie_name}")
-        )
         final_name = movie_name.replace(" ", "+")
         page = requests.get(
             f"https://www.imdb.com/find?ref_=nv_sr_fn&q={final_name}&s=all"

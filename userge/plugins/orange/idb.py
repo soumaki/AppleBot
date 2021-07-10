@@ -34,6 +34,7 @@ async def imdb(message: Message):
                          message.chat.id, 
                          animation=photo, 
                          caption=texto,
+            ),
         )
         final_name = movie_name.replace(" ", "+")
         page = requests.get(

@@ -644,7 +644,7 @@ if userge.has_bot:
             if string == "inline_info_afk":
                 buttons = [
                     [
-                        InlineKeyboardButton(text="EXTRAS", callback_data="afk_extra"),
+                        InlineKeyboardButton(text="+", callback_data="afk_extra"),
                     ]
                 ]
                 results.append(

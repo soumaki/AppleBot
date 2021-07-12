@@ -528,7 +528,7 @@ if userge.has_bot:
                         reply_markup=InlineKeyboardMarkup(buttons),
                     )
                 )
-                
+
                 # COMEÇO
             if string == "checkin_info_":
                 buttons = [

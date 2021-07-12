@@ -528,6 +528,27 @@ if userge.has_bot:
                         reply_markup=InlineKeyboardMarkup(buttons),
                     )
                 )
+                
+                # COMEÇO
+            if string == "checkin_info_":
+                buttons = [
+                    [
+                        InlineKeyboardButton(
+                            text="RUNTIME", callback_data="runtime_info"
+                        ),
+                        InlineKeyboardButton(
+                            text="No I'm Not", callback_data="age_verification_false"
+                        ),
+                    ]
+                ]
+                results.append(
+                    InlineQueryResultPhoto(
+                        photo_url="https://telegra.ph/file/d50925c35883b16be6cd6.png",
+                        caption="**SHIT**",
+                        reply_markup=InlineKeyboardMarkup(buttons),
+                    )
+                )
+                # FIM
 
             if str_y[0] == "reddit":
                 reddit_api = "https://meme-api.herokuapp.com/gimme/"

@@ -537,14 +537,14 @@ if userge.has_bot:
                             text="RUNTIME", callback_data="runtime_info"
                         ),
                         InlineKeyboardButton(
-                            text="No I'm Not", callback_data="age_verification_false"
+                            text="EXTRAS", callback_data="runtime_extra"
                         ),
                     ]
                 ]
                 results.append(
                     InlineQueryResultPhoto(
                         photo_url="https://telegra.ph/file/d50925c35883b16be6cd6.png",
-                        caption="**SHIT**",
+                        caption="**AppleBot está Online, Mestre.**",
                         reply_markup=InlineKeyboardMarkup(buttons),
                     )
                 )

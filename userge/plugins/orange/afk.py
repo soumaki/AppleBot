@@ -223,7 +223,7 @@ class _afk_:
         buttons = [
             [
                 InlineKeyboardButton(text="⚡️ STATUS", callback_data="status_afk"),
-                InlineKeyboardButton(text="Более", callback_data="status_apple"),
+                InlineKeyboardButton(text="+", callback_data="afk_extra"),
             ],
         ]
         return InlineKeyboardMarkup(buttons)

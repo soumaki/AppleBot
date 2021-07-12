@@ -640,7 +640,23 @@ if userge.has_bot:
                         switch_pm_parameter="inline",
                     )
                     return
-
+                # COMEÇO
+            if string == "inline_info_afk":
+                buttons = [
+                    [
+                        InlineKeyboardButton(
+                            text="EXTRAS", callback_data="afk_extra"
+                        ),
+                    ]
+                ]
+                results.append(
+                    InlineQueryResultPhoto(
+                        photo_url="https://telegra.ph/file/74e96eb1e818131c4440b.png",
+                        caption="**Clique no botão para carregar**",
+                        reply_markup=InlineKeyboardMarkup(buttons),
+                    )
+                )
+                # FIM
             if string == "alive":
                 alive_info = Bot_Alive.alive_info()
                 buttons = Bot_Alive.alive_buttons()

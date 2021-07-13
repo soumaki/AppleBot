@@ -539,7 +539,7 @@ if userge.has_bot:
                         InlineKeyboardButton(
                             text="⚡️ STATUS", callback_data="status_afk"
                         ),
-                        InlineKeyboardButton(text="+", callback_data="pm_afk"),
+                        InlineKeyboardButton(text="+", callback_data="afk_pm_"),
                     ]
                 ]
                 results.append(

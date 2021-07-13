@@ -1,6 +1,6 @@
 import os
-import re
 import random
+import re
 from math import ceil
 from typing import Any, Callable, Dict, List, Union
 
@@ -44,7 +44,7 @@ from .utils.notes import get_inote
 
 CHANNEL = userge.getCLogger(__name__)
 CONTATO = (
-  "🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n<i>Olá,\n Você pode entrar em contato comigo diretamentepelo meu bot. Para evitar spam, responderei exclusivamente por ele. Em alguns casos, não terei problemas em enviar mensagens no particular.</i>\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
+    "🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n<i>Olá,\n Você pode entrar em contato comigo diretamentepelo meu bot. Para evitar spam, responderei exclusivamente por ele. Em alguns casos, não terei problemas em enviar mensagens no particular.</i>\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
 )
 _CATEGORY = {
     "Controle": "▫️",
@@ -539,15 +539,13 @@ if userge.has_bot:
                         InlineKeyboardButton(
                             text="⚡️ STATUS", callback_data="status_afk"
                         ),
-                        InlineKeyboardButton(
-                            text="+", callback_data="pm_afk"
-                        ),
+                        InlineKeyboardButton(text="+", callback_data="pm_afk"),
                     ]
                 ]
                 results.append(
                     InlineQueryResultPhoto(
                         photo_url="https://telegra.ph/file/74e96eb1e818131c4440b.png",
-                        caption= f"{random.choice(CONTATO)}",
+                        caption=f"{random.choice(CONTATO)}",
                         reply_markup=InlineKeyboardMarkup(buttons),
                     )
                 )

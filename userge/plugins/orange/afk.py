@@ -293,8 +293,9 @@ async def logs(message: Message) -> None:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-        await c_q.answer(f"{random.choice(CONTATO)}")
-        buttons = [
+        texto = f"{random.choice(CONTATO)}")
+        photo = f"""{random.choice(ANIMTN)}"""
+        botts = [
             [
                 InlineKeyboardButton(
                     text="❎ Mensagem Privada",
@@ -303,14 +304,12 @@ async def logs(message: Message) -> None:
             ]
         ]
         try:
-            await userge.send_inline_bot_result(
-                chat_id=message.chat.id,
-                query_id=x.query_id,
-                result_id=x.results[0].id,
-                reply_markup=InlineKeyboardMarkup(buttons),
-                hide_via=True,
-            )
-
+            await message.client.send_animation(
+                                message.chat.id, 
+                                animation=photo, 
+                                caption=texto,
+                                reply_markup=InlineKeyboardMarkup(botts),
+    )
         except MessageNotModified:
             return
 
@@ -325,7 +324,9 @@ async def logs(message: Message) -> None:
         )
         return _status_afk
 
-
+ANIMTN = (
+    "https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",
+)
 CONTATO = (
     "🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n<i>Olá,\nVocê pode entrar em contato comigo diretamentepelo meu bot. Para evitar spam, responderei exclusivamente por ele. Em alguns casos, não terei problemas em enviar mensagens no particular.</i>\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
 )

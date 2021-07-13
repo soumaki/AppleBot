@@ -533,7 +533,7 @@ if userge.has_bot:
                 )
 
                 # COMEÇO
-            if string == "afk_pm_":
+            if string == "afk_mensagem":
                 buttons = [
                     [
                         InlineKeyboardButton(

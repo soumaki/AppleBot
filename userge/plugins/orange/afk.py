@@ -305,7 +305,7 @@ async def logs(message: Message) -> None:
             ]
         ]
         try:
-            await serge.bot.send_animation(
+            await userge.send_inline_bot_result(
                 message.chat.id,
                 animation=photo,
                 caption=texto,

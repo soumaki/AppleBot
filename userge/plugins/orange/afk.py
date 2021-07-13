@@ -101,7 +101,6 @@ async def ausente(message: Message) -> None:
     ),
     allow_via_bot=False,
 )
-    
 async def respostas(message: Message) -> None:
     """Configurações das mensagens automáticas"""
     if not message.from_user:
@@ -299,23 +298,24 @@ async def logs(message: Message) -> None:
             [
                 InlineKeyboardButton(
                     text="❎ Mensagem Privada",
-                    url='https://t.me/youcantbot',
+                    url="https://t.me/youcantbot",
                 )
             ]
         ]
         try:
             await userge.send_inline_bot_result(
-                        chat_id=message.chat.id,
-                        query_id=x.query_id,
-                        result_id=x.results[0].id,
-                        reply_markup=InlineKeyboardMarkup(buttons),
-                        hide_via=True,
-    )
+                chat_id=message.chat.id,
+                query_id=x.query_id,
+                result_id=x.results[0].id,
+                reply_markup=InlineKeyboardMarkup(buttons),
+                hide_via=True,
+            )
 
         except MessageNotModified:
             return
-    # Query para resultado do Primeiro Clique + Gerar Mensagem # FIM 
-    
+
+    # Query para resultado do Primeiro Clique + Gerar Mensagem # FIM
+
     @userge.bot.on_callback_query(filters.regex(pattern=r"^status_apple$"))
     async def _status_afk(_, c_q: CallbackQuery):
         c_q.from_user.id
@@ -324,6 +324,7 @@ async def logs(message: Message) -> None:
             show_alert=True,
         )
         return _status_afk
+
 
 CONTATO = (
     "🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n<i>Olá,\nVocê pode entrar em contato comigo diretamentepelo meu bot. Para evitar spam, responderei exclusivamente por ele. Em alguns casos, não terei problemas em enviar mensagens no particular.</i>\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",

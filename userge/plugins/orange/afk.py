@@ -310,7 +310,6 @@ async def logs(message: Message) -> None:
                 animation=photo,
                 caption=texto,
                 reply_markup=InlineKeyboardMarkup(buttons),
-                del_in=5,
             )
         except MessageNotModified:
             return

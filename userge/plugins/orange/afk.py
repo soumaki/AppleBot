@@ -305,7 +305,7 @@ async def logs(message: Message) -> None:
             ]
         ]
         try:
-            await userge.send_inline_bot_result(
+            await userge.bot.send_animation(
                 message.chat.id,
                 animation=photo,
                 caption=texto,

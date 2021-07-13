@@ -101,16 +101,6 @@ async def ausente(message: Message) -> None:
     ),
     allow_via_bot=False,
 )
-
-async def afk_pm(msg):
-    bot = await userge.bot.get_me()
-    x = await userge.get_inline_bot_results(bot.username, "afk_mensagem")
-    await msg.delete()
-    await userge.send_inline_bot_result(
-        chat_id=msg.chat.id, query_id=x.query_id, result_id=x.results[0].id
-    )
-    return True
-
     
 async def respostas(message: Message) -> None:
     """Configurações das mensagens automáticas"""

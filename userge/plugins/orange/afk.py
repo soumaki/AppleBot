@@ -293,7 +293,7 @@ async def logs(message: Message) -> None:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-        texto = f"{random.choice(CONTATO)}")
+        texto = f"{random.choice(CONTATO)}"
         photo = f"""{random.choice(ANIMTN)}"""
         botts = [
             [

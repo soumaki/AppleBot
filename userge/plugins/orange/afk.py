@@ -7,7 +7,8 @@ from random import randint
 from re import compile as comp_regex
 
 from pyrogram import filters
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.errors import MessageNotModified
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 
 from userge import Config, Message, filters, get_collection, userge
 from userge.plugins.utils.afk_inline import *
@@ -295,7 +296,7 @@ async def logs(message: Message) -> None:
         c_q.from_user.id
         texto = f"{random.choice(CONTATO)}"
         photo = f"""{random.choice(ANIMTN)}"""
-        botts = [
+        buttons = [
             [
                 InlineKeyboardButton(
                     text="❎ Mensagem Privada",
@@ -304,11 +305,12 @@ async def logs(message: Message) -> None:
             ]
         ]
         try:
-            await message.client.send_animation(
+            await serge.bot.send_animation(
                 message.chat.id,
                 animation=photo,
                 caption=texto,
-                reply_markup=InlineKeyboardMarkup(botts),
+                reply_markup=InlineKeyboardMarkup(buttons),
+                del_in=5,
             )
         except MessageNotModified:
             return

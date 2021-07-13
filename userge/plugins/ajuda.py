@@ -1,5 +1,6 @@
 import os
 import re
+import random
 from math import ceil
 from typing import Any, Callable, Dict, List, Union
 
@@ -42,7 +43,9 @@ from .orange.afk import _afk_
 from .utils.notes import get_inote
 
 CHANNEL = userge.getCLogger(__name__)
-
+CONTATO = (
+  "🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n<i>Olá,\n Você pode entrar em contato comigo diretamentepelo meu bot. Para evitar spam, responderei exclusivamente por ele. Em alguns casos, não terei problemas em enviar mensagens no particular.</i>\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
+)
 _CATEGORY = {
     "Controle": "▫️",
     "Diversão": "▫️",
@@ -530,21 +533,21 @@ if userge.has_bot:
                 )
 
                 # COMEÇO
-            if string == "checkin_info_":
+            if string == "afk_pm_":
                 buttons = [
                     [
                         InlineKeyboardButton(
-                            text="RUNTIME", callback_data="runtime_info"
+                            text="⚡️ STATUS", callback_data="status_afk"
                         ),
                         InlineKeyboardButton(
-                            text="EXTRAS", callback_data="runtime_extra"
+                            text="+", callback_data="pm_afk"
                         ),
                     ]
                 ]
                 results.append(
                     InlineQueryResultPhoto(
-                        photo_url="https://telegra.ph/file/d50925c35883b16be6cd6.png",
-                        caption="**AppleBot está Online, Mestre.**",
+                        photo_url="https://telegra.ph/file/74e96eb1e818131c4440b.png",
+                        caption= f"{random.choice(CONTATO)}",
                         reply_markup=InlineKeyboardMarkup(buttons),
                     )
                 )

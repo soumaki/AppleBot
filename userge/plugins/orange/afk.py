@@ -143,8 +143,13 @@ async def respostas(message: Message) -> None:
     if chat.type == "private":
         coro_list.append(
             CHANNEL.log(
-                f"Em seu #PRIVADO\n{user_dict['mention']}\n Te enviou a mensagem:\n\n"
-                f"💬 __{message.text}__"
+                f"Em seu #PRIVADO\n"
+                f"**Nova Mensagem Particular**\n"
+                f"🏷 | {user_dict['mention']}\n"
+                f"𝚃𝚎 𝚎𝚗𝚟𝚒𝚘𝚞 𝚊 𝚖𝚎𝚗𝚜𝚊𝚐𝚎𝚖:\n"
+                f"➖➖➖➖➖➖➖\n"
+                f"💬 **LEIA ABAIXO:**\n"
+                f"\n ╰• __{message.text}__"
             )
         )
     else:
@@ -261,13 +266,13 @@ async def logs(message: Message) -> None:
             )
         )
         out_str = (
-            f"📂 Mensagens na Inbox[:](https://telegra.ph/file/7c1ba52391b7ffcc3e891.png) **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
+            f"📂 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚗𝚜 𝚗𝚊 𝙸𝚗𝚋𝚘𝚡[:](https://telegra.ph/file/7c1ba52391b7ffcc3e891.png) **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
             + f"\n▫️ **Ausente por** : __{afk_time}__\n\n"
         )
         if p_count:
-            out_str += f"\n**{p_count} Mensagens Privadas:**\n\n{p_msg}"
+            out_str += f"\n**{p_count} 𝙼𝙴𝙽𝚂𝙰𝙶𝙴𝙽𝚂 𝙿𝚁𝙸𝚅𝙰𝙳𝙰𝚂:**\n{p_msg}"
         if g_count:
-            out_str += f"\n**{g_count} Mensagens em Grupo:**\n\n{g_msg}"
+            out_str += f"\n**{g_count} 𝙼𝙴𝙽𝚂𝙰𝙶𝙴𝙽𝚂 𝙴𝙼 𝙶𝚁𝚄𝙿𝙾𝚂:**\n{g_msg}"
         coro_list.append(CHANNEL.log(out_str))
         USERS.clear()
     else:
@@ -297,10 +302,10 @@ async def logs(message: Message) -> None:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-        #       return await c_q.answer( # Removando isto, o resultado aparece.
-        #            "Ok, você chamou atenção.", # Removando isto, o resultado aparece.
-        #            show_alert=True, # Removando isto, o resultado aparece.
-        #        ) # Removando isto, o resultado aparece.
+#       return await c_q.answer( # Removando isto, o resultado aparece.
+#            "Ok, você chamou atenção.", # Removando isto, o resultado aparece.
+#            show_alert=True, # Removando isto, o resultado aparece.
+#        ) # Removando isto, o resultado aparece.
         photo = f"""{random.choice(ANIMTN)}"""
         texto = f"{random.choice(CONTATO)}"
         buttons = [

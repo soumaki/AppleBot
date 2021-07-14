@@ -28,9 +28,6 @@ REASON = ""
 TIME = 0.0
 USERS = {}
 
-mention_ausente = filters.create(lambda _, __, ___: Config.PM_LOG_GROUP_ID)
-
-
 async def _init() -> None:
     global IS_AFK, REASON, TIME  # pylint: disable=global-statement
     data = await SAVED_SETTINGS.find_one({"_id": "AFK"})
@@ -292,65 +289,6 @@ async def logs(message: Message) -> None:
         )
         return status_afk_
 
-
-# Teste de menção #
-
-
-@userge.on_message(
-    filters.group & ~filters.bot & ~filters.me & mention_ausente,
-)
-async def mention_afk(_, message: Message):
-    if not Config.PM_LOG_GROUP_ID:
-        return
-    id = message.message_id
-    reply = message.reply_to_message
-    log = f"""
-🍏 Modo Atenção **AppleBot**
-Alguém chamou sua atenção
-➖➖➖➖➖➖
-<b>▫️ Enviado por:</b> {message.from_user.mention}
-<b>▫️ No Grupo:</b> <code>{message.chat.title}</code>
-<b>▫️ Link da Mensagem :</b> <a href={message.link}>link</a>
-<b>▫️ Mensagem: <code>Confira abaixo</code></b> ⬇
-"""
-
-    if reply:
-        replied = reply.from_user.id
-        me_id = user(info="id")
-        if replied == me_id:
-            try:
-                await asyncio.sleep(0.5)
-                await userge.send_message(
-                    Config.PM_LOG_GROUP_ID,
-                    log,
-                    parse_mode="html",
-                    disable_web_page_preview=False,
-                )
-                await asyncio.sleep(0.5)
-                await userge.forward_messages(
-                    Config.PM_LOG_GROUP_ID, message.chat.id, message_ids=id
-                )
-            except FloodWait as e:
-                await asyncio.sleep(e.x + 3)
-    mention = f"""@{user(info="username")}"""
-    text = message.text or message.caption
-    if text and mention in text:
-        try:
-            await asyncio.sleep(0.5)
-            await userge.send_message(
-                Config.PM_LOG_GROUP_ID,
-                log,
-                parse_mode="html",
-                disable_web_page_preview=False,
-            )
-            await asyncio.sleep(0.5)
-            await userge.forward_messages(
-                Config.PM_LOG_GROUP_ID, message.chat.id, message_ids=id
-            )
-        except FloodWait as e:
-            await asyncio.sleep(e.x + 3)
-            # Teste de Menção #
-
     # Query para resultado do Primeiro Clique + Gerar Mensagem # Início
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
@@ -360,19 +298,20 @@ Alguém chamou sua atenção
             show_alert=True,
         )
         photo = f"""{random.choice(ANIMTN)}"""
+        texto = f"{random.choice(CONTATO)}"
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="❎ Mensagem Privada",
-                    url="https://t.me/youcantbot",
-                )
+                    text="❎ Ok",
+                    callback_data="mention_apple"),
+#                )
             ]
         ]
         try:
             await userge.bot.send_animation(
                 message.chat.id,
                 animation=photo,
-                log,
+                caption=texto,
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
         except MessageNotModified:
@@ -387,12 +326,26 @@ Alguém chamou sua atenção
             show_alert=True,
         )
         return _status_afk
+    
+        @userge.bot.on_callback_query(filters.regex(pattern=r"^mention_apple$"))
+    async def _status_afk(_, c_q: CallbackQuery):
+        c_q.from_user.id
+        await c_q.answer(
+            f"𝙲𝚘𝚗𝚏𝚒𝚛𝚊 𝚜𝚎𝚞 𝙻𝚘𝚐𝙲𝚑𝚊𝚗𝚗𝚎𝚕 ;)",
+            show_alert=True,
+        )
+        return _status_afk
 
-
-ANIMTN = ("https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",)
+ANIMTN = (
+    "https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",
+    "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",
+    "https://telegra.ph/file/43901682e8a936d76572e.gif",
+    "https://telegra.ph/file/140d286c155894093c250.gif",
+    "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
+)
 
 CONTATO = (
-    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 Alguém chamou sua atenção! >> 👋\n\nConfira o Log Channel\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
+    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 𝐀𝐥𝐠𝐮é𝐦 𝐜𝐡𝐚𝐦𝐨𝐮 𝐬𝐮𝐚 𝐚𝐭𝐞𝐧çã𝐨! >> 👋",
 )
 
 AUSENTEFOTO = (

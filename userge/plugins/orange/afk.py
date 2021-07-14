@@ -292,7 +292,10 @@ async def logs(message: Message) -> None:
         )
         return status_afk_
 
-# Teste de menção # 
+
+# Teste de menção #
+
+
 @userge.on_message(
     filters.group & ~filters.bot & ~filters.me & mention_ausente,
 )
@@ -346,8 +349,8 @@ Alguém chamou sua atenção
             )
         except FloodWait as e:
             await asyncio.sleep(e.x + 3)
-            # Teste de Menção # 
-    
+            # Teste de Menção #
+
     # Query para resultado do Primeiro Clique + Gerar Mensagem # Início
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
@@ -375,7 +378,7 @@ Alguém chamou sua atenção
             )
         except MessageNotModified:
             return
-        
+
     # Query para resultado do Primeiro Clique + Gerar Mensagem # FIM
     @userge.bot.on_callback_query(filters.regex(pattern=r"^status_apple$"))
     async def _status_afk(_, c_q: CallbackQuery):
@@ -387,8 +390,7 @@ Alguém chamou sua atenção
         return _status_afk
 
 
-ANIMTN = ("https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",
-)
+ANIMTN = ("https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",)
 
 CONTATO = (
     f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 Alguém chamou sua atenção! >> 👋\n\nConfira o Log Channel\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",

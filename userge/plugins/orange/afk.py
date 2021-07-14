@@ -372,8 +372,7 @@ Alguém chamou sua atenção
             await userge.bot.send_animation(
                 message.chat.id,
                 animation=photo,
-                caption=texto,
-                caption=log,
+                log,
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
         except MessageNotModified:

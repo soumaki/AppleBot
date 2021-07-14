@@ -149,12 +149,15 @@ async def respostas(message: Message) -> None:
     else:
         coro_list.append(
             CHANNEL.log(
-                "#GRUPO\n"
-                f"{user_dict['mention']} mencionou você no grupo: [{chat.title}](http://t.me/{chat.username})\n\n"
-                f"  ➖➖➖➖➖➖\n"
-                f"  💬 __{message.text}__\n\n"
-                f"  ➖➖➖➖➖➖\n"
-                f"🔗 [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id}) da mensagem."
+                "#GRUPO\n"				
+				f"🍏 Modo Log **AppleBot**"
+                f"Alguém te #mencionou"
+                f"➖➖➖➖➖➖"
+                f"<b>▫️ Enviado por:</b> {user_dict['mention']}"
+				f"<b>▫️ No Grupo:</b> [{chat.title}](http://t.me/{chat.username})"
+				f"<b>▫️ [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})"
+				f"<b>▫️ Confira a Mensagem:\n"
+				f"💬 __{message.text}__\n\n"
             )
         )
     coro_list.append(
@@ -328,13 +331,13 @@ async def logs(message: Message) -> None:
         return _status_afk
     
         @userge.bot.on_callback_query(filters.regex(pattern=r"^mention_apple$"))
-    async def _status_afk(_, c_q: CallbackQuery):
+    async def mention_afk(_, c_q: CallbackQuery):
         c_q.from_user.id
         await c_q.answer(
             f"𝙲𝚘𝚗𝚏𝚒𝚛𝚊 𝚜𝚎𝚞 𝙻𝚘𝚐𝙲𝚑𝚊𝚗𝚗𝚎𝚕 ;)",
             show_alert=True,
         )
-        return _status_afk
+        return mention_afk
 
 ANIMTN = (
     "https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",

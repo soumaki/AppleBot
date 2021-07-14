@@ -333,7 +333,7 @@ CONTATO = (
 )
 
 USERCC = (
-    f"{user_dict['mention']} clicou no +\nOrigem: [{chat.title}](http://t.me/{chat.username})",
+    f"""{user_dict['mention']} clicou no +\nOrigem: [{chat.title}](http://t.me/{chat.username})""",
 )
 
 FRASE_AFK = (

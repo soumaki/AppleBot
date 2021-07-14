@@ -224,7 +224,7 @@ class _afk_:
         buttons = [
             [
                 InlineKeyboardButton(text="⚡️ STATUS", callback_data="status_afk"),
-                InlineKeyboardButton(text="+", callback_data="afk_pm_"),
+                InlineKeyboardButton(text="👋", callback_data="afk_pm_"),
             ],
         ]
         return InlineKeyboardMarkup(buttons)
@@ -237,7 +237,7 @@ async def logs(message: Message) -> None:
     IS_AFK = False
     afk_time = time_formatter(round(time.time() - TIME))
     replied: Message = await message.reply("`Não estou mais ausente!`", log=__name__)
-    f"""{random.choice(AUSENTEFOTO)}"""
+    photo = f"""{random.choice(AUSENTEFOTO)}"""
     coro_list = []
     if USERS:
         p_msg = ""
@@ -295,7 +295,7 @@ async def logs(message: Message) -> None:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-        RCC = await message.client.get_user_dict(user_id)  # 1
+        await message.client.get_user_dict(user_id)  # 1
         id = message.message_id  # 2
         reply = message.reply_to_message  # 3
         texto = f"{random.choice(CONTATO)}"
@@ -332,14 +332,14 @@ async def logs(message: Message) -> None:
 
 ANIMTN = ("https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",)
 CONTATO = (
-    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 {message.from_user.mention}\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
+    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 Clicaram no botão 👋\n\nConfira o Log Channel\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
 )
 
 AUSENTEFOTO = (
     "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",
     "https://telegra.ph/file/43901682e8a936d76572e.gif",
     "https://telegra.ph/file/140d286c155894093c250.gif",
-    "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
+    "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif", 
 )
 
 FRASE_AFK = (

@@ -151,12 +151,12 @@ async def respostas(message: Message) -> None:
         coro_list.append(
             CHANNEL.log(
                 "#GRUPO\n"
-                f"🍏 Modo Log **AppleBot**"
-                f"Alguém te #mencionou"
-                f"➖➖➖➖➖➖"
-                f"<b>▫️ Enviado por:</b> {user_dict['mention']}"
-                f"<b>▫️ No Grupo:</b> [{chat.title}](http://t.me/{chat.username})"
-                f"<b>▫️ [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})"
+                f"🍏 Modo Log **AppleBot**\n"
+                f"Alguém te #mencionou\n"
+                f"➖➖➖➖➖➖\n"
+                f"<b>▫️ Enviado por:</b> {user_dict['mention']}\n"
+                f"<b>▫️ No Grupo:</b> [{chat.title}](http://t.me/{chat.username})\n"
+                f"<b>▫️ [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})\n"
                 f"<b>▫️ Confira a Mensagem:\n"
                 f"💬 __{message.text}__\n\n"
             )
@@ -305,8 +305,9 @@ async def logs(message: Message) -> None:
         texto = f"{random.choice(CONTATO)}"
         buttons = [
             [
-                InlineKeyboardButton(text="❎ Ok", callback_data="mm"),
-                #                )
+                InlineKeyboardButton(text="❎ Ok", 
+                    url='https://t.me/twapple',
+                )
             ]
         ]
         try:

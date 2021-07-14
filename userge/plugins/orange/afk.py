@@ -231,15 +231,6 @@ class _afk_:
         ]
         return InlineKeyboardMarkup(buttons)
 
-        @userge.bot.on_callback_query(filters.regex(pattern=r"^mention_apple$"))
-    async def m_afk(_, c_q: CallbackQuery):
-        c_q.from_user.id
-        await c_q.answer(
-            f"𝙲𝚘𝚗𝚏𝚒𝚛𝚊 𝚜𝚎𝚞 𝙻𝚘𝚐𝙲𝚑𝚊𝚗𝚗𝚎𝚕 ;)",
-            show_alert=True,
-        )
-        return m_afk
-
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:
     """Detalhes - Log do Modo Ausente"""
@@ -314,7 +305,7 @@ async def logs(message: Message) -> None:
             [
                 InlineKeyboardButton(
                     text="❎ Ok",
-                    callback_data="mention_apple"),
+                    callback_data="mm"),
 #                )
             ]
         ]

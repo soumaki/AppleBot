@@ -146,8 +146,8 @@ async def respostas(message: Message) -> None:
                 f"Em seu #PRIVADO\n"
                 f"**Nova Mensagem Particular**\n"
                 f"🏷 | {user_dict['mention']}\n"
-                f"𝚃𝚎 𝚎𝚗𝚟𝚒𝚘𝚞 𝚊 𝚖𝚎𝚗𝚜𝚊𝚐𝚎𝚖:\n"
-                f"➖➖➖➖➖➖➖\n"
+                f"𝚃𝚎 𝚎𝚗𝚟𝚒𝚘𝚞:\n"
+                f"➖➖➖➖\n"
                 f"💬 **LEIA ABAIXO:**\n"
                 f" ╰• __{message.text}__"
             )

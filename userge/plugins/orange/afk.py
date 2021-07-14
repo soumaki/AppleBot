@@ -27,7 +27,6 @@ IS_AFK_FILTER = filters.create(lambda _, __, ___: bool(IS_AFK))
 REASON = ""
 TIME = 0.0
 USERS = {}
- 
 
 
 async def _init() -> None:
@@ -295,9 +294,9 @@ async def logs(message: Message) -> None:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-        await message.client.get_user_dict(user_id) # 1
-        id = message.message_id # 2
-        reply = message.reply_to_message # 3
+        await message.client.get_user_dict(user_id)  # 1
+        id = message.message_id  # 2
+        reply = message.reply_to_message  # 3
         texto = f"{random.choice(CONTATO)}"
         photo = f"""{random.choice(ANIMTN)}"""
         buttons = [

@@ -302,10 +302,10 @@ async def logs(message: Message) -> None:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-#       return await c_q.answer( # Removando isto, o resultado aparece.
-#            "Ok, você chamou atenção.", # Removando isto, o resultado aparece.
-#            show_alert=True, # Removando isto, o resultado aparece.
-#        ) # Removando isto, o resultado aparece.
+        #       return await c_q.answer( # Removando isto, o resultado aparece.
+        #            "Ok, você chamou atenção.", # Removando isto, o resultado aparece.
+        #            show_alert=True, # Removando isto, o resultado aparece.
+        #        ) # Removando isto, o resultado aparece.
         photo = f"""{random.choice(ANIMTN)}"""
         texto = f"{random.choice(CONTATO)}"
         buttons = [

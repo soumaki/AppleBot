@@ -149,7 +149,7 @@ async def respostas(message: Message) -> None:
                 f"𝚃𝚎 𝚎𝚗𝚟𝚒𝚘𝚞 𝚊 𝚖𝚎𝚗𝚜𝚊𝚐𝚎𝚖:\n"
                 f"➖➖➖➖➖➖➖\n"
                 f"💬 **LEIA ABAIXO:**\n"
-                f"\n ╰• __{message.text}__"
+                f" ╰• __{message.text}__"
             )
         )
     else:

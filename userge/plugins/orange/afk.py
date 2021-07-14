@@ -237,7 +237,7 @@ async def logs(message: Message) -> None:
     IS_AFK = False
     afk_time = time_formatter(round(time.time() - TIME))
     replied: Message = await message.reply("`Não estou mais ausente!`", log=__name__)
-    photo = f"""{random.choice(AUSENTEFOTO)}"""
+    f"""{random.choice(AUSENTEFOTO)}"""
     coro_list = []
     if USERS:
         p_msg = ""
@@ -339,7 +339,7 @@ AUSENTEFOTO = (
     "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",
     "https://telegra.ph/file/43901682e8a936d76572e.gif",
     "https://telegra.ph/file/140d286c155894093c250.gif",
-    "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif", 
+    "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
 )
 
 FRASE_AFK = (

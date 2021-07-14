@@ -294,9 +294,10 @@ async def logs(message: Message) -> None:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-    user_id = message.from_user.id
-    chat = message.chat
-    user_dict = await message.client.get_user_dict(user_id)
+        await c_q.answer(
+                "Ok, você chamou atenção.",
+                show_alert=True,
+            )
         texto = f"{random.choice(CONTATO)}"
         photo = f"""{random.choice(ANIMTN)}"""
         buttons = [

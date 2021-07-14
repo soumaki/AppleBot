@@ -237,7 +237,6 @@ async def logs(message: Message) -> None:
     IS_AFK = False
     afk_time = time_formatter(round(time.time() - TIME))
     replied: Message = await message.reply("`Não estou mais ausente!`", log=__name__)
-    f"""{random.choice(AUSENTEFOTO)}"""
     coro_list = []
     if USERS:
         p_msg = ""

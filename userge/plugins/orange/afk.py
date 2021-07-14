@@ -150,14 +150,14 @@ async def respostas(message: Message) -> None:
         coro_list.append(
             CHANNEL.log(
                 "#GRUPO\n"				
-				f"🍏 Modo Log **AppleBot**"
+		f"🍏 Modo Log **AppleBot**"
                 f"Alguém te #mencionou"
                 f"➖➖➖➖➖➖"
                 f"<b>▫️ Enviado por:</b> {user_dict['mention']}"
-				f"<b>▫️ No Grupo:</b> [{chat.title}](http://t.me/{chat.username})"
-				f"<b>▫️ [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})"
-				f"<b>▫️ Confira a Mensagem:\n"
-				f"💬 __{message.text}__\n\n"
+		f"<b>▫️ No Grupo:</b> [{chat.title}](http://t.me/{chat.username})"
+		f"<b>▫️ [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})"
+		f"<b>▫️ Confira a Mensagem:\n"
+		f"💬 __{message.text}__\n\n"
             )
         )
     coro_list.append(

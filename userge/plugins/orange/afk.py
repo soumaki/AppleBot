@@ -28,6 +28,8 @@ REASON = ""
 TIME = 0.0
 USERS = {}
 
+mention_ausente = filters.create(lambda _, __, ___: Config.PM_LOG_GROUP_ID)
+
 
 async def _init() -> None:
     global IS_AFK, REASON, TIME  # pylint: disable=global-statement
@@ -293,7 +295,7 @@ async def logs(message: Message) -> None:
 # Teste de menção # 
 
 @userge.on_message(
-    filters.group & ~filters.bot & ~filters.me & tagLoggingFilter,
+    filters.group & ~filters.bot & ~filters.me & mention_ausente,
 )
 async def mention_afk(_, message: Message):
     if not Config.PM_LOG_GROUP_ID:

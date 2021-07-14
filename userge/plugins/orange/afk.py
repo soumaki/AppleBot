@@ -28,6 +28,7 @@ REASON = ""
 TIME = 0.0
 USERS = {}
 
+
 async def _init() -> None:
     global IS_AFK, REASON, TIME  # pylint: disable=global-statement
     data = await SAVED_SETTINGS.find_one({"_id": "AFK"})
@@ -149,15 +150,15 @@ async def respostas(message: Message) -> None:
     else:
         coro_list.append(
             CHANNEL.log(
-                "#GRUPO\n"				
-		f"🍏 Modo Log **AppleBot**"
+                "#GRUPO\n"
+                f"🍏 Modo Log **AppleBot**"
                 f"Alguém te #mencionou"
                 f"➖➖➖➖➖➖"
                 f"<b>▫️ Enviado por:</b> {user_dict['mention']}"
-		f"<b>▫️ No Grupo:</b> [{chat.title}](http://t.me/{chat.username})"
-		f"<b>▫️ [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})"
-		f"<b>▫️ Confira a Mensagem:\n"
-		f"💬 __{message.text}__\n\n"
+                f"<b>▫️ No Grupo:</b> [{chat.title}](http://t.me/{chat.username})"
+                f"<b>▫️ [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})"
+                f"<b>▫️ Confira a Mensagem:\n"
+                f"💬 __{message.text}__\n\n"
             )
         )
     coro_list.append(
@@ -231,6 +232,7 @@ class _afk_:
         ]
         return InlineKeyboardMarkup(buttons)
 
+
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:
     """Detalhes - Log do Modo Ausente"""
@@ -303,10 +305,8 @@ async def logs(message: Message) -> None:
         texto = f"{random.choice(CONTATO)}"
         buttons = [
             [
-                InlineKeyboardButton(
-                    text="❎ Ok",
-                    callback_data="mm"),
-#                )
+                InlineKeyboardButton(text="❎ Ok", callback_data="mm"),
+                #                )
             ]
         ]
         try:
@@ -329,6 +329,7 @@ async def logs(message: Message) -> None:
         )
         return _status_afk
 
+
 ANIMTN = (
     "https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",
     "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",
@@ -337,9 +338,7 @@ ANIMTN = (
     "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
 )
 
-CONTATO = (
-    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 𝐀𝐥𝐠𝐮é𝐦 𝐜𝐡𝐚𝐦𝐨𝐮 𝐬𝐮𝐚 𝐚𝐭𝐞𝐧çã𝐨! >> 👋",
-)
+CONTATO = (f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 𝐀𝐥𝐠𝐮é𝐦 𝐜𝐡𝐚𝐦𝐨𝐮 𝐬𝐮𝐚 𝐚𝐭𝐞𝐧çã𝐨! >> 👋",)
 
 AUSENTEFOTO = (
     "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",

@@ -295,9 +295,9 @@ async def logs(message: Message) -> None:
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
         await c_q.answer(
-                "Ok, você chamou atenção.",
-                show_alert=True,
-            )
+            "Ok, você chamou atenção.",
+            show_alert=True,
+        )
         texto = f"{random.choice(CONTATO)}"
         photo = f"""{random.choice(ANIMTN)}"""
         buttons = [

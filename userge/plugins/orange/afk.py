@@ -305,8 +305,9 @@ async def logs(message: Message) -> None:
         texto = f"{random.choice(CONTATO)}"
         buttons = [
             [
-                InlineKeyboardButton(text="❎ Ok", 
-                    url='https://t.me/twapple',
+                InlineKeyboardButton(
+                    text="❎ Ok",
+                    url="https://t.me/twapple",
                 )
             ]
         ]

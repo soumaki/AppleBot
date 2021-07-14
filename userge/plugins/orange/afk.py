@@ -298,8 +298,6 @@ async def logs(message: Message) -> None:
     user_id = message.from_user.id
     chat = message.chat
     user_dict = await message.client.get_user_dict(user_id)
-        id = message.message_id  # 2
-        reply = message.reply_to_message  # 3
         texto = f"{random.choice(CONTATO)}"
         photo = f"""{random.choice(ANIMTN)}"""
         buttons = [

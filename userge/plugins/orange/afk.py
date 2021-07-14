@@ -335,13 +335,13 @@ async def logs(message: Message) -> None:
 
 ANIMES = (
     "<i>Não desista, não há vergonha em cair! A verdadeira vergonha é não se levantar novamente</i>\n<b>Shintaro Midorima, Kuroko No Basket</b>",
-    "<i>Lembre-se da lição e não da decepção.\n</i><b>Holo The Wise Wolf, Spice And Wolf</b>",
-    "<i>Você não conhece as pessoas, você conhece apenas o que elas permitem que você veja.\n</i><b>Bleach</b>",
-    "<i>Se você não gosta do seu destino, não o aceite. Em vez disso, tenha a coragem para transformá-lo naquilo que você quer que ele seja.\n</i><b>Naruto Uzumaki, Naruto</b>",
-    "<i>O mundo não é perfeito. Mas ele está aqui para nós, fazendo o melhor que pode...e é isso que o faz tão lindo!\n</i><b>Roy Mustang, Full Metal Alchemist</b>",
-    "<i>As pessoas fortes não derrubam as outras, elas ajudam-nas a se erguerem.\n</i><b>Goku, Dragon Ball Z</b>",
-    "<i>Às vezes as questões são complicadas e as respostas são simples.\n</i><b>Death Note</b>",
-    "<i>Amar alguém profundamente lhe dá força; ser amado profundamente lhe dá coragem.\n</i><b>Yu Yu Hakusho</b>",
+    "<i>Lembre-se da lição e não da decepção.</i>\n<b>Holo The Wise Wolf, Spice And Wolf</b>",
+    "<i>Você não conhece as pessoas, você conhece apenas o que elas permitem que você veja.</i>\n<b>Bleach</b>",
+    "<i>Se você não gosta do seu destino, não o aceite. Em vez disso, tenha a coragem para transformá-lo naquilo que você quer que ele seja.</i>\n<b>Naruto Uzumaki, Naruto</b>",
+    "<i>O mundo não é perfeito. Mas ele está aqui para nós, fazendo o melhor que pode...e é isso que o faz tão lindo!</i>\n<b>Roy Mustang, Full Metal Alchemist</b>",
+    "<i>As pessoas fortes não derrubam as outras, elas ajudam-nas a se erguerem.</i>\n<b>Goku, Dragon Ball Z</b>",
+    "<i>Às vezes as questões são complicadas e as respostas são simples.</i>\n<b>Death Note</b>",
+    "<i>Amar alguém profundamente lhe dá força; ser amado profundamente lhe dá coragem.</i>\n<b>Yu Yu Hakusho</b>",
 )
 
 ANIMTN = (
@@ -352,14 +352,7 @@ ANIMTN = (
     "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
 )
 
-CONTATO = (f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙳𝚎𝚜𝚌𝚘𝚋𝚛𝚒𝚛𝚊𝚖!\n\n<i>Olá!</i>\n👤 𝙰𝚕𝚐𝚞𝚖 𝚌𝚞𝚛𝚒𝚘𝚜𝚘 𝚊𝚙𝚎𝚛𝚝𝚘𝚞 𝚘 👋",)
-
-AUSENTEFOTO = (
-    "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",
-    "https://telegra.ph/file/43901682e8a936d76572e.gif",
-    "https://telegra.ph/file/140d286c155894093c250.gif",
-    "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
-)
+CONTATO = (f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙳𝚎𝚜𝚌𝚘𝚋𝚛𝚒𝚛𝚊𝚖!\n\n<i>Olá!</i>\n𝙰𝚕𝚐𝚞𝚖 𝚌𝚞𝚛𝚒𝚘𝚜𝚘 𝚊𝚙𝚎𝚛𝚝𝚘𝚞 𝚘 👋",)
 
 FRASE_AFK = (
     "Se você perdeu a batalha,\nimagna a guerra que tem mais pessoas!",

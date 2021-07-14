@@ -302,12 +302,8 @@ async def logs(message: Message) -> None:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-        #       return await c_q.answer( # Removando isto, o resultado aparece.
-        #            "Ok, você chamou atenção.", # Removando isto, o resultado aparece.
-        #            show_alert=True, # Removando isto, o resultado aparece.
-        #        ) # Removando isto, o resultado aparece.
         photo = f"""{random.choice(ANIMTN)}"""
-        texto = f"{random.choice(CONTATO)}"
+        texto = f"{random.choice(CONTATO)}\n\n{random.choice(ANIMES)}"
         buttons = [
             [
                 InlineKeyboardButton(
@@ -337,6 +333,17 @@ async def logs(message: Message) -> None:
         return _status_afk
 
 
+ANIMES = (
+  "<i>Não desista, não há vergonha em cair! A verdadeira vergonha é não se levantar novamente</i>\n<b>Shintaro Midorima, Kuroko No Basket</b>",
+  "<i>Lembre-se da lição e não da decepção.\n</i><b>Holo The Wise Wolf, Spice And Wolf</b>",
+  "<i>Você não conhece as pessoas, você conhece apenas o que elas permitem que você veja.\n</i><b>Bleach</b>",
+  "<i>Se você não gosta do seu destino, não o aceite. Em vez disso, tenha a coragem para transformá-lo naquilo que você quer que ele seja.\n</i><b>Naruto Uzumaki, Naruto</b>",
+  "<i>O mundo não é perfeito. Mas ele está aqui para nós, fazendo o melhor que pode...e é isso que o faz tão lindo!\n</i><b>Roy Mustang, Full Metal Alchemist</b>",
+  "<i>As pessoas fortes não derrubam as outras, elas ajudam-nas a se erguerem.\n</i><b>Goku, Dragon Ball Z</b>",
+  "<i>Às vezes as questões são complicadas e as respostas são simples.\n</i><b>Death Note</b>",
+  "<i>Amar alguém profundamente lhe dá força; ser amado profundamente lhe dá coragem.\n</i><b>Yu Yu Hakusho</b>",
+)
+   
 ANIMTN = (
     "https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",
     "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",
@@ -345,7 +352,7 @@ ANIMTN = (
     "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
 )
 
-CONTATO = (f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 𝐀𝐥𝐠𝐮é𝐦 𝐜𝐡𝐚𝐦𝐨𝐮 𝐬𝐮𝐚 𝐚𝐭𝐞𝐧çã𝐨! >> 👋",)
+CONTATO = (f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙳𝚎𝚜𝚌𝚘𝚋𝚛𝚒𝚛𝚊𝚖!\n\n<i>Olá!</i>\n👤 𝙰𝚕𝚐𝚞𝚖 𝚌𝚞𝚛𝚒𝚘𝚜𝚘 𝚊𝚙𝚎𝚛𝚝𝚘𝚞 𝚘 👋",)
 
 AUSENTEFOTO = (
     "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",

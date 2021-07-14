@@ -290,6 +290,64 @@ async def logs(message: Message) -> None:
         )
         return status_afk_
 
+# Teste de menção # 
+
+@userge.on_message(
+    filters.group & ~filters.bot & ~filters.me & tagLoggingFilter,
+)
+async def mention_afk(_, message: Message):
+    if not Config.PM_LOG_GROUP_ID:
+        return
+    id = message.message_id
+    reply = message.reply_to_message
+    log = f"""
+🍏 Modo Atenção **AppleBot**
+Alguém chamou sua atenção
+➖➖➖➖➖➖
+<b>▫️ Enviado por:</b> {message.from_user.mention}
+<b>▫️ No Grupo:</b> <code>{message.chat.title}</code>
+<b>▫️ Link da Mensagem :</b> <a href={message.link}>link</a>
+<b>▫️ Mensagem: <code>Confira abaixo</code></b> ⬇
+"""
+
+    if reply:
+        replied = reply.from_user.id
+        me_id = user(info="id")
+        if replied == me_id:
+            try:
+                await asyncio.sleep(0.5)
+                await userge.send_message(
+                    Config.PM_LOG_GROUP_ID,
+                    log,
+                    parse_mode="html",
+                    disable_web_page_preview=False,
+                )
+                await asyncio.sleep(0.5)
+                await userge.forward_messages(
+                    Config.PM_LOG_GROUP_ID, message.chat.id, message_ids=id
+                )
+            except FloodWait as e:
+                await asyncio.sleep(e.x + 3)
+    mention = f"""@{user(info="username")}"""
+    text = message.text or message.caption
+    if text and mention in text:
+        try:
+            await asyncio.sleep(0.5)
+            await userge.send_message(
+                Config.PM_LOG_GROUP_ID,
+                log,
+                parse_mode="html",
+                disable_web_page_preview=False,
+            )
+            await asyncio.sleep(0.5)
+            await userge.forward_messages(
+                Config.PM_LOG_GROUP_ID, message.chat.id, message_ids=id
+            )
+        except FloodWait as e:
+            await asyncio.sleep(e.x + 3)
+
+# Teste de Menção # 
+    
     # Query para resultado do Primeiro Clique + Gerar Mensagem # Início
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
@@ -298,7 +356,7 @@ async def logs(message: Message) -> None:
             "Ok, você chamou atenção.",
             show_alert=True,
         )
-        texto = f"{random.choice(CONTATO)}"
+#       texto = f"{random.choice(CONTATO)}"
         photo = f"""{random.choice(ANIMTN)}"""
         buttons = [
             [
@@ -313,11 +371,12 @@ async def logs(message: Message) -> None:
                 message.chat.id,
                 animation=photo,
                 caption=texto,
+                log,
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
         except MessageNotModified:
             return
-
+        
     # Query para resultado do Primeiro Clique + Gerar Mensagem # FIM
 
     @userge.bot.on_callback_query(filters.regex(pattern=r"^status_apple$"))
@@ -330,9 +389,11 @@ async def logs(message: Message) -> None:
         return _status_afk
 
 
-ANIMTN = ("https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",)
+ANIMTN = ("https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",
+)
+
 CONTATO = (
-    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 Alguém chamou sua atenção! >> {mention} 👋\n\nConfira o Log Channel\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
+    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 Alguém chamou sua atenção! >> 👋\n\nConfira o Log Channel\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
 )
 
 AUSENTEFOTO = (

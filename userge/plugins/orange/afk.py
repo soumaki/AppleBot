@@ -27,6 +27,7 @@ IS_AFK_FILTER = filters.create(lambda _, __, ___: bool(IS_AFK))
 REASON = ""
 TIME = 0.0
 USERS = {}
+ 
 
 
 async def _init() -> None:
@@ -294,7 +295,9 @@ async def logs(message: Message) -> None:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-        await message.client.get_user_dict(user_id)
+        await message.client.get_user_dict(user_id) # 1
+        id = message.message_id # 2
+        reply = message.reply_to_message # 3
         texto = f"{random.choice(CONTATO)}"
         photo = f"""{random.choice(ANIMTN)}"""
         buttons = [
@@ -329,11 +332,11 @@ async def logs(message: Message) -> None:
 
 ANIMTN = ("https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",)
 CONTATO = (
-    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 {random.choice(USERCC)}\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
+    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚖 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊\n\n👤 {random.choice(RCC)}\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
 )
 
-USERCC = (
-    f"""{user_dict['mention']} clicou no +\nOrigem: [{chat.title}](http://t.me/{chat.username})""",
+RCC = (
+    f"""{message.from_user.mention} clicou no +\nOrigem: [{chat.title}](http://t.me/{chat.username})""",
 )
 
 FRASE_AFK = (

@@ -293,7 +293,6 @@ async def logs(message: Message) -> None:
         return status_afk_
 
 # Teste de menção # 
-
 @userge.on_message(
     filters.group & ~filters.bot & ~filters.me & mention_ausente,
 )
@@ -347,18 +346,16 @@ Alguém chamou sua atenção
             )
         except FloodWait as e:
             await asyncio.sleep(e.x + 3)
-
-# Teste de Menção # 
+            # Teste de Menção # 
     
     # Query para resultado do Primeiro Clique + Gerar Mensagem # Início
     @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
-        await c_q.answer(
+        return await c_q.answer(
             "Ok, você chamou atenção.",
             show_alert=True,
         )
-#       texto = f"{random.choice(CONTATO)}"
         photo = f"""{random.choice(ANIMTN)}"""
         buttons = [
             [
@@ -373,14 +370,13 @@ Alguém chamou sua atenção
                 message.chat.id,
                 animation=photo,
                 caption=texto,
-                log,
+                caption=log,
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
         except MessageNotModified:
             return
         
     # Query para resultado do Primeiro Clique + Gerar Mensagem # FIM
-
     @userge.bot.on_callback_query(filters.regex(pattern=r"^status_apple$"))
     async def _status_afk(_, c_q: CallbackQuery):
         c_q.from_user.id

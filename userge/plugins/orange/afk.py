@@ -159,10 +159,10 @@ async def respostas(message: Message) -> None:
                 f"🍏 Modo Log **AppleBot**\n"
                 f"Alguém te #mencionou\n"
                 f"➖➖➖➖➖➖\n"
-                f"<b>▫️ Enviado por:</b> {user_dict['mention']}\n"
-                f"<b>▫️ No Grupo:</b> [{chat.title}](http://t.me/{chat.username})\n"
-                f"<b>▫️ [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})\n"
-                f"<b>▫️ Confira a Mensagem:\n"
+                f"<b>▫️ Enviada por:</b> {user_dict['mention']}\n"
+                f"<b> ╰• No Grupo:</b> [{chat.title}](http://t.me/{chat.username})\n"
+                f"<b>🔗 [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})\n"
+                f"<b>▫️ 𝙰 𝙼𝙴𝙽𝚂𝙰𝙶𝙴𝙼:\n\n"
                 f"💬 __{message.text}__\n\n"
             )
         )
@@ -352,7 +352,7 @@ ANIMTN = (
     "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
 )
 
-CONTATO = (f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙳𝚎𝚜𝚌𝚘𝚋𝚛𝚒𝚛𝚊𝚖!\n\n<i>Olá!</i>\n𝙰𝚕𝚐𝚞𝚖 𝚌𝚞𝚛𝚒𝚘𝚜𝚘 𝚊𝚙𝚎𝚛𝚝𝚘𝚞 𝚘 👋",)
+CONTATO = (f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙳𝚎𝚜𝚌𝚘𝚋𝚛𝚒𝚛𝚊𝚖!\n\n<i>Olá!</i>\n𝙰𝚕𝚐𝚞𝚖 𝚌𝚞𝚛𝚒𝚘𝚜𝚘 𝚍𝚎𝚞 𝚞𝚖 𝚌𝚕𝚒𝚚𝚞𝚎 👋",)
 
 FRASE_AFK = (
     "Se você perdeu a batalha,\nimagna a guerra que tem mais pessoas!",

@@ -143,12 +143,12 @@ async def respostas(message: Message) -> None:
     if chat.type == "private":
         coro_list.append(
             CHANNEL.log(
-                f"Em seu #PRIVADO\n"
-                f"**Nova Mensagem Particular**\n"
+                f"𝙴𝚗𝚚𝚞𝚊𝚗𝚝𝚘 𝚎𝚜𝚝𝚊𝚟𝚊 𝚊𝚞𝚜𝚎𝚗𝚝𝚎 | #PRIVADO\n"
+                f"**Chegou Uma Nova Mensagem Privada**\n"
+                f"𝙴𝚗𝚟𝚒𝚊𝚍𝚊 𝚙𝚘𝚛:\n"
                 f"🏷 | {user_dict['mention']}\n"
-                f"𝚃𝚎 𝚎𝚗𝚟𝚒𝚘𝚞:\n"
                 f"➖➖➖➖\n"
-                f"💬 **LEIA ABAIXO:**\n"
+                f"💬 **MENSAGEM ORIGINAL:**\n"
                 f" ╰• __{message.text}__"
             )
         )
@@ -156,13 +156,13 @@ async def respostas(message: Message) -> None:
         coro_list.append(
             CHANNEL.log(
                 "#GRUPO\n"
-                f"🍏 Modo Log **AppleBot**\n"
-                f"Alguém te #mencionou\n"
+                f"🍏 AFK Log | **AppleBot**\n"
+                f"Alguém #Mencionou Você\n"
                 f"➖➖➖➖➖➖\n"
-                f"<b>▫️ Enviada por:</b> {user_dict['mention']}\n"
+                f"<b>🏷 Enviada por:</b> {user_dict['mention']}\n"
                 f"<b> ╰• No Grupo:</b> [{chat.title}](http://t.me/{chat.username})\n"
-                f"<b>🔗 [Link](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})\n"
-                f"<b>▫️ 𝙰 𝙼𝙴𝙽𝚂𝙰𝙶𝙴𝙼:\n\n"
+                f"<b>🔗 [Link da Mensagem](https://t.me/c/{str(chat.id)[4:]}/{message.message_id})\n"
+                f"➖➖➖➖➖➖\n"
                 f"💬 __{message.text}__\n\n"
             )
         )
@@ -237,6 +237,7 @@ class _afk_:
         ]
         return InlineKeyboardMarkup(buttons)
 
+                        
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:
@@ -266,13 +267,14 @@ async def logs(message: Message) -> None:
             )
         )
         out_str = (
-            f"📂 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚗𝚜 𝚗𝚊 𝙸𝚗𝚋𝚘𝚡[:](https://telegra.ph/file/7c1ba52391b7ffcc3e891.png) **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
+            f"📂 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚗𝚜 𝚗𝚊 𝙸𝚗𝚋𝚘𝚡: **{p_count + g_count}** 
+			f"\n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
             + f"\n▫️ **Ausente por** : __{afk_time}__\n\n"
         )
         if p_count:
-            out_str += f"\n**{p_count} 𝙼𝙴𝙽𝚂𝙰𝙶𝙴𝙽𝚂 𝙿𝚁𝙸𝚅𝙰𝙳𝙰𝚂:**\n{p_msg}"
+            out_str += f"\n{p_count} 𝙼𝙴𝙽𝚂𝙰𝙶𝙴𝙽𝚂 𝙿𝚁𝙸𝚅𝙰𝙳𝙰𝚂:\n{p_msg}"
         if g_count:
-            out_str += f"\n**{g_count} 𝙼𝙴𝙽𝚂𝙰𝙶𝙴𝙽𝚂 𝙴𝙼 𝙶𝚁𝚄𝙿𝙾𝚂:**\n{g_msg}"
+            out_str += f"\n{g_count} 𝙼𝙴𝙽𝚂𝙰𝙶𝙴𝙽𝚂 𝙴𝙼 𝙶𝚁𝚄𝙿𝙾𝚂:\n{g_msg}"
         coro_list.append(CHANNEL.log(out_str))
         USERS.clear()
     else:

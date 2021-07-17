@@ -267,8 +267,7 @@ async def logs(message: Message) -> None:
             )
         )
         out_str = (
-            f"📂 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚗𝚜 𝚗𝚊 𝙸𝚗𝚋𝚘𝚡: **{p_count + g_count}** 
-			f"\n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
+            f"📂 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚗𝚜 𝚗𝚊 𝙸𝚗𝚋𝚘𝚡: **{p_count + g_count}** \n▫️ Em contato: **{len(USERS)}** desgraçado(s) "
             + f"\n▫️ **Ausente por** : __{afk_time}__\n\n"
         )
         if p_count:

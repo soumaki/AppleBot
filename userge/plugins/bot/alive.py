@@ -266,7 +266,7 @@ class Bot_Alive:
         buttons = [
             [
                 InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="🍎 TEAM", callback_data="info_apple"),
+                InlineKeyboardButton(text="🍍 TEAM", callback_data="info_apple"),
             ],
         ]
         return InlineKeyboardMarkup(buttons)
@@ -274,11 +274,7 @@ class Bot_Alive:
     @staticmethod
     def alive_default_imgs() -> str:
         alive_imgs = [
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
+            "https://telegra.ph/PINEAPPLE-07-17-3",
         ]
         return rand_array(alive_imgs)
 

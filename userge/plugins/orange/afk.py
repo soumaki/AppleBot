@@ -237,7 +237,6 @@ class _afk_:
         ]
         return InlineKeyboardMarkup(buttons)
 
-                        
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:

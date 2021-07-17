@@ -61,7 +61,7 @@ async def ausente(message: Message) -> None:
         r_ = REASON.split(" | ", maxsplit=1)
         STATUS_ = r_[0]
         await asyncio.gather(
-            CHANNEL.log(f"Sumindo! : `{STATUS_}` [\u200c]({match_.group(0)})"),
+            CHANNEL.log(f"Tá olhando o q, maluco? : `{STATUS_}` [\u200c]({match_.group(0)})"),
             message.edit("`Fui!`", del_in=1),
             AFK_COLLECTION.drop(),
             SAVED_SETTINGS.update_one(
@@ -72,7 +72,7 @@ async def ausente(message: Message) -> None:
         )
     else:
         await asyncio.gather(
-            CHANNEL.log(f"Sumindo!  `{REASON}`"),
+            CHANNEL.log(f"Tá olhando o q, maluco?  `{REASON}`"),
             message.edit("`Fuii!`", del_in=1),
             AFK_COLLECTION.drop(),
             SAVED_SETTINGS.update_one(

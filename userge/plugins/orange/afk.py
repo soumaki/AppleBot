@@ -337,14 +337,14 @@ async def logs(message: Message) -> None:
 
 
 ANIMES = (
-    "<i>Não desista, não há vergonha em cair! A verdadeira vergonha é não se levantar novamente</i>\n<b>Shintaro Midorima, Kuroko No Basket</b>",
-    "<i>Lembre-se da lição e não da decepção.</i>\n<b>Holo The Wise Wolf, Spice And Wolf</b>",
-    "<i>Você não conhece as pessoas, você conhece apenas o que elas permitem que você veja.</i>\n<b>Bleach</b>",
-    "<i>Se você não gosta do seu destino, não o aceite. Em vez disso, tenha a coragem para transformá-lo naquilo que você quer que ele seja.</i>\n<b>Naruto Uzumaki, Naruto</b>",
-    "<i>O mundo não é perfeito. Mas ele está aqui para nós, fazendo o melhor que pode...e é isso que o faz tão lindo!</i>\n<b>Roy Mustang, Full Metal Alchemist</b>",
-    "<i>As pessoas fortes não derrubam as outras, elas ajudam-nas a se erguerem.</i>\n<b>Goku, Dragon Ball Z</b>",
-    "<i>Às vezes as questões são complicadas e as respostas são simples.</i>\n<b>Death Note</b>",
-    "<i>Amar alguém profundamente lhe dá força; ser amado profundamente lhe dá coragem.</i>\n<b>Yu Yu Hakusho</b>",
+    "Não desista, não há vergonha em cair! A verdadeira vergonha é não se levantar novamente.\nShintaro Midorima, Kuroko No Basket",
+    "Lembre-se da lição e não da decepção.\nHolo The Wise Wolf, Spice And Wolf",
+    "Você não conhece as pessoas, você conhece apenas o que elas permitem que você veja.\nBleach",
+    "Se você não gosta do seu destino, não o aceite. Em vez disso, tenha a coragem para transformá-lo naquilo que você quer que ele seja.\nNaruto Uzumaki, Naruto",
+    "O mundo não é perfeito. Mas ele está aqui para nós, fazendo o melhor que pode...e é isso que o faz tão lindo!\nRoy Mustang, Full Metal Alchemist",
+    "As pessoas fortes não derrubam as outras, elas ajudam-nas a se erguerem.\nGoku, Dragon Ball Z",
+    "Às vezes as questões são complicadas e as respostas são simples.\nDeath Note",
+    "Amar alguém profundamente lhe dá força; ser amado profundamente lhe dá coragem.\nYu Yu Hakusho",
 )
 
 ANIMTN = (

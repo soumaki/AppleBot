@@ -232,11 +232,12 @@ class _afk_:
         buttons = [
             [
                 InlineKeyboardButton(text="⚡️ STATUS", callback_data="status_afk"),
-                InlineKeyboardButton(text="👋", callback_data="afk_pm_"),
+                InlineKeyboardButton(text="❎ RUNTIME", callback_data="settings_btn"),
             ],
         ]
         return InlineKeyboardMarkup(buttons)
 
+                        
 
 @userge.on_filters(IS_AFK_FILTER & filters.outgoing, group=-1, allow_via_bot=False)
 async def logs(message: Message) -> None:
@@ -293,13 +294,14 @@ async def logs(message: Message) -> None:
     async def status_afk_(_, c_q: CallbackQuery):
         c_q.from_user.id
         await c_q.answer(
-            f"🍏 @applled 𝐒𝐓𝐀𝐓𝐔𝐒:\n\n𝐂𝐡𝐚𝐩𝐨𝐥𝐢𝐧 𝐝𝐢𝐬𝐬𝐞:\n ╰• {random.choice(FRASE_AFK)}\n",
+            f"🍏 @applled 𝐒𝐓𝐀𝐓𝐔𝐒:\n\n𝙵𝚛𝚊𝚜𝚎𝚜 𝚍𝚎 𝙰𝚗𝚒𝚖𝚎𝚜:\n ╰• {random.choice(ANIMES)}\n",
             show_alert=True,
         )
         return status_afk_
 
     # Query para resultado do Primeiro Clique + Gerar Mensagem # Início
-    @userge.bot.on_callback_query(filters.regex(pattern=r"^afk_pm_$"))
+    # Pensar no que fazer com isso depois #
+    @userge.bot.on_callback_query(filters.regex(pattern=r"^contato_pm$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id
         photo = f"""{random.choice(ANIMTN)}"""

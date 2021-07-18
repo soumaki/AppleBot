@@ -37,5 +37,5 @@ async def goo_(message: Message):
 🔗 [{query}]({r.json()['shorturl']})
 ➖➖➖➖
 Dev: @applled"""
-
+   )
 ANIMTN = ("https://telegra.ph/file/96378395294f719453c71.gif",)

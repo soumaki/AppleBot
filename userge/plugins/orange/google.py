@@ -1,13 +1,8 @@
-
-
 import random
-from search_engine_parser.core.engines.google import Search as GoogleSearch
-from PIL import Image
-from userge import Message, userge
 
-from userge import Config, Message, userge
-from userge.utils import get_file_id, rand_array
-from pyrogram import filters
+from search_engine_parser.core.engines.google import Search as GoogleSearch
+
+from userge import Message, userge
 
 LOGGER = userge.getLogger(__name__)
 
@@ -30,7 +25,9 @@ PESQUISA = ("https://telegra.ph/file/96378395294f719453c71.gif",)
     allow_via_bot=True,
 )
 async def gsearch(message: Message):
-    await message.edit("Pesquisando...**\n𝙰𝚐𝚞𝚊𝚛𝚍𝚎 𝚘 𝚛𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘, 𝙼𝚎𝚜𝚝𝚛𝚎...", del_in=2, log=__name__)
+    await message.edit(
+        "Pesquisando...**\n𝙰𝚐𝚞𝚊𝚛𝚍𝚎 𝚘 𝚛𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘, 𝙼𝚎𝚜𝚝𝚛𝚎...", del_in=2, log=__name__
+    )
     photo = f"""{random.choice(PESQUISA)}"""
     query = message.filtered_input_str
     flags = message.flags

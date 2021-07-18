@@ -6,14 +6,14 @@
 #
 # All rights reserved.
 
-from search_engine_parser.core.engines.google import Search as GoogleSearch
 import random
+
+from search_engine_parser.core.engines.google import Search as GoogleSearch
 
 from userge import Message, userge
 
-PESQUISA = (
-    "https://telegra.ph/file/96378395294f719453c71.gif",
-)
+PESQUISA = ("https://telegra.ph/file/96378395294f719453c71.gif",)
+
 
 @userge.on_cmd(
     "google",
@@ -66,9 +66,9 @@ async def gsearch(message: Message):
 
 """
     await message.client.send_animation(
-    # await message.edit_or_send_as_file(
-        text=output, 
+        # await message.edit_or_send_as_file(
+        text=output,
         caption=query,
-        animation=photo, 
-        disable_web_page_preview=True
+        animation=photo,
+        disable_web_page_preview=True,
     )

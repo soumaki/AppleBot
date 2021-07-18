@@ -24,13 +24,6 @@ async def goo_(message: Message):
     goo_url = f"https://www.google.com/search?q={query_encoded}"
     payload = {"format": "json", "url": goo_url}
     r = requests.get("http://is.gd/create.php", params=payload)
-    texto = f"""{random.choice(RESULTADO)}"""
-    photo = f"""{random.choice(ANIMTN)}"""
-    await message.client.send_animation(
-        message.chat.id,
-        animation=photo,
-        caption=texto,
-    )
    await message.edit(
         f"""
 ✅ **Este é o resultado da Sua Pesquisa no Google:
@@ -38,4 +31,3 @@ async def goo_(message: Message):
 ➖➖➖➖
 Dev: @applled"""
    )
-ANIMTN = ("https://telegra.ph/file/96378395294f719453c71.gif",)

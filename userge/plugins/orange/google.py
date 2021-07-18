@@ -7,9 +7,13 @@
 # All rights reserved.
 
 from search_engine_parser.core.engines.google import Search as GoogleSearch
+import random
 
 from userge import Message, userge
 
+PESQUISA = (
+    "https://telegra.ph/file/96378395294f719453c71.gif",
+)
 
 @userge.on_cmd(
     "google",
@@ -25,6 +29,7 @@ from userge import Message, userge
 )
 async def gsearch(message: Message):
     await message.edit("Pesquisando...")
+    photo = f"""{random.choice(PESQUISA)}"""
     query = message.filtered_input_str
     flags = message.flags
     page = int(flags.get("-pag", 1))
@@ -48,19 +53,22 @@ async def gsearch(message: Message):
             title = gresults["titles"][i]
             link = gresults["links"][i]
             desc = gresults["descriptions"][i]
-            output += f"🔗 **[{title}]({link})**\n▫️ __{desc}__\n"
-        #           output += f"{desc}\n\n" Ocupa muito espaço
+            output += f"🔗 **[{title}]({link})**\n ╰• <i>{desc}</i>\n\n"
         except IndexError:
             break
     output = f"""
-**Você pesquisou por:**
+**𝚂𝚞𝚊 𝚙𝚎𝚜𝚚𝚞𝚒𝚜𝚊 𝚏𝚘𝚒:**
 🔎 `{query}`
 
-**✅ Resultados no Google:**
+✅ 𝚁𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘𝚜 𝚗𝚘 𝙶𝚘𝚘𝚐𝚕𝚎:
 
 {output}
 
 """
-    await message.edit_or_send_as_file(
-        text=output, caption=query, disable_web_page_preview=True
+    await message.client.send_animation(
+    # await message.edit_or_send_as_file(
+        text=output, 
+        caption=query,
+        animation=photo, 
+        disable_web_page_preview=True
     )

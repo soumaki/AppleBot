@@ -64,7 +64,6 @@ async def gsearch(message: Message):
 {output}
 
 """
-    #       await message.client.send_animation(
     await message.edit_or_send_as_file(
         text=output,
         caption=query,

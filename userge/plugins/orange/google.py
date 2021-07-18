@@ -68,6 +68,6 @@ async def gsearch(message: Message):
     await message.edit_or_send_as_file(
         text=output,
         caption=query,
-        animation=photo,
+        photo_url=photo,
         disable_web_page_preview=True,
     )

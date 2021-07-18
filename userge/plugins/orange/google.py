@@ -6,8 +6,6 @@ from userge import Message, userge
 
 LOGGER = userge.getLogger(__name__)
 
-PESQUISA = ("https://telegra.ph/file/96378395294f719453c71.gif",)
-
 
 @userge.on_cmd(
     "google",
@@ -28,7 +26,6 @@ async def gsearch(message: Message):
     await message.edit(
         "Pesquisando...**\n𝙰𝚐𝚞𝚊𝚛𝚍𝚎 𝚘 𝚛𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘, 𝙼𝚎𝚜𝚝𝚛𝚎...", del_in=2, log=__name__
     )
-    photo = f"""{random.choice(PESQUISA)}"""
     query = message.filtered_input_str
     flags = message.flags
     page = int(flags.get("-pag", 1))
@@ -67,6 +64,5 @@ async def gsearch(message: Message):
     await message.edit_or_send_as_file(
         text=output,
         caption=query,
-        photo_url=photo,
         disable_web_page_preview=True,
     )

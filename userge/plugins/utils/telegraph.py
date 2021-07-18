@@ -27,7 +27,7 @@ async def telegraph_(message: Message):
     if not link:
         return
     await message.edit(
-        f"**Tudo certo, este é o [link](https://telegra.ph{link}) no Telegra.ph.**",
+        f"**Tudo certo, este é o [link](https://telegra.ph{link})\nSe preferir:\n <code>{link}</code>**",
         disable_web_page_preview=True,
     )
 

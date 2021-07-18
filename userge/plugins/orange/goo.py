@@ -25,9 +25,5 @@ async def goo_(message: Message):
     payload = {"format": "json", "url": goo_url}
     r = requests.get("http://is.gd/create.php", params=payload)
    await message.edit(
-        f"""
-✅ **Este é o resultado da Sua Pesquisa no Google:
-🔗 [{query}]({r.json()['shorturl']})
-➖➖➖➖
-Dev: @applled"""
+        f"✅ **Este é o resultado da Sua Pesquisa no Google:\n🔗 [{query}]({r.json()['shorturl']})\n\n ➖➖➖➖\nDev: @applled"
    )

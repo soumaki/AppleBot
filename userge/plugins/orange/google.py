@@ -1,16 +1,15 @@
-# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
-#
-# This file is part of < https://github.com/UsergeTeam/Userge > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/uaudith/Userge/blob/master/LICENSE >
-#
-# All rights reserved.
+
 
 import random
-
 from search_engine_parser.core.engines.google import Search as GoogleSearch
-
+from PIL import Image
 from userge import Message, userge
+
+from userge import Config, Message, userge
+from userge.utils import get_file_id, rand_array
+from pyrogram import filters
+
+LOGGER = userge.getLogger(__name__)
 
 PESQUISA = ("https://telegra.ph/file/96378395294f719453c71.gif",)
 
@@ -18,7 +17,7 @@ PESQUISA = ("https://telegra.ph/file/96378395294f719453c71.gif",)
 @userge.on_cmd(
     "google",
     about={
-        "header": "Faça uma pesquisa no Google",
+        "titulo": "Faça uma pesquisa no Google",
         "flags": {
             "-pag": "números de páginas para o resultado da pesquisa (o padrão é 1)",
             "-lim": "Limite de número dos resultados da pesquisa (padrão está 3)(máximo 10)",
@@ -26,9 +25,12 @@ PESQUISA = ("https://telegra.ph/file/96378395294f719453c71.gif",)
         "como usar": "{tr}google [flags] [pesquisa | responda uma mensagem]",
         "exemplo": "{tr}google -p4 -l10 apple",
     },
+    del_pre=True,
+    allow_channels=False,
+    allow_via_bot=True,
 )
 async def gsearch(message: Message):
-    await message.edit("Pesquisando...")
+    await message.edit("Pesquisando...**\n𝙰𝚐𝚞𝚊𝚛𝚍𝚎 𝚘 𝚛𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘, 𝙼𝚎𝚜𝚝𝚛𝚎...", del_in=2, log=__name__)
     photo = f"""{random.choice(PESQUISA)}"""
     query = message.filtered_input_str
     flags = message.flags

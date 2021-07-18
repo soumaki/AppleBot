@@ -31,9 +31,11 @@ async def goo_(message: Message):
         animation=photo,
         caption=texto,
     )
-
-
-#   await message.edit(
-RESUTALDO = f"""✅ **Este é o resultado da Sua Pesquisa no Google:\n\n🔗 [{query}]({r.json()['shorturl']})\n\n  ➖➖➖➖\nDev: @applled"""
+   await message.edit(
+        f"""
+✅ **Este é o resultado da Sua Pesquisa no Google:
+🔗 [{query}]({r.json()['shorturl']})
+➖➖➖➖
+Dev: @applled"""
 
 ANIMTN = ("https://telegra.ph/file/96378395294f719453c71.gif",)

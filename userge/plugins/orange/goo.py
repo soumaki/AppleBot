@@ -1,7 +1,9 @@
 """Pesquisa simplificada do Google - @applled"""
 
 import requests
+
 from userge import Message, userge
+
 
 @userge.on_cmd(
     "goo",

@@ -1,5 +1,3 @@
-import random
-
 from search_engine_parser.core.engines.google import Search as GoogleSearch
 
 from userge import Message, userge

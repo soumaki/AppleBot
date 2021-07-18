@@ -52,7 +52,7 @@ async def gsearch(message: Message):
             title = gresults["titles"][i]
             link = gresults["links"][i]
             desc = gresults["descriptions"][i]
-            output += f"🔗 **[{title}]({link})**\n ╰• <i>{desc}</i>\n\n"
+            resultado += f"🔗 **[{title}]({link})**\n ╰• <i>{desc}</i>\n\n"
         except IndexError:
             break
     output = f"""
@@ -61,11 +61,12 @@ async def gsearch(message: Message):
 
 ✅ 𝚁𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘𝚜 𝚗𝚘 𝙶𝚘𝚘𝚐𝚕𝚎:
 
-{output}
+{resutado}
 
 """
-    await message.client.send_animation(
-        # await message.edit_or_send_as_file(
+#       await message.client.send_animation(
+        await message.edit_or_send_as_file(
+        message.chat.id,
         text=output,
         caption=query,
         animation=photo,

@@ -1,9 +1,7 @@
 """Pesquisa simplificada do Google - @applled"""
 
 import random
-from userge import Config, Message, userge
-from userge.utils import get_file_id, rand_array
-from pyrogram import filters
+
 import requests
 
 from userge import Message, userge
@@ -17,7 +15,7 @@ from userge import Message, userge
     },
 )
 async def goo_(message: Message):
-    """ Google ;) """
+    """Google ;)"""
     query = message.input_or_reply_str
     if not query:
         await message.edit("`Vou pesquisar o vento?!`")
@@ -29,15 +27,13 @@ async def goo_(message: Message):
     texto = f"""{random.choice(RESULTADO)}"""
     photo = f"""{random.choice(ANIMTN)}"""
     await message.client.send_animation(
-                         message.chat.id, 
-                         animation=photo, 
-                         caption=texto,
-    )
-#   await message.edit(
-RESUTALDO = (
-    f"""✅ **Este é o resultado da Sua Pesquisa no Google:\n\n🔗 [{query}]({r.json()['shorturl']})\n\n  ➖➖➖➖\nDev: @applled"""
+        message.chat.id,
+        animation=photo,
+        caption=texto,
     )
 
-ANIMTN = (
-    "https://telegra.ph/file/96378395294f719453c71.gif",
-)
+
+#   await message.edit(
+RESUTALDO = f"""✅ **Este é o resultado da Sua Pesquisa no Google:\n\n🔗 [{query}]({r.json()['shorturl']})\n\n  ➖➖➖➖\nDev: @applled"""
+
+ANIMTN = ("https://telegra.ph/file/96378395294f719453c71.gif",)

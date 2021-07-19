@@ -58,7 +58,7 @@ async def gsearch(message: Message):
 
 {output}
 
-🌐 | <code>𝚐𝚘𝚘𝚐𝚕𝚎.𝚌𝚘𝚖</code> 
+🌐 | <code>𝚐𝚘𝚘𝚐𝚕𝚎.𝚌𝚘𝚖</code>
 """
     await message.edit_or_send_as_file(
         text=output,

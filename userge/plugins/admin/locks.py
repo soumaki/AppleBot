@@ -136,14 +136,18 @@ async def lock_perm(message: Message):
     if lock_type == "all":
         try:
             await message.client.set_chat_permissions(chat_id, ChatPermissions())
-            await message.edit("🔒 Todas as permissões deste grupo foram atualizadas\nStatus: **Permissões bloqueadas**", del_in=5)
+            await message.edit(
+                "🔒 Todas as permissões deste grupo foram atualizadas\nStatus: **Permissões bloqueadas**",
+                del_in=5,
+            )
             await CHANNEL.log(
                 f"#CHAT\n\nBLOQUEADO: `{message.chat.title}` (`{chat_id}`)\n"
                 f"PERMISSÕES: `Todas as Permissões`"
             )
         except Exception as e_f:
             await message.edit(
-                r"`Não tenho privilégios para fazer isto. ＞︿＜`\n\n" f"**ERRO NA MATRIX:** `{e_f}`",
+                r"`Não tenho privilégios para fazer isto. ＞︿＜`\n\n"
+                f"**ERRO NA MATRIX:** `{e_f}`",
                 del_in=5,
             )
         return
@@ -189,7 +193,8 @@ async def lock_perm(message: Message):
         )
     except Exception as e_f:
         await message.edit(
-            r"`Não tenho privilégios para fazer isto. ＞︿＜`\n\n" f"**FALHA NA MATRIX:** `{e_f}`",
+            r"`Não tenho privilégios para fazer isto. ＞︿＜`\n\n"
+            f"**FALHA NA MATRIX:** `{e_f}`",
             del_in=5,
         )
 

@@ -54,11 +54,11 @@ async def gsearch(message: Message):
 𝚂𝚞𝚊 𝚙𝚎𝚜𝚚𝚞𝚒𝚜𝚊 𝚏𝚘𝚒:
 🔎 `{query}`
 
-✅ 𝚁𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘𝚜 𝚗𝚘 𝙶𝚘𝚘𝚐𝚕𝚎:
+✅ 𝚁𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘𝚜:
 
 {output}
 
-🌐 | <code>google.com</code>
+🌐 | <code>𝚐𝚘𝚘𝚐𝚕𝚎.𝚌𝚘𝚖</code> 
 """
     await message.edit_or_send_as_file(
         text=output,

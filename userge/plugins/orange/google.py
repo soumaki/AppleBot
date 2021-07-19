@@ -10,7 +10,7 @@ LOGGER = userge.getLogger(__name__)
     about={
         "titulo": "Faça uma pesquisa no Google",
         "flags": {
-            "-pag": "números de páginas para o resultado da pesquisa (o padrão é 1)",
+            "-pag": "números de páginas para o resultado da pesquisa (o padrão é 2)",
             "-lim": "Limite de número dos resultados da pesquisa (padrão está 3)(máximo 10)",
         },
         "como usar": "{tr}google [flags] [pesquisa | responda uma mensagem]",
@@ -22,11 +22,11 @@ LOGGER = userge.getLogger(__name__)
 )
 async def gsearch(message: Message):
     await message.edit(
-        "Pesquisando...**\n𝙰𝚐𝚞𝚊𝚛𝚍𝚎 𝚘 𝚛𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘, 𝙼𝚎𝚜𝚝𝚛𝚎...", del_in=2, log=__name__
+        "**Pesquisa do Google**\n<i>Log Salvo.</i>", del_in=2, log=__name__
     )
     query = message.filtered_input_str
     flags = message.flags
-    page = int(flags.get("-pag", 1))
+    page = int(flags.get("-pag", 2))
     limit = int(flags.get("-lim", 3))
     if message.reply_to_message:
         query = message.reply_to_message.text
@@ -51,13 +51,14 @@ async def gsearch(message: Message):
         except IndexError:
             break
     output = f"""
-**𝚂𝚞𝚊 𝚙𝚎𝚜𝚚𝚞𝚒𝚜𝚊 𝚏𝚘𝚒:**
+𝚂𝚞𝚊 𝚙𝚎𝚜𝚚𝚞𝚒𝚜𝚊 𝚏𝚘𝚒:
 🔎 `{query}`
 
 ✅ 𝚁𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘𝚜 𝚗𝚘 𝙶𝚘𝚘𝚐𝚕𝚎:
 
 {output}
 
+🌐 | <code>google.com</code>
 """
     await message.edit_or_send_as_file(
         text=output,

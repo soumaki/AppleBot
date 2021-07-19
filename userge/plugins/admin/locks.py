@@ -1,4 +1,4 @@
-""" set permissions to users """
+""" Defina as Configurações dos Usuários """
 
 # Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
 #
@@ -104,9 +104,9 @@ def _get_chat_lock(
 @userge.on_cmd(
     "lock",
     about={
-        "header": "use this to lock group permissions",
-        "description": "Allows you to lock some common permission types in the chat.\n"
-        "[NOTE: Requires proper admin rights in the chat!!!]",
+        "titulo": "use este comando para bloquear as permissões em um grupo",
+        "descrição": "Permite que você bloqueie diversos tipos de permissões em um chat.\n"
+        "[NOTA: É obrigatório que você seja um administrador.]",
         "types": [
             "all",
             "msg",
@@ -121,29 +121,29 @@ def _get_chat_lock(
             "games",
             "stickers",
         ],
-        "examples": "{tr}lock [all | type]",
+        "como usar": "{tr}lock [all | type]",
     },
     allow_channels=False,
     check_restrict_perm=True,
 )
 async def lock_perm(message: Message):
-    """lock chat permissions from tg group"""
+    """Bloqueia as permissões de um grupo no Telegram"""
     lock_type = message.input_str
     chat_id = message.chat.id
     if not lock_type:
-        await message.err(r"I Can't Lock Nothing! (－‸ლ)")
+        await message.err(r"Não consigo bloquear é nada! (－‸ლ)")
         return
     if lock_type == "all":
         try:
             await message.client.set_chat_permissions(chat_id, ChatPermissions())
-            await message.edit("**🔒 Locked all permission from this Chat!**", del_in=5)
+            await message.edit("🔒 Todas as permissões deste grupo foram atualizadas\nStatus: **Permissões bloqueadas**", del_in=5)
             await CHANNEL.log(
-                f"#LOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
-                f"PERMISSIONS: `All Permissions`"
+                f"#CHAT\n\nBLOQUEADO: `{message.chat.title}` (`{chat_id}`)\n"
+                f"PERMISSÕES: `Todas as Permissões`"
             )
         except Exception as e_f:
             await message.edit(
-                r"`i don't have permission to do that ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
+                r"`Não tenho privilégios para fazer isto. ＞︿＜`\n\n" f"**ERRO NA MATRIX:** `{e_f}`",
                 del_in=5,
             )
         return
@@ -163,7 +163,7 @@ async def lock_perm(message: Message):
             perm,
         ) = _get_chat_lock(message, lock_type, True)
     else:
-        await message.err(r"Invalid lock type! ¯\_(ツ)_/¯")
+        await message.err(r"Tipo de Bloqueio inválido! ¯\_(ツ)_/¯")
         return
     try:
         await message.client.set_chat_permissions(
@@ -182,14 +182,14 @@ async def lock_perm(message: Message):
                 can_pin_messages=pin,
             ),
         )
-        await message.edit(f"**🔒 Locked {perm} for this chat!**", del_in=5)
+        await message.edit(f"**🔒 {perm} bloqueada para este chat!**", del_in=5)
         await CHANNEL.log(
-            f"#LOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
-            f"PERMISSIONS: `{perm} Permission`"
+            f"#CHAT\n\nBLOQUEADO:: `{message.chat.title}` (`{chat_id}`)\n"
+            f"PERMISSÕES: `Permissão {perm}`"
         )
     except Exception as e_f:
         await message.edit(
-            r"`i don't have permission to do that ＞︿＜`\n\n" f"**ERROR:** `{e_f}`",
+            r"`Não tenho privilégios para fazer isto. ＞︿＜`\n\n" f"**FALHA NA MATRIX:** `{e_f}`",
             del_in=5,
         )
 
@@ -197,7 +197,7 @@ async def lock_perm(message: Message):
 @userge.on_cmd(
     "unlock",
     about={
-        "header": "use this to unlock group permissions",
+        "titulo": "use this to unlock group permissions",
         "description": "Allows you to unlock some common permission types in the chat.\n"
         "[NOTE: Requires proper admin rights in the chat!!!]",
         "types": [

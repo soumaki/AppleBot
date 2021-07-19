@@ -31,4 +31,5 @@ async def goo_(message: Message):
   ➖➖➖➖
 Dev: @applled
 """
+        disable_web_page_preview=True,
     )

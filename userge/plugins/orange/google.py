@@ -57,7 +57,6 @@ async def gsearch(message: Message):
 ✅ 𝚁𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘𝚜:
 
 {output}
-
 🌐 | <code>𝚐𝚘𝚘𝚐𝚕𝚎.𝚌𝚘𝚖</code>
 """
     await message.edit_or_send_as_file(

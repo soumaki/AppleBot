@@ -22,7 +22,7 @@ LOGGER = userge.getLogger(__name__)
 )
 async def gsearch(message: Message):
     await message.edit(
-        "**Pesquisa do Google**\n<i>Log Salvo.</i>", del_in=2, log=__name__
+        f"**Pesquisa do Google**\n<i>Log Salvo.</i>\n🔎 {query}", del_in=2, log=__name__
     )
     query = message.filtered_input_str
     flags = message.flags

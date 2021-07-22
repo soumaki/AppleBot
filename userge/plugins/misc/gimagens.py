@@ -1,4 +1,4 @@
-"""Google IMGS"""
+""" Pesquise Imagens / Gifs no Google """
 
 #  Copyright (C) 2021 BY USERGE-X
 #  All rights reserved.
@@ -36,19 +36,19 @@ class Colors:
 @userge.on_cmd(
     "(?:gimg|img)",
     about={
-        "header": "Google Image Downloader",
+        "titulo": "Pesquise e Baixe Imagens no Google",
         "description": "Search and download images from google and upload to telegram",
         "flags": {
-            "-l": "limit max. [40 for upload | 100 for download] (default is 5)",
-            "-q": "quality [0-2] (2 is best | default is 1)",
-            "-d": "Upload as document",
-            "-gif": "download gifs",
-            "-down": "download only",
-            "colors": "any color in (⚙️ Color)",
+            "-l": "limite máximo. [40 por upload | 100 em download] (o padrão é 5)",
+            "-q": "qualidade [0-2] (2 é a melhor opção | padrão é 1)",
+            "-d": "Upload como documento",
+            "-gif": "Download Gifs",
+            "-down": "Apenas Download",
+            "colors": "Qualquer cor",
         },
-        "usage": "{tr}gimg [flags] [query|reply to text]",
+        "como usar": "{tr}gimg [flags] [pesquisa|responda um texto]",
         "color": ["-" + _ for _ in Colors.choice],
-        "examples": [
+        "exemplos": [
             "{tr}gimg wallpaper",
             "{tr}gimg -red wallpaper <red wallpapers>",
             "{tr}gimg tigers <upload 5 pics as gallery>",
@@ -61,7 +61,7 @@ class Colors:
     check_downpath=True,
 )
 async def gimg_down(message: Message):
-    """google images downloader"""
+    """ Download de Imagens no Google """
     text = ""
     reply = message.reply_to_message
     args = (message.filtered_input_str or "").strip()
@@ -71,7 +71,7 @@ async def gimg_down(message: Message):
         text = reply.text or reply.caption
 
     if not text:
-        await message.err("`Input not found!...`", del_in=5)
+        await message.err("`Vento? Digite algo, lerdo!`", del_in=5)
         return
     await message.edit("🔎")
     start_t = datetime.now()
@@ -99,14 +99,14 @@ async def gimg_down(message: Message):
     else:
         arguments = await get_arguments(query=text)
     media_type = "Gifs" if allow_gif else "Pics"
-    await message.edit(f"⬇️  Downloading  {limit} {media_type} ...")
+    await message.edit(f"⬇️ Baixando {limit} {media_type} ...")
     try:
         results = await gimg_downloader(arguments)
     except Exception as e:
         await message.err(str(e), del_in=7)
         return
     if upload_:
-        await message.edit(f"⬆️  Uploading {limit} {media_type} ...")
+        await message.edit(f"⬆️ Fazendo o Upload {limit} {media_type} ...")
         try:
             await upload_image_grp(results, message, doc_)
         except Exception as err:
@@ -115,7 +115,7 @@ async def gimg_down(message: Message):
             end_t = datetime.now()
             time_taken_s = (end_t - start_t).seconds
             await message.edit(
-                f"Uploaded {limit} Pics in {time_taken_s} sec with {results[1]} errors.",
+                f"Upado {limit} fotos em {time_taken_s} seg | {results[1]} erros.",
                 del_in=5,
                 log=__name__,
             )
@@ -187,7 +187,7 @@ async def upload_image_grp(results, message: Message, doc: bool = False):
     if message.process_is_canceled:
         await message.client.stop_transmission()
     if len(medias_) == 0:
-        await message.err(f"No result Found `'{key_}'`", del_in=7)
+        await message.err(f"Não encontrei foi nada... `'{key_}'`", del_in=7)
     if len(medias_) == 1:
         path_ = Path(medias_[0])
         if doc:

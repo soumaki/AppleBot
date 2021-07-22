@@ -1,18 +1,20 @@
-import asyncio
+""" Módulo simples para reiniciar o Bot | @applled """
 
+import asyncio
 from userge import Message, userge
 
-# Applled tools
-
-
 @userge.on_cmd(
-    "reset$", about={"header": "Reiniciar Bot"}, trigger="", allow_via_bot=False
+    "reset",
+    about={
+        "titulo": "Reiniciar Bot",
+        "como usar": "{tr}reset",
+    },
 )
+
 async def reset_(message: Message):
     """reset"""
     reset = "!ree -apple"
     await message.try_to_edit(reset, del_in=1)
-
 
 async def check_and_send(message: Message, *args, **kwargs):
     replied = message.reply_to_message

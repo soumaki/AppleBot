@@ -61,7 +61,7 @@ class Colors:
     check_downpath=True,
 )
 async def gimg_down(message: Message):
-    """ Download de Imagens no Google """
+    """Download de Imagens no Google"""
     text = ""
     reply = message.reply_to_message
     args = (message.filtered_input_str or "").strip()

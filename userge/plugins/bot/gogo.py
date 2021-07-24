@@ -40,6 +40,7 @@ async def gogo_h(message: Message):
             "[**See Help for Anime**]({})".format(link_), disable_web_page_preview=True
         )
 
+
 class Anime:
     @staticmethod
     async def _get_html(link: str, add_pre: bool = True):

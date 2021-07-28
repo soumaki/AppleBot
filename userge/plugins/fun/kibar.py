@@ -283,6 +283,7 @@ KANGING_STR = (
     "Seria uma pena se alguém kibasse isso, né?",
 )
 
+
 @userge.on_cmd(
     "adesivo",
     about={

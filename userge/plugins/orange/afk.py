@@ -16,7 +16,7 @@ from userge.utils import time_formatter
 
 _TELE_REGEX = comp_regex(
     r"http[s]?://(i\.imgur\.com|telegra\.ph/file|t\.me)/(\w+)(?:\.|/)(gif|mp4|jpg|png|jpeg|[0-9]+)(?:/([0-9]+))?"
-)
+
 
 CHANNEL = userge.getCLogger(__name__)
 SAVED_SETTINGS = get_collection("CONFIGS")
@@ -353,10 +353,6 @@ ANIMTN = (
     "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
 )
 
-CONTATO = (
-    f"🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• 𝙳𝚎𝚜𝚌𝚘𝚋𝚛𝚒𝚛𝚊𝚖!\n\n<i>Olá!</i>\n𝙰𝚕𝚐𝚞𝚖 𝚌𝚞𝚛𝚒𝚘𝚜𝚘 𝚍𝚎𝚞 𝚞𝚖 𝚌𝚕𝚒𝚚𝚞𝚎 👋",
-)
-
 FRASE_AFK = (
     "Se você perdeu a batalha,\nimagna a guerra que tem mais pessoas!",
     "As moscas não se arriscariam\nà ir a Roma de boca fechada,\npois morreriam de fome.",
@@ -365,8 +361,7 @@ FRASE_AFK = (
 )
 BIO_AFK = (
     "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐋𝐢𝐤𝐞 𝐓𝐰𝐞𝐞𝐭𝐬\n🔗 @twapple\n𝐁𝐢𝐨\n🔗 @orapple\n ╰• 𝘔𝘰𝘳𝘦 𝘤𝘰𝘮𝘪𝘯𝘨 𝘴𝘰𝘰𝘯...",
-    # Adicionar mais coisas
 )
 AFK_REASONS = (
-    "I'm busy right now. Please talk in a bag and when I come back you can just give me the bag!",
+    "𝙸 𝚌𝚊𝚗'𝚝 𝚝𝚊𝚕𝚔 𝚛𝚒𝚐𝚑𝚝 𝚗𝚘𝚠.",
 )

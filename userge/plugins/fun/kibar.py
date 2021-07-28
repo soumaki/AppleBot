@@ -1,4 +1,4 @@
-""" kang stickers """
+""" Roube ou faça figurinhas """
 
 # Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
 #
@@ -89,7 +89,7 @@ async def kang_(message: Message):
         ):
             emoji_ = None
         if not emoji_:
-            emoji_ = "🤔"
+            emoji_ = "🍏"
 
         u_name = user.username
         u_name = "@" + u_name if u_name else user.first_name or user.id
@@ -115,7 +115,7 @@ async def kang_(message: Message):
                 try:
                     await conv.send_message("/addsticker")
                 except YouBlockedUser:
-                    await message.edit("first **unblock** @Stickers")
+                    await message.edit("desboqueie o @Stickers primeiro. ;)")
                     return
                 await conv.get_response(mark_read=True)
                 await conv.send_message(packname)
@@ -283,9 +283,6 @@ KANGING_STR = (
     "Seria uma pena se alguém kibasse isso, né?",
 )
 
-
-# Baseado em:
-# https://github.com/AnimeKaizoku/SaitamaRobot/blob/10291ba0fc27f920e00f49bc61fcd52af0808e14/SaitamaRobot/modules/stickers.py#L42
 @userge.on_cmd(
     "adesivo",
     about={

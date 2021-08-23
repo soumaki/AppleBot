@@ -29,7 +29,9 @@ noPmMessage = bk_noPmMessage = (
     "Suas mensagens estão sob análise de aprovação.\n"
     "Caso você persista enviando contínuas mensagens, você poderá ser bloqueado automaticamente."
 )
-blocked_message = bk_blocked_message = "**Você foi bloqueado automaticamente. Não foi falta de aviso. ;)**"
+blocked_message = (
+    bk_blocked_message
+) = "**Você foi bloqueado automaticamente. Não foi falta de aviso. ;)**"
 
 
 async def _init() -> None:
@@ -188,7 +190,9 @@ async def set_custom_nopm_message(message: Message):
     else:
         string = message.input_or_reply_raw
         if string:
-            await message.edit("`Mensagem de NOPM personalizada salva!`", del_in=3, log=True)
+            await message.edit(
+                "`Mensagem de NOPM personalizada salva!`", del_in=3, log=True
+            )
             noPmMessage = string
             await SAVED_SETTINGS.update_one(
                 {"_id": "CUSTOM NOPM MESSAGE"}, {"$set": {"data": string}}, upsert=True
@@ -225,7 +229,9 @@ async def set_custom_blockpm_message(message: Message):
     else:
         string = message.input_or_reply_raw
         if string:
-            await message.edit("`Mensagem de BLOCKPM personalizada salva!`", del_in=3, log=True)
+            await message.edit(
+                "`Mensagem de BLOCKPM personalizada salva!`", del_in=3, log=True
+            )
             blocked_message = string
             await SAVED_SETTINGS.update_one(
                 {"_id": "CUSTOM BLOCKPM MESSAGE"},
@@ -253,7 +259,9 @@ async def view_current_noPM_msg(message: Message):
 )
 async def view_current_blockPM_msg(message: Message):
     """view current block pm message"""
-    await message.edit(f"-- Mensagem Automática de BlockPM atua --\n\n{blocked_message}")
+    await message.edit(
+        f"-- Mensagem Automática de BlockPM atua --\n\n{blocked_message}"
+    )
 
 
 @userge.on_filters(

@@ -24,12 +24,12 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "🏷 | **AUTO REPLY**\n"
+    "🏷 | **MENSAGEM AUTOMÁTICA**\n"
     "Olá, {fname}!\n"
-    "Aguarde até que meu mestre aprove suas mensagens.\n"
-    "Não fique spammando, você pode ser bloqueado automaticamente pelo bot."
+    "Suas mensagens estão sob análise de aprovação.\n"
+    "Caso você persista enviando contínuas mensagens, você poderá ser bloqueado automaticamente."
 )
-blocked_message = bk_blocked_message = "**Você foi bloqueado automaticamente**"
+blocked_message = bk_blocked_message = "**Você foi bloqueado automaticamente. Não foi falta de aviso. ;)**"
 
 
 async def _init() -> None:
@@ -149,10 +149,10 @@ async def pmguard(message: Message):
     global pmCounter  # pylint: disable=global-statement
     if Config.ALLOW_ALL_PMS:
         Config.ALLOW_ALL_PMS = False
-        await message.edit("`PM_guard activated`", del_in=3, log=__name__)
+        await message.edit("`PM Guard ATIVO`", del_in=3, log=__name__)
     else:
         Config.ALLOW_ALL_PMS = True
-        await message.edit("`PM_guard deactivated`", del_in=3, log=__name__)
+        await message.edit("`PM Guard DESATIVADO`", del_in=3, log=__name__)
         pmCounter.clear()
     await SAVED_SETTINGS.update_one(
         {"_id": "PM GUARD STATUS"},
@@ -182,19 +182,19 @@ async def set_custom_nopm_message(message: Message):
     """setup custom pm message"""
     global noPmMessage  # pylint: disable=global-statement
     if "-r" in message.flags:
-        await message.edit("`Custom NOpm message reset`", del_in=3, log=True)
+        await message.edit("`Mensagem de NOPM resetada!`", del_in=3, log=True)
         noPmMessage = bk_noPmMessage
         await SAVED_SETTINGS.find_one_and_delete({"_id": "CUSTOM NOPM MESSAGE"})
     else:
         string = message.input_or_reply_raw
         if string:
-            await message.edit("`Custom NOpm message saved`", del_in=3, log=True)
+            await message.edit("`Mensagem de NOPM personalizada salva!`", del_in=3, log=True)
             noPmMessage = string
             await SAVED_SETTINGS.update_one(
                 {"_id": "CUSTOM NOPM MESSAGE"}, {"$set": {"data": string}}, upsert=True
             )
         else:
-            await message.err("invalid input!")
+            await message.err("Falha na Matrix!")
 
 
 @userge.on_cmd(
@@ -219,13 +219,13 @@ async def set_custom_blockpm_message(message: Message):
     """setup custom blockpm message"""
     global blocked_message  # pylint: disable=global-statement
     if "-r" in message.flags:
-        await message.edit("`Custom BLOCKpm message reset`", del_in=3, log=True)
+        await message.edit("`Mensagem de BLOCKPM resetada`", del_in=3, log=True)
         blocked_message = bk_blocked_message
         await SAVED_SETTINGS.find_one_and_delete({"_id": "CUSTOM BLOCKPM MESSAGE"})
     else:
         string = message.input_or_reply_raw
         if string:
-            await message.edit("`Custom BLOCKpm message saved`", del_in=3, log=True)
+            await message.edit("`Mensagem de BLOCKPM personalizada salva!`", del_in=3, log=True)
             blocked_message = string
             await SAVED_SETTINGS.update_one(
                 {"_id": "CUSTOM BLOCKPM MESSAGE"},
@@ -243,7 +243,7 @@ async def set_custom_blockpm_message(message: Message):
 )
 async def view_current_noPM_msg(message: Message):
     """view current pm message"""
-    await message.edit(f"--current PM message--\n\n{noPmMessage}")
+    await message.edit(f"-- Mensagem Automática de PM atual --\n\n{noPmMessage}")
 
 
 @userge.on_cmd(
@@ -253,7 +253,7 @@ async def view_current_noPM_msg(message: Message):
 )
 async def view_current_blockPM_msg(message: Message):
     """view current block pm message"""
-    await message.edit(f"--current blockPM message--\n\n{blocked_message}")
+    await message.edit(f"-- Mensagem Automática de BlockPM atua --\n\n{blocked_message}")
 
 
 @userge.on_filters(
@@ -298,7 +298,7 @@ async def uninvitedPmHandler(message: Message):
         PMPERMIT_MSG[message.from_user.id] = (
             await message.reply(
                 noPmMessage.format_map(SafeDict(**user_dict))
-                + "\n`- Protegido pela Magia do Caos`"
+                + "\n`- AppleBot Security`"
             )
         ).message_id
         await asyncio.sleep(1)

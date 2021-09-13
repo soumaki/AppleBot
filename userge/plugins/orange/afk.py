@@ -232,7 +232,8 @@ class _afk_:
         buttons = [
             [
                 InlineKeyboardButton(text="⚡️ STATUS", callback_data="status_afk"),
-                InlineKeyboardButton(text="❎ RUNTIME", callback_data="settings_btn"),
+                InlineKeyboardButton(text="🍏 TWAPPLE", url="https://t.me/twapple",
+                ),
             ],
         ]
         return InlineKeyboardMarkup(buttons)

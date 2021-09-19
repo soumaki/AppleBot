@@ -1,6 +1,7 @@
 """ Plugin para Baixar APK da MIUI System / @applled """
 
 from pyrogram.errors import BadRequest
+
 from userge import Message, userge
 from userge.utils import get_file_id
 
@@ -13,7 +14,7 @@ from userge.utils import get_file_id
     },
 )
 async def app_sistema(message: Message):
-    """ Módulo para pesquisar e enviar rapidament e a última versão de um App da Xiaomi """
+    """Módulo para pesquisar e enviar rapidament e a última versão de um App da Xiaomi"""
     aplicativo = message.input_str
     if not aplicativo:
         await message.err("Tente usar o nome de um app.", del_in=10)

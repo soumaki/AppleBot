@@ -240,14 +240,14 @@ class Bot_Alive:
     def alive_info() -> str:
         alive_info_ = f"""
 
-          <a href="https://t.me/twapple"><b>APPLEBOT</a> IS ON AND UP ✓</b>
-           ╰•  Online Since: {userge.uptime} | <b>Mode: {Bot_Alive._get_mode()}
+          <a href="https://t.me/twapple"><b>APPLEBOT</a> ESTÁ ONLINE ✓</b>
+           ╰•  Ativo desde: {userge.uptime} | <b>Modo: {Bot_Alive._get_mode()}
               ➖➖➖➖➖➖➖
          ⭕️   <b>Python:</b> <code>v{versions.__python_version__}</code>
          ⭕️   <b>Pyrogram:</b> <code>v{versions.__pyro_version__}</code>
-         ▫️   <b>Version:</b> <code>v2.0.Beta</code>
+         ▫️   <b>Versão:</b> <code>v2.0.Beta</code>
               ➖➖➖➖➖➖➖
-         🍏   <b>Main:</b>  <b>@applled</b>
+         🍏   <b>Maçã:</b>  <b>@applled</b>
 
          """
         return alive_info_
@@ -265,7 +265,7 @@ class Bot_Alive:
         buttons = [
             [
                 InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="🍎 TEAM", callback_data="info_apple"),
+                InlineKeyboardButton(text="🍎", callback_data="alive_pm_"),
             ],
         ]
         return InlineKeyboardMarkup(buttons)

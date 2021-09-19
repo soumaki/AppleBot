@@ -301,32 +301,6 @@ async def logs(message: Message) -> None:
         )
         return status_afk_
 
-    # Query para resultado do Primeiro Clique + Gerar Mensagem # Início
-    # Pensar no que fazer com isso depois #
-    @userge.bot.on_callback_query(filters.regex(pattern=r"^contato_pm$"))
-    async def afk_resultado(_, c_q: CallbackQuery):
-        c_q.from_user.id
-        photo = f"""{random.choice(ANIMTN)}"""
-        texto = f"{random.choice(CONTATO)}\n\n{random.choice(ANIMES)}"
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="❎ Ok",
-                    url="https://t.me/twapple",
-                )
-            ]
-        ]
-        try:
-            await userge.bot.send_animation(
-                message.chat.id,
-                animation=photo,
-                caption=texto,
-                reply_markup=InlineKeyboardMarkup(buttons),
-            )
-        except MessageNotModified:
-            return
-
-    # Query para resultado do Primeiro Clique + Gerar Mensagem # FIM
     @userge.bot.on_callback_query(filters.regex(pattern=r"^status_apple$"))
     async def _status_afk(_, c_q: CallbackQuery):
         c_q.from_user.id

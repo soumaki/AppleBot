@@ -1,12 +1,19 @@
+from datetime import datetime
+
 import flag as cflag
 import humanize
 from aiohttp import ClientSession
-from datetime import datetime
 from pyrogram import filters
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InputMediaPhoto,
+)
+
 from userge import Message, userge
-from userge.utils import post_to_telegraph as post_to_tp
 from userge.utils import check_owner
+from userge.utils import post_to_telegraph as post_to_tp
 
 ANIME_TEMPLATE = """{name}
 **ID | MAL ID:** `{idm}` | `{idmal}`
@@ -107,8 +114,9 @@ query ($id: Int, $idMal:Int, $search: String, $type: MediaType, $asHtml: Boolean
 }
 """
 
+
 async def return_json_senpai(query, vars_):
-    """ Makes a Post to https://graphql.anilist.co. """
+    """Makes a Post to https://graphql.anilist.co."""
     url_ = "https://graphql.anilist.co"
     async with ClientSession() as session:
         async with session.post(
@@ -119,7 +127,7 @@ async def return_json_senpai(query, vars_):
 
 
 def make_it_rw(time_stamp, as_countdown=False):
-    """ Converting Time Stamp to Readable Format """
+    """Converting Time Stamp to Readable Format"""
     if as_countdown:
         now = datetime.now()
         air_time = datetime.fromtimestamp(time_stamp)
@@ -133,33 +141,47 @@ def make_it_rw(time_stamp, as_countdown=False):
         "header": "Advanced Anime Search",
         "description": "Search for Anime using AniList API",
         "usage": "{tr}ianime [anime name]",
-        "examples": ["{tr}ianime Asterisk war",]
+        "examples": [
+            "{tr}ianime Asterisk war",
+        ],
     },
-    allow_private=False
+    allow_private=False,
 )
 async def ianime(message: Message):
     k = await userge.get_me()
     x = await message.reply("`Me conectando ao Anilist...`")
-    if x.from_user.id==k.id:
+    if x.from_user.id == k.id:
         await x.err("Please verify if bot is present in group")
     query = message.input_str
     get_list = {"search": query, "pp": 20}
     result = await return_json_senpai(PAGE_QUERY, get_list)
-    data = result["data"]["Page"]["media"]    
+    data = result["data"]["Page"]["media"]
     button = []
     for i in data:
-        lstsnnms = " ".join(i['synonyms']) if i['synonyms']!=[] else ""
-        eng = i['title']['english'] if i['title']['english']!=None else ""
-        rom = i['title']['romaji']
+        lstsnnms = " ".join(i["synonyms"]) if i["synonyms"] != [] else ""
+        eng = i["title"]["english"] if i["title"]["english"] is not None else ""
+        rom = i["title"]["romaji"]
         str_ = f"{rom} {eng} {lstsnnms}".replace(":", "").replace("-", "")
         if query.lower() in str_.lower():
-            button.append([InlineKeyboardButton(text=f"{i['title']['romaji']}", callback_data=f"getani_{i['id']}_{query}")])
+            button.append(
+                [
+                    InlineKeyboardButton(
+                        text=f"{i['title']['romaji']}",
+                        callback_data=f"getani_{i['id']}_{query}",
+                    )
+                ]
+            )
     buttons = button[:10]
-    await message.reply_photo("https://telegra.ph/file/556676e09f8874968b25b.jpg", f'Exibindo os resultados para "{query}":', reply_markup=InlineKeyboardMarkup(buttons))
+    await message.reply_photo(
+        "https://telegra.ph/file/556676e09f8874968b25b.jpg",
+        f'Exibindo os resultados para "{query}":',
+        reply_markup=InlineKeyboardMarkup(buttons),
+    )
     await x.delete()
 
+
 async def ani_info(query_id):
-    """ Search Anime Info """
+    """Search Anime Info"""
     vars_ = {"id": int(query_id), "asHtml": True, "type": "ANIME"}
     result = await return_json_senpai(IANIME_QUERY, vars_)
     data = result["data"]["Media"]
@@ -177,59 +199,61 @@ async def ani_info(query_id):
     country = data.get("countryOfOrigin")
     c_flag = cflag.flag(country)
     if data["title"]["english"] is not None:
-        name = f'''[{c_flag}]**{romaji}**
+        name = f"""[{c_flag}]**{romaji}**
         __{english}__
-        {native}'''
+        {native}"""
     else:
-        name = f'''[{c_flag}]**{romaji}**
-        {native}'''
+        name = f"""[{c_flag}]**{romaji}**
+        {native}"""
     source = data.get("source")
-    prqlsql = data.get("relations").get('edges')
+    prqlsql = data.get("relations").get("edges")
     prql = ""
     prql_id = ""
     sql = ""
     sql_id = ""
     for i in prqlsql:
-        if i['relationType']=="PREQUEL":
+        if i["relationType"] == "PREQUEL":
             prql += f"**PREQUEL**: `{i['node']['title']['english' or 'romaji']}`\n"
             prql_id += f"{i['node']['id']}"
             break
     for i in prqlsql:
-        if i['relationType']=="SEQUEL":
+        if i["relationType"] == "SEQUEL":
             sql += f"**SEQUEL**: `{i['node']['title']['english' or 'romaji']}`\n"
             sql_id += f"{i['node']['id']}"
             break
-    if prql_id=="":
+    if prql_id == "":
         prql_id += "None"
-    if sql_id=="":
+    if sql_id == "":
         sql_id += "None"
     additional = f"{prql}{sql}"
     bannerImg = data.get("bannerImage")
-    dura = f"\n▫️ **Duração:** `{duration} min/ep`" if duration!=None else ""
+    dura = f"\n▫️ **Duração:** `{duration} min/ep`" if duration is not None else ""
     charlist = []
     for char in data["characters"]["nodes"]:
         charlist.append(f"    •{char['name']['full']}")
     chrctrs = "\n"
     chrctrs += ("\n").join(charlist[:10])
-    chrctrsls = f"\n▫️ **Personagens:** `{chrctrs}`" if len(charlist)!=0 else ""
+    chrctrsls = f"\n▫️ **Personagens:** `{chrctrs}`" if len(charlist) != 0 else ""
     air_on = None
     if data["nextAiringEpisode"]:
         nextAir = data["nextAiringEpisode"]["airingAt"]
         air_on = make_it_rw(nextAir)
-        ep_ = data['nextAiringEpisode']['episode']
-        if ep_=="1":
+        ep_ = data["nextAiringEpisode"]["episode"]
+        if ep_ == "1":
             th = "st"
-        elif ep_=="2":
+        elif ep_ == "2":
             th = "nd"
-        elif ep_=="3":
+        elif ep_ == "3":
             th = "rd"
         else:
             th = "th"
         air_on += f" | {ep_}{th} eps"
-    if status=="FINISHED":
+    if status == "FINISHED":
         status_air = f"▫️ <b>Status:</b> `{status}`"
     else:
-        status_air = f"▫️ <b>Status:</b> `{status}`\n▫️ <b>Próxima exibição:</b> `{air_on}`"
+        status_air = (
+            f"▫️ <b>Status:</b> `{status}`\n▫️ <b>Próxima exibição:</b> `{air_on}`"
+        )
     s_date = data.get("startDate")
     adult = data.get("isAdult")
     trailer_link = "N/A"
@@ -246,9 +270,7 @@ async def ani_info(query_id):
         html_ += f"<h3>{character['name']['full']}</h3>"
         html_ += f"<em>{c_flag} {character['name']['native']}</em><br>"
         html_ += f"<b>ID do personagem</b>: {character['id']}<br>"
-        html_ += (
-            f"<h4>Sobre o personagem:</h4>{character.get('description', 'N/A')}"
-        )
+        html_ += f"<h4>Sobre o personagem:</h4>{character.get('description', 'N/A')}"
         html_char += f"{html_}<br><br>"
 
     studios = "".join(
@@ -294,21 +316,39 @@ async def present_res(cq: CallbackQuery):
     result = await ani_info(idm)
     pic, msg = result[0], result[1]
     btns = []
-    if result[2]=="None":
-        if result[3]!="None":
-            btns.append([InlineKeyboardButton(text="Sequel", callback_data=f"getani_{result[3]}_{query}")])
-    else:
-        if result[3]!="None":
+    if result[2] == "None":
+        if result[3] != "None":
             btns.append(
                 [
-                    InlineKeyboardButton(text="Prequel", callback_data=f"getani_{result[2]}_{query}"),
-                    InlineKeyboardButton(text="Sequel", callback_data=f"getani_{result[3]}_{query}")
+                    InlineKeyboardButton(
+                        text="Sequel", callback_data=f"getani_{result[3]}_{query}"
+                    )
+                ]
+            )
+    else:
+        if result[3] != "None":
+            btns.append(
+                [
+                    InlineKeyboardButton(
+                        text="Prequel", callback_data=f"getani_{result[2]}_{query}"
+                    ),
+                    InlineKeyboardButton(
+                        text="Sequel", callback_data=f"getani_{result[3]}_{query}"
+                    ),
                 ]
             )
         else:
-            btns.append([InlineKeyboardButton(text="Prequel", callback_data=f"getani_{result[2]}_{query}")])
+            btns.append(
+                [
+                    InlineKeyboardButton(
+                        text="Prequel", callback_data=f"getani_{result[2]}_{query}"
+                    )
+                ]
+            )
     btns.append([InlineKeyboardButton(text="Voltar", callback_data=f"back_{query}")])
-    await cq.edit_message_media(InputMediaPhoto(pic, caption=msg), reply_markup=InlineKeyboardMarkup(btns))
+    await cq.edit_message_media(
+        InputMediaPhoto(pic, caption=msg), reply_markup=InlineKeyboardMarkup(btns)
+    )
 
 
 @userge.bot.on_callback_query(filters.regex(pattern=r"back_(.*)"))
@@ -317,13 +357,26 @@ async def present_res(cq: CallbackQuery):
     query = cq.data.split("_")[1]
     get_list = {"search": query, "pp": 10}
     result = await return_json_senpai(PAGE_QUERY, get_list)
-    data = result["data"]["Page"]["media"]    
+    data = result["data"]["Page"]["media"]
     button = []
     for i in data:
-        lstsnnms = " ".join(i['synonyms']) if i['synonyms']!=[] else ""
-        eng = i['title']['english'] if i['title']['english']!=None else ""
-        rom = i['title']['romaji']
+        lstsnnms = " ".join(i["synonyms"]) if i["synonyms"] != [] else ""
+        eng = i["title"]["english"] if i["title"]["english"] is not None else ""
+        rom = i["title"]["romaji"]
         str_ = f"{rom} {eng} {lstsnnms}"
         if query.lower() in str_.lower():
-            button.append([InlineKeyboardButton(text=f"{i['title']['romaji']}", callback_data=f"getani_{i['id']}_{query}")])
-    await cq.edit_message_media(InputMediaPhoto("https://telegra.ph/file/556676e09f8874968b25b.jpg", f'{master.first_name}, o resultado de sua pesquisa "{query}":'), reply_markup=InlineKeyboardMarkup(button))
+            button.append(
+                [
+                    InlineKeyboardButton(
+                        text=f"{i['title']['romaji']}",
+                        callback_data=f"getani_{i['id']}_{query}",
+                    )
+                ]
+            )
+    await cq.edit_message_media(
+        InputMediaPhoto(
+            "https://telegra.ph/file/556676e09f8874968b25b.jpg",
+            f'{master.first_name}, o resultado de sua pesquisa "{query}":',
+        ),
+        reply_markup=InlineKeyboardMarkup(button),
+    )

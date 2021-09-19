@@ -29,7 +29,9 @@ noPmMessage = bk_noPmMessage = (
     "Suas mensagens estão sob análise de aprovação.\n"
     "Caso você persista enviando contínuas mensagens, você poderá ser bloqueado automaticamente."
 )
-blocked_message = bk_blocked_message = "**Você foi bloqueado automaticamente. Não foi falta de aviso. ;)**"
+blocked_message = (
+    bk_blocked_message
+) = "**Você foi bloqueado automaticamente. Não foi falta de aviso. ;)**"
 
 
 async def _init() -> None:
@@ -42,7 +44,9 @@ async def _init() -> None:
     _pmMsg = await SAVED_SETTINGS.find_one({"_id": "NPM Mensagem Personalizada"})
     if _pmMsg:
         noPmMessage = _pmMsg.get("data")
-    _blockPmMsg = await SAVED_SETTINGS.find_one({"_id": "Mensagem Personalizada de Block PM"})
+    _blockPmMsg = await SAVED_SETTINGS.find_one(
+        {"_id": "Mensagem Personalizada de Block PM"}
+    )
     if _blockPmMsg:
         blocked_message = _blockPmMsg.get("data")
 
@@ -121,7 +125,8 @@ async def denyToPm(message: Message):
             await message.edit("`Não alerou nada.`", del_in=3)
         else:
             await message.edit(
-                "`Preciso responder um usuário ou forneça user/id em uma conversa particular.`", del_in=3
+                "`Preciso responder um usuário ou forneça user/id em uma conversa particular.`",
+                del_in=3,
             )
         return
     userid = await get_id(message)
@@ -210,7 +215,9 @@ async def set_custom_nopm_message(message: Message):
     else:
         string = message.input_or_reply_raw
         if string:
-            await message.edit("`Mensagem de NOPM personalizada salva!`", del_in=3, log=True)
+            await message.edit(
+                "`Mensagem de NOPM personalizada salva!`", del_in=3, log=True
+            )
             noPmMessage = string
             await SAVED_SETTINGS.update_one(
                 {"_id": "CUSTOM NOPM MESSAGE"}, {"$set": {"data": string}}, upsert=True
@@ -247,7 +254,9 @@ async def set_custom_blockpm_message(message: Message):
     else:
         string = message.input_or_reply_raw
         if string:
-            await message.edit("`Mensagem de BLOCKPM personalizada salva!`", del_in=3, log=True)
+            await message.edit(
+                "`Mensagem de BLOCKPM personalizada salva!`", del_in=3, log=True
+            )
             blocked_message = string
             await SAVED_SETTINGS.update_one(
                 {"_id": "CUSTOM BLOCKPM MESSAGE"},
@@ -342,7 +351,9 @@ async def uninvitedPmHandler(message: Message):
             )
         ).message_id
         await asyncio.sleep(1)
-        await CHANNEL.log(f"NOVA MENSAGEM #NPM\n{user_dict['mention']} enviou uma mensagem para você.")
+        await CHANNEL.log(
+            f"NOVA MENSAGEM #NPM\n{user_dict['mention']} enviou uma mensagem para você."
+        )
 
 
 @userge.on_filters(

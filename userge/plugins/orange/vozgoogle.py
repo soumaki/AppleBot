@@ -3,6 +3,7 @@ import os
 from gtts import gTTS
 from hachoir.metadata import extractMetadata as XMan
 from hachoir.parser import createParser as CPR
+
 from userge import Message, userge
 
 
@@ -39,16 +40,14 @@ async def google_voz(message: Message):
     elif reply and (reply.text or reply.caption):
         text = reply.text or reply.caption
     if not text:
-        await message.err(
-            "Oshe!\nPreciso de um texto, né? Dã!", del_in=7
-        )
+        await message.err("Oshe!\nPreciso de um texto, né? Dã!", del_in=7)
         return
     try:
         await message.edit("Processando..")
         speeched = gTTS(text, lang=def_lang)
         speeched.save(req_file_name)
         meta = XMan(CPR(req_file_name))
-        a_len = 0      
+        a_len = 0
         if meta and meta.has("duration"):
             a_len = meta.get("duration").seconds
         await message.edit("Gravando...")

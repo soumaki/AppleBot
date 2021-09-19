@@ -19,7 +19,7 @@ from userge.utils.exceptions import StopConversation
     del_pre=True,
 )
 async def tweetando(message: Message):
-    """ Tweetando com estilo @applled """
+    """Tweetando com estilo @applled"""
     reply = message.reply_to_message
     quote_list = []
     self_mid = False

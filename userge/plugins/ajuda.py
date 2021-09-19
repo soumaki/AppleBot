@@ -544,7 +544,7 @@ if userge.has_bot:
                 ]
                 results.append(
                     InlineQueryResultPhoto(
-                        photo_url="https://telegra.ph/file/74e96eb1e818131c4440b.png",
+                        photo_url="https://telegra.ph/file/511bd5c471bddfd6839d6.jpg",
                         caption=f"{random.choice(CONTATO)}",
                         reply_markup=InlineKeyboardMarkup(buttons),
                     )

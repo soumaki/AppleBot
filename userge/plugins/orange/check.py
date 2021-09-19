@@ -39,8 +39,8 @@ async def apple(message: Message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("+", callback_data="afk_pm_"),
-                    InlineKeyboardButton("𝚃𝚆𝙰𝙿𝙿𝙻𝙴", url="https://t.me/twapple"),
+                    InlineKeyboardButton("+", callback_data="contato_pm"),
+                    InlineKeyboardButton("TWAPPLE", url="https://t.me/twapple"),
                 ]
             ]
         ),

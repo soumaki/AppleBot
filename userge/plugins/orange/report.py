@@ -58,8 +58,8 @@ async def reportar(message: Message):
         reason=reason_,
         message=reply_,
     )
-    msg_ = (
-        "⚠️ <b>Usuário Reportado</b>\n\n"
+    msg_ = (     
+        "@admin | ⚠️ <b>Usuário Reportado</b>\n\n"
         f"👤 <b>Quem?</b> {user_.mention}\n"
         f" ╰•  <b>Motivo:</b> <i>{for_}</i>"
     )

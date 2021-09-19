@@ -165,7 +165,7 @@ if userge.has_bot:
     async def _alive_status(_, c_q: CallbackQuery):
         c_q.from_user.id
         await c_q.answer(
-            f"𝐀𝐩𝐩𝐥𝐞𝐁𝐨𝐭 𝐓𝐞𝐚𝐦:\n𝚆𝚘𝚛𝚔𝚒𝚗𝚐 𝚘𝚗 𝙱𝚘𝚝\n\n{random.choice(TEAM_APPLEBOT)}\n",
+            f"Você é guei e curioso!",
             show_alert=True,
         )
         return _alive_status
@@ -293,7 +293,7 @@ class Bot_Alive:
         buttons = [
             [
                 InlineKeyboardButton(text="❎ STATUS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="🍎", callback_data="contato_pm"),
+                InlineKeyboardButton(text="🍎", callback_data="info_apple"),
             ],
         ]
         return InlineKeyboardMarkup(buttons)

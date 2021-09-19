@@ -248,7 +248,7 @@ class Bot_Alive:
          ▫️   <b>Version:</b> <code>v2.0.Beta</code>
               ➖➖➖➖➖➖➖
          🍏   <b>Main:</b>  <b>@applled</b>
-        
+
          """
         return alive_info_
 

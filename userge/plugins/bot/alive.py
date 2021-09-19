@@ -241,7 +241,7 @@ class Bot_Alive:
         alive_info_ = f"""
 
   <a href="https://t.me/twapple"><b>APPLEBOT</a> ESTÁ ONLINE ✓</b>
-  ╰•  Ativo desde: {userge.uptime} | <b>Modo: {Bot_Alive._get_mode()}
+ ╰•  Ativo há: {userge.uptime} | <b>Modo: {Bot_Alive._get_mode()}
          ➖➖➖➖➖➖➖
     ⭕️   <b>Python:</b> <code>v{versions.__python_version__}</code>
     ⭕️   <b>Pyrogram:</b> <code>v{versions.__pyro_version__}</code>

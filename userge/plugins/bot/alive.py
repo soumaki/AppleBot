@@ -169,6 +169,33 @@ if userge.has_bot:
             show_alert=True,
         )
         return _alive_status
+    
+        # Query para resultado do Primeiro Clique + Gerar Mensagem # Início
+    # Pensar no que fazer com isso depois #
+    @userge.bot.on_callback_query(filters.regex(pattern=r"^contato_pm$"))
+    async def afk_resultado(_, c_q: CallbackQuery):
+        c_q.from_user.id
+        photo = f"""{random.choice(ANIMTN)}"""
+        texto = f"{random.choice(CONTATOS)}\n\n{random.choice(ANIMES)}"
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    text="❎ Ok",
+                    url="https://t.me/twapple",
+                )
+            ]
+        ]
+        try:
+            await userge.bot.send_animation(
+                message.chat.id,
+                animation=photo,
+                caption=texto,
+                reply_markup=InlineKeyboardMarkup(buttons),
+            )
+        except MessageNotModified:
+            return
+
+    # Query para resultado do Primeiro Clique + Gerar Mensagem # FIM
 
     @userge.bot.on_callback_query(filters.regex(pattern=r"^settings_btn$"))
     async def alive_cb(_, c_q: CallbackQuery):
@@ -293,4 +320,14 @@ class Bot_Alive:
 TEAM_APPLEBOT = (
     "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐀𝐩𝐩𝐥𝐞/𝐎𝐫𝐚𝐧𝐠𝐞\n𝙳𝚎𝚟 𝚖𝚊𝚒𝚗\n🔗 @applled\n\n𝐒𝐚𝐦𝐮𝐜𝐚/𝐒𝐚𝐦𝐮𝐞𝐥\n𝙲𝚘𝚗𝚝𝚛𝚒𝚋𝚞𝚝𝚘𝚛\n🔗 @NoteZV\n ",
     # Adicionar mais informações randômicas em breve
+)
+ANIMTN = (
+    "https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",
+    "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",
+    "https://telegra.ph/file/43901682e8a936d76572e.gif",
+    "https://telegra.ph/file/140d286c155894093c250.gif",
+    "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
+)
+CONTATOS = (
+    "🏷 | 𝐒𝐓𝐀𝐓𝐔𝐒\n ╰• Curioso, né?\n\n<i>Então,\n Você pode entrar em contato comigo diretamentepelo meu bot. Para evitar spam, responderei exclusivamente por ele. Em alguns casos, não terei problemas em enviar mensagens no particular.</i>\n\n🔗 @twapple\n ╰• 𝚁𝚎𝚜𝚎𝚛𝚟𝚊𝚍𝚘 𝚙𝚊𝚛𝚊 𝚙𝚘𝚜𝚝𝚜 𝚊𝚕𝚎𝚊𝚝ó𝚛𝚒𝚘𝚜 𝚍𝚘 @applled",
 )

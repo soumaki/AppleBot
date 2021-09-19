@@ -265,7 +265,6 @@ if userge.has_bot:
         await callback_query.edit_message_text(
             " 🍎 AppleBot 𝐌𝐄𝐍𝐔 ",
             reply_markup=InlineKeyboardMarkup(main_menu_buttons()),
-            photo_url="https://telegra.ph/file/a1876d2c20937b9e5e78e.png",
         )
 
     @userge.bot.on_callback_query(filters.regex(pattern=r"^chgclnt$"))

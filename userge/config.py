@@ -30,7 +30,7 @@ GRepo_regex = comp_regex(
 
 _REPO = Repo()
 _LOG = logging.getLogger(__name__)
-logbot.reply_last_msg("Definindo Configuraçoes ...")
+logbot.reply_last_msg("Definindo Configurações ...")
 
 
 class Config:

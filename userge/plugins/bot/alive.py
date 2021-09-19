@@ -169,8 +169,9 @@ if userge.has_bot:
             show_alert=True,
         )
         return _alive_status
-    
+
         # Query para resultado do Primeiro Clique + Gerar Mensagem # Início
+
     # Pensar no que fazer com isso depois #
     @userge.bot.on_callback_query(filters.regex(pattern=r"^contato_pm$"))
     async def afk_resultado(_, c_q: CallbackQuery):

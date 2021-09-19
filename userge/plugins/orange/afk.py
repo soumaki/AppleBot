@@ -7,7 +7,6 @@ from random import randint
 from re import compile as comp_regex
 
 from pyrogram import filters
-from pyrogram.errors import MessageNotModified
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from userge import Config, Message, filters, get_collection, userge

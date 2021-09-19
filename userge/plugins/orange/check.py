@@ -28,7 +28,7 @@ async def apple(message: Message):
     await userge.bot.get_me()
     master = await userge.get_me()
     await message.edit(
-        "**𝚃𝚎𝚜𝚝𝚎 𝚐𝚎𝚛𝚊𝚍𝚘...**\n𝙰𝚐𝚞𝚊𝚛𝚍𝚎 𝚘 𝚛𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘, 𝙼𝚎𝚜𝚝𝚛𝚎...", del_in=5, log=__name__
+        "**𝚃𝚎𝚜𝚝𝚎 𝚐𝚎𝚛𝚊𝚍𝚘...**\n𝙰𝚐𝚞𝚊𝚛𝚍𝚎 𝚘 𝚛𝚎𝚜𝚞𝚕𝚝𝚊𝚍𝚘, ;)", del_in=5, log=__name__
     )
     photo = f"""{random.choice(CHECKS)}"""
     texto = f"<u>Estou Online</u>, {master.first_name}"

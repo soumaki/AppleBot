@@ -1,4 +1,4 @@
-# tools for jutsu plugins by @Kakashi_HTK(tg)/@ashwinstr(gh)
+# @Kakashi_HTK(tg)/@ashwinstr(gh)/@applled
 
 
 from pyrogram.raw.functions.account import ReportPeer
@@ -20,14 +20,14 @@ def capitaled(query: str):
     return cap_query
 
 
-# to report for spam or pornographic content
+# Report para denunciar spam/conteúdo adulto
 def report_user(chat: int, user_id: int, msg: dict, msg_id: int, reason: str):
     if ("nsfw" or "porn") in reason:
         reason_ = InputReportReasonPornography()
-        for_ = "<b>pornographic</b> message"
+        for_ = "<b>Conteúdo</b> adulto"
     else:
         reason_ = InputReportReasonSpam()
-        for_ = "<b>spam</b> message"
+        for_ = "Mensagem de <b>Spam</b>"
     peer_ = (
         InputPeerUserFromMessage(
             peer=chat,

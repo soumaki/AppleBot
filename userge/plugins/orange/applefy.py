@@ -4,6 +4,12 @@ from pyrogram.errors import BadRequest
 
 from userge import Message, userge
 
+NOW = (
+        ".sp",
+)
+COMANDO = (
+        "/now",
+)
 
 @userge.on_cmd(
     "sp",
@@ -43,15 +49,38 @@ async def appled_(message: Message):
             del_in=5,
         )
 
-
+# COMANDO COM O BOT
 @userge.on_cmd(
     "apple$",
-    about={"header": "Comando rápido para o Now Playing"},
+    about={"título": "Comando rápido para o Now Playing / Comando usado somente quando seu bot estiver no mesmo grupo e como administrador."},
     trigger="",
     allow_via_bot=False,
 )
 async def ouvindo_(message: Message):
     await message.edit(
-        ".sp /now",
+        "!sp /now",
         del_in=1,
     )
+
+    
+@userge.on_cmd(
+    "spf",
+    about={
+        "título": "Ação Rápida",
+        "flags": {
+            "-n": "Conectar e Postar",
+        },
+        "como usar": "{tr}spf -flag",
+        "exemplo": "{tr}spf -a",
+    },
+    del_pre=True,
+    allow_channels=False,
+)    
+async def conectar(message: Message):
+    """ Ação rápida """
+    await message.edit("`Conectado ao Spotify ✅`", log=__name__)
+    if "n" in message.flags:
+            await message.edit(
+                f"{random.choice(NOW)} /{random.choice(COMANDO)}",
+                del_in=1,
+            )

@@ -1,7 +1,7 @@
 """ Manter os créditos | @applled - Módulo que exibe qual música você está ouvindo no Spotify"""
 
+import random
 from pyrogram.errors import BadRequest
-
 from userge import Message, userge
 
 NOW = (".sp",)

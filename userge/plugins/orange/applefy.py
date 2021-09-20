@@ -6,7 +6,7 @@ from pyrogram.errors import BadRequest
 
 from userge import Message, userge
 
-NOW = (".sp",)
+NOW = ("sp",)
 COMANDO = ("now",)
 
 
@@ -71,11 +71,11 @@ async def ouvindo_(message: Message):
     "spf",
     about={
         "título": "Ação Rápida",
-        "flags": {
-            "-n": "Conectar e Postar",
+#       "flags": {
+#           "-n": "Conectar e Postar",
         },
         "como usar": "{tr}spf -flag",
-        "exemplo": "{tr}spf -a",
+#       "exemplo": "{tr}spf -a",
     },
     del_pre=True,
     allow_channels=False,
@@ -83,8 +83,8 @@ async def ouvindo_(message: Message):
 async def conectar(message: Message):
     """Ação rápida"""
     await message.edit("`Conectado ao Spotify ✅`", log=__name__)
-    if "n" in message.flags:
+#   if "n" in message.flags:
         await message.edit(
-            f"{random.choice(NOW)} /{random.choice(COMANDO)}",
-            del_in=1,
+            f".{random.choice(NOW)} /{random.choice(COMANDO)}",
+            del_in=3,
         )

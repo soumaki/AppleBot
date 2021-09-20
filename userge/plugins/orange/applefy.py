@@ -70,12 +70,8 @@ async def ouvindo_(message: Message):
 @userge.on_cmd(
     "spf",
     about={
-        "título": "Ação Rápida",
-#       "flags": {
-#           "-n": "Conectar e Postar",
-        },
-        "como usar": "{tr}spf -flag",
-#       "exemplo": "{tr}spf -a",
+        "título": "@applled",
+        "como usar": "{tr}spf",
     },
     del_pre=True,
     allow_channels=False,

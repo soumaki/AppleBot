@@ -82,8 +82,6 @@ async def conectar(message: Message):
     #   if "n" in message.flags:
     await message.edit(
         f",{random.choice(NOW)} /{random.choice(COMANDO)}",
-#       del_in=3,
+        #       del_in=3,
     )
-    await message.edit(
-        f".sp /now"
-    )
+    await message.edit(f".sp /now")

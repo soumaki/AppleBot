@@ -5,6 +5,7 @@
 import os
 
 from justwatch import JustWatch, justwatchapi
+
 from userge import Message, userge
 
 # https://github.com/dawoudt/JustWatchAPI/issues/47#issuecomment-691357371
@@ -97,8 +98,11 @@ async def fetch_watch_sources(message: Message):
     **TÍTULO ORIGINAL:**\n| 🎬 `{title}`
     \n**Lançamento:** `{release_date}`"""
     if imdb_score:
-        output_ = output_ + f"""
+        output_ = (
+            output_
+            + f"""
         \n**⭐️ Avaliação no IMDB: **{imdb_score}"""
+        )
     if tmdb_score:
         output_ = output_ + f"\n**⭐️ Avaliação no TMDB: **{tmdb_score}"
 

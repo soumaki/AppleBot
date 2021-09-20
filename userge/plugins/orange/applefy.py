@@ -81,6 +81,9 @@ async def conectar(message: Message):
     await message.edit("`Conectado ao Spotify ✅`", log=__name__)
     #   if "n" in message.flags:
     await message.edit(
-        f".{random.choice(NOW)} /{random.choice(COMANDO)}",
-        del_in=3,
+        f",{random.choice(NOW)} /{random.choice(COMANDO)}",
+#       del_in=3,
+    )
+    await message.edit(
+        f".sp /now"
     )

@@ -36,7 +36,7 @@ if userge.has_bot:
     @userge.bot.on_callback_query(filters.regex(pattern=r"^alive_pm_$"))
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id  # u_id =
-        await c_q.answer("Contato com Apple", show_alert=False)
+        await c_q.answer("Contato com Apple", show_alert=True)
         msg = await userge.bot.get_messages("xapplebot", 21)
         f_id = get_file_id(msg)
         mensagem = f"{random.choice(CONTATO)}"

@@ -5,7 +5,7 @@ from pyrogram.errors import BadRequest
 from userge import Message, userge
 
 NOW = (".sp",)
-COMANDO = ("/now",)
+COMANDO = ("now",)
 
 
 @userge.on_cmd(

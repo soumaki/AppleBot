@@ -9,7 +9,7 @@ from userge import Message, userge
 
 # https://github.com/dawoudt/JustWatchAPI/issues/47#issuecomment-691357371
 justwatchapi.__dict__["HEADER"] = {
-    "User-Agent": "Cliente JustWatch (github.com/dawoudt/JustWatchAPI)"
+    "User-Agent": "JustWatch client (github.com/dawoudt/JustWatchAPI)"
 }
 
 LOGGER = userge.getLogger(__name__)
@@ -62,15 +62,15 @@ def get_stream_data(query):
 
 
 @userge.on_cmd(
-    "ver"
+    "ver",
     about={
         "header": "Obtenha os links de onde assistir Séries e Filmes",
-        "Como usar": "{tr}ver [pesquisa]",
+        "Como usar": "{tr}ver [query]",
         "Exemplo": "{tr}ver Vingadores Ultimado",
     },
 )
 async def fetch_watch_sources(message: Message):
-    await message.edit("Pesquisando, aguarde...")
+    await message.edit("Pesquisando, aguarde ☺️ ...")
     query = message.input_str
     streams = get_stream_data(query)
     title = streams["title"]

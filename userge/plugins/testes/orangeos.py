@@ -12,6 +12,6 @@ from userge import Message, userge
 )
 async def orange_msg(message: Message):
     await message.edit(
-        "ⓘ <i>Mensagem Excllusiva para os Administradores. Somente membros com acesso privilegiado podem visualizar esta mensagem.</i> <u>[AppleSecurity](https://bit.ly/applesecuritypremium)</u>",
+        "ⓘ <i>Mensagem Exclusiva para os Administradores. Somente membros com acesso privilegiado podem visualizar esta mensagem.</i> <u>[AppleSecurity](https://bit.ly/applesecuritypremium)</u>",
         disable_web_page_preview=True,
     )

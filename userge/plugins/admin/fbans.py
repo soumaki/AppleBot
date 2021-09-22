@@ -104,7 +104,7 @@ async def delfed_(message: Message):
 async def fban_(message: Message):
     """Bans a user from connected Feds."""
     message.flags
-    fban_arg = ["❯", "❯❯", "❯❯❯", "❯❯❯ <b>FBanned {}</b>"]
+    fban_arg = ["❯", "❯❯", "❯❯❯", "Done!", "<b>FBanned {}</b> ✅"]
     PROOF_CHANNEL = FBAN_LOG_CHANNEL if FBAN_LOG_CHANNEL else Config.LOG_CHANNEL_ID
     input = message.filtered_input_str
     await message.edit(fban_arg[0])
@@ -189,7 +189,7 @@ async def fban_(message: Message):
             failed.append(data["fed_name"])
     if total == 0:
         return await message.err(
-            "You Don't have any feds connected!\nsee .help addf, for more info."
+            "You Don't have any feds connected!\nsee .ajuda addf, for more info."
         )
     await message.edit(fban_arg[2])
 
@@ -198,7 +198,7 @@ async def fban_(message: Message):
         for i in failed:
             status += "• " + i + "\n"
     else:
-        status = f"Success! Fbanned in `{total}` feds."
+        status = f"Success! Fbanned in lots of feds." #`{total}`
     msg_ = (
         fban_arg[3].format(u_link)
         + f"\n**ID:** <code>{u_id}</code>\n**Reason:** {reason}\n**Status:** {status}"

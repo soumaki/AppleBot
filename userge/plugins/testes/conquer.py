@@ -8,6 +8,6 @@ from userge import Message, userge
 )
 async def conquer_msg(message: Message):
     await message.edit(
-        "ⓘ <i>Exclusive Message for ConquerOS Premium. Only Private Premium User can view the this message.</i> <u>[More Details](https://bit.ly/conquerpremium)</u>",
+        "ⓘ <i>Exclusive Message for ConquerOS Premium. Only Private Premium User can view this message.</i> <u>[More Details](https://bit.ly/conquerpremium)</u>",
         disable_web_page_preview=True,
     )

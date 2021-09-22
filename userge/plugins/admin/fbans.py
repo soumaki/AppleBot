@@ -198,7 +198,7 @@ async def fban_(message: Message):
         for i in failed:
             status += "• " + i + "\n"
     else:
-        status = f"Success! Fbanned in lots of feds." #`{total}`
+        status = f"Success! Fbanned in lots of feds."  # `{total}`
     msg_ = (
         fban_arg[3].format(u_link)
         + f"\n**ID:** <code>{u_id}</code>\n**Reason:** {reason}\n**Status:** {status}"

@@ -121,7 +121,6 @@ class Config:
     MEUTG_REPO = "t.me/applled"
     BIO_APPLE = "t.me/orapple"
     TAG_LOGGING = False
-    FBAN_LOG_CHANNEL = False
     CHECK_MEDIA = os.environ.get("CHECK_MEDIA")
 
 

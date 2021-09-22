@@ -65,9 +65,7 @@ async def see_info(message: Message):
         "/plugins", ""
     )
     if plugin_loc == "/xtra":
-        extra_plugins = (
-            "https://github.com/applled/extras/blob/master/plugins/"
-        )
+        extra_plugins = "https://github.com/applled/extras/blob/master/plugins/"
         plugin_link = f"{extra_plugins}/{plugin_name}.py"
     elif plugin_loc == "/custom":
         custom_plugins = os.environ.get("CUSTOM_PLUGINS_REPO", "")

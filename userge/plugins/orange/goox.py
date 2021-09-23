@@ -84,6 +84,4 @@ async def tweetando(message: Message):
                     reply_to_message_id=message_id,
                 )
     except StopConversation:
-        await message.err(
-            "@googlaxbot ficou sem resposta.\nTente novamente.", del_in=5
-        )
+        await message.err("@googlaxbot ficou sem resposta.\nTente novamente.", del_in=5)

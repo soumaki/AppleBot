@@ -50,12 +50,12 @@ async def progress(
         time_to_completion = time_formatter(int((total - current) / speed))
         progress_str = (
             "__{}__ : `{}`\n"
-            + "```[{}{}]```\n"
-            + "**Progress** : `{}%`\n"
-            + "**Completed** : `{}`\n"
-            + "**Total** : `{}`\n"
-            + "**Speed** : `{}/s`\n"
-            + "**ETA** : `{}`"
+            + "Tamanho do Arquivo: {}\n"
+            + "**Velocidade**: {}\n"
+            + "**ETA**: {}"
+            + "**Progresso**: {}%\n"
+            + "**Completo**: {}\n"
+            + "Origem: [Clique Aqui]({})\n"
         )
         progress_str = progress_str.format(
             ud_type,

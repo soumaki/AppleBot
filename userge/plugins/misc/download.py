@@ -20,29 +20,29 @@ LOGGER = userge.getLogger(__name__)
 @userge.on_cmd(
     "download",
     about={
-        "header": "Download files to server",
-        "usage": "{tr}download [url | reply to telegram media]",
-        "examples": "{tr}download https://speed.hetzner.de/100MB.bin | testing upload.bin",
+        "título": "Baixe arquivos para o servidor do AppleBot",
+        "como usar": "{tr}download [url | responda uma mensagem com arquivo no TG]",
+        "exemplos": "{tr}download https://speed.hetzner.de/100MB.bin | testando upload.bin",
     },
     check_downpath=True,
 )
 async def down_load_media(message: Message):
-    """download from tg and url"""
+    """Baixe do Telegram ou de uma URL"""
     if message.reply_to_message and message.reply_to_message.media:
         resource = message.reply_to_message
     elif message.input_str:
         resource = message.input_str
     else:
-        await message.edit("Please read `.help download`", del_in=5)
+        await message.edit("Leia o Ajuda fazendo o comando `.ajuda download`", del_in=5)
         return
     try:
         dl_loc, d_in = await handle_download(message, resource)
     except ProcessCanceled:
-        await message.edit("`Process Canceled!`", del_in=5)
+        await message.edit("`Processo Cancelado!`", del_in=5)
     except Exception as e_e:  # pylint: disable=broad-except
         await message.err(e_e)
     else:
-        await message.edit(f"Downloaded to `{dl_loc}` in {d_in} seconds")
+        await message.edit(f"Baixado em `{dl_loc}` em {d_in} segundos")
 
 
 async def handle_download(
@@ -56,7 +56,7 @@ async def handle_download(
 
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
     """download from link"""
-    await message.edit("`Downloading From URL...`")
+    await message.edit("`Baixando a partir de uma URL...`")
     start_t = datetime.now()
     custom_file_name = unquote_plus(os.path.basename(url))
     if "|" in url:
@@ -79,17 +79,16 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         estimated_total_time = downloader.get_eta(human=True)
         progress_str = (
             "__{}__\n"
-            + "```[{}{}]```\n"
-            + "**Progress** : `{}%`\n"
-            + "**URL** : `{}`\n"
-            + "**FILENAME** : `{}`\n"
-            + "**Completed** : `{}`\n"
-            + "**Total** : `{}`\n"
-            + "**Speed** : `{}`\n"
-            + "**ETA** : `{}`"
+            + "```{}{}```\n"
+            + "Tamanho do Arquivo: {}\n"
+            + "**Velocidade**: {}\n"
+            + "**ETA**: {}"
+            + "**Progresso**: {}%\n"
+            + "**Completo**: {}\n"
+            + "Origem: [Clique Aqui]({})\n"
         )
         progress_str = progress_str.format(
-            "trying to download",
+            "Progresso do Download...",
             "".join(
                 (
                     Config.FINISHED_PROGRESS_STR
@@ -120,7 +119,7 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
 
 async def tg_download(message: Message, to_download: Message) -> Tuple[str, int]:
     """download from tg file"""
-    await message.edit("`Downloading From TG...`")
+    await message.edit("`Baixando do Telegram...`")
     start_t = datetime.now()
     custom_file_name = Config.DOWN_PATH
     if message.filtered_input_str:
@@ -131,11 +130,11 @@ async def tg_download(message: Message, to_download: Message) -> Tuple[str, int]
         message=to_download,
         file_name=custom_file_name,
         progress=progress,
-        progress_args=(message, "trying to download"),
+        progress_args=(message, "Progresso do Download..."),
     )
     if message.process_is_canceled:
         raise ProcessCanceled
     if not isinstance(dl_loc, str):
-        raise TypeError("File Corrupted!")
+        raise TypeError("Arquivo Corrompido!")
     dl_loc = os.path.join(Config.DOWN_PATH, os.path.basename(dl_loc))
     return dl_loc, (datetime.now() - start_t).seconds

@@ -37,11 +37,11 @@ _checkConfigFile() {
 _checkRequiredVars() {
     log "Conferindo ENV Vars obrigatórias ..."
     for var in API_ID API_HASH LOG_CHANNEL_ID DATABASE_URL; do
-        test -z ${!var} && quit "Required $var var !"
+        test -z ${!var} && quit "Obrigatório a var $var!"
     done
-    [[ -z $HU_STRING_SESSION && -z $BOT_TOKEN ]] && quit "Required HU_STRING_SESSION or BOT_TOKEN var !"
-    [[ -n $BOT_TOKEN && -z $OWNER_ID ]] && quit "Required OWNER_ID var !"
-    test -z $BOT_TOKEN && log "\t[HINT] >>> BOT_TOKEN not found ! (Disabling Advanced Loggings)"
+    [[ -z $HU_STRING_SESSION && -z $BOT_TOKEN ]] && quit "Obrigatório a HU_STRING_SESSION ou a var do BOT_TOKEN!"
+    [[ -n $BOT_TOKEN && -z $OWNER_ID ]] && quit "Obrigatório a var do OWNER_ID!"
+    test -z $BOT_TOKEN && log "\t[HINT] >>> BOT_TOKEN não encontrado! (Desativando logs avançados)"
 }
 
 _checkDefaultVars() {
@@ -57,8 +57,8 @@ _checkDefaultVars() {
         [G_DRIVE_IS_TD]=true
         [CMD_TRIGGER]="."
         [SUDO_TRIGGER]="!"
-        [FINISHED_PROGRESS_STR]="█"
-        [UNFINISHED_PROGRESS_STR]="░"
+        [FINISHED_PROGRESS_STR]="🍏"
+        [UNFINISHED_PROGRESS_STR]="🍊"
     )
     for key in ${!def_vals[@]}; do
         set -a
@@ -107,7 +107,7 @@ except Exception as e:
 _checkTriggers() {
     editLastMessage "Analisando os TRIGGERS ..."
     test $CMD_TRIGGER = $SUDO_TRIGGER \
-        && quit "Inválido SUDO_TRIGGER!, Você não pode usar $CMD_TRIGGER as SUDO_TRIGGER"
+        && quit "Inválido SUDO_TRIGGER! Você não pode usar $CMD_TRIGGER como SUDO_TRIGGER"
 }
 
 _checkPaths() {
@@ -123,7 +123,7 @@ _checkPaths() {
 _checkUpstreamRepo() {
     remoteIsExist $UPSTREAM_REMOTE || addUpstream
     editLastMessage "Buscando por informações no UPSTREAM_REPO ..."
-    fetchUpstream || updateUpstream && fetchUpstream || quit "Inválido UPSTREAM_REPO var !"
+    fetchUpstream || updateUpstream && fetchUpstream || quit "Variável para UPSTREAM_REPO é inválida!"
     fetchBranches
     updateBuffer
 }
@@ -145,7 +145,7 @@ _setupPlugins() {
         rm -rf $tmp/
         deleteLastMessage
     else
-        editLastMessage "$1 Plugins Desabilitados !"
+        editLastMessage "$1 Plugins Desabilitados!"
     fi
 }
 

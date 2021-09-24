@@ -1,8 +1,9 @@
 """ Manter os créditos | @applled - Pesquise algum anime e assista."""
 
-import random
 from pyrogram.errors import BadRequest
+
 from userge import Message, userge
+
 
 @userge.on_cmd(
     "aw",
@@ -24,7 +25,9 @@ async def appled_(message: Message):
         elif reply.caption:
             input_query = reply.caption
     if not input_query:
-        return await message.err("Lembre-se de fazer o comando + texto de pesquisa", del_in=5)
+        return await message.err(
+            "Lembre-se de fazer o comando + texto de pesquisa", del_in=5
+        )
 
     x = await userge.get_inline_bot_results("@AmimeWatchBot", input_query)
     try:

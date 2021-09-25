@@ -1,43 +1,46 @@
-""" Plugin para baixar vídeos do YouTube / @applled """
+""" Manter os créditos | @applled - Baixar vídeos do YouTube"""
+
+import random
 
 from pyrogram.errors import BadRequest
 
 from userge import Message, userge
-from userge.utils import get_file_id
 
 
 @userge.on_cmd(
     "yt",
     about={
-        "titulo": "Baixe vídeos do Youtube",
-        "como usar": ".yt + link de um vídeo",
+        "título": "MBaixar vídeos do YouTube",
+        "exemplo": "{tr}yt https://youtu.be/dQw4w9WgXcQ",
     },
+    del_pre=True,
+    allow_channels=False,
 )
-async def yt_link_at_applled(message: Message):
-    """Plugin para baixar vídeos do YouTube / @applled"""
-    youtube = message.input_str
-    if not youtube:
-        await message.err(
-            "Envie um link que seja do YouTube ou confira se ele existe.", del_in=10
-        )
-        return
-    search = await message.edit(
-        "Confira o resultado em: @youtubednbot\nSolicitação de Download: **{}**".format(
-            youtube
-        )
-    )
-    chat_id = message.chat.id
-    f_id = ""
+async def appled_yt(message: Message):
+    reply = message.reply_to_message
+    reply_id = reply.message_id if reply else None
+    if message.input_str:
+        input_query = message.input_str
+    elif reply:
+        if reply.text:
+            input_query = reply.text
+        elif reply.caption:
+            input_query = reply.caption
+    if not input_query:
+        return await message.err("Lembre-se de fazer o comando + link", del_in=5)
+
+    x = await userge.get_inline_bot_results("@youtubednbot", input_query)
     try:
-        async for msg in userge.search_messages(
-            "@youtubednbot", query=youtube, limit=1, filter="document"
-        ):
-            f_id = get_file_id(msg)
-    except BadRequest:
-        await search.edit("Obrigatório que seja um link de um vídeo no YouTube.")
-        return
-    if not f_id:
-        await search.edit("**Falha na Matrix:** Não encontrei foi nada...", del_in=5)
-        return
-    await userge.send_document(chat_id, f_id)
-    await search.delete()
+        await message.delete()
+        await userge.send_inline_bot_result(
+            chat_id=message.chat.id,
+            query_id=x.query_id,
+            result_id=x.results[0].id,
+            reply_to_message_id=reply_id,
+            hide_via=True,
+        )
+    except (IndexError, BadRequest):
+        await message.err(
+            "Envie um link que seja do YouTube ou confira se ele existe.",
+            del_in=5,
+        )

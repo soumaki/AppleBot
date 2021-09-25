@@ -1,6 +1,5 @@
 """ Manter os créditos | @applled - Baixar vídeos do YouTube"""
 
-import random
 
 from pyrogram.errors import BadRequest
 

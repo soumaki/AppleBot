@@ -17,9 +17,15 @@ async def yt_link_at_applled(message: Message):
     """Plugin para baixar vídeos do YouTube / @applled"""
     youtube = message.input_str
     if not youtube:
-        await message.err("Envie um link que seja do YouTube ou confira se ele existe.", del_in=10)
+        await message.err(
+            "Envie um link que seja do YouTube ou confira se ele existe.", del_in=10
+        )
         return
-    search = await message.edit("Confira o resultado em: @youtubednbot\nSolicitação de Download: **{}**".format(youtube))
+    search = await message.edit(
+        "Confira o resultado em: @youtubednbot\nSolicitação de Download: **{}**".format(
+            youtube
+        )
+    )
     chat_id = message.chat.id
     f_id = ""
     try:
@@ -28,9 +34,7 @@ async def yt_link_at_applled(message: Message):
         ):
             f_id = get_file_id(msg)
     except BadRequest:
-        await search.edit(
-            "Obrigatório que seja um link de um vídeo no YouTube."
-        )
+        await search.edit("Obrigatório que seja um link de um vídeo no YouTube.")
         return
     if not f_id:
         await search.edit("**Falha na Matrix:** Não encontrei foi nada...", del_in=5)

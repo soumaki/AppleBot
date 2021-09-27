@@ -1,34 +1,7 @@
+Deploy o AppleBot
 
- 
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-![logo](https://giffiles.alphacoders.com/200/200034.gif)
+<a href = "https://github.com/applled/AppleInstall"><img src="https://telegra.ph/file/123968f31020a4e4349bb.jpg" alt="AppleBot"> </a>
+</p>
 
 
-
-
-
- 
+<p align="center">

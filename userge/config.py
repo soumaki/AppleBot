@@ -119,7 +119,7 @@ class Config:
     INLINE_NOTES = False
     BOT_ANTIFLOOD = False
     MEUTG_REPO = "t.me/applled"
-    BIO_APPLE = "t.me/orapple"
+    BIO_APPLE = "t.me/biorange"
     TAG_LOGGING = False
     CHECK_MEDIA = os.environ.get("CHECK_MEDIA")
 

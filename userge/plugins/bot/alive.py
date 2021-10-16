@@ -275,7 +275,7 @@ class Bot_Alive:
     ⭕️   <b>Pyrogram:</b> <code>v{versions.__pyro_version__}</code>
     ▫️   <b>Versão:</b> <code>v2.0.Beta</code>
          ➖➖➖➖➖➖➖
-    🍏   <b>Maçã:</b>  <b>@applled</b>
+    🍏   <b>Maçã:</b>  <b>@iamakima</b>
 
          """
         return alive_info_

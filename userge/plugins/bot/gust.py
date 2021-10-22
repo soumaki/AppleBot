@@ -37,7 +37,7 @@ if userge.has_bot:
     async def afk_resultado(_, c_q: CallbackQuery):
         c_q.from_user.id  # u_id =
         await c_q.answer("Contato com Apple", show_alert=True)
-        msg = await userge.bot.get_messages("xapplebot", 21)
+        msg = await userge.bot.get_messages("xapplebot", 3)
         f_id = get_file_id(msg)
         mensagem = f"{random.choice(CONTATO)}"
         buttons = [

@@ -47,7 +47,7 @@ async def addfed_(message: Message):
         return
     await FED_LIST.insert_one({"fed_name": name, "chat_id": chat_id})
     msg_ = f"__ID__ `{chat_id}` added to Fed: **{name}**"
-    await message.edit(msg_, del_in=7)
+    await message.edit(msg_, del_in=1)
     await CHANNEL.log(msg_)
 
 

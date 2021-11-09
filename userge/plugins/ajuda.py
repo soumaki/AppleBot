@@ -748,10 +748,11 @@ if userge.has_bot:
                     )
                 )
 
-            if string == "_afk":
+            if string == "_afk_":
                 results.append(
-                    InlineQueryResultPhoto(
-                        caption=_afk_._out_str(),
+                    InlineQueryResultArticle(
+                        title="AFK AppleBot",
+                        input_message_content=InputTextMessageContent(_afk_._out_str()),
                         reply_markup=_afk_.afk_buttons(),
                     )
                 )

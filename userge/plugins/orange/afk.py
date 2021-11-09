@@ -10,7 +10,7 @@ from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from userge import Config, Message, filters, get_collection, userge
-from userge.plugins.utils.afk_inline import *
+from userge.plugins.utils.afk_inline import send_inline_afk, _send_inline_afk_, send_inline_afk_
 from userge.utils import time_formatter
 
 _TELE_REGEX = comp_regex(
@@ -120,7 +120,7 @@ async def respostas(message: Message) -> None:
                 if type_ == "url_image":
                     await send_inline_afk_(message)
             else:
-                coro_list.append(await _send_inline_afk(message))
+                await _send_inline_afk_(message)
         if chat.type == "private":
             USERS[user_id][0] += 1
         else:
@@ -134,7 +134,7 @@ async def respostas(message: Message) -> None:
             elif type_ == "url_gif":
                 await send_inline_afk(message)
         else:
-            coro_list.append(await _send_inline_afk(message))
+            await _send_inline_afk_(message)
         if chat.type == "private":
             USERS[user_id] = [1, 0, user_dict["mention"]]
         else:

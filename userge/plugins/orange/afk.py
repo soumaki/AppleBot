@@ -10,7 +10,11 @@ from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from userge import Config, Message, filters, get_collection, userge
-from userge.plugins.utils.afk_inline import send_inline_afk, _send_inline_afk_, send_inline_afk_
+from userge.plugins.utils.afk_inline import (
+    _send_inline_afk_,
+    send_inline_afk,
+    send_inline_afk_,
+)
 from userge.utils import time_formatter
 
 _TELE_REGEX = comp_regex(

@@ -49,7 +49,7 @@ async def _init() -> None:
         "header": "Definir status para modo ausente",
         "descrição": "Este modo vai informar sua ausência e respondará à todos que te mencionarem. \n"
         "Informará o motivo e o tempo de ausência.",
-        "Como usar": "{tr}afk ou {tr}afk [motivo] | endereço.com/arquivo.gif",
+        "Como usar": "{tr}afk ou {tr}afk [motivo] | endereço.com/arquivo.gif|mp4|jpg",
     },
     allow_channels=False,
 )
@@ -118,7 +118,8 @@ async def respostas(message: Message) -> None:
         if not (USERS[user_id][0] + USERS[user_id][1]) % randint(2, 4):
             match = _TELE_REGEX.search(REASON)
             if match:
-                type_, media_ = await _afk_.check_media_link(match.group(0))
+                link = match.group(0) if match.group(3) != "mp4" else str(match.group(0)).replace("mp4", "gif")
+                type_, media_ = await _afk_.check_media_link(link)
                 if type_ == "url_gif":
                     await send_inline_afk(message)
                 if type_ == "url_image":
@@ -132,7 +133,8 @@ async def respostas(message: Message) -> None:
     else:
         match = _TELE_REGEX.search(REASON)
         if match:
-            type_, media_ = await _afk_.check_media_link(match.group(0))
+            link = match.group(0) if match.group(3) != "mp4" else str(match.group(0)).replace("mp4", "gif")
+            type_, media_ = await _afk_.check_media_link(link)
             if type_ == "url_image":
                 await send_inline_afk_(message)
             elif type_ == "url_gif":

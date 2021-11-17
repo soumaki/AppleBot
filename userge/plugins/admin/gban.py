@@ -393,19 +393,19 @@ async def gban_at_entry(message: Message):
             await asyncio.gather(
                 message.client.kick_chat_member(chat_id, user_id),
                 message.reply(
-                    r"\\**#𝑿_Antispam**//"
-                    "\n\nGlobally Banned User Detected in this Chat.\n\n"
+                    r"\\**#AppleAntispam**//"
+                    "\n\nUsuário com Banimento Global detectado.\n\n"
                     f"**User:** {mention_html(user_id, firstname)}\n"
-                    f"**ID:** `{user_id}`\n**Reason:** `{gbanned['reason']}`\n\n"
-                    "**Quick Action:** Banned",
+                    f"**ID:** `{user_id}`\n**Motivo:** `{gbanned['reason']}`\n\n"
+                    "**Ação Rápida:** Banido",
                     del_in=10,
                 ),
                 CHANNEL.log(
-                    r"\\**#Antispam_Log**//"
-                    "\n\n**GBanned User $SPOTTED**\n"
+                    r"\\**#LogAntispam**//"
+                    "\n\n**Usuário com Banimento Global $DETECTADO**\n"
                     f"**User:** {mention_html(user_id, firstname)}\n"
-                    f"**ID:** `{user_id}`\n**Reason:** {gbanned['reason']}\n**Quick Action:** "
-                    f"Banned in {message.chat.title}"
+                    f"**ID:** `{user_id}`\n**Motivo:** {gbanned['reason']}\n**Quick Action:** "
+                    f"Banido em {message.chat.title}"
                 ),
                 GBAN_USER_BASE.update_one(
                     {"user_id": user_id, "firstname": firstname},
@@ -430,16 +430,16 @@ async def gban_at_entry(message: Message):
                     await asyncio.gather(
                         message.client.kick_chat_member(chat_id, user_id),
                         message.reply(
-                            r"\\**#𝑿_Antispam**//"
-                            "\n\nGlobally Banned User Detected in this Chat.\n\n"
-                            "**$SENTRY CAS Federation Ban**\n"
+                            r"\\**AppleAntispam**//"
+                            "\n\nUsuário com Banimento Global detectado.\n\n"
+                            "**$DETECTADO Nas FEDS**\n"
                             f"**User:** {mention_html(user_id, firstname)}\n"
-                            f"**ID:** `{user_id}`\n**Reason:** `{reason}`\n\n"
-                            "**Quick Action:** Banned",
+                            f"**ID:** `{user_id}`\n**Motivo:** `{reason}`\n\n"
+                            "**Ação Rápida:** Banido",
                             del_in=10,
                         ),
                         CHANNEL.log(
-                            r"\\**#Antispam_Log**//"
+                            r"\\**#LogAntispam**//"
                             "\n\n**GBanned User $SPOTTED**\n"
                             "**$SENRTY #CAS BAN**"
                             f"\n**User:** {mention_html(user_id, firstname)}\n"
@@ -464,12 +464,11 @@ async def gban_at_entry(message: Message):
                     await asyncio.gather(
                         message.client.kick_chat_member(chat_id, user_id),
                         message.reply(
-                            r"\\**#𝑿_Antispam**//"
-                            "\n\nGlobally Banned User Detected in this Chat.\n\n"
-                            "**$Intellivoid Spam Protection**"
-                            f"\n**User:** {mention_html(user_id, firstname)}\n"
-                            f"**ID:** `{user_id}`\n**Reason:** `{reason}`\n\n"
-                            "**Quick Action:** Banned",
+                    r"\\**#AppleAntispam**//"
+                    "\n\nUsuário com Banimento Global detectado.\n\n"
+                    f"**User:** {mention_html(user_id, firstname)}\n"
+                    f"**ID:** `{user_id}`\n**Motivo:** `{gbanned['reason']}`\n\n"
+                    "**Ação Rápida:** Banido",
                             del_in=10,
                         ),
                         CHANNEL.log(
@@ -491,7 +490,7 @@ async def gban_at_entry(message: Message):
                     await asyncio.gather(
                         message.client.kick_chat_member(chat_id, user_id),
                         message.reply(
-                            r"\\**#𝑿_Antispam**//"
+                            r"\\**#AppleAntispam**//"
                             "\n\nGlobally Banned User Detected in this Chat.\n\n"
                             "**$SENTRY SpamWatch Federation Ban**\n"
                             f"**User:** {mention_html(user_id, firstname)}\n"

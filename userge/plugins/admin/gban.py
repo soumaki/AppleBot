@@ -464,11 +464,11 @@ async def gban_at_entry(message: Message):
                     await asyncio.gather(
                         message.client.kick_chat_member(chat_id, user_id),
                         message.reply(
-                    r"\\**#AppleAntispam**//"
-                    "\n\nUsuário com Banimento Global detectado.\n\n"
-                    f"**User:** {mention_html(user_id, firstname)}\n"
-                    f"**ID:** `{user_id}`\n**Motivo:** `{gbanned['reason']}`\n\n"
-                    "**Ação Rápida:** Banido",
+                            r"\\**#AppleAntispam**//"
+                            "\n\nUsuário com Banimento Global detectado.\n\n"
+                            f"**User:** {mention_html(user_id, firstname)}\n"
+                            f"**ID:** `{user_id}`\n**Motivo:** `{gbanned['reason']}`\n\n"
+                            "**Ação Rápida:** Banido",
                             del_in=10,
                         ),
                         CHANNEL.log(

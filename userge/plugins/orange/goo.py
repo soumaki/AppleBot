@@ -29,6 +29,6 @@ async def goo_(message: Message):
 ✅ **Este é o resultado da Sua Pesquisa no Google:**
 🔗 [{query}]({r.json()['shorturl']})
   ➖➖➖➖
-Dev: @applled
+Dev: @iamakima
 """
     )

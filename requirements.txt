@@ -44,5 +44,5 @@ youtube-search-python==1.5.3
 git+https://github.com/fnixdev/google-images-download.git
 feedparser>=6.0.2
 pickledb
-sqlalchemy==1.4.29
+sqlalchemy==1.4.31
 apscheduler

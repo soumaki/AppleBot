@@ -24,10 +24,11 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "🏷 | **MENSAGEM AUTOMÁTICA**\n"
+    "✅ **Sistema de Proteção de Spam**\n"
     "Olá, {fname}!\n"
-    "Suas mensagens estão sob análise de aprovação.\n"
+    "Suas mensagens estão sob análise até aprovação.\n"
     "Caso você persista enviando contínuas mensagens, você poderá ser bloqueado automaticamente."
+    "🔐 - <code>Mensagem encaminhada para o canal de registros.</code>"
 )
 blocked_message = (
     bk_blocked_message
@@ -77,7 +78,7 @@ async def allow(message: Message):
             await message.edit("`Configurado para receber PM`", del_in=3)
         else:
             await (await userge.get_users(userid)).unblock()
-            await message.edit("`Aprovado para PMs`", del_in=3)
+            await message.edit("✅ Suas mensagens foram aprovadas", del_in=5)
 
         if userid in PMPERMIT_MSG:
             await userge.delete_messages(userid, message_ids=PMPERMIT_MSG[userid])

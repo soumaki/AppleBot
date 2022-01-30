@@ -37,7 +37,7 @@ async def paste_(message: Message) -> None:
     use_neko = False
     file_ext = ".txt"
     if not text and replied:
-        if replied.document and replied.document.file_size < 2 ** 20 * 10:
+        if replied.document and replied.document.file_size < 2**20 * 10:
             file_ext = os.path.splitext(replied.document.file_name)[1]
             path = await replied.download(Config.DOWN_PATH)
             with open(path, "r") as d_f:

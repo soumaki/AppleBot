@@ -27,7 +27,7 @@ noPmMessage = bk_noPmMessage = (
     "✅ **Sistema de Proteção de Spam**\n"
     "Olá, {fname}!\n"
     "Suas mensagens estão sob análise até aprovação.\n"
-    "Caso você persista enviando contínuas mensagens, você poderá ser bloqueado automaticamente."
+    "Caso você persista enviando contínuas mensagens, você poderá ser bloqueado automaticamente.\n"
     "🔐 - <code>Mensagem encaminhada para o canal de registros.</code>"
 )
 blocked_message = (

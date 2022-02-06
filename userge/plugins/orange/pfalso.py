@@ -19,7 +19,7 @@ RESULTADO = ("https://boredhumans.b-cdn.net/faces2/",)
 async def foto_falsa(message: Message):
     await message.edit(f"<i>Foto Fake | Carregada</i>", del_in=1, log=__name__)
     falso = f"""{random.choice(RESULTADO)}{random.choice(range(0,994))}.jpg"""
-    texto = f"**Foto Fake Gerada** ✅\n\n**Criado por:** <i>@applled</i>\n<i>Divirta-se ;)</i>"
+    texto = f"**Foto Fake Gerada** ✅\n\n**Criado por:** <i>@iamakima</i>\n<i>Divirta-se ;)</i>"
     await message.client.send_photo(
         message.chat.id,
         photo=falso,

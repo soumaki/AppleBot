@@ -25,7 +25,7 @@ async def purple_func(message):
 
       ➖➖➖➖➖➖➖➖
       Se não concordou, clique em /kickme
-      🍏 PB - @applled | @twapple
+      🍏 PB - @iamakima | @twapple
       <code>Teste aprovado pela Anatel Astral</code>
       """
     max_ani = len(gerando)

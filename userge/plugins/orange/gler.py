@@ -10,7 +10,7 @@ async def _init() -> None:
 
 
 @userge.on_cmd(
-    "googler",
+    "gl",
     about={
         "header": "google search",
         "usage": "{tr}googler sharingan",

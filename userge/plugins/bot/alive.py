@@ -268,14 +268,6 @@ class Bot_Alive:
     def alive_info() -> str:
         alive_info_ = f"""
 
-  <a href="https://t.me/twapple"><b>APPLEBOT</a> ESTÁ ONLINE ✓</b>
- ╰•  Ativo há: {userge.uptime} | <b>Modo: {Bot_Alive._get_mode()}
-         ➖➖➖➖➖➖➖
-    ⭕️   <b>Python:</b> <code>v{versions.__python_version__}</code>
-    ⭕️   <b>Pyrogram:</b> <code>v{versions.__pyro_version__}</code>
-    ▫️   <b>Versão:</b> <code>v2.0.Beta</code>
-         ➖➖➖➖➖➖➖
-    🍏   <b>Maçã:</b>  <b>@iamakima</b>
 
          """
         return alive_info_

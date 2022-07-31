@@ -293,11 +293,11 @@ class Bot_Alive:
     @staticmethod
     def alive_default_imgs() -> str:
         alive_imgs = [
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
-            "https://telegra.ph/file/d50925c35883b16be6cd6.png",
+            "https://telegra.ph/file/241c8b73c8931cd150082.jpg",
+            "https://telegra.ph/file/241c8b73c8931cd150082.jpg",
+            "https://telegra.ph/file/241c8b73c8931cd150082.jpg",
+            "https://telegra.ph/file/241c8b73c8931cd150082.jpg",
+            "https://telegra.ph/file/241c8b73c8931cd150082.jpg",
         ]
         return rand_array(alive_imgs)
 

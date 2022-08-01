@@ -13,7 +13,7 @@ from pyrogram.errors import (
 )
 from pyrogram.types import ChatPermissions
 
-from userge import Message, userge
+from userge import Config, Message, userge
 from userge.utils.functions import get_emoji_regex
 
 CHANNEL = userge.getCLogger(__name__)
@@ -181,7 +181,7 @@ async def ban_user(message: Message):
 
     try:
         get_mem = await message.client.get_chat_member(chat_id, user_id)
-        await message.client.kick_chat_member(chat_id, user_id, int(ban_period))
+        await message.client.ban_chat_member(chat_id, user_id, int(ban_period))
         await message.edit(
             "#BAN\n\n"
             f"USER: [{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) "
@@ -267,7 +267,7 @@ async def kick_usr(message: Message):
     """kick user from tg group"""
     chat_id = message.chat.id
     await message.edit("`Trying to Kick User.. Hang on!! ⏳`")
-    user_id, _ = message.extract_user_and_text
+    user_id, reason = message.extract_user_and_text
     if not user_id:
         await message.edit(
             text="`no valid user_id or message specified,`"
@@ -277,12 +277,14 @@ async def kick_usr(message: Message):
         return
     try:
         get_mem = await message.client.get_chat_member(chat_id, user_id)
-        await message.client.kick_chat_member(chat_id, user_id, int(time.time() + 60))
+        await message.client.ban_chat_member(chat_id, user_id)
+        await message.client.unban_chat_member(chat_id, user_id)
         await message.edit(
             "#KICK\n\n"
             f"USER: [{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) "
             f"(`{get_mem.user.id}`)\n"
-            f"CHAT: `{message.chat.title}` (`{chat_id}`)",
+            f"CHAT: `{message.chat.title}` (`{chat_id}`)\n"
+            f"REASON: `{reason}`",
             log=__name__,
         )
     except UsernameInvalid:
@@ -462,21 +464,28 @@ async def unmute_usr(message: Message):
             "{tr}zombies -c [remove deleted accounts from group]",
         ],
     },
-    allow_channels=False,
     allow_bots=False,
-    allow_private=False,
 )
 async def zombie_clean(message: Message):
     """remove deleted accounts from tg group"""
-    chat_id = message.chat.id
+    chat_ = message.filtered_input_str
+    if not chat_:
+        chat_ = message.chat.id
+        if message.chat.type == "private":
+            return await message.edit("`Chat can't be private...`", del_in=5)
+    try:
+        chat_ = await userge.get_chat(chat_)
+        if chat_.type in ["private", "bot"]:
+            return await message.edit("`Chat can't be private or bot...`", del_in=5)
+        chat_id = chat_.id
+    except BaseException:
+        return await message.edit("`Provide valid chat ID...`", del_in=5)
     flags = message.flags
     rm_delaccs = "-c" in flags
     can_clean = bool(
         not message.from_user
         or message.from_user
-        and (
-            await message.client.get_chat_member(message.chat.id, message.from_user.id)
-        ).status
+        and (await message.client.get_chat_member(chat_id, message.from_user.id)).status
         in ("administrator", "creator")
     )
     if rm_delaccs:
@@ -489,9 +498,8 @@ async def zombie_clean(message: Message):
             async for member in message.client.iter_chat_members(chat_id):
                 if member.user.is_deleted:
                     try:
-                        await message.client.kick_chat_member(
-                            chat_id, member.user.id, int(time.time() + 45)
-                        )
+                        await message.client.ban_chat_member(chat_id, member.user.id)
+                        await message.client.unban_chat_member(chat_id, member.user.id)
                     except UserAdminInvalid:
                         del_users -= 1
                         del_admins += 1
@@ -509,7 +517,7 @@ async def zombie_clean(message: Message):
             await message.edit(f"{del_stats}", del_in=5)
             await CHANNEL.log(
                 "#ZOMBIE_CLEAN\n\n"
-                f"CHAT: `{message.chat.title}` (`{chat_id}`)\n"
+                f"CHAT: `{chat_.title}` (`{chat_id}`)\n"
                 f"TOTAL ZOMBIE COUNT: `{del_total}`\n"
                 f"CLEANED ZOMBIE COUNT: `{del_users}`\n"
                 f"ZOMBIE ADMIN COUNT: `{del_admins}`"
@@ -528,18 +536,19 @@ async def zombie_clean(message: Message):
         if del_users > 0:
             del_stats = f"`Found` **{del_users}** `zombie accounts in this chat.`"
             await message.edit(
-                f"🕵️‍♂️ {del_stats} `you can clean them using .zombies -c`", del_in=5
+                f"🕵️‍♂️ {del_stats} you can clean them using `{Config.CMD_TRIGGER}zombies -c`",
+                del_in=5,
             )
             await CHANNEL.log(
                 "#ZOMBIE_CHECK\n\n"
-                f"CHAT: `{message.chat.title}` (`{chat_id}`)\n"
+                f"CHAT: `{chat_.title}` (`{chat_id}`)\n"
                 f"ZOMBIE COUNT: `{del_users}`"
             )
         else:
             await message.edit(f"{del_stats}", del_in=5)
             await CHANNEL.log(
                 "#ZOMBIE_CHECK\n\n"
-                f"CHAT: `{message.chat.title}` (`{chat_id}`)\n"
+                f"CHAT: `{chat_.title}` (`{chat_id}`)\n"
                 r"ZOMBIE COUNT: `WOOHOO group is clean.. \^o^/`"
             )
 
@@ -587,16 +596,16 @@ async def unpin_msgs(message: Message):
 @userge.on_cmd(
     "pin",
     about={
-        "header": "use this to pin messages",
-        "description": "pin messages in groups, with or without notify to members.",
+        "header": "use this to pin & unpin messages",
+        "description": "pin & unpin messages in groups with or without notify to members.",
         "flags": {
-            "-s": "silent",
-            "-me": "only for yourself (for private chats only), Defaults pin both sides)",
+            "-l": "loud",
+            "-both": "only for both sides (for private chats only), Defaults pin for yourself)",
         },
         "examples": [
             "{tr}pin [reply to chat message]",
-            "{tr}pin -s [reply to chat message]",
-            "{tr}pin -me [send to private chat]",
+            "{tr}pin -l [reply to chat message]",
+            "{tr}pin -both [send to private chat]",
         ],
     },
     check_pin_perm=True,
@@ -609,15 +618,20 @@ async def pin_msgs(message: Message):
         return
     try:
         await reply.pin(
-            disable_notification=bool("-s" in message.flags),
-            both_sides=(not bool("-me" in message.flags)),
+            disable_notification=(not bool("-l" in message.flags)),
+            both_sides=(bool("-both" in message.flags)),
         )
-        await message.delete()
-        await CHANNEL.log(
-            f"#PIN\n\nCHAT: **{chat_name_(message)}**  (`{message.chat.id}`)"
-        )
+        silent = False if ("-l" or "-both") in message.flags else True
+        await message.edit(f"`Pinned Successfully!`\n<b>Silent:</b> {silent}")
+        if message.chat.type in ["group", "supergroup"]:
+            chat_id = message.chat.id
+            await CHANNEL.log(f"#PIN\n\nCHAT: `{message.chat.title}` (`{chat_id}`)")
+        else:
+            await CHANNEL.log(
+                f"#PIN\n\nCHAT: `{message.from_user.first_name}` (`{message.from_user.id}`)"
+            )
     except Exception as e_f:
-        await message.err(e_f + "\ndo .help pin for more info ...", del_in=7)
+        await message.err(f"{e_f}\ndo .help pin for more info ...", del_in=7)
 
 
 @userge.on_cmd(
@@ -631,7 +645,6 @@ async def pin_msgs(message: Message):
             "{tr}gpic -d [send to chat]",
         ],
     },
-    allow_channels=False,
     check_change_info_perm=True,
 )
 async def chatpic_func(message: Message):

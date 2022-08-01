@@ -59,6 +59,7 @@ _checkDefaultVars() {
         [SUDO_TRIGGER]="!"
         [FINISHED_PROGRESS_STR]="🍏"
         [UNFINISHED_PROGRESS_STR]="🍊"
+        [NEKO_API]="https://hmtai.herokuapp.com/nsfw/"
     )
     for key in ${!def_vals[@]}; do
         set -a

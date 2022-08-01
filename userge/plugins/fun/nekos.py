@@ -1,58 +1,55 @@
-import os
+### Made by Ryuk ###
+### based on code from ux ###
 
-from anekos import NekosLifeClient, NSFWImageTags, SFWImageTags
+import os
+import random
+
+import requests
+from nekosbest import Client, models
 from pyrogram.errors import MediaEmpty, WebpageCurlFailed
 from wget import download
 
 from userge import Message, userge
 
-from .nsfw import age_verification
+client = Client()
+API = os.environ.get("NEKO_API")
 
-client = NekosLifeClient()
+SFW_Tags = [tag for tag in (models.CATEGORIES)]
+NSFW_Tags = requests.get(API).json()["/"]
 
-NSFW = [x for x in dir(NSFWImageTags) if not x.startswith("__")]
-SFW = [z for z in dir(SFWImageTags) if not z.startswith("__")]
-
-
-neko_help = "<b>NSFW</b> :  "
-for i in NSFW:
-    neko_help += f"<code>{i.lower()}</code>   "
-neko_help += "\n\n<b>SFW</b> :  "
-for m in SFW:
-    neko_help += f"<code>{m.lower()}</code>   "
+Tags = "<b>SFW</b> :\n"
+for TAG in SFW_Tags:
+    Tags += f" <code>{TAG}</code>,  "
+Tags += "\n\n<b>NSFW</b> : \n"
+for tAg in NSFW_Tags:
+    Tags += f" <code>{tAg}</code>,  "
 
 
 @userge.on_cmd(
     "nekos",
     about={
-        "header": "Get NSFW / SFW stuff from nekos.life",
-        "flags": {"nsfw": "For random NSFW"},
-        "usage": "{tr}nekos\n{tr}nekos -nsfw\n{tr}nekos [Choice]",
-        "Choice": neko_help,
+        "header": "Get Nekos from nekos.best",
+        "usage": "{tr}nekos for random\n{tr}nekos -nsfw for random nsfw\n{tr}nekos [Choice]",
+        "Choice": Tags,
     },
 )
 async def neko_life(message: Message):
-    choice = message.input_str
+    choice = message.filtered_input_str
     if "-nsfw" in message.flags:
-        if await age_verification(message):
-            return
-        link = (await client.random_image(nsfw=True)).url
+        link = (requests.get(API + random.choice(NSFW_Tags))).json()["url"]
     elif choice:
-        input_choice = (choice.strip()).upper()
-        if input_choice in SFW:
-            link = (await client.image(SFWImageTags[input_choice])).url
-        elif input_choice in NSFW:
-            if await age_verification(message):
-                return
-            link = (await client.image(NSFWImageTags[input_choice])).url
+        input_choice = choice.lower()
+        if input_choice in SFW_Tags:
+            link = (await client.get_image(input_choice, 1)).url
+        elif input_choice in NSFW_Tags:
+            link = (requests.get(API + input_choice)).json()["url"]
         else:
             await message.err(
                 "Choose a valid Input !, See Help for more info.", del_in=5
             )
             return
     else:
-        link = (await client.random_image()).url
-
+        link = (await client.get_image(random.choice(SFW_Tags), 1)).url
     await message.delete()
 
     try:

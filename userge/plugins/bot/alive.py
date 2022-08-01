@@ -219,7 +219,7 @@ if userge.has_bot:
                 await asyncio.sleep(e.x)
             except BadRequest:
                 pass
-            ping = "UPTIME {} sec\n"
+            ping = "AppleBot UPTIME {} sec\n"
         alive_s = "▫️ XtraP : {}\n".format(_parse_arg(Config.LOAD_UNOFFICIAL_PLUGINS))
         alive_s += f"▫️ SUDO : {_parse_arg(Config.SUDO_ENABLED)}\n"
         alive_s += f"▫️ ANTISPAM : {_parse_arg(Config.ANTISPAM_SENTRY)}\n"

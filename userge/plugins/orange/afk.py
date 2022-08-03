@@ -309,7 +309,7 @@ async def logs(message: Message) -> None:
     async def status_afk_(_, c_q: CallbackQuery):
         c_q.from_user.id
         await c_q.answer(
-            f"🍏 @iamakima 𝐒𝐓𝐀𝐓𝐔𝐒:\n\n𝙵𝚛𝚊𝚜𝚎𝚜 𝚍𝚎 𝙰𝚗𝚒𝚖𝚎𝚜:\n ╰• {random.choice(ANIMES)}\n",
+            f"🍏 Powered by @iamakima\n𝐒𝐓𝐀𝐓𝐔𝐒:\n\n𝙵𝚛𝚊𝚜𝚎𝚜 𝚍𝚎 𝙰𝚗𝚒𝚖𝚎𝚜:\n ╰• {random.choice(ANIMES)}\n",
             show_alert=True,
         )
         return status_afk_
@@ -334,22 +334,7 @@ ANIMES = (
     "Às vezes as questões são complicadas e as respostas são simples.\nDeath Note",
     "Amar alguém profundamente lhe dá força; ser amado profundamente lhe dá coragem.\nYu Yu Hakusho",
 )
-
-ANIMTN = (
-    "https://telegra.ph/file/7465c70c1cb0f35cc536e.gif",
-    "https://telegra.ph/file/b2fda41d76cd798d4c368.gif",
-    "https://telegra.ph/file/43901682e8a936d76572e.gif",
-    "https://telegra.ph/file/140d286c155894093c250.gif",
-    "https://telegra.ph/file/ebfb744d7a25736ef09f5.gif",
-)
-
-FRASE_AFK = (
-    "Se você perdeu a batalha,\nimagna a guerra que tem mais pessoas!",
-    "As moscas não se arriscariam\nà ir a Roma de boca fechada,\npois morreriam de fome.",
-    "Fazer alguém, sem olhar o bem que tem.",
-    "Quem ri por último come mais chocolate.",
-)
 BIO_AFK = (
-    "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐋𝐢𝐤𝐞 𝐓𝐰𝐞𝐞𝐭𝐬\n🔗 @twapple\n𝐁𝐢𝐨\n🔗 @orapple\n ╰• 𝘔𝘰𝘳𝘦 𝘤𝘰𝘮𝘪𝘯𝘨 𝘴𝘰𝘰𝘯...",
+    "𝐂𝐇𝐄𝐂𝐊 𝐓𝐇𝐈𝐒:\n\n𝐋𝐢𝐤𝐞 𝐓𝐰𝐞𝐞𝐭𝐬\n🔗 @twapple\n𝐁𝐢𝐨\n🔗 --\n ╰• 𝘔𝘰𝘳𝘦 𝘤𝘰𝘮𝘪𝘯𝘨 𝘴𝘰𝘰𝘯...",
 )
 AFK_REASONS = ("𝙸 𝚌𝚊𝚗'𝚝 𝚝𝚊𝚕𝚔 𝚛𝚒𝚐𝚑𝚝 𝚗𝚘𝚠.",)

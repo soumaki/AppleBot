@@ -190,7 +190,7 @@ class Userge(_AbstractUserge):
 
         async def _shutdown(_sig: signal.Signals) -> None:
             global _SEND_SIGNAL  # pylint: disable=global-statement
-            _LOG.info(_LOG_STR, f"Received Stop Signal [{_sig.name}], Exiting AppleBot ...")
+            _LOG.info(_LOG_STR, f"Algo pode ter dado errado: [{_sig.name}], desligando o AppleBot...")
             await _finalize()
             if _sig == _sig.SIGUSR1:
                 _SEND_SIGNAL = True
@@ -201,7 +201,7 @@ class Userge(_AbstractUserge):
         self.loop.run_until_complete(self.start())
         for task in self._tasks:
             running_tasks.append(self.loop.create_task(task()))
-        logbot.edit_last_msg("✅ Oi! Seu AppleBot foi iniciado e atualizado corretamente.")
+        logbot.edit_last_msg("✅ Oi! Seu AppleBot foi iniciado e atualizado corretamente. \nUma nóticia um tanto quanto inesperada: Heroku encerrará em novembro, o Free Dynos: https://t.me/twapple/2006")
         logbot.end()
         mode = "[DUAL]" if RawClient.DUAL_MODE else "[BOT]" if Config.BOT_TOKEN else "[USER]"
         try:
@@ -216,6 +216,6 @@ class Userge(_AbstractUserge):
             pass
         finally:
             self.loop.close()
-            _LOG.info(_LOG_STR, "Loop Encerrado !")
+            _LOG.info(_LOG_STR, "Loop Conclúido!")
             if _SEND_SIGNAL:
                 os.kill(os.getpid(), signal.SIGUSR1)

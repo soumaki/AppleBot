@@ -8,8 +8,8 @@ services:
 
     environment:
 
-      - API_ID=${API_ID}
+      - API_ID=${3034920}
 
-      - API_HASH=${API_HASH}
+      - API_HASH=${38f82dfd7f6e1e43fa4610bd19b316d6}
 
-      - BOT_TOKEN=${BOT_TOKEN}
+      - BOT_TOKEN=${5451242368:AAFSbYUK9Ks8rVE6RmQ5AfiJzKoKREq0KPA}

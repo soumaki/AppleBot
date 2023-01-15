@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 import uvicorn
-import asyncio
 import os
 
 app = FastAPI()

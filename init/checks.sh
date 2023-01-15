@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # Copyright (C) 2020-2021 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
 #
@@ -9,56 +8,63 @@
 # All rights reserved.
 
 _checkBashReq() {
-    log "Verificando os comandos em Bash ..."
-    command -v jq &> /dev/null || quit "Comando solicitado : jq : não encontrado !"
+    log "Checking Bash Commands ..."
+    command -v jq &> /dev/null || quit "Required command : jq : could not be found !"
 }
 
 _checkPythonVersion() {
-    log "Conferindo a versão do Python ..."
+    log "Checking Python Version ..."
     getPythonVersion
     ( test -z $pVer || test $(sed 's/\.//g' <<< $pVer) -lt 3${minPVer}0 ) \
-        && quit "Obrigatório pelo menos a versão 3.$minPVer.0 do Python!"
-    log "\tPYTHON encontrado - v$pVer ..."
+        && quit "You MUST have a python version of at least 3.$minPVer.0 !"
+    log "\tFound PYTHON - v$pVer ..."
+}
+
+_installReq() {
+    if [[ $HEROKU_ENV == 1 ]] ; then
+        log "Silently Updating Requirements..."
+        pip install --no-cache-dir -r -q requirements.txt
+    fi
 }
 
 _checkConfigFile() {
-    log "Conferindo dados do arquivo de configurações ..."
+    log "Checking Config File ..."
     configPath="config.env"
     if test -f $configPath; then
-        log "\tArquivo encontrado : $configPath, Exportando ..."
+        log "\tConfig file found : $configPath, Exporting ..."
         set -a
         . $configPath
         set +a
-        test ${_____REMOVA_____ESTA_____LINHA_____:-fasle} = true \
+        test ${_____REMOVE_____THIS_____LINE_____:-fasle} = true \
             && quit "Please remove the line mentioned in the first hashtag from the config.env file"
     fi
 }
 
 _checkRequiredVars() {
-    log "Conferindo ENV Vars obrigatórias ..."
+    log "Checking Required ENV Vars ..."
     for var in API_ID API_HASH LOG_CHANNEL_ID DATABASE_URL; do
-        test -z ${!var} && quit "Obrigatório a var $var!"
+        test -z ${!var} && quit "Required $var var !"
     done
-    [[ -z $HU_STRING_SESSION && -z $BOT_TOKEN ]] && quit "Obrigatório a HU_STRING_SESSION ou a var do BOT_TOKEN!"
-    [[ -n $BOT_TOKEN && -z $OWNER_ID ]] && quit "Obrigatório a var do OWNER_ID!"
-    test -z $BOT_TOKEN && log "\t[HINT] >>> BOT_TOKEN não encontrado! (Desativando logs avançados)"
+    [[ -z $HU_STRING_SESSION && -z $BOT_TOKEN ]] && quit "Required HU_STRING_SESSION or BOT_TOKEN var !"
+    [[ -n $BOT_TOKEN && -z $OWNER_ID ]] && quit "Required OWNER_ID var !"
+    test -z $BOT_TOKEN && log "\t[HINT] >>> BOT_TOKEN not found ! (Disabling Advanced Loggings)"
 }
 
 _checkDefaultVars() {
-    replyLastMessage "Conferindo ENV Vars padrões ..."
+    replyLastMessage "Checking Default ENV Vars ..."
     declare -rA def_vals=(
         [WORKERS]=0
         [PREFERRED_LANGUAGE]="en"
         [DOWN_PATH]="downloads"
         [UPSTREAM_REMOTE]="upstream"
-        [UPSTREAM_REPO]="https://github.com/applled/AppleBot"
+        [UPSTREAM_REPO]="https://github.com/applled/Sinclair"
         [LOAD_UNOFFICIAL_PLUGINS]=true
         [CUSTOM_PLUGINS_REPO]=""
         [G_DRIVE_IS_TD]=true
         [CMD_TRIGGER]="."
         [SUDO_TRIGGER]="!"
-        [FINISHED_PROGRESS_STR]="🍏"
-        [UNFINISHED_PROGRESS_STR]="🍊"
+        [FINISHED_PROGRESS_STR]="█"
+        [UNFINISHED_PROGRESS_STR]="░"
         [NEKO_API]="https://hmtai.herokuapp.com/nsfw/"
     )
     for key in ${!def_vals[@]}; do
@@ -95,27 +101,27 @@ print(quote_plus("'$uNameAndPass'"))')
 }
 
 _checkDatabase() {
-    editLastMessage "Checando a DATABASE_URL ..."
+    editLastMessage "Checking DATABASE_URL ..."
     local mongoErr=$(runPythonCode '
 import pymongo
 try:
     pymongo.MongoClient("'$DATABASE_URL'").list_database_names()
 except Exception as e:
     print(e)')
-    [[ $mongoErr ]] && quit "Conectando-se - pymongo > $mongoErr" || log "\tpymongo solicitado > {status : 200}"
+    [[ $mongoErr ]] && quit "pymongo response > $mongoErr" || log "\tpymongo response > {status : 200}"
 }
 
 _checkTriggers() {
-    editLastMessage "Analisando os TRIGGERS ..."
+    editLastMessage "Checking TRIGGERS ..."
     test $CMD_TRIGGER = $SUDO_TRIGGER \
-        && quit "Inválido SUDO_TRIGGER! Você não pode usar $CMD_TRIGGER como SUDO_TRIGGER"
+        && quit "Invalid SUDO_TRIGGER!, You can't use $CMD_TRIGGER as SUDO_TRIGGER"
 }
 
 _checkPaths() {
-    editLastMessage "Analisando os Paths ..."
+    editLastMessage "Checking Paths ..."
     for path in $DOWN_PATH logs; do
         test ! -d $path && {
-            log "\tCriando Path : ${path%/} ..."
+            log "\tCreating Path : ${path%/} ..."
             mkdir -p $path
         }
     done
@@ -123,8 +129,8 @@ _checkPaths() {
 
 _checkUpstreamRepo() {
     remoteIsExist $UPSTREAM_REMOTE || addUpstream
-    editLastMessage "Buscando por informações no UPSTREAM_REPO ..."
-    fetchUpstream || updateUpstream && fetchUpstream || quit "Variável para UPSTREAM_REPO é inválida!"
+    editLastMessage "Fetching Data From UPSTREAM_REPO ..."
+    fetchUpstream || updateUpstream && fetchUpstream || quit "Invalid UPSTREAM_REPO var !"
     fetchBranches
     updateBuffer
 }
@@ -132,11 +138,11 @@ _checkUpstreamRepo() {
 _setupPlugins() {
     local link path tmp
     if test $(grep -P '^'$2'$' <<< $3); then
-        editLastMessage "Clonando $1 Plugins ..."
+        editLastMessage "Cloning $1 Plugins ..."
         link=$(test $4 && echo $4 || echo $3)
         tmp=Temp-Plugins
         gitClone --depth=1 $link $tmp
-        replyLastMessage "\tInstalando Requisitos ..."
+        replyLastMessage "\tInstalling Requirements ..."
         upgradePip
         installReq $tmp
         path=$(tr "[:upper:]" "[:lower:]" <<< $1)
@@ -146,12 +152,12 @@ _setupPlugins() {
         rm -rf $tmp/
         deleteLastMessage
     else
-        editLastMessage "$1 Plugins Desabilitados!"
+        editLastMessage "$1 Plugins Disabled !"
     fi
 }
 
 _checkUnoffPlugins() {
-    _setupPlugins Xtra true $LOAD_UNOFFICIAL_PLUGINS https://github.com/applled/extras.git
+    _setupPlugins Xtra true $LOAD_UNOFFICIAL_PLUGINS https://github.com/ashwinstr/Userge-Plugins-Fork.git
 }
 
 _checkCustomPlugins() {
@@ -162,9 +168,20 @@ _flushMessages() {
     deleteLastMessage
 }
 
+_server() {
+    if test $API_PORT ; then 
+        python3 -c "import asyncio;asyncio.run(asyncio.create_subprocess_shell('python3 server.py'))"
+        echo "API Started..."
+    else
+        echo "Skipping API..."
+    fi
+}
+
+
 assertPrerequisites() {
     _checkBashReq
     _checkPythonVersion
+    _installReq
     _checkConfigFile
     _checkRequiredVars
 }
@@ -178,4 +195,5 @@ assertEnvironment() {
     _checkUnoffPlugins
     _checkCustomPlugins
     _flushMessages
+    _server
 }

@@ -16,7 +16,7 @@ from re import compile as comp_regex
 from typing import Set
 
 # import heroku3
-from git import Repo
+# from git import Repo
 from pyrogram import filters
 from requests import Session
 

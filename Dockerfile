@@ -1,9 +1,9 @@
 # Ultroid - UserBot
 # Copyright (C) 2021-2022 Applled
-# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
+# This file is a part of < https://github.com/Encoder-GHAdmin/AppleBot >
 # PLease read the GNU Affero General Public License in <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
-FROM theteamultroid/ultroid:main
+FROM theteamultroid/applled:main
 
 # set timezone
 ENV TZ=Asia/Kolkata

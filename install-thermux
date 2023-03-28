@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Ultroid - UserBot
+# Copyright (C) 2021-2022 Applled
+#
+# This file is a part of < https://github.com/Encoder-GHAdmin/AppleBot >
+# PLease read the GNU Affero General Public License in <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
+
+if [ -d "resources" ]
+then
+    echo "Current directory Identified.."
+else
+    apt install git -y
+    https://github.com/Encoder-GHAdmin/AppleBot
+    cd AppleBot
+fi
+bash resources/startup/termux.sh

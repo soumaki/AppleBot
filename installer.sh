@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-REPO="https://github.com/Encoder-GHAdmin/AppleBot.git"
+REPO="https://github.com/Encoder-GHAdmin/AppleBot"
 CURRENT_DIR="$(pwd)"
 ENV_FILE_PATH=".env"
 DIR="/root/applled"

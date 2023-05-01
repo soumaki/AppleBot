@@ -496,7 +496,6 @@ if userge.has_bot:
             or (iq_user_id in Config.SUDO_USERS)
             and Config.SUDO_ENABLED
         ):
-
             if string == "_check_":
                 fyfy = [
                     [

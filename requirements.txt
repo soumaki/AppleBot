@@ -13,7 +13,7 @@ python-dotenv>=0.15.0
 pytz>=2020.4
 oauth2client>=4.1.3
 requests>=2.25.0
-ruamel.yaml==0.17.21
+ruamel.yaml==0.17.24
 aiohttp[speedups]>=3.7.3
 git+https://github.com/mongodb/mongo-python-driver.git
 Pillow==9.5.0

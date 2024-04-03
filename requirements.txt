@@ -16,7 +16,7 @@ requests>=2.25.0
 ruamel.yaml==0.17.32
 aiohttp[speedups]>=3.7.3
 git+https://github.com/mongodb/mongo-python-driver.git
-Pillow==9.5.0
+Pillow==10.3.0
 motor>=2.3.0
 tgcrypto
 ujson>=4.0.1

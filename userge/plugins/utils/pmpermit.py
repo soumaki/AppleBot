@@ -29,9 +29,9 @@ noPmMessage = bk_noPmMessage = (
     "Tag me in groups first if you want to text me. I'll not reply and you could be automatic blocked.\n"
     "🔐 — <code>All messages here was forwarded to a private log server</code>"
 )
-blocked_message = (
-    bk_blocked_message
-) = "**Você foi bloqueado automaticamente. Não foi falta de aviso. ;)**"
+blocked_message = bk_blocked_message = (
+    "**Você foi bloqueado automaticamente. Não foi falta de aviso. ;)**"
+)
 
 
 async def _init() -> None:

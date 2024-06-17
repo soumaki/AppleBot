@@ -134,7 +134,9 @@ async def demote_usr(message: Message):
     except UserIdInvalid:
         await message.edit("`invalid userid, try again with valid info ⚠`", del_in=5)
     except Exception as e_f:
-        await message.edit(f"`something went wrong! 🤔`\n\n**ERROR:** `{e_f}`", del_in=5)
+        await message.edit(
+            f"`something went wrong! 🤔`\n\n**ERROR:** `{e_f}`", del_in=5
+        )
 
 
 @userge.on_cmd(
@@ -249,7 +251,9 @@ async def unban_usr(message: Message):
     except UserIdInvalid:
         await message.edit("`invalid userid, try again with valid info ⚠`", del_in=5)
     except Exception as e_f:
-        await message.edit(f"`something went wrong! 🤔`\n\n**ERROR:** `{e_f}`", del_in=5)
+        await message.edit(
+            f"`something went wrong! 🤔`\n\n**ERROR:** `{e_f}`", del_in=5
+        )
 
 
 @userge.on_cmd(
@@ -296,7 +300,9 @@ async def kick_usr(message: Message):
     except UserIdInvalid:
         await message.edit("`invalid userid, try again with valid info ⚠`", del_in=5)
     except Exception as e_f:
-        await message.edit(f"`something went wrong! 🤔`\n\n**ERROR:** `{e_f}`", del_in=5)
+        await message.edit(
+            f"`something went wrong! 🤔`\n\n**ERROR:** `{e_f}`", del_in=5
+        )
 
 
 @userge.on_cmd(
@@ -449,7 +455,9 @@ async def unmute_usr(message: Message):
     except UserIdInvalid:
         await message.edit("`invalid userid, try again with valid info ⚠`", del_in=5)
     except Exception as e_f:
-        await message.edit(f"`something went wrong!` 🤔\n\n**ERROR:** `{e_f}`", del_in=5)
+        await message.edit(
+            f"`something went wrong!` 🤔\n\n**ERROR:** `{e_f}`", del_in=5
+        )
 
 
 @userge.on_cmd(

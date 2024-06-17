@@ -1,4 +1,5 @@
 """ Módulo para pesquisa no IMDB @applled """
+
 import os
 import re
 

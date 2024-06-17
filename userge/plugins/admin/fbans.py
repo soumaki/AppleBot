@@ -1,4 +1,5 @@
 """Plugin to manage federations"""
+
 # Author: Copyright (C) 2020 KenHV [https://github.com/KenHV]
 
 # For USERGE-X
@@ -553,9 +554,11 @@ async def fban_lst_(message: Message):
         id_ = f"'<code>{chat_id}</code>' - " if "-id" in message.flags else ""
         out += f"• Fed: {id_}<b>{data['fed_name']}</b>\n"
     await message.edit_or_send_as_file(
-        f"**Connected federations: [{total}]**\n\n" + out
-        if out
-        else "**You haven't connected to any federations yet!**",
+        (
+            f"**Connected federations: [{total}]**\n\n" + out
+            if out
+            else "**You haven't connected to any federations yet!**"
+        ),
         caption="Connected Fed List",
     )
 

@@ -265,7 +265,9 @@ if userge.has_bot:
         if not reply:
             await message.reply("Reply to a message to see user info")
             return
-        info_msg = await message.reply("`🔎 Searching for this user in my database ...`")
+        info_msg = await message.reply(
+            "`🔎 Searching for this user in my database ...`"
+        )
         if uid_from_db := BOT_MSGS.search(reply.message_id):
             try:
                 user_ = await userge.bot.get_user_dict(uid_from_db, attr_dict=True)

@@ -1,4 +1,5 @@
 """ Download Youtube Video / Audio in a User friendly interface """
+
 # --------------------------- #
 #   Modded ytdl by code-rgb   #
 # --------------------------- #
@@ -539,9 +540,9 @@ def download_button(vid: str, body: bool = False):
         if video.get("acodec") != "none":
             bitrrate = int(video.get("abr", 0))
             if bitrrate != 0:
-                audio_dict[
-                    bitrrate
-                ] = f"🎵 {bitrrate}Kbps ({humanbytes(fr_size) or 'N/A'})"
+                audio_dict[bitrrate] = (
+                    f"🎵 {bitrrate}Kbps ({humanbytes(fr_size) or 'N/A'})"
+                )
 
     video_btns = []
     for frmt in qual_list:

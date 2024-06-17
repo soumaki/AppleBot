@@ -1,6 +1,5 @@
 """ auto welcome and left messages """
 
-
 import asyncio
 
 from pyrogram.errors import FloodWait

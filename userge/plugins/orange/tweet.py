@@ -1,6 +1,5 @@
 """ Manter os créditos | @applled - Módulo para Tweets ;) """
 
-
 from pyrogram.errors import YouBlockedUser
 
 from userge import Message, userge

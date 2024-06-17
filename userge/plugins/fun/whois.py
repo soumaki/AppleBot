@@ -52,7 +52,9 @@ async def who_is(message: Message):
         message_out_str += f"<b>👤 Username:</b> @{from_user.username}\n"
         message_out_str += f"<b>🏢 DC ID:</b> <code>{from_user.dc_id}</code>\n"
         message_out_str += f"<b>🤖 Is Bot:</b> <code>{from_user.is_bot}</code>\n"
-        message_out_str += f"<b>🚫 Is Restricted:</b> <code>{from_user.is_scam}</code>\n"
+        message_out_str += (
+            f"<b>🚫 Is Restricted:</b> <code>{from_user.is_scam}</code>\n"
+        )
         message_out_str += "<b>✅ Is Verified by Telegram:</b> "
         message_out_str += f"<code>{from_user.is_verified}</code>\n"
         message_out_str += f"<b>🕵️‍♂️ User ID:</b> <code>{from_user.id}</code>\n"

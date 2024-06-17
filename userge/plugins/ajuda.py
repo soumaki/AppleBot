@@ -1146,7 +1146,9 @@ if userge.has_bot:
                     thumb_img = "https://i.imgur.com/c5pZebC.png"
                 else:
                     c_data = f"troll_{key_}"
-                    i_m_content = f"😈 Only <b>{r_name}</b> can't view this message. UwU"
+                    i_m_content = (
+                        f"😈 Only <b>{r_name}</b> can't view this message. UwU"
+                    )
                     i_l_des = f"Message Hidden from {r_name}"
                     title = "😈 Troll"
                     thumb_img = "https://i.imgur.com/0vg5B0A.png"

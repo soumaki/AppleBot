@@ -484,7 +484,11 @@ async def stretch(message: Message):
         await message.edit("`GiiiiiiiB sooooooomeeeeeee teeeeeeext!`")
         return
     await message.edit(
-        sub(r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэё])", (r"\1" * randint(3, 10)), input_str)
+        sub(
+            r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэё])",
+            (r"\1" * randint(3, 10)),
+            input_str,
+        )
     )
 
 
@@ -499,9 +503,7 @@ async def zal_(message: Message):
     """zal"""
     input_str = message.input_or_reply_str
     if not input_str:
-        await message.edit(
-            "`gͫ ̆ i̛ ̺ v͇̆ ȅͅ   a̢ͦ   s̴̪ c̸̢ ä̸ rͩͣ y͖͞   t̨͚ é̠ x̢͖  t͔͛`"
-        )
+        await message.edit("`gͫ ̆ i̛ ̺ v͇̆ ȅͅ   a̢ͦ   s̴̪ c̸̢ ä̸ rͩͣ y͖͞   t̨͚ é̠ x̢͖  t͔͛`")
         return
     reply_text = []
     for charac in input_str:
